@@ -1,0 +1,970 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LLM 参数 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/llm-parameters/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1 active" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/llm-parameters/">https://docs.koog.ai/llm-parameters/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概述">概述</a><a class="l2" href="#llm-参数参考">LLM 参数参考</a><a class="l2" href="#schema">Schema</a><a class="l3" href="#json-schema">JSON schema</a><a class="l2" href="#工具选择">工具选择</a><a class="l2" href="#提供商特定参数">提供商特定参数</a><a class="l2" href="#使用示例">使用示例</a><a class="l3" href="#基本用法">基本用法</a><a class="l3" href="#推理控制">推理控制</a><a class="l3" href="#自定义参数">自定义参数</a><a class="l3" href="#设置和覆盖参数">设置和覆盖参数</a></div><article class="content"><h1 id="llm">LLM 参数</h1>
+<p>本页提供有关 Koog 智能体框架中 LLM 参数的详细信息。LLM 参数让你能够控制和
+自定义语言模型的行为。</p>
+<h2 id="_1">概述</h2>
+<p>LLM 参数是配置选项，让你能够微调语言模型生成响应的方式。这些参数
+控制响应随机性、长度、格式和工具使用等方面。通过调整这些参数，你可以针对不同的
+用例优化模型行为，从创意内容生成到确定性的结构化输出。</p>
+<p>在 Koog 中，<code>LLMParams</code> 类包含 LLM 参数，并为配置语言
+模型行为提供了一致的接口。你可以通过以下方式使用 LLM 参数：</p>
+<ul>
+<li>创建提示词时：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(
+    id = &quot;dev-assistant&quot;,
+    params = LLMParams(
+        temperature = 0.7,
+        maxTokens = 500
+    )
+) {
+    // Add a system message to set the context
+    system(&quot;You are a helpful assistant.&quot;)
+
+    // Add a user message
+    user(&quot;Tell me about Kotlin&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;dev-assistant&quot;)
+    .withParams(new LLMParams(
+        0.7,         // temperature
+        500,         // maxTokens
+        1,           // numberOfChoices
+        null,        // speculation
+        null,        // schema
+        LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+        null,        // user
+        null         // additionalProperties
+    ))
+    .system(&quot;You are a helpful assistant.&quot;)
+    .user(&quot;Tell me about Kotlin&quot;)
+    .build();
+</code></pre>
+<p>有关提示词创建的更多信息，请参阅<a href="081-prompts__prompt-creation.html">提示词</a>。</p>
+<ul>
+<li>创建子图时：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val processQuery by subgraphWithTask&lt;String, String&gt;(
+    tools = listOf(searchTool, calculatorTool, weatherTool),
+    llmModel = OpenAIModels.Chat.GPT4o,
+    llmParams = LLMParams(
+        temperature = 0.7,
+        maxTokens = 500
+    ),
+    parallelTools = false,
+    assistantResponseRepeatMax = 3,
+) { userQuery -&gt;
+    &quot;&quot;&quot;
+    You are a helpful assistant that can answer questions about various topics.
+    Please help with the following query:
+    $userQuery
+    &quot;&quot;&quot;
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>有关 Koog 中现有子图类型的更多信息，
+请参阅<a href="022-nodes-and-components.html#predefined-subgraphs">预定义子图</a>。要了解如何创建和实现你自己的
+子图，请参阅<a href="008-custom-subgraphs.html">自定义子图</a>。</p>
+<ul>
+<li>在 LLM 写入会话中更新提示词时：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    changeLLMParams(
+        LLMParams(
+            temperature = 0.7,
+            maxTokens = 500
+        )
+    )
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>有关会话的更多信息，请参阅 <a href="028-sessions.html">LLM 会话与手动历史记录管理</a>。</p>
+<h2 id="llm_1">LLM 参数参考</h2>
+<p>下表提供了 <code>LLMParams</code> 类中包含的 LLM 参数参考，这些参数受 Koog 开箱即用的所有 LLM
+提供商支持。
+有关某些提供商特有的参数列表，
+请参阅<a href="#provider-specific-parameters">提供商特有参数</a>。</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>temperature</code></td>
+<td>Double</td>
+<td>控制输出的随机性。较高的值（如 0.7–1.0）会产生更多样、更有创意的响应，而较低的值会产生更确定、更聚焦的响应。</td>
+</tr>
+<tr>
+<td><code>maxTokens</code></td>
+<td>Integer</td>
+<td>响应中要生成的最大 token 数。可用于控制响应长度。</td>
+</tr>
+<tr>
+<td><code>numberOfChoices</code></td>
+<td>Integer</td>
+<td>要生成的备选响应数量。必须大于 0。</td>
+</tr>
+<tr>
+<td><code>speculation</code></td>
+<td>String</td>
+<td>一个推测性配置字符串，会影响模型行为，旨在提升结果的速度和准确性。仅受某些模型支持，但可能大幅提升速度和准确性。</td>
+</tr>
+<tr>
+<td><code>schema</code></td>
+<td>Schema</td>
+<td>定义模型响应格式的结构，支持 JSON 等结构化输出。有关更多信息，请参阅 <a href="#schema">Schema</a>。</td>
+</tr>
+<tr>
+<td><code>toolChoice</code></td>
+<td>ToolChoice</td>
+<td>控制语言模型的工具调用行为。有关更多信息，请参阅<a href="#tool-choice">工具选择</a>。</td>
+</tr>
+<tr>
+<td><code>user</code></td>
+<td>String</td>
+<td>发起请求的用户的标识符，可用于跟踪目的。</td>
+</tr>
+<tr>
+<td><code>additionalProperties</code></td>
+<td>Map<String, JsonElement></td>
+<td>可用于存储某些模型提供商特有的自定义参数的附加属性。</td>
+</tr>
+</tbody>
+</table>
+<p>有关每个参数的默认值列表，请参阅相应的 LLM 提供商文档：</p>
+<ul>
+<li><a href="https://platform.openai.com/docs/api-reference/chat/create">OpenAI Chat</a></li>
+<li><a href="https://platform.openai.com/docs/api-reference/responses/create">OpenAI Responses</a></li>
+<li><a href="https://ai.google.dev/api/generate-content#generationconfig">Google</a> β</li>
+<li><a href="https://platform.claude.com/docs/en/api/messages/create">Anthropic</a></li>
+<li><a href="https://docs.mistral.ai/api/#operation/chatCompletions">Mistral</a> β</li>
+<li><a href="https://api-docs.deepseek.com/api/create-chat-completion#request">DeepSeek</a> β</li>
+<li><a href="https://openrouter.ai/docs/api/reference/parameters">OpenRouter</a></li>
+<li>Alibaba β (<a href="https://www.alibabacloud.com/help/en/model-studio/qwen-api-reference">DashScope</a>)</li>
+<li><a href="https://docs.ollama.com/api/openai-compatibility">Ollama</a></li>
+</ul>
+<h2 id="schema">Schema</h2>
+<p><code>Schema</code> 接口定义模型响应格式的结构。
+Koog 支持 JSON schema，如下文各节所述。</p>
+<h3 id="json-schema">JSON schema</h3>
+<p>JSON schema 允许你从语言模型请求结构化的 JSON 数据。Koog 支持以下两种类型的 JSON
+schema：</p>
+<p>1) <strong>基础 JSON Schema</strong>（<code>LLMParams.Schema.JSON.Basic</code>）：用于基础 JSON 处理能力。此格式
+主要侧重于嵌套数据定义，不包含高级 JSON Schema 功能。</p>
+<p>KotlinJava</p>
+<pre><code>// Create parameters with a basic JSON schema
+val jsonParams = LLMParams(
+    temperature = 0.2,
+    schema = LLMParams.Schema.JSON.Basic(
+        name = &quot;PersonInfo&quot;,
+        schema = JsonObject(mapOf(
+            &quot;type&quot; to JsonPrimitive(&quot;object&quot;),
+            &quot;properties&quot; to JsonObject(
+                mapOf(
+                    &quot;name&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;string&quot;))),
+                    &quot;age&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;number&quot;))),
+                    &quot;skills&quot; to JsonObject(
+                        mapOf(
+                            &quot;type&quot; to JsonPrimitive(&quot;array&quot;),
+                            &quot;items&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;string&quot;)))
+                        )
+                    )
+                )
+            ),
+            &quot;additionalProperties&quot; to JsonPrimitive(false),
+            &quot;required&quot; to JsonArray(listOf(JsonPrimitive(&quot;name&quot;), JsonPrimitive(&quot;age&quot;), JsonPrimitive(&quot;skills&quot;)))
+        ))
+    )
+)
+</code></pre>
+<pre><code>// Create parameters with a basic JSON schema
+LLMParams jsonParams = new LLMParams(
+    0.2,         // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    new LLMParams.Schema.JSON.Basic(
+        &quot;PersonInfo&quot;,
+        new JsonObject(Map.of(
+            &quot;type&quot;, new JsonPrimitive(&quot;object&quot;),
+            &quot;properties&quot;, new JsonObject(Map.of(
+                &quot;name&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;string&quot;))),
+                &quot;age&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;number&quot;))),
+                &quot;skills&quot;, new JsonObject(Map.of(
+                    &quot;type&quot;, new JsonPrimitive(&quot;array&quot;),
+                    &quot;items&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;string&quot;)))
+                ))
+            )),
+            &quot;additionalProperties&quot;, new JsonPrimitive(false),
+            &quot;required&quot;, new JsonArray(List.of(
+                new JsonPrimitive(&quot;name&quot;),
+                new JsonPrimitive(&quot;age&quot;),
+                new JsonPrimitive(&quot;skills&quot;)
+            ))
+        ))
+    ),
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+</code></pre>
+<p>2) <strong>标准 JSON Schema</strong>（<code>LLMParams.Schema.JSON.Standard</code>）：表示符合 <a href="https://json-schema.org/">json-schema.org</a> 的标准 JSON schema。此格式是官方 JSON Schema 规范的一个真子集。请注意，不同 LLM 提供商之间的风格可能会有所不同，因为并非所有提供商都支持完整的 JSON schema。</p>
+<p>KotlinJava</p>
+<pre><code>// Create parameters with a standard JSON schema
+val standardJsonParams = LLMParams(
+    temperature = 0.2,
+    schema = LLMParams.Schema.JSON.Standard(
+        name = &quot;ProductCatalog&quot;,
+        schema = JsonObject(mapOf(
+            &quot;type&quot; to JsonPrimitive(&quot;object&quot;),
+            &quot;properties&quot; to JsonObject(mapOf(
+                &quot;products&quot; to JsonObject(mapOf(
+                    &quot;type&quot; to JsonPrimitive(&quot;array&quot;),
+                    &quot;items&quot; to JsonObject(mapOf(
+                        &quot;type&quot; to JsonPrimitive(&quot;object&quot;),
+                        &quot;properties&quot; to JsonObject(mapOf(
+                            &quot;id&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;string&quot;))),
+                            &quot;name&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;string&quot;))),
+                            &quot;price&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;number&quot;))),
+                            &quot;description&quot; to JsonObject(mapOf(&quot;type&quot; to JsonPrimitive(&quot;string&quot;)))
+                        )),
+                        &quot;additionalProperties&quot; to JsonPrimitive(false),
+                        &quot;required&quot; to JsonArray(listOf(JsonPrimitive(&quot;id&quot;), JsonPrimitive(&quot;name&quot;), JsonPrimitive(&quot;price&quot;), JsonPrimitive(&quot;description&quot;)))
+                    ))
+                ))
+            )),
+            &quot;additionalProperties&quot; to JsonPrimitive(false),
+            &quot;required&quot; to JsonArray(listOf(JsonPrimitive(&quot;products&quot;)))
+        ))
+    )
+)
+</code></pre>
+<pre><code>// Create parameters with a standard JSON schema
+LLMParams standardJsonParams = new LLMParams(
+    0.2,         // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    new LLMParams.Schema.JSON.Standard(
+        &quot;ProductCatalog&quot;,
+        new JsonObject(Map.of(
+            &quot;type&quot;, new JsonPrimitive(&quot;object&quot;),
+            &quot;properties&quot;, new JsonObject(Map.of(
+                &quot;products&quot;, new JsonObject(Map.of(
+                    &quot;type&quot;, new JsonPrimitive(&quot;array&quot;),
+                    &quot;items&quot;, new JsonObject(Map.of(
+                        &quot;type&quot;, new JsonPrimitive(&quot;object&quot;),
+                        &quot;properties&quot;, new JsonObject(Map.of(
+                            &quot;id&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;string&quot;))),
+                            &quot;name&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;string&quot;))),
+                            &quot;price&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;number&quot;))),
+                            &quot;description&quot;, new JsonObject(Map.of(&quot;type&quot;, new JsonPrimitive(&quot;string&quot;)))
+                        )),
+                        &quot;additionalProperties&quot;, new JsonPrimitive(false),
+                        &quot;required&quot;, new JsonArray(List.of(
+                            new JsonPrimitive(&quot;id&quot;),
+                            new JsonPrimitive(&quot;name&quot;),
+                            new JsonPrimitive(&quot;price&quot;),
+                            new JsonPrimitive(&quot;description&quot;)
+                        ))
+                    ))
+                ))
+            )),
+            &quot;additionalProperties&quot;, new JsonPrimitive(false),
+            &quot;required&quot;, new JsonArray(List.of(new JsonPrimitive(&quot;products&quot;)))
+        ))
+    ),
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+</code></pre>
+<h2 id="_2">工具选择</h2>
+<p><code>ToolChoice</code> 类控制语言模型如何使用工具。它提供以下选项：</p>
+<ul>
+<li><code>LLMParams.ToolChoice.Named</code>：语言模型调用指定的工具。接受 <code>name</code> 字符串参数，该参数
+  表示要调用的工具名称。</li>
+<li><code>LLMParams.ToolChoice.All</code>：语言模型调用所有工具。</li>
+<li><code>LLMParams.ToolChoice.None</code>：语言模型不调用工具，仅生成文本。</li>
+<li><code>LLMParams.ToolChoice.Auto</code>：语言模型自动决定是否调用工具以及调用哪个工具。</li>
+<li><code>LLMParams.ToolChoice.Required</code>：语言模型至少调用一个工具。</li>
+</ul>
+<p>以下是使用 <code>LLMParams.ToolChoice.Named</code> 类调用特定工具的示例：</p>
+<p>KotlinJava</p>
+<pre><code>val specificToolParams = LLMParams(
+    toolChoice = LLMParams.ToolChoice.Named(name = &quot;calculator&quot;)
+)
+</code></pre>
+<pre><code>LLMParams specificToolParams = new LLMParams(
+    null,        // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    new LLMParams.ToolChoice.Named(&quot;calculator&quot;), // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+</code></pre>
+<h2 id="_3">提供商特定参数</h2>
+<p>Koog 支持为某些 LLM 提供商设置提供商特定参数。这些参数扩展了基础 <code>LLMParams</code> 类，并添加了提供商特定的功能。以下类包含各提供商特定的参数：</p>
+<ul>
+<li><code>OpenAIChatParams</code>：特定于 OpenAI Chat Completions API 的参数。</li>
+<li><code>OpenAIResponsesParams</code>：特定于 OpenAI Responses API 的参数。</li>
+<li><code>GoogleParams</code>：特定于 Google 模型的参数。</li>
+<li><code>AnthropicParams</code>：特定于 Anthropic 模型的参数。</li>
+<li><code>MistralAIParams</code>：特定于 Mistral 模型的参数。</li>
+<li><code>DeepSeekParams</code>：特定于 DeepSeek 模型的参数。</li>
+<li><code>OpenRouterParams</code>：特定于 OpenRouter 模型的参数。</li>
+<li><code>DashscopeParams</code>：特定于阿里巴巴模型的参数。</li>
+<li><code>OllamaParams</code>：特定于 Ollama 模型的参数。</li>
+</ul>
+<p>以下是 Koog 中提供商特定参数的完整参考：</p>
+<p>OpenAI ChatOpenAI ResponsesGoogleAnthropicMistralDeepSeekOpenRouterAlibaba (DashScope)Ollama
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <code>audio</code> | OpenAIAudioConfig | 使用支持音频的模型时的音频输出配置。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.OpenAIAudioConfig">OpenAIAudioConfig</a> 的 API 文档。 |
+| <code>frequencyPenalty</code> | Double | 对频繁出现的 token 进行惩罚以减少重复。较高的 <code>frequencyPenalty</code> 值会导致更大的措辞变化并减少重复。取值范围为 -2.0 到 2.0。 |
+| <code>logprobs</code> | Boolean | 如果为 <code>true</code>，则包含输出 token 的对数概率。 |
+| <code>parallelToolCalls</code> | Boolean | 如果为 <code>true</code>，多个工具调用可以并行运行。特别适用于自定义节点或代理策略之外的 LLM 交互。 |
+| <code>presencePenalty</code> | Double | 防止模型重复使用已包含在输出中的 token。较高的值鼓励引入新的 token 和主题。取值范围为 -2.0 到 2.0。 |
+| <code>promptCacheKey</code> | String | 用于提示缓存的稳定缓存键。OpenAI 使用它来缓存相似请求的响应。 |
+| <code>reasoningEffort</code> | ReasoningEffort | 指定模型将使用的推理努力程度。有关更多信息和可用值，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.ReasoningEffort">ReasoningEffort</a> 的 API 文档。 |
+| <code>safetyIdentifier</code> | String | 一个稳定且唯一的用户标识符，可用于检测违反 OpenAI 政策的用户。 |
+| <code>serviceTier</code> | ServiceTier | OpenAI 处理层级选择，让您可以在性能与成本之间进行优先级排序。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.ServiceTier">ServiceTier</a> 的 API 文档。 |
+| <code>stop</code> | List<String> | 当模型遇到其中任何一个字符串时，会发出停止生成内容的信号。例如，要让模型在产生两个换行符时停止生成内容，请将停止序列指定为 <code>stop = listOf("/n/n")</code>。 |
+| <code>store</code> | Boolean | 如果为 <code>true</code>，提供方可能会存储输出以供后续检索。 |
+| <code>topLogprobs</code> | Integer | 每个位置最可能的 token 数量。取值范围为 0–20。需要将 <code>logprobs</code> 参数设置为 <code>true</code>。 |
+| <code>topP</code> | Double | 也称为核采样。通过将概率值最高的 token 添加到子集中来创建下一个 token 的子集，直到它们的概率之和达到指定的 <code>topP</code> 值。取值大于 0.0 且小于或等于 1.0。 |
+| <code>webSearchOptions</code> | OpenAIWebSearchOptions | 配置网络搜索工具的使用（如果支持）。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.OpenAIWebSearchOptions">OpenAIWebSearchOptions</a> 的 API 文档。 |
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <code>background</code> | Boolean | 在后台运行响应。 |
+| <code>include</code> | List<OpenAIInclude> | 要包含在模型响应中的额外数据，例如网络搜索工具调用的来源或文件搜索工具调用的搜索结果。有关详细参考信息，请参阅 Koog API 参考中的 <a href="api:prompt-executor-openai-client::ai.koog.prompt.executor.clients.openai.models.OpenAIInclude">OpenAIInclude</a>。要了解有关 <code>include</code> 参数的更多信息，请参阅 <a href="https://platform.openai.com/docs/api-reference/responses/create#responses-create-include">OpenAI 的文档</a>。 |
+| <code>logprobs</code> | Boolean | 如果为 <code>true</code>，则包含输出 token 的对数概率。 |
+| <code>maxToolCalls</code> | Integer | 此响应中允许的内置工具调用总次数上限。取值等于或大于 <code>0</code>。 |
+| <code>parallelToolCalls</code> | Boolean | 如果为 <code>true</code>，则可以并行运行多个工具调用。特别适用于自定义节点或代理策略之外的 LLM 交互。 |
+| <code>promptCacheKey</code> | String | 用于提示缓存的稳定缓存键。OpenAI 使用它来缓存相似请求的响应。 |
+| <code>reasoning</code> | ReasoningConfig | 支持推理的模型的推理配置。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client::ai.koog.prompt.executor.clients.openai.models.ReasoningConfig">ReasoningConfig</a> 的 API 文档。 |
+| <code>safetyIdentifier</code> | String | 一个稳定且唯一的用户标识符，可用于检测违反 OpenAI 政策的用户。 |
+| <code>serviceTier</code> | ServiceTier | OpenAI 处理层级选择，让您可以在性能与成本之间进行优先级取舍。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.ServiceTier">ServiceTier</a> 的 API 文档。 |
+| <code>store</code> | Boolean | 如果为 <code>true</code>，提供方可能会存储输出以供后续检索。 |
+| <code>topLogprobs</code> | Integer | 每个位置最可能的 token 数量。取值范围为 0–20。需要将 <code>logprobs</code> 参数设置为 <code>true</code>。 |
+| <code>topP</code> | Double | 也称为核采样。通过将概率值最高的 token 添加到子集中，直到其概率之和达到指定的 <code>topP</code> 值，从而创建下一个 token 的子集。取值大于 0.0 且小于或等于 1.0。 |
+| <code>truncation</code> | Truncation | 接近上下文窗口时的截断策略。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client::ai.koog.prompt.executor.clients.openai.models.Truncation">Truncation</a> 的 API 文档。 |</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>thinkingConfig</code></td>
+<td>GoogleThinkingConfig</td>
+<td>控制模型是否应公开其思维链以及可用于思维链的 token 数量。有关更多信息，请参阅 <a href="api:prompt-executor-google-client::ai.koog.prompt.executor.clients.google.models.GoogleThinkingConfig">GoogleThinkingConfig</a> 的 API 参考。</td>
+</tr>
+<tr>
+<td><code>topK</code></td>
+<td>Integer</td>
+<td>生成输出时要考虑的最可能的 token 数量。取值大于或等于 0（可能适用特定于提供方的最小值）。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中，直到其概率之和达到指定的 <code>topP</code> 值，从而创建下一个 token 的子集。取值大于 0.0 且小于或等于 1.0。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>container</code></td>
+<td>String</td>
+<td>用于跨请求复用的容器标识符。Anthropic 的代码执行工具使用容器来提供安全且容器化的代码执行环境。通过提供先前响应中的容器标识符，你可以在多个请求之间复用容器，从而在请求之间保留已创建的文件。有关更多信息，请参阅 Anthropic 文档中的 <a href="https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool#containers">Containers</a>。</td>
+</tr>
+<tr>
+<td><code>mcpServers</code></td>
+<td>List<AnthropicMCPServerURLDefinition></td>
+<td>请求中要使用的 MCP 服务器定义。最多支持 20 个服务器。有关更多信息，请参阅 <a href="api:prompt-executor-anthropic-client::ai.koog.prompt.executor.clients.anthropic.models.AnthropicMCPServerURLDefinition">AnthropicMCPServerURLDefinition</a> 的 API 参考。</td>
+</tr>
+<tr>
+<td><code>serviceTier</code></td>
+<td>ServiceTier</td>
+<td>OpenAI 处理层级选择，可让你在性能与成本之间进行权衡。有关更多信息，请参阅 <a href="api:prompt-executor-openai-client-base::ai.koog.prompt.executor.clients.openai.base.models.ServiceTier">ServiceTier</a> 的 API 文档。</td>
+</tr>
+<tr>
+<td><code>stopSequences</code></td>
+<td>List<String></td>
+<td>导致模型停止生成内容的自定义文本序列。如果匹配，响应中 <code>stop_reason</code> 的值为 <code>stop_sequence</code>。</td>
+</tr>
+<tr>
+<td><code>thinking</code></td>
+<td>AnthropicThinking</td>
+<td>用于激活 Claude 扩展思考的配置。激活后，响应还会包含思考内容块。有关更多信息，请参阅 <a href="api:prompt-executor-anthropic-client::ai.koog.prompt.executor.clients.anthropic.models.AnthropicThinking">AnthropicThinking</a> 的 API 参考。</td>
+</tr>
+<tr>
+<td><code>topK</code></td>
+<td>Integer</td>
+<td>生成输出时要考虑的前 K 个 token 的数量。取值大于或等于 0（可能适用特定于提供商的最小值）。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中，直到其概率之和达到指定的 <code>topP</code> 值，从而创建下一个 token 的子集。取值大于 0.0 且小于或等于 1.0。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>frequencyPenalty</code></td>
+<td>Double</td>
+<td>对频繁出现的 token 进行惩罚以减少重复。较高的 <code>frequencyPenalty</code> 值会导致措辞变化更大并减少重复。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>parallelToolCalls</code></td>
+<td>Boolean</td>
+<td>如果为 <code>true</code>，多个工具调用可以并行运行。特别适用于自定义节点或代理策略之外的 LLM 交互。</td>
+</tr>
+<tr>
+<td><code>presencePenalty</code></td>
+<td>Double</td>
+<td>防止模型重复使用已包含在输出中的 token。较高的值会鼓励引入新的 token 和主题。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>promptMode</code></td>
+<td>String</td>
+<td>允许你在推理模式和无系统提示之间切换。当设置为 <code>reasoning</code> 时，将使用推理模型的默认系统提示。有关更多信息，请参阅 Mistral 的 <a href="https://docs.mistral.ai/capabilities/reasoning">Reasoning</a> 文档。</td>
+</tr>
+<tr>
+<td><code>randomSeed</code></td>
+<td>Integer</td>
+<td>用于随机采样的种子。如果设置，使用相同参数和相同种子值的不同调用将生成确定性结果。</td>
+</tr>
+<tr>
+<td><code>safePrompt</code></td>
+<td>Boolean</td>
+<td>指定是否在所有对话之前注入安全提示。安全提示用于实施护栏并防止有害内容。有关更多信息，请参阅 Mistral 的 <a href="https://docs.mistral.ai/capabilities/guardrailing">Moderation &amp; Guardarailing</a> 文档。</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>List<String></td>
+<td>当模型遇到其中任何一个字符串时，会发出停止生成内容的信号。例如，要让模型在产生两个换行符时停止生成内容，请将停止序列指定为 <code>stop = listOf("/n/n")</code>。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中来创建下一个 token 的子集，直到它们的概率之和达到指定的 <code>topP</code> 值。取值范围为大于 0.0 且小于或等于 1.0。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>frequencyPenalty</code></td>
+<td>Double</td>
+<td>对频繁出现的 token 进行惩罚以减少重复。较高的 <code>frequencyPenalty</code> 值会导致措辞变化更大并减少重复。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>logprobs</code></td>
+<td>Boolean</td>
+<td>如果为 <code>true</code>，则包含输出 token 的对数概率。</td>
+</tr>
+<tr>
+<td><code>presencePenalty</code></td>
+<td>Double</td>
+<td>防止模型重复使用已包含在输出中的 token。较高的值会鼓励引入新的 token 和主题。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>List<String></td>
+<td>当模型遇到其中任何一个字符串时，会发出停止生成内容的信号。例如，要让模型在产生两个换行符时停止生成内容，请将停止序列指定为 <code>stop = listOf("/n/n")</code>。</td>
+</tr>
+<tr>
+<td><code>topLogprobs</code></td>
+<td>Integer</td>
+<td>每个位置最可能的顶部 token 数量。取值范围为 0–20。需要将 <code>logprobs</code> 参数设置为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中来创建下一个 token 的子集，直到它们的概率之和达到指定的 <code>topP</code> 值。取值范围为大于 0.0 且小于或等于 1.0。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>frequencyPenalty</code></td>
+<td>Double</td>
+<td>对频繁出现的 token 进行惩罚以减少重复。<code>frequencyPenalty</code> 值越高，措辞变化越大，重复越少。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>logprobs</code></td>
+<td>Boolean</td>
+<td>如果为 <code>true</code>，则包含输出 token 的对数概率。</td>
+</tr>
+<tr>
+<td><code>minP</code></td>
+<td>Double</td>
+<td>过滤掉相对于最可能 token 的相对概率低于指定 <code>minP</code> 值的 token。取值范围为 0.0–0.1。</td>
+</tr>
+<tr>
+<td><code>models</code></td>
+<td>List<String></td>
+<td>请求允许使用的模型列表。</td>
+</tr>
+<tr>
+<td><code>presencePenalty</code></td>
+<td>Double</td>
+<td>防止模型重复使用已出现在输出中的 token。值越高，越鼓励引入新的 token 和主题。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>provider</code></td>
+<td>ProviderPreferences</td>
+<td>包含一系列参数，可让你显式控制 OpenRouter 如何选择使用哪个 LLM 提供商。有关更多信息，请参阅 <a href="api:prompt-executor-openrouter-client::ai.koog.prompt.executor.clients.openrouter.models.ProviderPreferences">ProviderPreferences</a> 的 API 文档。</td>
+</tr>
+<tr>
+<td><code>repetitionPenalty</code></td>
+<td>Double</td>
+<td>对 token 重复进行惩罚。已出现在输出中的 token 的下一个 token 概率会除以 <code>repetitionPenalty</code> 的值，这使得它们在 <code>repetitionPenalty &gt; 1</code> 时更不容易再次出现。取值范围为大于 0.0 且小于或等于 2.0。</td>
+</tr>
+<tr>
+<td><code>route</code></td>
+<td>String</td>
+<td>要使用的请求路由策略。</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>List<String></td>
+<td>当模型遇到其中任意一个字符串时，会发出停止生成内容的信号。例如，要让模型在产生两个换行符时停止生成内容，可将停止序列指定为 <code>stop = listOf("/n/n")</code>。</td>
+</tr>
+<tr>
+<td><code>topA</code></td>
+<td>Double</td>
+<td>根据模型置信度动态调整采样窗口。如果模型有把握（存在占主导的高概率下一个 token），则将采样窗口限制在少数几个顶级 token 内。如果置信度较低（有许多概率相近的 token），则在采样窗口中保留更多 token。取值范围为 0.0–0.1（含边界）。值越高表示动态适应性越强。</td>
+</tr>
+<tr>
+<td><code>topK</code></td>
+<td>Integer</td>
+<td>生成输出时要考虑的前几个 token 的数量。取值范围为大于或等于 0（可能因提供商而异存在最小值限制）。</td>
+</tr>
+<tr>
+<td><code>topLogprobs</code></td>
+<td>Integer</td>
+<td>每个位置最可能的前几个 token 的数量。取值范围为 0–20。需要将 <code>logprobs</code> 参数设置为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中，直到它们的概率之和达到指定的 <code>topP</code> 值，从而创建下一个 token 的子集。取值范围为大于 0.0 且小于或等于 1.0。</td>
+</tr>
+<tr>
+<td><code>transforms</code></td>
+<td>List<String></td>
+<td>上下文转换列表。定义当上下文超出模型 token 限制时如何转换上下文。默认转换为 <code>middle-out</code>，即从提示词的中间进行截断。使用空列表表示不进行任何转换。有关更多信息，请参阅 OpenRouter 文档中的 <a href="https://openrouter.ai/docs/guides/features/message-transforms">Message Transforms</a>。</td>
+</tr>
+<tr>
+<td>参数</td>
+<td>类型</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>---</td>
+<td>---</td>
+<td>---</td>
+</tr>
+<tr>
+<td><code>enableSearch</code></td>
+<td>Boolean</td>
+<td>指定是否启用网络搜索功能。有关更多信息，请参阅阿里云的 <a href="https://www.alibabacloud.com/help/en/model-studio/web-search?spm=a2c63.p38356.0.i14">Web 搜索</a> 文档。</td>
+</tr>
+<tr>
+<td><code>enableThinking</code></td>
+<td>Boolean</td>
+<td>指定在使用混合思考模型时是否启用思考模式。有关更多信息，请参阅阿里云关于<a href="https://www.alibabacloud.com/help/en/model-studio/deep-thinking?spm=a2c63.p38356.0.i11">深度思考</a>的文档。</td>
+</tr>
+<tr>
+<td><code>frequencyPenalty</code></td>
+<td>Double</td>
+<td>对频繁出现的 token 进行惩罚以减少重复。<code>frequencyPenalty</code> 值越高，措辞变化越大，重复越少。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>logprobs</code></td>
+<td>Boolean</td>
+<td>如果为 <code>true</code>，则包含输出 token 的对数概率。</td>
+</tr>
+<tr>
+<td><code>parallelToolCalls</code></td>
+<td>Boolean</td>
+<td>如果为 <code>true</code>，则可以并行运行多个工具调用。特别适用于自定义节点或代理策略之外的 LLM 交互。</td>
+</tr>
+<tr>
+<td><code>presencePenalty</code></td>
+<td>Double</td>
+<td>防止模型重复使用已包含在输出中的 token。值越高，越鼓励引入新的 token 和主题。取值范围为 -2.0 到 2.0。</td>
+</tr>
+<tr>
+<td><code>stop</code></td>
+<td>List<String></td>
+<td>当模型遇到其中任意一个字符串时，会发出停止生成内容的信号。例如，要让模型在产生两个换行符时停止生成内容，可将停止序列指定为 <code>stop = listOf("/n/n")</code>。</td>
+</tr>
+<tr>
+<td><code>topLogprobs</code></td>
+<td>Integer</td>
+<td>每个位置最可能的 top token 数量。取值范围为 0–20。需要将 <code>logprobs</code> 参数设置为 <code>true</code>。</td>
+</tr>
+<tr>
+<td><code>topP</code></td>
+<td>Double</td>
+<td>也称为核采样。通过将概率值最高的 token 添加到子集中，直到它们的概率之和达到指定的 <code>topP</code> 值，从而创建下一个 token 的子集。取值大于 0.0 且小于或等于 1.0。</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>think</code></td>
+<td>Boolean</td>
+<td>用于激活 Ollama 扩展思考的配置。激活后，响应还会包含思考内容块。有关更多信息，请参阅 <a href="https://docs.ollama.com/capabilities/thinking#enable-thinking-in-api-calls">Ollama 思考</a>的 API 参考。</td>
+</tr>
+</tbody>
+</table>
+<p>以下示例展示了使用提供商特定的 <code>OpenRouterParams</code> 类定义的 OpenRouter LLM 参数：</p>
+<p>KotlinJava</p>
+<pre><code>val openRouterParams = OpenRouterParams(
+    temperature = 0.7,
+    maxTokens = 500,
+    frequencyPenalty = 0.5,
+    presencePenalty = 0.5,
+    topP = 0.9,
+    topK = 40,
+    repetitionPenalty = 1.1,
+    models = listOf(&quot;anthropic/claude-3-opus&quot;, &quot;anthropic/claude-3-sonnet&quot;),
+    transforms = listOf(&quot;middle-out&quot;)
+)
+</code></pre>
+<pre><code>OpenRouterParams openRouterParams = new OpenRouterParams(
+    0.7,         // temperature
+    500,         // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    null,        // toolChoice
+    null,        // user
+    null,        // additionalProperties
+    0.5,         // frequencyPenalty
+    null,        // logprobs
+    null,        // minP
+    Arrays.asList(&quot;anthropic/claude-3-opus&quot;, &quot;anthropic/claude-3-sonnet&quot;), // models
+    0.5,         // presencePenalty
+    null,        // provider
+    1.1,         // repetitionPenalty
+    null,        // route
+    null,        // stop
+    null,        // topA
+    40,          // topK
+    null,        // topLogprobs
+    0.9,         // topP
+    Arrays.asList(&quot;middle-out&quot;) // transforms
+);
+</code></pre>
+<h2 id="_4">使用示例</h2>
+<h3 id="_5">基本用法</h3>
+<p>KotlinJava</p>
+<pre><code>// A basic set of parameters with limited length
+val basicParams = LLMParams(
+    temperature = 0.7,
+    maxTokens = 150,
+    toolChoice = LLMParams.ToolChoice.Auto
+)
+</code></pre>
+<pre><code>// A basic set of parameters with limited length
+LLMParams basicParams = new LLMParams(
+    0.7,         // temperature
+    150,         // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+</code></pre>
+<h3 id="_6">推理控制</h3>
+<p>你通过控制模型推理的特定于提供程序的参数来实现推理控制。
+使用 OpenAI Chat API 和支持推理的模型时，使用 <code>reasoningEffort</code> 参数
+来控制模型在提供响应之前生成多少推理 token：</p>
+<p>KotlinJava</p>
+<pre><code>val openAIReasoningEffortParams = OpenAIChatParams(
+    reasoningEffort = ReasoningEffort.MEDIUM
+)
+</code></pre>
+<pre><code>OpenAIChatParams openAIReasoningEffortParams = new OpenAIChatParams(
+    null,        // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    null,        // toolChoice
+    null,        // user
+    null,        // additionalProperties
+    null,        // audio
+    null,        // frequencyPenalty
+    null,        // logprobs
+    null,        // parallelToolCalls
+    null,        // presencePenalty
+    null,        // promptCacheKey
+    ReasoningEffort.MEDIUM, // reasoningEffort
+    null,        // safetyIdentifier
+    null,        // serviceTier
+    null,        // stop
+    null,        // store
+    null,        // topLogprobs
+    null,        // topP
+    null         // webSearchOptions
+);
+</code></pre>
+<p>此外，在无状态模式下使用 OpenAI Responses API 时，你会保留推理项的加密历史记录，并在每一轮对话中将其发送给模型。加密在 OpenAI 侧完成，你需要通过在请求中将 <code>include</code> 参数设置为 <code>reasoning.encrypted_content</code> 来请求加密的推理令牌。然后，你可以在接下来的对话轮次中将加密的推理令牌传回给模型。</p>
+<p>KotlinJava</p>
+<pre><code>val openAIStatelessReasoningParams = OpenAIResponsesParams(
+    include = listOf(OpenAIInclude.REASONING_ENCRYPTED_CONTENT)
+)
+</code></pre>
+<pre><code>OpenAIResponsesParams openAIStatelessReasoningParams = new OpenAIResponsesParams(
+    null,        // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    null,        // toolChoice
+    null,        // user
+    null,        // additionalProperties
+    null,        // background
+    Arrays.asList(OpenAIInclude.REASONING_ENCRYPTED_CONTENT), // include
+    null,        // logprobs
+    null,        // maxToolCalls
+    null,        // parallelToolCalls
+    null,        // promptCacheKey
+    null,        // reasoning
+    null,        // safetyIdentifier
+    null,        // serviceTier
+    null,        // store
+    null,        // topLogprobs
+    null,        // topP
+    null         // truncation
+);
+</code></pre>
+<h3 id="_7">自定义参数</h3>
+<p>要添加可能特定于提供方且 Koog 开箱即不支持的自定义参数，请使用
+<code>additionalProperties</code> 属性，如下例所示。</p>
+<p>KotlinJava</p>
+<pre><code>// Add custom parameters for specific model providers
+val customParams = LLMParams(
+    additionalProperties = additionalPropertiesOf(
+        &quot;top_p&quot; to 0.95,
+        &quot;frequency_penalty&quot; to 0.5,
+        &quot;presence_penalty&quot; to 0.5
+    )
+)
+</code></pre>
+<pre><code>// Add custom parameters for specific model providers
+LLMParams customParams = new LLMParams(
+    null,        // temperature
+    null,        // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    null,        // toolChoice
+    null,        // user
+    AdditionalPropertiesKt.additionalPropertiesOf(
+        &quot;top_p&quot;, 0.95,
+        &quot;frequency_penalty&quot;, 0.5,
+        &quot;presence_penalty&quot;, 0.5
+    )
+);
+</code></pre>
+<h3 id="_8">设置和覆盖参数</h3>
+<p>下面的代码示例展示了如何定义一组你可能主要想使用的 LLM 参数，
+然后通过部分覆盖原始集合中的值并向其中添加新值来创建另一组参数。
+这让你可以定义大多数请求通用的参数，同时也能添加更具体的参数组合，
+而无需重复通用参数。</p>
+<p>KotlinJava</p>
+<pre><code>// Define default parameters
+val defaultParams = LLMParams(
+    temperature = 0.7,
+    maxTokens = 150,
+    toolChoice = LLMParams.ToolChoice.Auto
+)
+
+// Create parameters with some overrides, using defaults for the rest
+val overrideParams = LLMParams(
+    temperature = 0.2,
+    numberOfChoices = 3
+).default(defaultParams)
+</code></pre>
+<pre><code>// Define default parameters
+LLMParams defaultParams = new LLMParams(
+    0.7,         // temperature
+    150,         // maxTokens
+    1,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+
+// Create parameters with some overrides, using defaults for the rest
+LLMParams overrideParams = new LLMParams(
+    0.2,         // temperature
+    null,        // maxTokens
+    3,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    null,        // toolChoice
+    null,        // user
+    null         // additionalProperties
+).applyDefaults(defaultParams);
+</code></pre>
+<p>生成的 <code>overrideParams</code> 集合中的值等同于以下内容：</p>
+<p>KotlinJava</p>
+<pre><code>val overrideParams = LLMParams(
+    temperature = 0.2,
+    maxTokens = 150,
+    toolChoice = LLMParams.ToolChoice.Auto,
+    numberOfChoices = 3
+)
+</code></pre>
+<pre><code>LLMParams overrideParams = new LLMParams(
+    0.2,         // temperature
+    150,         // maxTokens
+    3,           // numberOfChoices
+    null,        // speculation
+    null,        // schema
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,        // user
+    null         // additionalProperties
+);
+</code></pre></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/llm-parameters/">官方原文</a></div></main></div></body></html>

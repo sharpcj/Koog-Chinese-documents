@@ -1,0 +1,531 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>结构化输出 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/structured-output/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2 active" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/structured-output/">https://docs.koog.ai/structured-output/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#简介">简介</a><a class="l2" href="#关键组件和概念">关键组件和概念</a><a class="l2" href="#定义数据结构">定义数据结构</a><a class="l3" href="#基本结构">基本结构</a><a class="l3" href="#关键注解">关键注解</a><a class="l3" href="#支持的功能">支持的功能</a><a class="l4" href="#嵌套类">嵌套类</a><a class="l4" href="#集合列表和映射">集合（列表和映射）</a><a class="l4" href="#枚举">枚举</a><a class="l4" href="#使用密封类实现多态">使用密封类实现多态</a><a class="l3" href="#提供示例">提供示例</a><a class="l2" href="#请求结构化响应">请求结构化响应</a><a class="l3" href="#层面-1提示执行器">层面 1：提示执行器</a><a class="l3" href="#层面-2agent-llm-上下文">层面 2：Agent LLM 上下文</a><a class="l4" href="#与-agent-策略集成">与 agent 策略集成</a><a class="l3" href="#层面-3节点层面">层面 3：节点层面</a><a class="l4" href="#节点层面示例">节点层面示例</a><a class="l4" href="#完整代码示例">完整代码示例</a><a class="l2" href="#高级用法">高级用法</a><a class="l3" href="#手动创建-schema-和配置">手动创建 schema 和配置</a><a class="l3" href="#schema-生成器">Schema 生成器</a><a class="l3" href="#在所有层面中使用">在所有层面中使用</a><a class="l2" href="#最佳实践">最佳实践</a></div><article class="content"><h1 id="_1">结构化输出</h1>
+<h2 id="_2">简介</h2>
+<p>结构化输出 API 提供了一种确保大型语言模型（LLM）响应符合特定数据结构的方法。
+这对于构建可靠的 AI 应用至关重要，因为你需要可预测、格式良好的数据，而不是自由形式的文本。</p>
+<p>本页介绍如何使用此 API 来定义数据结构、生成 schema，以及
+向 LLM 请求结构化响应。</p>
+<h2 id="_3">关键组件和概念</h2>
+<p>结构化输出 API 由几个关键组件组成：</p>
+<ol>
+<li><strong>数据结构定义</strong>：使用 kotlinx.serialization 和 LLM 特定注解标注的 Kotlin 数据类。</li>
+<li><strong>JSON Schema 生成</strong>：从 Kotlin 数据类生成 JSON schema 的工具。</li>
+<li><strong>结构化 LLM 请求</strong>：向 LLM 请求符合已定义结构的响应的方法。</li>
+<li><strong>响应处理</strong>：处理和验证结构化响应。</li>
+</ol>
+<h2 id="_4">定义数据结构</h2>
+<p>使用结构化输出 API 的第一步是使用 Kotlin 数据类定义数据结构。</p>
+<h3 id="_5">基本结构</h3>
+<pre><code>@Serializable
+@SerialName(&quot;WeatherForecast&quot;)
+@LLMDescription(&quot;Weather forecast for a given location&quot;)
+data class WeatherForecast(
+    @property:LLMDescription(&quot;Temperature in Celsius&quot;)
+    val temperature: Int,
+    @property:LLMDescription(&quot;Weather conditions (e.g., sunny, cloudy, rainy)&quot;)
+    val conditions: String,
+    @property:LLMDescription(&quot;Chance of precipitation in percentage&quot;)
+    val precipitation: Int
+)
+</code></pre>
+<h3 id="_6">关键注解</h3>
+<ul>
+<li><code>@Serializable</code>：kotlinx.serialization 与该类配合工作所必需的注解。</li>
+<li><code>@SerialName</code>：指定序列化时使用的名称。</li>
+<li><code>@LLMDescription</code>：为 LLM 提供类的描述。对于字段注解，请使用 <code>@property:LLMDescription</code>。</li>
+</ul>
+<h3 id="_7">支持的功能</h3>
+<p>该 API 支持广泛的数据结构功能：</p>
+<h4 id="_8">嵌套类</h4>
+<pre><code>@Serializable
+@SerialName(&quot;WeatherForecast&quot;)
+data class WeatherForecast(
+    // Other fields
+    @property:LLMDescription(&quot;Coordinates of the location&quot;)
+    val latLon: LatLon
+) {
+    @Serializable
+    @SerialName(&quot;LatLon&quot;)
+    data class LatLon(
+        @property:LLMDescription(&quot;Latitude of the location&quot;)
+        val lat: Double,
+        @property:LLMDescription(&quot;Longitude of the location&quot;)
+        val lon: Double
+    )
+}
+</code></pre>
+<h4 id="_9">集合（列表和映射）</h4>
+<pre><code>@Serializable
+@SerialName(&quot;WeatherForecast&quot;)
+data class WeatherForecast(
+    // Other fields
+    @property:LLMDescription(&quot;List of news articles&quot;)
+    val news: List&lt;WeatherNews&gt;,
+    @property:LLMDescription(&quot;Map of weather sources&quot;)
+    val sources: Map&lt;String, WeatherSource&gt;
+)
+</code></pre>
+<h4 id="_10">枚举</h4>
+<pre><code>@Serializable
+@SerialName(&quot;Pollution&quot;)
+enum class Pollution { Low, Medium, High }
+</code></pre>
+<h4 id="_11">使用密封类实现多态</h4>
+<pre><code>@Serializable
+@SerialName(&quot;WeatherAlert&quot;)
+sealed class WeatherAlert {
+    abstract val severity: Severity
+    abstract val message: String
+
+    @Serializable
+    @SerialName(&quot;Severity&quot;)
+    enum class Severity { Low, Moderate, Severe, Extreme }
+
+    @Serializable
+    @SerialName(&quot;StormAlert&quot;)
+    data class StormAlert(
+        override val severity: Severity,
+        override val message: String,
+        @property:LLMDescription(&quot;Wind speed in km/h&quot;)
+        val windSpeed: Double
+    ) : WeatherAlert()
+
+    @Serializable
+    @SerialName(&quot;FloodAlert&quot;)
+    data class FloodAlert(
+        override val severity: Severity,
+        override val message: String,
+        @property:LLMDescription(&quot;Expected rainfall in mm&quot;)
+        val expectedRainfall: Double
+    ) : WeatherAlert()
+}
+</code></pre>
+<h3 id="_12">提供示例</h3>
+<p>你可以提供示例来帮助 LLM 理解预期的格式：</p>
+<pre><code>val exampleForecasts = listOf(
+  WeatherForecast(
+    news = listOf(WeatherNews(0.0), WeatherNews(5.0)),
+    sources = mutableMapOf(
+      &quot;openweathermap&quot; to WeatherSource(Url(&quot;https://api.openweathermap.org/data/2.5/weather&quot;)),
+      &quot;googleweather&quot; to WeatherSource(Url(&quot;https://weather.google.com&quot;))
+    )
+    // Other fields
+  ),
+  WeatherForecast(
+    news = listOf(WeatherNews(25.0), WeatherNews(35.0)),
+    sources = mutableMapOf(
+      &quot;openweathermap&quot; to WeatherSource(Url(&quot;https://api.openweathermap.org/data/2.5/weather&quot;)),
+      &quot;googleweather&quot; to WeatherSource(Url(&quot;https://weather.google.com&quot;))
+    )
+  )
+)
+</code></pre>
+<h2 id="_13">请求结构化响应</h2>
+<p>在 Koog 中，你可以在三个主要层面使用结构化输出：</p>
+<ol>
+<li><strong>提示执行器层面</strong>：使用提示执行器直接进行 LLM 调用</li>
+<li><strong>Agent LLM 上下文层面</strong>：在 agent 会话中用于对话上下文</li>
+<li><strong>节点层面</strong>：创建具有结构化输出能力的可复用 agent 节点</li>
+</ol>
+<h3 id="1">层面 1：提示执行器</h3>
+<p>提示执行器层面提供了进行结构化 LLM 调用的最直接方式。使用 <code>executeStructured</code> 方法进行单个独立请求：</p>
+<p>此方法执行提示并确保响应正确结构化，具体方式包括：</p>
+<ul>
+<li>根据<a href="019-model-capabilities.html">模型能力</a>自动选择最佳结构化输出方法</li>
+<li>在需要时将结构化输出指令注入原始提示</li>
+<li>在可用时使用原生结构化输出支持</li>
+<li>可选地在解析失败时通过辅助 LLM 提供自动错误纠正（通过 <code>fixingParser</code> 参数）</li>
+</ul>
+<p>以下是使用 <code>executeStructured</code> 方法的示例：</p>
+<pre><code>// Define a simple, single-provider prompt executor
+val promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_KEY&quot;))
+
+// Make an LLM call that returns a structured response
+val structuredResponse = promptExecutor.executeStructured&lt;WeatherForecast&gt;(
+        // Define the prompt (both system and user messages)
+        prompt = prompt(&quot;structured-data&quot;) {
+            system(
+                &quot;&quot;&quot;
+                You are a weather forecasting assistant.
+                When asked for a weather forecast, provide a realistic but fictional forecast.
+                &quot;&quot;&quot;.trimIndent()
+            )
+            user(
+              &quot;What is the weather forecast for Amsterdam?&quot;
+            )
+        },
+        // Define the main model that will execute the request
+        model = OpenAIModels.Chat.GPT4oMini,
+        // Optional: provide examples to help the model understand the format
+        examples = exampleForecasts,
+        // Optional: provide a fixing parser for error correction
+        fixingParser = StructureFixingParser(
+            model = OpenAIModels.Chat.GPT4o,
+            retries = 3
+        )
+    )
+</code></pre>
+<p><code>executeStructured</code> 方法接受以下参数：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>要执行的提示。有关更多信息，请参阅<a href="075-prompts.html">提示</a>。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>LLModel</td>
+<td>是</td>
+<td></td>
+<td>用于执行提示的主模型。</td>
+</tr>
+<tr>
+<td><code>examples</code></td>
+<td>List</td>
+<td>否</td>
+<td><code>emptyList()</code></td>
+<td>可选的示例列表，用于帮助模型理解预期格式。</td>
+</tr>
+<tr>
+<td><code>fixingParser</code></td>
+<td>StructureFixingParser?</td>
+<td>否</td>
+<td><code>null</code></td>
+<td>可选解析器，通过使用辅助 LLM 智能修复解析错误来处理格式错误的响应。提供后，会自动重试失败的解析并进行错误纠正。</td>
+</tr>
+</tbody>
+</table>
+<p>该方法返回 <code>Result&lt;StructuredResponse&lt;T&gt;&gt;</code>，其中包含成功解析的结构化数据或错误。</p>
+<h3 id="2agent-llm">层面 2：Agent LLM 上下文</h3>
+<p>Agent LLM 上下文层面允许你在 agent 会话中请求结构化响应。这对于构建需要在流程特定点获取结构化数据的对话式 agent 非常有用。</p>
+<p>在 <code>writeSession</code> 中使用 <code>requestLLMStructured</code> 方法进行基于 agent 的交互：</p>
+<pre><code>val structuredResponse = llm.writeSession {
+    requestLLMStructured&lt;WeatherForecast&gt;(
+        examples = exampleForecasts,
+        fixingParser = StructureFixingParser(
+            model = OpenAIModels.Chat.GPT4o,
+            retries = 3
+        )
+    )
+}
+</code></pre>
+<p><code>fixingParser</code> 参数为格式错误的 JSON 响应提供自动错误纠正。当解析失败时，它会使用辅助 LLM 智能修复响应，最多重试指定次数。</p>
+<p><strong>StructureFixingParser 参数：</strong>
+- <code>model: LLModel</code> - 用于修复格式错误 JSON 输出的 LLM
+- <code>retries: Int</code> - 最大修复尝试次数（默认值：3）
+- <code>prompt</code> - 用于修复过程的可选自定义提示函数（默认为内置修复提示）</p>
+<p>修复过程会迭代地将解析错误传递给辅助模型，该模型尝试在保留原始数据并进行最小更改的同时修正 JSON。</p>
+<h4 id="agent">与 agent 策略集成</h4>
+<p>你可以将结构化数据处理集成到 agent 策略中：</p>
+<pre><code>val agentStrategy = strategy&lt;String, String&gt;(&quot;weather-forecast&quot;) {
+    val setup by nodeLLMRequest()
+
+    val getStructuredForecast by node&lt;Message.Assistant, String&gt; { _ -&gt;
+        val structuredResponse = llm.writeSession {
+            requestLLMStructured&lt;WeatherForecast&gt;(
+                fixingParser = StructureFixingParser(
+                    model = OpenAIModels.Chat.GPT4o,
+                    retries = 3
+                )
+            )
+        }
+
+        &quot;&quot;&quot;
+        Response structure:
+        $structuredResponse
+        &quot;&quot;&quot;.trimIndent()
+    }
+
+    edge(nodeStart forwardTo setup)
+    edge(setup forwardTo getStructuredForecast)
+    edge(getStructuredForecast forwardTo nodeFinish)
+}
+</code></pre>
+<h3 id="3">层面 3：节点层面</h3>
+<p>节点层面为 agent 工作流中的结构化输出提供了最高级别的抽象。使用 <code>nodeLLMRequestStructured</code> 创建处理结构化数据的可复用 agent 节点。</p>
+<p>这会创建一个 agent 节点，它：
+- 接受 <code>String</code> 输入（用户消息）
+- 将消息追加到 LLM 提示中
+- 向 LLM 请求结构化输出
+- 返回 <code>Result&lt;StructuredResponse&lt;MyStruct&gt;&gt;</code></p>
+<h4 id="_14">节点层面示例</h4>
+<pre><code>val agentStrategy = strategy&lt;Unit, String&gt;(&quot;weather-forecast&quot;) {
+    val setup by node&lt;Unit, String&gt; { _ -&gt;
+        &quot;Please provide a weather forecast for Amsterdam&quot;
+    }
+
+    // Create a structured output node using delegate syntax
+    val getWeatherForecast by nodeLLMRequestStructured&lt;WeatherForecast&gt;(
+        name = &quot;forecast-node&quot;,
+        examples = exampleForecasts,
+        fixingParser = StructureFixingParser(
+            model = OpenAIModels.Chat.GPT4o,
+            retries = 3
+        )
+    )
+
+    val processResult by node&lt;Result&lt;StructuredResponse&lt;WeatherForecast&gt;&gt;, String&gt; { result -&gt;
+        when {
+            result.isSuccess -&gt; {
+                val forecast = result.getOrNull()?.data
+                &quot;Weather forecast: $forecast&quot;
+            }
+            result.isFailure -&gt; {
+                &quot;Failed to get structured forecast: ${result.exceptionOrNull()?.message}&quot;
+            }
+            else -&gt; &quot;Unknown result state&quot;
+        }
+    }
+
+    edge(nodeStart forwardTo setup)
+    edge(setup forwardTo getWeatherForecast)
+    edge(getWeatherForecast forwardTo processResult)
+    edge(processResult forwardTo nodeFinish)
+}
+</code></pre>
+<h4 id="_15">完整代码示例</h4>
+<p>以下是使用结构化输出 API 的完整示例：</p>
+<pre><code>// Note: Import statements are omitted for brevity
+@Serializable
+@SerialName(&quot;SimpleWeatherForecast&quot;)
+@LLMDescription(&quot;Simple weather forecast for a location&quot;)
+data class SimpleWeatherForecast(
+    @property:LLMDescription(&quot;Location name&quot;)
+    val location: String,
+    @property:LLMDescription(&quot;Temperature in Celsius&quot;)
+    val temperature: Int,
+    @property:LLMDescription(&quot;Weather conditions (e.g., sunny, cloudy, rainy)&quot;)
+    val conditions: String
+)
+
+val token = System.getenv(&quot;OPENAI_KEY&quot;) ?: error(&quot;Environment variable OPENAI_KEY is not set&quot;)
+
+fun main(): Unit = runBlocking {
+    // Create sample forecasts
+    val exampleForecasts = listOf(
+        SimpleWeatherForecast(
+            location = &quot;New York&quot;,
+            temperature = 25,
+            conditions = &quot;Sunny&quot;
+        ),
+        SimpleWeatherForecast(
+            location = &quot;London&quot;,
+            temperature = 18,
+            conditions = &quot;Cloudy&quot;
+        )
+    )
+
+    // Generate JSON Schema
+    val forecastStructure = JsonStructure.create&lt;SimpleWeatherForecast&gt;(
+        schemaGenerator = BasicJsonSchemaGenerator.Default,
+        examples = exampleForecasts
+    )
+
+    // Define the agent strategy
+    val agentStrategy = strategy&lt;String, String&gt;(&quot;weather-forecast&quot;) {
+        val setup by nodeLLMRequest()
+
+        val getStructuredForecast by node&lt;Message.Assistant, String&gt; { _ -&gt;
+            val structuredResponse = llm.writeSession {
+                requestLLMStructured&lt;SimpleWeatherForecast&gt;()
+            }
+
+            &quot;&quot;&quot;
+            Response structure:
+            $structuredResponse
+            &quot;&quot;&quot;.trimIndent()
+        }
+
+        edge(nodeStart forwardTo setup)
+        edge(setup forwardTo getStructuredForecast)
+        edge(getStructuredForecast forwardTo nodeFinish)
+    }
+
+    // Configure and run the agent
+    val agentConfig = AIAgentConfig(
+        prompt = prompt(&quot;weather-forecast-prompt&quot;) {
+            system(
+                &quot;&quot;&quot;
+                You are a weather forecasting assistant.
+                When asked for a weather forecast, provide a realistic but fictional forecast.
+                &quot;&quot;&quot;.trimIndent()
+            )
+        },
+        model = OpenAIModels.Chat.GPT4o,
+        maxAgentIterations = 5
+    )
+
+    val runner = AIAgent(
+        promptExecutor = simpleOpenAIExecutor(token),
+        toolRegistry = ToolRegistry.EMPTY,
+        strategy = agentStrategy,
+        agentConfig = agentConfig
+    )
+
+    runner.run(&quot;Get weather forecast for Paris&quot;)
+}
+</code></pre>
+<h2 id="_16">高级用法</h2>
+<p>上述示例演示了简化 API，它会根据模型能力自动选择最佳结构化输出方法。
+如果需要对结构化输出过程进行更多控制，你可以使用高级 API，手动创建 schema 并进行提供商特定的配置。</p>
+<h3 id="schema">手动创建 schema 和配置</h3>
+<p>你可以使用 <code>JsonStructure.create</code> 显式创建 schema，并通过 <code>StructuredOutput</code> 类手动配置结构化输出行为，而不是依赖自动 schema 生成。</p>
+<p>关键区别在于，你不再传递 <code>examples</code> 和 <code>fixingParser</code> 等简单参数，而是创建一个 <code>StructuredRequestConfig</code> 对象，它允许对以下方面进行细粒度控制：</p>
+<ul>
+<li><strong>Schema 生成</strong>：选择特定的生成器（Standard、Basic 或提供商特定）</li>
+<li><strong>输出模式</strong>：原生结构化输出支持 vs 手动提示</li>
+<li><strong>提供商映射</strong>：为不同 LLM 提供商使用不同配置</li>
+<li><strong>回退策略</strong>：当提供商特定配置不可用时的默认行为</li>
+</ul>
+<pre><code>// Create different schema structures with different generators
+val genericStructure = JsonStructure.create&lt;WeatherForecast&gt;(
+    schemaGenerator = StandardJsonSchemaGenerator,
+    examples = exampleForecasts
+)
+
+val openAiStructure = JsonStructure.create&lt;WeatherForecast&gt;(
+    schemaGenerator = OpenAIBasicJsonSchemaGenerator,
+    examples = exampleForecasts
+)
+
+val anthropicStructure = JsonStructure.create&lt;WeatherForecast&gt;(
+    schemaGenerator = AnthropicBasicJsonSchemaGenerator,
+    examples = exampleForecasts
+)
+
+val promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_KEY&quot;))
+
+// The advanced API uses StructuredRequestConfig instead of simple parameters
+val structuredResponse = promptExecutor.executeStructured(
+    prompt = prompt(&quot;structured-data&quot;) {
+        system(&quot;You are a weather forecasting assistant.&quot;)
+        user(&quot;What is the weather forecast for Amsterdam?&quot;)
+    },
+    model = OpenAIModels.Chat.GPT4oMini,
+    config = StructuredRequestConfig(
+        byProvider = mapOf(
+            LLMProvider.OpenAI to StructuredRequest.Native(openAiStructure),
+            LLMProvider.Anthropic to StructuredRequest.Native(anthropicStructure),
+        ),
+        default = StructuredRequest.Manual(genericStructure)
+    ),
+    fixingParser = StructureFixingParser(
+        model = AnthropicModels.Haiku_4_5,
+        retries = 2
+    )
+)
+</code></pre>
+<h3 id="schema_1">Schema 生成器</h3>
+<p>根据你的需求，可以使用不同的 schema 生成器：</p>
+<ul>
+<li><strong>StandardJsonSchemaGenerator</strong>：完整的 JSON Schema，支持多态、定义和递归引用</li>
+<li><strong>BasicJsonSchemaGenerator</strong>：简化 schema，不支持多态，兼容更多模型</li>
+<li><strong>提供商特定生成器</strong>：为特定 LLM 提供商（OpenAI、Anthropic、Google 等）优化的 schema</li>
+</ul>
+<h3 id="_17">在所有层面中使用</h3>
+<p>高级配置在 API 的所有三个层面中一致工作。方法名称保持不变，只是参数从简单参数变为更高级的 <code>StructuredRequestConfig</code>：</p>
+<ul>
+<li><strong>提示执行器</strong>：<code>executeStructured(prompt, model, config: StructuredRequestConfig&lt;T&gt;)</code></li>
+<li><strong>Agent LLM 上下文</strong>：<code>requestLLMStructured(config: StructuredRequestConfig&lt;T&gt;)</code></li>
+<li><strong>节点层面</strong>：<code>nodeLLMRequestStructured(config: StructuredRequestConfig&lt;T&gt;)</code></li>
+</ul>
+<p>对于大多数用例，推荐使用简化 API（仅使用 <code>examples</code> 和 <code>fixingParser</code> 参数），而高级 API 在需要时提供额外的控制。</p>
+<h2 id="_18">最佳实践</h2>
+<ol>
+<li><strong>使用清晰的描述</strong>：使用 <code>@LLMDescription</code> 注解提供清晰详细的描述，帮助 LLM 理解预期数据。</li>
+<li><strong>提供示例</strong>：包含有效数据结构的示例来指导 LLM。</li>
+<li><strong>优雅地处理错误</strong>：实现适当的错误处理，以应对 LLM 可能无法生成有效结构的情况。</li>
+<li><strong>使用适当的 schema 类型</strong>：根据你的需求和你所使用的 LLM 的能力，选择合适的 schema 格式和类型。</li>
+<li><strong>使用不同模型进行测试</strong>：不同的 LLM 遵循结构化格式的能力可能不同，因此如果可能，请使用多个模型进行测试。</li>
+<li><strong>从简单开始</strong>：从简单的结构开始，根据需要逐步增加复杂性。</li>
+<li><strong>谨慎使用多态</strong>：虽然 API 支持使用密封类实现多态，但请注意 LLM 可能更难正确处理它。</li>
+</ol></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/structured-output/">官方原文</a></div></main></div></body></html>

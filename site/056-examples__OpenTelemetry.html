@@ -1,0 +1,169 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Koog 中的 OpenTelemetry：追踪你的 AI agent - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/examples/OpenTelemetry/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1 active" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/examples/OpenTelemetry/">https://docs.koog.ai/examples/OpenTelemetry/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#配置-opentelemetry-exporter">配置 OpenTelemetry exporter</a><a class="l2" href="#运行-agent-并在-jaeger-中查看-trace">运行 agent 并在 Jaeger 中查看 trace</a><a class="l2" href="#清理和故障排除">清理和故障排除</a></div><article class="content"><h1 id="koog-opentelemetry-ai-agent">Koog 中的 OpenTelemetry：追踪你的 AI agent</h1>
+<p><a href="https://github.com/JetBrains/koog/blob/develop/examples/notebooks/OpenTelemetry.ipynb">在 GitHub 上打开</a>
+ <a href="https://raw.githubusercontent.com/JetBrains/koog/develop/examples/notebooks/OpenTelemetry.ipynb">下载 .ipynb</a></p>
+<p>本 notebook 演示如何为 Koog AI agent 添加基于 OpenTelemetry 的 tracing。我们将：
+- 将 span 发出到控制台，便于快速本地调试。
+- 将 span 导出到 OpenTelemetry Collector，并在 Jaeger 中查看。</p>
+<p>前提条件：
+- 已安装 Docker/Docker Compose
+- 环境变量 <code>OPENAI_API_KEY</code> 中提供 OpenAI API key</p>
+<p>在运行 notebook 之前，启动本地 OpenTelemetry stack（Collector + Jaeger）：</p>
+<pre><code>./docker-compose up -d
+</code></pre>
+<p>agent 运行后，打开 Jaeger UI：
+- http://localhost:16686</p>
+<p>稍后停止服务：</p>
+<pre><code>docker-compose down
+</code></pre>
+<hr />
+<pre><code>%useLatestDescriptors
+// %use koog
+</code></pre>
+<pre><code>import ai.koog.agents.core.agent.AIAgent
+import ai.koog.agents.features.opentelemetry.feature.OpenTelemetry
+import ai.koog.prompt.executor.clients.openai.OpenAIModels
+import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
+import io.opentelemetry.exporter.logging.LoggingSpanExporter
+import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter
+</code></pre>
+<h2 id="opentelemetry-exporter">配置 OpenTelemetry exporter</h2>
+<p>在下一个单元中，我们会：
+- 创建一个 Koog AIAgent
+- 安装 OpenTelemetry feature
+- 添加两个 span exporter：
+- 用于控制台日志的 LoggingSpanExporter
+- 到 http://localhost:4317 OTLP gRPC exporter</p>
+<p>这与示例说明一致：控制台日志用于本地调试，OTLP 用于在 Jaeger 中查看 trace。</p>
+<pre><code>val agent = AIAgent(
+    executor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4oMini,
+    systemPrompt = &quot;You are a code assistant. Provide concise code examples.&quot;
+) {
+    install(OpenTelemetry) {
+        // Add a console logger for local debugging
+        addSpanExporter(LoggingSpanExporter.create())
+
+        // Send traces to OpenTelemetry collector
+        addSpanExporter(
+            OtlpGrpcSpanExporter.builder()
+                .setEndpoint(&quot;http://localhost:4317&quot;)
+                .build()
+        )
+    }
+}
+</code></pre>
+<h2 id="agent-jaeger-trace">运行 agent 并在 Jaeger 中查看 trace</h2>
+<p>执行下一个单元来触发一个简单的 prompt。你应该会看到：
+- 来自 LoggingSpanExporter 的控制台 span 日志
+- 导出到本地 OpenTelemetry Collector 的 trace，并可在 http://localhost:16686 的 Jaeger 中查看</p>
+<p>提示：运行该单元后，使用 Jaeger 搜索查找最近的 trace。</p>
+<pre><code>import ai.koog.agents.utils.use
+import kotlinx.coroutines.runBlocking
+
+runBlocking {
+    agent.use { agent -&gt;
+        println(&quot;Running agent with OpenTelemetry tracing...&quot;)
+
+        val result = agent.run(&quot;Tell me a joke about programming&quot;)
+
+        &quot;Agent run completed with result: '$result'.\nCheck Jaeger UI at http://localhost:16686 to view traces&quot;
+    }
+}
+</code></pre>
+<h2 id="_1">清理和故障排除</h2>
+<p>完成后：</p>
+<ul>
+<li>停止服务：</li>
+</ul>
+<p><code>docker-compose down</code>
+- 如果在 Jaeger 中看不到 trace：
+- 确保 stack 正在运行：<code>./docker-compose up -d</code>，并给它几秒钟时间启动。
+- 验证端口：
+  - Collector (OTLP gRPC): http://localhost:4317
+  - Jaeger UI: http://localhost:16686
+- 检查 container 日志：<code>docker-compose logs --tail=200</code>
+- 确认你的 <code>OPENAI_API_KEY</code> 已在 notebook 运行环境中设置。
+- 确保 exporter 中的 endpoint 与 collector 匹配：<code>http://localhost:4317</code>.
+- 预期的 span：
+- Koog agent 生命周期
+- LLM request/response metadata
+- 任何工具执行 span（如果你添加了工具）</p>
+<p>现在你可以迭代 agent，并观察 tracing pipeline 中的变化。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/examples/OpenTelemetry/">官方原文</a></div></main></div></body></html>

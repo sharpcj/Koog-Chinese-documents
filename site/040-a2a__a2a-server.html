@@ -1,0 +1,405 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A2A Server - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/a2a/a2a-server/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2 active" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/a2a/a2a-server/">https://docs.koog.ai/a2a/a2a-server/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#依赖项">依赖项</a><a class="l2" href="#概览">概览</a><a class="l2" href="#核心组件">核心组件</a><a class="l3" href="#a2aserver">A2AServer</a><a class="l3" href="#agentexecutor">AgentExecutor</a><a class="l3" href="#agentcard">AgentCard</a><a class="l3" href="#transport-layer">Transport Layer</a><a class="l4" href="#http-json-rpc-transport">HTTP JSON-RPC Transport</a><a class="l3" href="#storage">Storage</a><a class="l2" href="#快速开始">快速开始</a><a class="l3" href="#1-创建-agentcard">1. 创建 AgentCard</a><a class="l3" href="#2-创建-agentexecutor">2. 创建 AgentExecutor</a><a class="l3" href="#2-创建-server">2. 创建 Server</a><a class="l3" href="#3-添加-transport-layer">3. 添加 Transport Layer</a><a class="l2" href="#agent-实现模式">Agent 实现模式</a><a class="l3" href="#简单响应-agent">简单响应 Agent</a><a class="l3" href="#基于任务的-agent">基于任务的 Agent</a></div><article class="content"><h1 id="a2a-server">A2A Server</h1>
+<p>Beta</p>
+<p>此功能是 beta 模块（<code>1.3.0-beta</code>）的一部分。API 可能会在未来版本中发生变化。
+有关详细信息，请参阅<a href="021-module-versioning.html">模块版本管理</a>。</p>
+<p>A2A server 使你能够通过标准化的 A2A（Agent-to-Agent）协议暴露 AI agents。它提供了 <a href="https://a2a-protocol.org/latest/specification/">A2A protocol specification</a> 的完整实现，处理客户端请求、执行 agent 逻辑、管理复杂的任务生命周期，并支持实时流式响应。</p>
+<h2 id="_1">依赖项</h2>
+<p>要在项目中使用 A2A server，请将以下依赖项添加到你的 <code>build.gradle.kts</code>：</p>
+<pre><code>dependencies {
+    // Core A2A server library
+    implementation(&quot;ai.koog:a2a-server:$koogVersion&quot;)
+
+    // HTTP JSON-RPC transport (most common)
+    implementation(&quot;ai.koog:a2a-transport-server-jsonrpc-http:$koogVersion&quot;)
+
+    // Ktor server engine (choose one that fits your needs)
+    implementation(&quot;io.ktor:ktor-server-netty:$ktorVersion&quot;)
+}
+</code></pre>
+<h2 id="_2">概览</h2>
+<p>A2A server 充当 A2A 协议传输层与你的自定义 agent 逻辑之间的桥梁。
+它编排整个请求生命周期，同时保持协议合规性并提供可靠的会话管理。</p>
+<h2 id="_3">核心组件</h2>
+<h3 id="a2aserver">A2AServer</h3>
+<p>实现完整 A2A 协议的主 server 类。它作为中央协调器，负责：</p>
+<ul>
+<li><strong>验证</strong>传入请求是否符合协议规范</li>
+<li><strong>管理</strong>并发会话和任务生命周期</li>
+<li><strong>编排</strong>transport、storage 和业务逻辑层之间的通信</li>
+<li><strong>处理</strong>所有协议操作：消息发送、任务查询、取消、推送通知</li>
+</ul>
+<p><code>A2AServer</code> 接受两个必需参数：</p>
+<ul>
+<li><code>AgentExecutor</code>，定义 agent 的业务逻辑实现</li>
+<li><code>AgentCard</code>，定义 agent 能力和元数据</li>
+</ul>
+<p>以及若干可选参数，可用于自定义其 storage 和 transport 行为。</p>
+<h3 id="agentexecutor">AgentExecutor</h3>
+<p><code>AgentExecutor</code> 接口是你实现 agent 核心业务逻辑的地方。
+它充当 A2A 协议与你的具体 AI agent 能力之间的桥梁。
+要启动 agent 的执行，你必须实现 <code>execute</code> 方法，并在其中定义 agent 的逻辑。
+要取消 agent，你必须实现 <code>cancel</code> 方法。</p>
+<pre><code>class MyAgentExecutor : AgentExecutor {
+    override suspend fun execute(
+        context: RequestContext&lt;MessageSendParams&gt;,
+        eventProcessor: SessionEventProcessor
+    ) {
+        // Agent logic here
+    }
+
+    override suspend fun cancel(
+        context: RequestContext&lt;TaskIdParams&gt;,
+        eventProcessor: SessionEventProcessor,
+        agentJob: Deferred&lt;Unit&gt;?
+    ) {
+        // Cancel agent here, optional
+    }
+}
+</code></pre>
+<p><code>RequestContext</code> 提供有关当前请求的丰富信息，包括当前会话的 <code>contextId</code> 和 <code>taskId</code>、发送的 <code>message</code> 以及请求的 <code>params</code>。</p>
+<p><code>SessionEventProcessor</code> 与客户端通信：</p>
+<ul>
+<li><strong><code>sendMessage(message)</code></strong>：发送即时响应（聊天式交互）</li>
+<li><strong><code>sendTaskEvent(event)</code></strong>：发送任务相关更新（长时间运行的操作）</li>
+</ul>
+<pre><code>// For immediate responses (like chatbots)
+eventProcessor.sendMessage(
+    Message(
+        messageId = generateId(),
+        role = Role.Agent,
+        parts = listOf(TextPart(&quot;Here's your answer!&quot;)),
+        contextId = context.contextId
+    )
+)
+
+// For task-based operations
+eventProcessor.sendTaskEvent(
+    TaskStatusUpdateEvent(
+        contextId = context.contextId,
+        taskId = context.taskId,
+        status = TaskStatus(
+            state = TaskState.Working,
+            message = Message(/* progress update */),
+            timestamp = Clock.System.now()
+        ),
+        final = false  // More updates to come
+    )
+)
+</code></pre>
+<h3 id="agentcard">AgentCard</h3>
+<p><code>AgentCard</code> 充当 agent 的自描述清单。它告诉客户端你的 agent 能做什么、如何与其通信，以及它有哪些安全要求。</p>
+<pre><code>val agentCard = AgentCard(
+    // Basic Identity
+    name = &quot;Advanced Recipe Assistant&quot;,
+    description = &quot;AI agent specialized in cooking advice, recipe generation, and meal planning&quot;,
+    version = &quot;2.1.0&quot;,
+    protocolVersion = &quot;0.3.0&quot;,
+
+    // Communication Settings
+    url = &quot;https://api.example.com/a2a&quot;,
+    preferredTransport = TransportProtocol.JSONRPC,
+
+    // Optional: Multiple transport support
+    additionalInterfaces = listOf(
+        AgentInterface(&quot;https://api.example.com/a2a&quot;, TransportProtocol.JSONRPC),
+    ),
+
+    // Capabilities Declaration
+    capabilities = AgentCapabilities(
+        streaming = true,              // Support real-time responses
+        pushNotifications = true,      // Send async notifications
+        stateTransitionHistory = true  // Maintain task history
+    ),
+
+    // Content Type Support
+    defaultInputModes = listOf(&quot;text/plain&quot;, &quot;text/markdown&quot;, &quot;image/jpeg&quot;),
+    defaultOutputModes = listOf(&quot;text/plain&quot;, &quot;text/markdown&quot;, &quot;application/json&quot;),
+
+    // Define available security schemes
+    securitySchemes = mapOf(
+        &quot;bearer&quot; to HTTPAuthSecurityScheme(
+            scheme = &quot;Bearer&quot;,
+            bearerFormat = &quot;JWT&quot;,
+            description = &quot;JWT token authentication&quot;
+        ),
+        &quot;api-key&quot; to APIKeySecurityScheme(
+            `in` = In.Header,
+            name = &quot;X-API-Key&quot;,
+            description = &quot;API key for service authentication&quot;
+        )
+    ),
+
+    // Specify security requirements (logical OR of requirements)
+    security = listOf(
+        mapOf(&quot;bearer&quot; to listOf(&quot;read&quot;, &quot;write&quot;)),  // Option 1: JWT with read/write scopes
+        mapOf(&quot;api-key&quot; to emptyList())              // Option 2: API key
+    ),
+
+    // Enable extended card for authenticated users
+    supportsAuthenticatedExtendedCard = true,
+
+    // Skills/Capabilities
+    skills = listOf(
+        AgentSkill(
+            id = &quot;recipe-generation&quot;,
+            name = &quot;Recipe Generation&quot;,
+            description = &quot;Generate custom recipes based on ingredients, dietary restrictions, and preferences&quot;,
+            tags = listOf(&quot;cooking&quot;, &quot;recipes&quot;, &quot;nutrition&quot;),
+            examples = listOf(
+                &quot;Create a vegan pasta recipe with mushrooms&quot;,
+                &quot;I have chicken, rice, and vegetables. What can I make?&quot;
+            )
+        ),
+        AgentSkill(
+            id = &quot;meal-planning&quot;,
+            name = &quot;Meal Planning&quot;,
+            description = &quot;Plan weekly meals and generate shopping lists&quot;,
+            tags = listOf(&quot;meal-planning&quot;, &quot;nutrition&quot;, &quot;shopping&quot;)
+        )
+    ),
+
+    // Optional: Branding
+    iconUrl = &quot;https://example.com/agent-icon.png&quot;,
+    documentationUrl = &quot;https://docs.example.com/recipe-agent&quot;,
+    provider = AgentProvider(
+        organization = &quot;CookingAI Inc.&quot;,
+        url = &quot;https://cookingai.com&quot;
+    )
+)
+</code></pre>
+<h3 id="transport-layer">Transport Layer</h3>
+<p>A2A 本身支持多种用于与客户端通信的 transport protocols。
+目前，Koog 提供了基于 HTTP 的 JSON-RPC server transport 实现。</p>
+<h4 id="http-json-rpc-transport">HTTP JSON-RPC Transport</h4>
+<pre><code>val transport = HttpJSONRPCServerTransport(server)
+transport.start(
+    engineFactory = CIO,           // Ktor engine (CIO, Netty, Jetty)
+    port = 8080,                   // Server port
+    path = &quot;/a2a&quot;,                 // API endpoint path
+    wait = true                    // Block until server stops
+)
+</code></pre>
+<h3 id="storage">Storage</h3>
+<p>A2A server 使用可插拔的 storage 架构，将不同类型的数据分离开来。
+所有 storage 实现都是可选的，并且在开发环境中默认使用内存变体。</p>
+<ul>
+<li><strong>TaskStorage</strong>：任务生命周期管理 - 存储和管理任务状态、历史记录和 artifacts</li>
+<li><strong>MessageStorage</strong>：会话历史记录 - 管理 conversation contexts 内的消息历史记录</li>
+<li><strong>PushNotificationConfigStorage</strong>：Webhook 管理 - 管理异步通知的 webhook 配置</li>
+</ul>
+<h2 id="_4">快速开始</h2>
+<h3 id="1-agentcard">1. 创建 AgentCard</h3>
+<p>定义 agent 的能力和元数据。</p>
+<pre><code>val agentCard = AgentCard(
+    name = &quot;IO Assistant&quot;,
+    description = &quot;AI agent specialized in input modification&quot;,
+    version = &quot;2.1.0&quot;,
+    protocolVersion = &quot;0.3.0&quot;,
+
+    // Communication Settings
+    url = &quot;https://api.example.com/a2a&quot;,
+    preferredTransport = TransportProtocol.JSONRPC,
+
+    // Capabilities Declaration
+    capabilities =
+        AgentCapabilities(
+            streaming = true,              // Support real-time responses
+            pushNotifications = true,      // Send async notifications
+            stateTransitionHistory = true  // Maintain task history
+        ),
+
+    // Content Type Support
+    defaultInputModes = listOf(&quot;text/plain&quot;, &quot;text/markdown&quot;, &quot;image/jpeg&quot;),
+    defaultOutputModes = listOf(&quot;text/plain&quot;, &quot;text/markdown&quot;, &quot;application/json&quot;),
+
+    // Skills/Capabilities
+    skills = listOf(
+        AgentSkill(
+            id = &quot;echo&quot;,
+            name = &quot;echo&quot;,
+            description = &quot;Echoes back user messages&quot;,
+            tags = listOf(&quot;io&quot;),
+        )
+    )
+)
+</code></pre>
+<h3 id="2-agentexecutor">2. 创建 AgentExecutor</h3>
+<p>在 executor 中管理和实现 agent 逻辑，处理传入请求并发送响应。</p>
+<pre><code>class EchoAgentExecutor : AgentExecutor {
+    override suspend fun execute(
+        context: RequestContext&lt;MessageSendParams&gt;,
+        eventProcessor: SessionEventProcessor
+    ) {
+        val userMessage = context.params.message
+        val userText = userMessage.parts
+            .filterIsInstance&lt;TextPart&gt;()
+            .joinToString(&quot; &quot;) { it.text }
+
+        // Echo the user's message back
+        val response = Message(
+            messageId = UUID.randomUUID().toString(),
+            role = Role.Agent,
+            parts = listOf(TextPart(&quot;You said: $userText&quot;)),
+            contextId = context.contextId,
+            taskId = context.taskId
+        )
+
+        eventProcessor.sendMessage(response)
+    }
+}
+</code></pre>
+<h3 id="2-server">2. 创建 Server</h3>
+<p>将 agent executor 和 agent card 传给 server。</p>
+<pre><code>val server = A2AServer(
+    agentExecutor = EchoAgentExecutor(),
+    agentCard = agentCard
+)
+</code></pre>
+<h3 id="3-transport-layer">3. 添加 Transport Layer</h3>
+<p>创建 transport layer 并启动 server。</p>
+<pre><code>// HTTP JSON-RPC transport
+val transport = HttpJSONRPCServerTransport(server)
+transport.start(
+    engineFactory = CIO,
+    port = 8080,
+    path = &quot;/agent&quot;,
+    wait = true
+)
+</code></pre>
+<h2 id="agent">Agent 实现模式</h2>
+<h3 id="agent_1">简单响应 Agent</h3>
+<p>如果你的 agent 只需要响应单条消息，可以将其实现为简单 agent。
+如果 agent 执行逻辑不复杂且不耗时，也可以使用这种模式。</p>
+<pre><code>class SimpleAgentExecutor : AgentExecutor {
+    override suspend fun execute(
+        context: RequestContext&lt;MessageSendParams&gt;,
+        eventProcessor: SessionEventProcessor
+    ) {
+        val response = Message(
+            messageId = UUID.randomUUID().toString(),
+            role = Role.Agent,
+            parts = listOf(TextPart(&quot;Hello from agent!&quot;)),
+            contextId = context.contextId,
+            taskId = context.taskId
+        )
+
+        eventProcessor.sendMessage(response)
+    }
+}
+</code></pre>
+<h3 id="agent_2">基于任务的 Agent</h3>
+<p>如果你的 agent 的执行逻辑复杂且需要多个步骤，可以将其实现为基于任务的 agent。
+如果 agent 执行逻辑耗时且会挂起，也可以使用这种模式。</p>
+<pre><code>class TaskAgentExecutor : AgentExecutor {
+    override suspend fun execute(
+        context: RequestContext&lt;MessageSendParams&gt;,
+        eventProcessor: SessionEventProcessor
+    ) {
+        // Send working status
+        eventProcessor.sendTaskEvent(
+            TaskStatusUpdateEvent(
+                contextId = context.contextId,
+                taskId = context.taskId,
+                status = TaskStatus(
+                    state = TaskState.Working,
+                    timestamp = Clock.System.now()
+                ),
+                final = false
+            )
+        )
+
+        // Do work...
+
+        // Send completion
+        eventProcessor.sendTaskEvent(
+            TaskStatusUpdateEvent(
+                contextId = context.contextId,
+                taskId = context.taskId,
+                status = TaskStatus(
+                    state = TaskState.Completed,
+                    timestamp = Clock.System.now()
+                ),
+                final = true
+            )
+        )
+    }
+}
+</code></pre></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/a2a/a2a-server/">官方原文</a></div></main></div></body></html>

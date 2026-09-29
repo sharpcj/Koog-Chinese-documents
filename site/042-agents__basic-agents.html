@@ -1,0 +1,421 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Basic agents - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/agents/basic-agents/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2 active" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/agents/basic-agents/">https://docs.koog.ai/agents/basic-agents/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#创建最小-agent">创建最小 agent</a><a class="l2" href="#添加-system-prompt">添加 system prompt</a><a class="l2" href="#配置-llm-输出">配置 LLM 输出</a><a class="l2" href="#添加-tools">添加 tools</a><a class="l2" href="#调整-agent-迭代次数">调整 agent 迭代次数</a><a class="l2" href="#处理-agent-运行时事件">处理 agent 运行时事件</a><a class="l2" href="#后续步骤">后续步骤</a></div><article class="content"><h1 id="basic-agents">Basic agents</h1>
+<p>Basic agent 使用预定义 strategy 和简单执行流程，适用于大多数常见使用场景。
+它接受字符串输入（问题、请求或任务描述），并将该输入发送给配置的 LLM。
+LLM 可能决定调用提供的 tools。
+Agent 会执行这些 tools，并将结果发送回 LLM。
+这一过程会重复，直到 LLM 不再请求任何 tool calls 并返回字符串响应。
+随后 agent 输出该响应。</p>
+<p>在 <a href="044-agents__graph-based-agents.html">Graph-based agents</a> 中，你可以了解如何重新创建 basic agents 使用的预定义 strategy graph。</p>
+<p>先决条件</p>
+<p>确保你的环境和项目满足以下要求：</p>
+<ul>
+<li>JDK 17+</li>
+<li>Kotlin 2.2.0+</li>
+<li>Gradle 8.0+ 或 Maven 3.8+</li>
+</ul>
+<p>将 <a href="https://central.sonatype.com/artifact/ai.koog/koog-agents/">Koog package</a> 添加为依赖项：</p>
+<p>Gradle (Kotlin)Gradle (Groovy)Maven</p>
+<p>build.gradle.kts</p>
+<pre><code>dependencies {
+    // Stable
+    implementation(&quot;ai.koog:koog-agents:1.3.0&quot;)
+
+    // Beta
+    implementation(&quot;ai.koog:koog-agents-additions:1.3.0-beta&quot;)
+}
+</code></pre>
+<p>build.gradle</p>
+<pre><code>dependencies {
+    // Stable
+    implementation 'ai.koog:koog-agents:1.3.0'
+
+    // Beta
+    implementation 'ai.koog:koog-agents-additions:1.3.0-beta'
+}
+</code></pre>
+<p>pom.xml</p>
+<pre><code>&lt;dependency&gt;
+    &lt;!-- Stable --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+        &lt;artifactId&gt;koog-agents-jvm&lt;/artifactId&gt;
+        &lt;version&gt;1.3.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Beta --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+        &lt;artifactId&gt;koog-agents-additions-jvm&lt;/artifactId&gt;
+        &lt;version&gt;1.3.0-beta&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>从 LLM provider 获取 API key，或通过 Ollama 运行本地 LLM。
+有关更多信息，请参阅<a href="025-quickstart.html">快速开始</a>。</p>
+<p>本页示例假设你已设置 <code>OPENAI_API_KEY</code> 环境变量。</p>
+<h2 id="agent">创建最小 agent</h2>
+<p>要创建最基础的 agent，请实例化 <a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent/-a-i-agent/index.html"><code>AIAgent</code></a>，并提供带有<a href="019-model-capabilities.html#creating-a-model-llmodel-configuration">语言模型</a>的 <a href="080-prompts__prompt-executors.html">prompt executor</a>：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4o
+)
+</code></pre>
+<p>该 agent 会期望字符串作为输入，并返回字符串作为输出。
+要运行该 agent，请使用 <code>run()</code> 函数并传入一些用户输入：</p>
+<pre><code>fun main() = runBlocking {
+    val result = agent.run(&quot;Hello! How can you help me?&quot;)
+    println(result)
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .build();
+</code></pre>
+<p>该 agent 期望字符串作为输入，并返回字符串作为输出。
+要运行该 agent，请使用 <code>run()</code> 方法并传入一些用户输入：</p>
+<pre><code>String result = agent.run(&quot;Hello! How can you help me?&quot;);
+System.out.println(result);
+</code></pre>
+<p>Agent 会返回一个通用回答，例如：</p>
+<pre><code>I can assist with a wide range of topics and tasks. Here are some examples:
+
+1. **Answering questions**: I can provide information on various subjects, from science and history to entertainment and culture.
+2. **Generating text**: I can help with writing tasks, such as suggesting alternative phrases, providing definitions, or even creating entire articles or stories.
+3. **Translation**: I can translate text from one language to another, including popular languages such as Spanish, French, German, Chinese, and many more.
+4. **Conversation**: I can engage in natural-sounding conversations, using context and understanding to respond to questions and statements.
+5. **Brainstorming**: I can help generate ideas for creative projects, such as writing stories, composing music, or coming up with business ideas.
+6. **Learning**: I can help with language learning, explaining grammar rules, vocabulary, and pronunciation.
+7. **Calculations**: I can perform mathematical calculations, including basic arithmetic, algebra, and more advanced math concepts.
+
+What's on your mind? Do you have a specific question, topic, or task you'd like to tackle?
+</code></pre>
+<h2 id="system-prompt">添加 system prompt</h2>
+<p>提供 <a href="081-prompts__prompt-creation.html#system-message">system message</a>，用于定义 agent 的角色以及与任务相关的目的、上下文和指令。</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;YOUR_API_KEY&quot;)),
+    systemPrompt = &quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;,
+    llmModel = OpenAIModels.Chat.GPT4o
+)
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .systemPrompt(&quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .build();
+</code></pre>
+<p>System prompt 中的指令会引导 agent 的响应：</p>
+<pre><code>I'm here to help you navigate the wild world of internet memes!
+
+What's on your mind? Are you trying to understand a specific meme, need help finding a popular joke, or perhaps want some recommendations for trending memes? Let me know, and I'll do my best to provide you with some LOLs!
+</code></pre>
+<h2 id="llm">配置 LLM 输出</h2>
+<p>你可以直接向 agent 构造函数（Kotlin）或通过 builder 方法（Java）提供一些 <a href="017-llm-parameters.html#llm-parameter-reference">LLM 参数</a>，以自定义 LLM 的行为。
+例如，使用 <code>temperature</code> 参数调整生成响应的随机性：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;YOUR_API_KEY&quot;)),
+    systemPrompt = &quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    temperature = 0.7
+)
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .systemPrompt(&quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .temperature(0.7)
+    .build();
+</code></pre>
+<p>以下是不同 temperature 值下的响应示例：</p>
+<p>0.40.71.0</p>
+<pre><code>I'm here to help you navigate the wild world of internet memes! Whether you're looking for explanations, examples, or just want to share a meme with someone, I'm your go-to expert. What's on your mind? Got a specific meme in mind that's got you curious? Or maybe you need some meme-related advice? Fire away!
+</code></pre>
+<pre><code>I'm here to help you navigate the wild world of internet memes!
+
+What's on your mind? Need help understanding a specific meme, finding a popular joke or trend, or maybe even creating your own meme? Let's get this meme party started!
+</code></pre>
+<pre><code>I'd be happy to help you navigate the wild world of internet memes!
+
+Whether you're looking for explanations of classic memes, suggestions for new ones to try out, or just want to discuss your favorite meme culture trends, I'm here to assist. What's on your mind?
+
+Do you have a specific question about memes (e.g., &quot;What does this meme mean?&quot;), or are you looking for some meme-related recommendations (e.g., &quot;Can you recommend a funny meme to share with friends?&quot;). Let me know how I can help!
+</code></pre>
+<h2 id="tools">添加 tools</h2>
+<p>Agents 可以使用 <a href="084-tools.html">tools</a> 执行特定任务。</p>
+<p>首先，通过使用 <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools.annotations/-tool/index.html"><code>@Tool</code></a> 注解标注函数（Kotlin）或方法（Java）来创建 tool：</p>
+<p>KotlinJava</p>
+<pre><code>@Tool
+@LLMDescription(&quot;Ask the user a question by sending it to stdout and return the answer from stdin&quot;)
+fun askUser(
+    @LLMDescription(&quot;Question from the agent&quot;)
+    question: String
+): String {
+    println(question)
+    return readln()
+}
+</code></pre>
+<p>然后，使用 <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool-registry/index.html"><code>ToolRegistry</code></a> 使该 tool 可供 agent 使用：</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;YOUR_API_KEY&quot;)),
+    systemPrompt = &quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    temperature = 0.7,
+    toolRegistry = ToolRegistry {
+        tool(::askUser)
+    }
+)
+</code></pre>
+<p>在该示例中，<code>askUser</code> 是一个 tool，它通过在控制台打印和读取来帮助 agent 与用户保持对话。
+如果 agent 决定向用户提问，它可以调用该 tool，该 tool 通过 <code>println()</code> 写入 <code>stdout</code>，并通过 <code>readln()</code> 从 <code>stdin</code> 读取。</p>
+<pre><code>// Create a ToolSet class
+class UserConversationTools implements ToolSet {
+    @Tool
+    @LLMDescription(&quot;Ask the user a question by sending it to stdout and return the answer from stdin&quot;)
+    public String askUser(
+        @LLMDescription(&quot;Question from the agent&quot;)
+        String question
+    ) {
+        System.out.println(question);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+}
+</code></pre>
+<p>然后，使用 <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool-registry/index.html"><code>ToolRegistry</code></a> 使该 tool 可供 agent 使用：</p>
+<pre><code>UserConversationTools askUser = new UserConversationTools();
+
+ToolRegistry toolRegistry = ToolRegistry.builder()
+        .tools(askUser)
+        .build();
+
+AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .systemPrompt(&quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .temperature(0.7)
+    .toolRegistry(toolRegistry)
+    .build();
+</code></pre>
+<p>在该示例中，<code>askUser</code> 是一个 tool，它通过在控制台打印和读取来帮助 agent 与用户保持对话。</p>
+<p>下面是与 agent 交互的示例：</p>
+<pre><code>Agent: Which meme would you like me to explain? Please choose from: Grumpy Cat, Success Kid, or Doge.
+
+User: Explain Doge
+
+Agent:
+
+**Doge**
+
+Doge is a popular internet meme that originated on the imageboard website 4chan in 2013. The meme features a picture of a Shiba Inu dog with a caption written in a playful, exaggerated style.
+
+The typical format of a Doge meme includes:
+
+* A photo of a Shiba Inu dog
+* A caption written in all capital letters, using a intentionally simplistic and childlike tone
+* Exaggerated or made-up words or phrases, often used to convey a humorous or nonsensical idea
+
+Examples of Doge memes might include:
+
+* &quot;Such wow. Such happy.&quot;
+* &quot;I had fun today!&quot;
+* &quot;Wow, I am good at napping.&quot;
+
+The meme is known for its lighthearted and playful tone, and is often used to express excitement, happiness, or silliness. The meme has since become a cultural phenomenon, with countless variations and parodies emerging online.
+</code></pre>
+<h2 id="agent_1">调整 agent 迭代次数</h2>
+<p>为避免无限循环，Koog 允许任何 agent 执行有限数量的步骤（默认 50）。
+如果你预计 agent 需要更多步骤（例如 tool calls 和 LLM requests），可以使用 <code>maxIterations</code> 参数增加此限制；对于只需要少量步骤的 agents，也可以降低此限制。
+例如，这里描述的 simple agent 通常不太可能需要超过 10 步：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;YOUR_API_KEY&quot;)),
+    systemPrompt = &quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    temperature = 0.7,
+    toolRegistry = ToolRegistry {
+        tool(::askUser)
+    },
+    maxIterations = 10
+)
+</code></pre>
+<pre><code>// Create a ToolSet class
+class UserConversationTools implements ToolSet {
+    @Tool
+    @LLMDescription(&quot;Ask the user a question by sending it to stdout and return the answer from stdin&quot;)
+    public String askUser(
+        @LLMDescription(&quot;Question from the agent&quot;)
+        String question
+    ) {
+        System.out.println(question);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+}
+
+// In main method:
+UserConversationTools askUser = new UserConversationTools();
+
+ToolRegistry toolRegistry = ToolRegistry.builder()
+        .tools(askUser)
+        .build();
+
+AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .systemPrompt(&quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .temperature(0.7)
+    .toolRegistry(toolRegistry)
+    .maxIterations(10)
+    .build();
+</code></pre>
+<p>提示</p>
+<p>除了将 model、temperature、max iterations 和其他参数直接传递给 Kotlin 构造函数或 Java builder，你也可以将它们定义为单独的配置对象并传入。
+有关更多信息，请参阅 <a href="041-agents.html#agent-configuration">Agent configuration</a>。</p>
+<h2 id="agent_2">处理 agent 运行时事件</h2>
+<p>为辅助测试和调试，并为链式 agent 交互创建 hooks，Koog 提供了 <a href="https://api.koog.ai/agents/agents-features/agents-features-event-handler/ai.koog.agents.features.eventHandler.feature/-event-handler/index.html">EventHandler</a> feature。</p>
+<p>KotlinJava</p>
+<p>在 agent 构造函数 lambda 中调用 <code>handleEvents()</code> 函数以安装该 feature 并注册 event handlers：</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;YOUR_API_KEY&quot;)),
+    systemPrompt = &quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    temperature = 0.7,
+    toolRegistry = ToolRegistry {
+        tool(::askUser)
+    },
+    maxIterations = 10
+){
+    handleEvents {
+        // Handle tool calls
+        onToolCallStarting { eventContext -&gt;
+            println(&quot;Tool called: ${eventContext.toolName} with args ${eventContext.toolArgs}&quot;)
+        }
+    }
+}
+</code></pre>
+<p>在 agent builder 上使用 <code>.install()</code> 方法，通过 <code>EventHandler.Feature</code> 注册 event handlers：</p>
+<pre><code>// Create a ToolSet class
+class UserConversationTools implements ToolSet {
+    @Tool
+    @LLMDescription(&quot;Ask the user a question by sending it to stdout and return the answer from stdin&quot;)
+    public String askUser(
+        @LLMDescription(&quot;Question from the agent&quot;)
+        String question
+    ) {
+        System.out.println(question);
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine();
+    }
+}
+
+// In main method:
+UserConversationTools askUser = new UserConversationTools();
+
+ToolRegistry toolRegistry = ToolRegistry.builder()
+        .tools(askUser)
+        .build();
+
+AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)))
+    .systemPrompt(&quot;You are an expert in internet memes. Be helpful, friendly, and answer user questions concisely, showing your knowledge of memes.&quot;)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .temperature(0.7)
+    .toolRegistry(toolRegistry)
+    .maxIterations(10)
+    .install(EventHandler.Feature, config -&gt; {
+        config.onToolCallStarting(eventContext -&gt; {
+            System.out.println(&quot;Tool called: &quot; + eventContext.getToolName() +
+                &quot; with args &quot; + eventContext.getToolArgs());
+        });
+    })
+    .build();
+</code></pre>
+<p>当 agent 调用 <code>askUser</code> tool 时，现在会输出类似以下内容：</p>
+<pre><code>Tool called: askUser with args {&quot;question&quot;:&quot;Which meme would you like me to explain?&quot;}
+</code></pre>
+<p>有关 Koog agent features 的更多信息，请参阅 <a href="062-features.html">Features</a>。</p>
+<h2 id="_1">后续步骤</h2>
+<ul>
+<li>了解有关构建 <a href="044-agents__graph-based-agents.html">graph-based agents</a> 和 <a href="043-agents__functional-agents.html">functional agents</a> 的更多信息</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/agents/basic-agents/">官方原文</a></div></main></div></body></html>

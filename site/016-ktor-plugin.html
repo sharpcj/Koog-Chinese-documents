@@ -1,0 +1,294 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Ktor 集成：Koog plugin - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/ktor-plugin/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2 active" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/ktor-plugin/">https://docs.koog.ai/ktor-plugin/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概览">概览</a><a class="l2" href="#添加依赖">添加依赖</a><a class="l2" href="#快速开始">快速开始</a><a class="l2" href="#在-routes-中直接使用-llm">在 routes 中直接使用 LLM</a><a class="l2" href="#程序化配置在代码中">程序化配置（在代码中）</a><a class="l2" href="#配置中的模型标识符fallback">配置中的模型标识符（fallback）</a><a class="l2" href="#mcp-tools仅-jvm">MCP tools（仅 JVM）</a><a class="l2" href="#为什么选择-koog-ktor">为什么选择 Koog + Ktor？</a></div><article class="content"><h1 id="ktor-koog-plugin">Ktor 集成：Koog plugin</h1>
+<p>Beta</p>
+<p>此功能属于 beta 模块（<code>1.3.0-beta</code>）。API 可能会在未来版本中发生变化。
+详情请参阅 <a href="021-module-versioning.html">module versioning</a>。</p>
+<p>Koog 可以自然融入你的 Ktor server，使你能够在服务端 AI 应用中同时从两侧使用惯用的 Kotlin API。</p>
+<p>只需安装一次 Koog plugin，在 application.conf/YAML 或代码中配置 LLM provider，然后就可以直接在 routes 中调用 Agent。不再需要跨模块连接 LLM clients——你的 routes 只需请求一个 Agent 即可使用。</p>
+<h2 id="_1">概览</h2>
+<p><code>koog-ktor</code> 模块为服务端 Agent 开发提供符合惯用法的 Kotlin/Ktor 集成：</p>
+<ul>
+<li>即插即用的 Ktor plugin：在你的 Application 中使用 <code>install(Koog)</code></li>
+<li>对 OpenAI、Anthropic、Google、OpenRouter、DeepSeek 和 Ollama 的一等支持</li>
+<li>通过 YAML/CONF 和/或代码进行集中配置</li>
+<li>使用 prompt、tools、features 设置 Agent；为 routes 提供简单扩展函数</li>
+<li>直接使用 LLM（execute、executeStreaming、moderate）</li>
+<li>仅 JVM 可用的 Model Context Protocol (MCP) tools 集成</li>
+</ul>
+<h2 id="_2">添加依赖</h2>
+<pre><code>dependencies {
+    implementation(&quot;ai.koog:koog-ktor:$koogVersion&quot;)
+}
+</code></pre>
+<h2 id="_3">快速开始</h2>
+<p>1) 配置 providers（在 <code>application.yaml</code> 或 <code>application.conf</code> 中）</p>
+<p>在 <code>koog.&lt;provider&gt;</code> 下使用嵌套键。plugin 会自动读取它们。</p>
+<pre><code># application.yaml (Ktor config)
+koog:
+  openai:
+    apikey: ***
+    baseUrl: https://api.openai.com
+  anthropic:
+    apikey: ${ANTH...KEY}
+    baseUrl: https://api.anthropic.com
+  google:
+    apikey: ***
+    baseUrl: https://generativelanguage.googleapis.com
+  openrouter:
+    apikey: ${OPEN...KEY}
+    baseUrl: https://openrouter.ai
+  deepseek:
+    apikey: ${DEEP...KEY}
+    baseUrl: https://api.deepseek.com
+  # Ollama is enabled when any koog.ollama.* key exists
+  ollama:
+    enable: true
+    baseUrl: http://localhost:11434
+</code></pre>
+<p>可选：配置当请求的 provider 未配置时，direct LLM calls 使用的 fallback。</p>
+<pre><code>koog:
+  llm:
+    fallback:
+      provider: openai
+      # see Model identifiers section below
+      model: openai.chat.gpt4_1
+</code></pre>
+<p>2) 安装 plugin 并定义 routes</p>
+<pre><code>fun Application.module() {
+    install(Koog) {
+        // You can also configure providers programmatically (see below)
+    }
+
+    routing {
+        route(&quot;/ai&quot;) {
+            post(&quot;/chat&quot;) {
+                val userInput = call.receiveText()
+                // Create and run a default single‑run agent using a specific model
+                val output = aiAgent(
+                    strategy = reActStrategy(),
+                    model = OpenAIModels.Chat.GPT4_1,
+                    input = userInput
+                )
+                call.respond(HttpStatusCode.OK, output)
+            }
+        }
+    }
+}
+</code></pre>
+<p>Notes</p>
+<ul>
+<li>aiAgent 需要一个具体模型（LLModel）——按 route、按用途选择。</li>
+<li>对于更底层的 LLM 访问，请直接使用 llm()（PromptExecutor）。</li>
+</ul>
+<h2 id="routes-llm">在 routes 中直接使用 LLM</h2>
+<pre><code>post(&quot;/llm-chat&quot;) {
+    val userInput = call.receiveText()
+
+    val messages = llm().execute(
+        prompt(&quot;chat&quot;) {
+            system(&quot;You are a helpful assistant that clarifies questions&quot;)
+            user(userInput)
+        },
+        GoogleModels.Gemini2_5Pro
+    )
+
+    // Join all assistant messages into a single string
+    val text = messages.joinToString(separator = &quot;\n&quot;) { it.content }
+    call.respond(HttpStatusCode.OK, text)
+}
+</code></pre>
+<p>Streaming</p>
+<pre><code>get(&quot;/stream&quot;) {
+    val flow = llm().executeStreaming(
+        prompt(&quot;streaming&quot;) { user(&quot;Stream this response, please&quot;) },
+        OpenRouterModels.GPT4o
+    )
+
+    // Example: buffer and send as one chunk
+    val sb = StringBuilder()
+    flow.collect { chunk -&gt; sb.append(chunk) }
+    call.respondText(sb.toString())
+}
+</code></pre>
+<p>Moderation</p>
+<pre><code>post(&quot;/moderated-chat&quot;) {
+    val userInput = call.receiveText()
+
+    val moderation = llm().moderate(
+        prompt(&quot;moderation&quot;) { user(userInput) },
+        OpenAIModels.Moderation.Omni
+    )
+
+    if (moderation.isHarmful) {
+        call.respond(HttpStatusCode.BadRequest, &quot;Harmful content detected&quot;)
+        return@post
+    }
+
+    val output = aiAgent(
+        strategy = reActStrategy(),
+        model = OpenAIModels.Chat.GPT4_1,
+        input = userInput
+    )
+    call.respond(HttpStatusCode.OK, output)
+}
+</code></pre>
+<h2 id="_4">程序化配置（在代码中）</h2>
+<p>所有 providers 和 Agent 行为都可以通过 install(Koog) {} 配置。</p>
+<pre><code>install(Koog) {
+    llm {
+        openAI(apiKey = System.getenv(&quot;OPENAI_API_KEY&quot;) ?: &quot;&quot;) {
+            baseUrl = &quot;https://api.openai.com&quot;
+            timeouts { // Default values shown below
+                requestTimeout = 15.minutes
+                connectTimeout = 60.seconds
+                socketTimeout = 15.minutes
+            }
+        }
+        anthropic(apiKey = System.getenv(&quot;ANTHROPIC_API_KEY&quot;) ?: &quot;&quot;)
+        google(apiKey = System.getenv(&quot;GOOGLE_API_KEY&quot;) ?: &quot;&quot;)
+        openRouter(apiKey = System.getenv(&quot;OPENROUTER_API_KEY&quot;) ?: &quot;&quot;)
+        deepSeek(apiKey = System.getenv(&quot;DEEPSEEK_API_KEY&quot;) ?: &quot;&quot;)
+        ollama { baseUrl = &quot;http://localhost:11434&quot; }
+
+        // Optional fallback used by PromptExecutor when a provider isn’t configured
+        fallback {
+            provider = LLMProvider.OpenAI
+            model = OpenAIModels.Chat.GPT4_1
+        }
+    }
+
+    agentConfig {
+        // Provide a reusable base prompt for your agents
+        prompt(name = &quot;agent&quot;) {
+            system(&quot;You are a helpful server‑side agent&quot;)
+        }
+
+        // Limit runaway tools/loops
+        maxAgentIterations = 10
+
+        // Register tools available to agents by default
+        registerTools {
+            // tool(::yourTool) // see Tools Overview for details
+        }
+
+        // Install agent features (tracing, etc.)
+        // install(OpenTelemetry) { /* ... */ }
+    }
+}
+</code></pre>
+<h2 id="fallback">配置中的模型标识符（fallback）</h2>
+<p>在 YAML/CONF 中配置 llm.fallback 时，请使用以下标识符格式：</p>
+<ul>
+<li>OpenAI: openai.chat.gpt4_1, openai.reasoning.o3, openai.costoptimized.gpt4_1mini, openai.audio.gpt4oaudio, openai.moderation.omni</li>
+<li>Anthropic: anthropic.fable_5, anthropic.sonnet_4_5, anthropic.opus_4, anthropic.haiku_4_5</li>
+<li>Google: google.gemini2_5pro, google.gemini2_0flash001</li>
+<li>OpenRouter: openrouter.gpt4o, openrouter.gpt4, openrouter.claude3sonnet</li>
+<li>DeepSeek: deepseek.deepseek-v4-flash, deepseek.deepseek-v4-pro, deepseek.deepseek-chat, deepseek.deepseek-reasoner</li>
+<li>Ollama: ollama.meta.llama3.2, ollama.alibaba.qwq:32b, ollama.groq.llama3-grok-tool-use:8b</li>
+</ul>
+<p>Note</p>
+<ul>
+<li>对于 OpenAI，必须包含类别（chat、reasoning、costoptimized、audio、embeddings、moderation）。</li>
+<li>对于 Ollama，同时支持 ollama.model 和 ollama..。</li>
+</ul>
+<h2 id="mcp-tools-jvm">MCP tools（仅 JVM）</h2>
+<p>在 JVM 上，你可以将来自 MCP server 的 tools 添加到 Agent tool registry：</p>
+<pre><code>install(Koog) {
+    agentConfig {
+        mcp {
+            // Register via SSE
+            sse(&quot;https://your-mcp-server.com/sse&quot;)
+
+            // Or register via spawned process (stdio transport)
+            // process(Runtime.getRuntime().exec(&quot;your-mcp-binary ...&quot;))
+
+            // Or from an existing MCP client instance
+            // client(existingMcpClient)
+        }
+    }
+}
+</code></pre>
+<h2 id="koog-ktor">为什么选择 Koog + Ktor？</h2>
+<ul>
+<li>Kotlin 优先、类型安全的服务端 Agent 开发</li>
+<li>集中配置，route 代码清晰且易于测试</li>
+<li>可为每个 route 使用合适的模型，或为 direct LLM calls 自动 fallback</li>
+<li>生产就绪特性：tools、moderation、streaming 和 tracing</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/ktor-plugin/">官方原文</a></div></main></div></body></html>

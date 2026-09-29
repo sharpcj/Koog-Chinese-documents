@@ -1,0 +1,541 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Spring Boot 集成 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/spring-boot/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2 active" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/spring-boot/">https://docs.koog.ai/spring-boot/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概述">概述</a><a class="l2" href="#快速开始">快速开始</a><a class="l3" href="#1-添加依赖">1. 添加依赖</a><a class="l3" href="#2-配置提供商">2. 配置提供商</a><a class="l3" href="#3-在你的项目中使用">3. 在你的项目中使用</a><a class="l2" href="#高级用法">高级用法</a><a class="l3" href="#llm-提供商回退">LLM 提供商回退</a><a class="l2" href="#配置参考">配置参考</a><a class="l3" href="#可用属性">可用属性</a><a class="l3" href="#bean-名称">Bean 名称</a><a class="l2" href="#故障排除">故障排除</a><a class="l3" href="#常见问题">常见问题</a><a class="l2" href="#最佳实践">最佳实践</a><a class="l2" href="#后续步骤">后续步骤</a></div><article class="content"><h1 id="spring-boot">Spring Boot 集成</h1>
+<p>Beta</p>
+<p>此功能属于 beta 模块（<code>1.3.0-beta</code>）。API 可能会在未来的版本中发生变化。
+详情请参阅<a href="021-module-versioning.html">模块版本管理</a>。</p>
+<p>Koog 通过其自动配置 starter 提供了无缝的 Spring Boot 集成，让你能够以最少的配置轻松地将 AI
+代理集成到 Spring Boot 应用程序中。</p>
+<h2 id="_1">概述</h2>
+<p><code>koog-spring-boot-starter</code> 会根据你的应用程序属性自动配置 LLM 客户端，并提供
+可直接用于依赖注入的 bean。它支持所有主流的 LLM 提供商，包括：</p>
+<ul>
+<li>OpenAI</li>
+<li>Anthropic</li>
+<li>Google</li>
+<li>OpenRouter</li>
+<li>DeepSeek</li>
+<li>Mistral</li>
+<li>Ollama</li>
+</ul>
+<h2 id="_2">快速开始</h2>
+<h3 id="1">1. 添加依赖</h3>
+<p>将 Koog Spring Boot starter 添加到你的 Gradle 构建配置中：</p>
+<pre><code>dependencies {
+    implementation(&quot;ai.koog:koog-spring-boot-starter:$koogVersion&quot;)
+}
+</code></pre>
+<p>或者对于 Maven</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+    &lt;artifactId&gt;koog-spring-boot-starter&lt;/artifactId&gt;
+    &lt;version&gt;$koogVersion&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>确保你的 Kotlin 或 Java 项目具有：
+- Spring Boot 3（需要 Java 17 或更高版本）
+- Kotlin 版本 2.3.10+
+- kotlinx-serialization 版本 1.10.0（即 kotlinx-serialization-core-jvm 和 kotlinx-serialization-json-jvm）</p>
+<h3 id="2">2. 配置提供商</h3>
+<p>在 <code>application.properties</code> 中配置你偏好的 LLM 提供商：</p>
+<pre><code># OpenAI Configuration
+ai.koog.openai.enabled=true
+ai.koog.openai.api-key=${OPENAI_API_KEY}
+ai.koog.openai.base-url=https://api.openai.com
+# Anthropic Configuration  
+ai.koog.anthropic.enabled=true
+ai.koog.anthropic.api-key=${ANTHROPIC_API_KEY}
+ai.koog.anthropic.base-url=https://api.anthropic.com
+# Google Configuration
+ai.koog.google.enabled=true
+ai.koog.google.api-key=${GOOGLE_API_KEY}
+ai.koog.google.base-url=https://generativelanguage.googleapis.com
+# OpenRouter Configuration
+ai.koog.openrouter.enabled=true
+ai.koog.openrouter.api-key=${OPENROUTER_API_KEY}
+ai.koog.openrouter.base-url=https://openrouter.ai
+# DeepSeek Configuration
+ai.koog.deepseek.enabled=true
+ai.koog.deepseek.api-key=${DEEPSEEK_API_KEY}
+ai.koog.deepseek.base-url=https://api.deepseek.com
+# Mistral Configuration
+ai.koog.mistral.enabled=true
+ai.koog.mistral.api-key=${MISTRALAI_API_KEY}
+ai.koog.mistral.base-url=https://api.mistral.ai
+# Ollama Configuration (local - no API key required)
+ai.koog.ollama.enabled=true
+ai.koog.ollama.base-url=http://127.0.0.1:11434
+</code></pre>
+<p>或者使用 YAML 格式（<code>application.yml</code>）：</p>
+<pre><code>ai:
+    koog:
+        openai:
+            enabled: true
+            api-key: ${OPENAI_API_KEY}
+            base-url: https://api.openai.com
+        anthropic:
+            enabled: true
+            api-key: ${ANTHROPIC_API_KEY}
+            base-url: https://api.anthropic.com
+        google:
+            enabled: true
+            api-key: ${GOOGLE_API_KEY}
+            base-url: https://generativelanguage.googleapis.com
+        openrouter:
+            enabled: true
+            api-key: ${OPENROUTER_API_KEY}
+            base-url: https://openrouter.ai
+        deepseek:
+            enabled: true
+            api-key: ${DEEPSEEK_API_KEY}
+            base-url: https://api.deepseek.com
+        mistral:
+            enabled: true
+            api-key: ${MISTRALAI_API_KEY}
+            base-url: https://api.mistral.ai
+        ollama:
+            enabled: true # Set it to `true` explicitly to activate !!!
+            base-url: http://127.0.0.1:11434
+</code></pre>
+<p><code>ai.koog.PROVIDER.api-key</code> 和 <code>ai.koog.PROVIDER.enabled</code> 属性都用于激活提供商。</p>
+<p>如果提供商支持 API Key（如 OpenAI、Anthropic、Google），则 <code>ai.koog.PROVIDER.enabled</code> 默认设置为 <code>true</code>。</p>
+<p>如果提供商不支持 API Key，如 Ollama，则 <code>ai.koog.PROVIDER.enabled</code> 默认设置为 <code>false</code>，
+并且需要在应用程序配置中显式启用该提供商。</p>
+<p>在 Spring Boot starter 中，提供商的基础 URL 已设置为其默认值，但你可以在应用程序中覆盖它。</p>
+<p>环境变量</p>
+<p>建议使用环境变量来存储 API 密钥，以确保其安全性并避免纳入版本控制。
+Spring 配置使用 LLM 提供商众所周知的环境变量。
+例如，设置环境变量 <code>OPENAI_API_KEY</code> 就足以激活 OpenAI 的 Spring 配置。</p>
+<table>
+<thead>
+<tr>
+<th>LLM 提供商</th>
+<th>环境变量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Open AI</td>
+<td><code>OPENAI_API_KEY</code></td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td><code>ANTHROPIC_API_KEY</code></td>
+</tr>
+<tr>
+<td>Google</td>
+<td><code>GOOGLE_API_KEY</code></td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td><code>OPENROUTER_API_KEY</code></td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td><code>DEEPSEEK_API_KEY</code></td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td><code>MISTRALAI_API_KEY</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="3">3. 在你的项目中使用</h3>
+<p>以下是在 Spring MVC RestController 中使用自动配置执行器的示例。它需要以下内容：
+- spring-boot-starter-web 依赖
+- 对于 Kotlin，需要添加 kotlinx-coroutines-core 和 kotlinx-coroutines-reactor 依赖（Java 版本调用阻塞的 <code>execute</code> 方法）
+- 通过属性启用 Anthropic（ai.koog.anthropic.enabled=true）</p>
+<p>KotlinJava</p>
+<pre><code>import ai.koog.prompt.dsl.prompt
+import ai.koog.prompt.executor.clients.anthropic.AnthropicModels
+import ai.koog.prompt.executor.model.PromptExecutor
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
+
+@RestController
+@RequestMapping(&quot;/api/chat&quot;)
+class ChatController(private val anthropicExecutor: PromptExecutor) {
+
+    @PostMapping
+    suspend fun chat(@RequestBody request: ChatRequest): ResponseEntity&lt;ChatResponse&gt; {
+        return try {
+            val prompt = prompt(&quot;chat&quot;) {
+                system(&quot;You are a helpful assistant&quot;)
+                user(request.message)
+            }
+
+            val result = anthropicExecutor.execute(prompt, AnthropicModels.Haiku_4_5)
+            ResponseEntity.ok(ChatResponse(result.first().content))
+        } catch (e: Exception) {
+            ResponseEntity.internalServerError()
+                .body(ChatResponse(&quot;Error processing request&quot;))
+        }
+    }
+}
+
+data class ChatRequest(val message: String)
+data class ChatResponse(val response: String)
+</code></pre>
+<pre><code>import ai.koog.prompt.Prompt;
+import ai.koog.prompt.executor.clients.anthropic.AnthropicModels;
+import ai.koog.prompt.executor.model.PromptExecutor;
+import ai.koog.prompt.message.Message;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping(&quot;/api/chat&quot;)
+public class ChatController {
+    private final PromptExecutor anthropicExecutor;
+
+    public ChatController(PromptExecutor anthropicExecutor) {
+        this.anthropicExecutor = anthropicExecutor;
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;ChatResponse&gt; chat(@RequestBody ChatRequest request) {
+        try {
+            Prompt prompt = Prompt.builder(&quot;chat&quot;)
+                    .system(&quot;You are a helpful assistant&quot;)
+                    .user(request.message())
+                    .build();
+
+            List&lt;Message.Response&gt; result = anthropicExecutor.execute(prompt, AnthropicModels.Haiku_4_5);
+            return ResponseEntity.ok(new ChatResponse(result.get(0).getContent()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError()
+                    .body(new ChatResponse(&quot;Error processing request&quot;));
+        }
+    }
+}
+
+record ChatRequest(String message) {
+}
+
+record ChatResponse(String response) {
+}
+</code></pre>
+<p>Spring Framework 通过 bean 名称（<code>anthropicExecutor</code>）注入了 Anthropic 的执行器，
+但你也可以使用 <code>@Qualifier</code> 注解注入多个 <code>PromptExecutor</code> bean（参见下方的“多个 bean 错误”）。</p>
+<h2 id="_3">高级用法</h2>
+<h3 id="llm">LLM 提供商回退</h3>
+<p>配置多个 LLM 提供商后，你可以通过 <code>MultiLLMPromptExecutor</code> 向多个 LLM 发送请求：</p>
+<p>KotlinJava</p>
+<pre><code>import ai.koog.prompt.dsl.prompt
+import ai.koog.prompt.executor.clients.anthropic.AnthropicModels.Haiku_4_5
+import ai.koog.prompt.executor.clients.openai.OpenAIModels.Chat.GPT4oMini
+import ai.koog.prompt.executor.clients.openrouter.OpenRouterModels.Claude3Haiku
+import ai.koog.prompt.executor.llms.MultiLLMPromptExecutor
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.stereotype.Service
+
+@Service
+class RobustAIService(private val multiLLMPromptExecutor: MultiLLMPromptExecutor) {
+
+    private val llms = listOf(GPT4oMini, Haiku_4_5, Claude3Haiku)
+
+    suspend fun generateWithFallback(input: String): String {
+        val prompt = prompt(&quot;robust&quot;) {
+            system(&quot;You are a helpful AI assistant&quot;)
+            user(input)
+        }
+
+        for (llm in llms) {
+            try {
+                val result = multiLLMPromptExecutor.execute(prompt, llm)
+                return result.first().content
+            } catch (e: Exception) {
+                logger.warn(&quot;{} executor failed, trying next: {}&quot;, llm.id, e.message)
+            }
+        }
+
+        throw IllegalStateException(&quot;All AI providers failed&quot;)
+    }
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(RobustAIService::class.java)
+    }
+}
+</code></pre>
+<pre><code>import ai.koog.prompt.Prompt;
+import ai.koog.prompt.executor.clients.anthropic.AnthropicModels;
+import ai.koog.prompt.executor.clients.openai.OpenAIModels;
+import ai.koog.prompt.executor.clients.openrouter.OpenRouterModels;
+import ai.koog.prompt.executor.llms.MultiLLMPromptExecutor;
+import ai.koog.prompt.llm.LLModel;
+import ai.koog.prompt.message.Message;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class RobustAIService {
+    private static final Logger logger = LoggerFactory.getLogger(RobustAIService.class);
+
+    private final List&lt;LLModel&gt; llms = List.of(OpenAIModels.Chat.GPT4oMini, AnthropicModels.Haiku_4_5, OpenRouterModels.Claude3Haiku);
+
+    private final MultiLLMPromptExecutor multiLLMPromptExecutor;
+
+    public RobustAIService(MultiLLMPromptExecutor multiLLMPromptExecutor) {
+        this.multiLLMPromptExecutor = multiLLMPromptExecutor;
+    }
+
+    public String generateWithFallback(String input) {
+        Prompt prompt = Prompt.builder(&quot;robust&quot;)
+            .system(&quot;You are a helpful AI assistant&quot;)
+            .user(input)
+            .build();
+
+        for (LLModel llm : llms) {
+            try {
+                List&lt;Message.Response&gt; result = multiLLMPromptExecutor.execute(prompt, llm);
+                return result.get(0).getContent();
+            } catch (Exception e) {
+                logger.warn(&quot;{} executor failed, trying next: {}&quot;, llm.getId(), e.getMessage());
+            }
+        }
+
+        throw new IllegalStateException(&quot;All AI providers failed&quot;);
+    }
+}
+</code></pre>
+<p>你也可以注册自己的 <code>MultiLLMPromptExecutor</code> bean 并向其传递 <code>FallbackPromptExecutorSettings</code>。
+要覆盖自动配置的 bean，你可以使用 <code>@Primary</code> 注解。</p>
+<h2 id="_4">配置参考</h2>
+<h3 id="_5">可用属性</h3>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>描述</th>
+<th>Bean 条件</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ai.koog.openai.api-key</code></td>
+<td>OpenAI API 密钥</td>
+<td><code>openAIExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.openai.base-url</code></td>
+<td>OpenAI 基础 URL</td>
+<td>可选</td>
+<td><code>https://api.openai.com</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.anthropic.api-key</code></td>
+<td>Anthropic API 密钥</td>
+<td><code>anthropicExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.anthropic.base-url</code></td>
+<td>Anthropic 基础 URL</td>
+<td>可选</td>
+<td><code>https://api.anthropic.com</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.google.api-key</code></td>
+<td>Google API 密钥</td>
+<td><code>googleExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.google.base-url</code></td>
+<td>Google 基础 URL</td>
+<td>可选</td>
+<td><code>https://generativelanguage.googleapis.com</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.openrouter.api-key</code></td>
+<td>OpenRouter API 密钥</td>
+<td><code>openRouterExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.openrouter.base-url</code></td>
+<td>OpenRouter 基础 URL</td>
+<td>可选</td>
+<td><code>https://openrouter.ai</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.deepseek.api-key</code></td>
+<td>DeepSeek API 密钥</td>
+<td><code>deepSeekExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.deepseek.base-url</code></td>
+<td>DeepSeek 基础 URL</td>
+<td>可选</td>
+<td><code>https://api.deepseek.com</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.mistral.api-key</code></td>
+<td>Mistral API 密钥</td>
+<td><code>mistralAIExecutor</code> bean 必需</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>ai.koog.mistral.base-url</code></td>
+<td>Mistral 基础 URL</td>
+<td>可选</td>
+<td><code>https://api.mistral.ai</code></td>
+</tr>
+<tr>
+<td><code>ai.koog.ollama.base-url</code></td>
+<td>Ollama 基础 URL</td>
+<td>可选</td>
+<td><code>http://127.0.0.1:11434</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="bean">Bean 名称</h3>
+<p>自动配置会创建以下 bean（在已配置的情况下）：</p>
+<ul>
+<li><code>openAIExecutor</code> - OpenAI 执行器（需要 <code>ai.koog.openai.api-key</code>）</li>
+<li><code>anthropicExecutor</code> - Anthropic 执行器（需要 <code>ai.koog.anthropic.api-key</code>）</li>
+<li><code>googleExecutor</code> - Google 执行器（需要 <code>ai.koog.google.api-key</code>）</li>
+<li><code>openRouterExecutor</code> - OpenRouter 执行器（需要 <code>ai.koog.openrouter.api-key</code>）</li>
+<li><code>deepSeekExecutor</code> - DeepSeek 执行器（需要 <code>ai.koog.deepseek.api-key</code>）</li>
+<li><code>mistralAIExecutor</code> - Mistral AI 执行器（需要 <code>ai.koog.mistral.api-key</code>）</li>
+<li><code>ollamaExecutor</code> - Ollama 执行器（需要 <code>ai.koog.ollama.enabled=true</code>）</li>
+<li><code>multiLLMPromptExecutor</code> - MultiLLMPromptExecutor</li>
+</ul>
+<h2 id="_6">故障排除</h2>
+<h3 id="_7">常见问题</h3>
+<p><strong>错误：没有可用的 'PromptExecutor' 类型的合格 bean</strong></p>
+<p><strong>解决方案：</strong> 确保你已在属性文件中配置了至少一个提供商。</p>
+<p><strong>错误：存在多个 'PromptExecutor' 类型的合格 bean</strong></p>
+<p><strong>解决方案：</strong> 使用 <code>@Qualifier</code> 指定你想要的 bean：</p>
+<p>KotlinJava</p>
+<pre><code>@Service
+class MyService(
+    @Qualifier(&quot;openAIExecutor&quot;) private val openAIExecutor: PromptExecutor,
+    @Qualifier(&quot;anthropicExecutor&quot;) private val anthropicExecutor: PromptExecutor
+) {
+    // ...
+}
+</code></pre>
+<pre><code>@Service
+public class MyService {
+    private final PromptExecutor openAIExecutor;
+    private final PromptExecutor anthropicExecutor;
+
+    public MyService(@Qualifier(&quot;openAIExecutor&quot;) PromptExecutor openAIExecutor,
+                     @Qualifier(&quot;anthropicExecutor&quot;) PromptExecutor anthropicExecutor) {
+        this.openAIExecutor = openAIExecutor;
+        this.anthropicExecutor = anthropicExecutor;
+    }
+    // ...
+}
+</code></pre>
+<p><strong>错误：需要 API 密钥但未提供</strong></p>
+<p><strong>解决方案：</strong> 检查你的环境变量是否已正确设置并且可被 Spring Boot 应用程序访问。</p>
+<h2 id="_8">最佳实践</h2>
+<ol>
+<li><strong>环境变量</strong>：始终使用环境变量存储 API 密钥</li>
+<li><strong>可空注入</strong>：使用可空类型来处理未配置提供商的情况</li>
+<li><strong>回退逻辑</strong>：在使用多个提供商时实现回退机制</li>
+<li><strong>错误处理</strong>：在生产代码中始终将执行器调用包裹在 try-catch 块中</li>
+<li><strong>测试</strong>：在测试中使用 mock 以避免进行实际的 API 调用</li>
+<li><strong>配置验证</strong>：在使用执行器之前检查它们是否可用</li>
+</ol>
+<h2 id="_9">后续步骤</h2>
+<ul>
+<li>了解<a href="042-agents__basic-agents.html">基础代理</a>以构建最小的 AI 工作流</li>
+<li>探索<a href="044-agents__graph-based-agents.html">基于图的代理</a>以应对高级用例</li>
+<li>查看<a href="084-tools.html">工具概述</a>以扩展代理的能力</li>
+<li>查看<a href="011-examples.html">示例</a>了解真实世界的实现</li>
+<li>阅读<a href="012-glossary.html">术语表</a>以更好地理解该框架</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/spring-boot/">官方原文</a></div></main></div></body></html>

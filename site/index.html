@@ -1,0 +1,184 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>概览 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1" open><summary><a class="nav-node active" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/">https://docs.koog.ai/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#agents">Agents</a><a class="l2" href="#核心组件">核心组件</a><a class="l2" href="#高级用法">高级用法</a><a class="l2" href="#集成">集成</a></div><article class="content"><h1 id="_1">概览</h1>
+<p>Koog 是一个开源的 JetBrains 框架，用于构建专为 JVM 生态系统设计的 AI agent。
+它为 Kotlin 和 Java 开发者提供一流的开发体验，包含符合 Kotlin 习惯、类型安全的 Kotlin DSL，以及流畅的 builder 风格 Java API。</p>
+<p>Java 开发者可以在 JVM 上通过惯用 API 充分发挥 Koog 的能力；Kotlin 开发者还可以使用 Kotlin Multiplatform 将 agent 部署到 JS、WasmJS、Android 和 iOS 目标平台。</p>
+<div class="doc-card">
+<div class="doc-card-title"><a href="025-quickstart.html"><strong>快速开始</strong></a></div>
+<div class="doc-card-desc">构建并运行你的第一个 AI agent</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="012-glossary.html"><strong>术语表</strong></a></div>
+<div class="doc-card-desc">了解核心术语</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="021-module-versioning.html"><strong>模块版本控制</strong></a></div>
+<div class="doc-card-desc">了解稳定模块与 beta 模块以及 API 保证</div>
+</div>
+
+<h2 id="agents">Agents</h2>
+<p>了解<a href="041-agents.html">一般意义上的 agent</a>，以及如何使用 Koog 创建不同类型的 agent：</p>
+<div class="doc-card">
+<div class="doc-card-title"><a href="042-agents__basic-agents.html"><strong>基础 agent</strong></a></div>
+<div class="doc-card-desc">使用适用于大多数常见用例的预定义策略</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="043-agents__functional-agents.html"><strong>函数式 agent</strong></a></div>
+<div class="doc-card-desc">在纯 Kotlin 或 Java 中将自定义逻辑定义为 lambda 函数</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="044-agents__graph-based-agents.html"><strong>基于图的 agent</strong></a></div>
+<div class="doc-card-desc">将自定义工作流实现为策略图</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="045-agents__planner-agents.html"><strong>规划 agent</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">迭代地构建并执行计划，直到状态符合期望条件</div>
+</div>
+
+<h2 id="_2">核心组件</h2>
+<p>详细了解 Koog agent 的核心组件：</p>
+<div class="doc-card">
+<div class="doc-card-title"><a href="075-prompts.html"><strong>Prompts</strong></a></div>
+<div class="doc-card-desc">创建、管理并运行驱动 agent 与 LLM 交互的 prompt</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="024-predefined-agent-strategies.html"><strong>Strategies</strong></a></div>
+<div class="doc-card-desc">将 agent 的预期工作流设计为有向图</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="084-tools.html"><strong>Tools</strong></a></div>
+<div class="doc-card-desc">让 agent 能够与外部数据源和服务交互</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="062-features.html"><strong>Features</strong></a></div>
+<div class="doc-card-desc">扩展和增强 AI agent 的功能</div>
+</div>
+
+<h2 id="_3">高级用法</h2>
+<div class="doc-card">
+<div class="doc-card-title"><a href="013-history-compression.html"><strong>历史压缩</strong></a></div>
+<div class="doc-card-desc">在长时间运行的对话中，使用高级技术在保留上下文的同时优化 token 使用</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="064-features__agent-persistence.html"><strong>Agent 持久化</strong></a></div>
+<div class="doc-card-desc">在执行期间的特定点恢复 agent 状态</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="033-structured-output.html"><strong>结构化输出</strong></a></div>
+<div class="doc-card-desc">生成结构化格式的响应</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="032-streaming-api.html"><strong>Streaming API</strong></a></div>
+<div class="doc-card-desc">通过流式支持和并行工具调用实时处理响应</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="010-embeddings.html"><strong>知识检索</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">使用<a href="010-embeddings.html">向量嵌入</a>和 <a href="026-retrieval-augmented-generation.html">RAG</a> 在对话之间保留并检索知识</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="067-features__tracing.html"><strong>Tracing</strong></a></div>
+<div class="doc-card-desc">使用详细且可配置的 tracing 调试和监控 agent 执行</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="066-features__long-term-memory.html"><strong>Long Term Memory</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">集成向量数据库和记忆提供方，以支持 RAG 和持久记忆。</div>
+</div>
+
+<h2 id="_4">集成</h2>
+<div class="doc-card">
+<div class="doc-card-title"><a href="020-model-context-protocol.html"><strong>Model Context Protocol (MCP)</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">在 AI agent 中直接使用 MCP tools</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="031-spring-boot.html"><strong>Spring Boot</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">将 Koog 添加到你的 Spring 应用</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="016-ktor-plugin.html"><strong>Ktor</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">将 Koog 与 Ktor 服务器集成</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="071-features__open-telemetry.html"><strong>OpenTelemetry</strong></a></div>
+<div class="doc-card-desc">使用流行的可观测性工具对你的 agent 进行 trace、log 和度量</div>
+</div>
+<div class="doc-card">
+<div class="doc-card-title"><a href="037-a2a.html"><strong>A2A Protocol</strong></a> <span class="badge">beta</span></div>
+<div class="doc-card-desc">通过共享协议连接 agent 和服务</div>
+</div></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/">官方原文</a></div></main></div></body></html>

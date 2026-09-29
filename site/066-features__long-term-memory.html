@@ -1,0 +1,342 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>长期记忆 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/features/long-term-memory/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2 active" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/features/long-term-memory/">https://docs.koog.ai/features/long-term-memory/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#快速开始">快速开始</a><a class="l2" href="#仅检索rag">仅检索（RAG）</a><a class="l3" href="#prompt-增强器">Prompt 增强器</a><a class="l3" href="#搜索查询提供者">搜索查询提供者</a><a class="l3" href="#搜索策略">搜索策略</a><a class="l2" href="#仅摄取">仅摄取</a><a class="l2" href="#禁用自动行为">禁用自动行为</a><a class="l2" href="#从策略节点访问长期记忆">从策略节点访问长期记忆</a><a class="l2" href="#自定义文档提取器">自定义文档提取器</a><a class="l2" href="#实现自定义存储">实现自定义存储</a></div><article class="content"><h1 id="_1">长期记忆</h1>
+<p>Beta</p>
+<p>此特性属于 beta 模块（<code>1.3.0-beta</code>）。API 可能会在未来版本中发生变化。
+详情请参阅<a href="021-module-versioning.html">模块版本控制</a>。</p>
+<p><code>LongTermMemory</code> 特性通过两组独立设置为 Koog AI agent 添加持久化记忆：
+- <strong>检索</strong> — 使用来自记忆存储的相关上下文增强 LLM prompt（检索增强生成，Retrieval-Augmented Generation 或 RAG）
+- <strong>摄取</strong> — 将对话消息持久化到记忆存储中，以便未来检索</p>
+<h2 id="_2">快速开始</h2>
+<p>KotlinJava</p>
+<pre><code>val myStorage = InMemoryRecordStorage() // or your vector DB adapter
+
+val agent = AIAgent(
+    promptExecutor = executor,
+    strategy = singleRunStrategy(),
+    agentConfig = agentConfig,
+    toolRegistry = ToolRegistry.EMPTY
+) {
+    install(LongTermMemory) {
+        retrieval {
+            storage = myStorage
+            searchStrategy = SimilaritySearchStrategy(topK = 5)
+        }
+    }
+}
+
+agent.run(&quot;What did we discuss yesterday?&quot;)
+</code></pre>
+<pre><code>InMemoryRecordStorage myStorage = new InMemoryRecordStorage();
+
+AIAgent agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .systemPrompt(&quot;You are a helpful assistant.&quot;)
+    .install(LongTermMemory.Feature, config -&gt; {
+        config.retrieval(
+            new LongTermMemory.RetrievalSettingsBuilder()
+                .withStorage(myStorage)
+                .withSearchStrategy(
+                    SearchStrategy.builder().similarity().withTopK(5).build()
+                )
+                .build()
+        );
+    })
+    .build();
+
+Object result = agent.run(&quot;What did we discuss yesterday?&quot;);
+</code></pre>
+<h2 id="rag">仅检索（RAG）</h2>
+<p>当你已有预填充知识库时，可以使用检索而不使用摄取：</p>
+<p>KotlinJava</p>
+<pre><code>install(LongTermMemory) {
+    retrieval {
+        storage = myVectorDbStorage
+        namespace = &quot;my-collection&quot;  // optional: scope to a specific namespace/collection
+        searchStrategy = SimilaritySearchStrategy(topK = 3, similarityThreshold = 0.7)
+        promptAugmenter = SystemPromptAugmenter()
+    }
+}
+</code></pre>
+<pre><code>var retrievalSettings = new LongTermMemory.RetrievalSettingsBuilder()
+    .withStorage(myVectorDbStorage)
+    .withSearchStrategy(
+        SearchStrategy.builder().similarity().withTopK(3).withSimilarityThreshold(0.7).build()
+    )
+    .withPromptAugmenter(PromptAugmenter.builder().system().build())
+    .build();
+</code></pre>
+<h3 id="prompt">Prompt 增强器</h3>
+<table>
+<thead>
+<tr>
+<th>增强器</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SystemPromptAugmenter()</code></td>
+<td>在 prompt 开头将上下文插入为系统消息（如果没有系统消息，则为空操作）</td>
+</tr>
+<tr>
+<td><code>UserPromptAugmenter()</code></td>
+<td>将检索到的上下文作为额外文本部分追加到最后一条用户消息末尾（如果没有用户消息，则为空操作）</td>
+</tr>
+<tr>
+<td><code>PromptAugmenter { prompt, context -&gt; ... }</code></td>
+<td>通过 lambda 进行自定义增强</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">搜索查询提供者</h3>
+<p>默认情况下，检索流程使用最后一条用户消息作为搜索查询。你可以通过提供 <code>SearchQueryProvider</code> 来自定义此行为：</p>
+<table>
+<thead>
+<tr>
+<th>提供者</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LastUserMessageQueryProvider()</code></td>
+<td>使用最后一条用户消息的内容（默认）</td>
+</tr>
+<tr>
+<td><code>SearchQueryProvider { prompt -&gt; ... }</code></td>
+<td>通过 lambda 自定义查询推导</td>
+</tr>
+</tbody>
+</table>
+<p>KotlinJava</p>
+<pre><code>install(LongTermMemory) {
+    retrieval {
+        storage = myStorage
+        searchQueryProvider = SearchQueryProvider { prompt -&gt;
+            // Combine the last two user messages as the search query
+            prompt.messages
+                .filter { it.role == Message.Role.User }
+                .takeLast(2)
+                .joinToString(&quot; &quot;) { it.content }
+                .ifEmpty { null }
+        }
+    }
+}
+</code></pre>
+<pre><code>var retrievalSettings = new LongTermMemory.RetrievalSettingsBuilder()
+    .withStorage(myStorage)
+    .withSearchQueryProvider(prompt -&gt; {
+        var userMessages = prompt.getMessages().stream()
+            .filter(m -&gt; m.getRole() == Message.Role.User)
+            .toList();
+        if (userMessages.isEmpty()) return null;
+        return userMessages.get(userMessages.size() - 1).getContent();
+    })
+    .build();
+</code></pre>
+<h3 id="_4">搜索策略</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SimilaritySearchStrategy()</code></td>
+<td>向量相似度语义搜索 — <strong>默认</strong></td>
+</tr>
+<tr>
+<td><code>query -&gt; new SimilaritySearchRequest(query, 20, 0, 0.0, null)</code></td>
+<td>通过 lambda 自定义搜索</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">仅摄取</h2>
+<p>使用摄取而不使用检索，以随着时间构建记忆存储：</p>
+<p>KotlinJava</p>
+<pre><code>install(LongTermMemory) {
+    ingestion {
+        storage = myVectorDbStorage
+        namespace = &quot;my-collection&quot;  // optional: scope to a specific namespace/collection
+        documentExtractor = MessagePassingDocumentExtractor(
+            messageRolesToExtract = setOf(Message.Role.User, Message.Role.Assistant)
+        )
+    }
+}
+</code></pre>
+<pre><code>var ingestionSettings = new LongTermMemory.IngestionSettingsBuilder()
+    .withStorage(myVectorDbStorage)
+    .withDocumentExtractor(
+        DocumentExtractor.builder()
+            .filtering()
+            .withExtractRoles(new HashSet&lt;&gt;(Arrays.asList(Message.Role.User, Message.Role.Assistant)))
+            .build()
+    )
+    .build();
+</code></pre>
+<p>摄取会在 agent run 完成时运行一次：最终累积的会话 prompt/history 会作为单个批次传给已配置的 <code>documentExtractor</code>。</p>
+<h2 id="_6">禁用自动行为</h2>
+<p>默认情况下，检索和摄取会自动运行（检索在每次 LLM 调用前运行；摄取在 agent 完成时运行一次）。你可以禁用自动行为，同时仍可在策略节点中访问已配置的存储和策略：</p>
+<p>KotlinJava</p>
+<pre><code>install(LongTermMemory) {
+    retrieval {
+        storage = myStorage
+        enableAutomaticRetrieval = false  // no automatic prompt augmentation
+    }
+    ingestion {
+        storage = myStorage
+        enableAutomaticIngestion = false  // no automatic message persistence
+    }
+}
+</code></pre>
+<pre><code>config.retrieval(
+    new LongTermMemory.RetrievalSettingsBuilder()
+        .withStorage(myStorage)
+        .withEnableAutomaticRetrieval(false)
+        .build()
+);
+config.ingestion(
+    new LongTermMemory.IngestionSettingsBuilder()
+        .withStorage(myStorage)
+        .withEnableAutomaticIngestion(false)
+        .build()
+);
+</code></pre>
+<p>这为你提供三种清晰模式：</p>
+<ol>
+<li><strong>全自动</strong>（默认）：安装特性并配置存储 — 检索和摄取会自动工作。</li>
+<li><strong>仅手动</strong>：设置 <code>enableAutomaticRetrieval = false</code> / <code>enableAutomaticIngestion = false</code>，并在图策略节点中使用存储和策略。</li>
+<li><strong>混合</strong>：将自动摄取与手动检索组合使用（或反之）。</li>
+</ol>
+<h2 id="_7">从策略节点访问长期记忆</h2>
+<p>在策略节点内部使用 <code>withLongTermMemory { }</code> 来直接搜索或添加记录：</p>
+<pre><code>val myNode by node&lt;String, Unit&gt; {
+    withLongTermMemory {
+        // Manually add records
+        val record = MemoryRecord(content = &quot;important fact&quot;)
+        ingestionStorage?.add(listOf(record), namespace = &quot;my-namespace&quot;)
+
+        // Manually search
+        val request = SimilaritySearchRequest(queryText = input, limit = 5)
+        val results = retrievalStorage?.search(request, namespace = &quot;my-namespace&quot;)
+    }
+}
+</code></pre>
+<p>使用 <code>longTermMemory()</code> 直接获取特性实例：</p>
+<pre><code>val myNode by node&lt;String, Unit&gt; {
+    val memory = longTermMemory()
+    val storage = memory.ingestionStorage
+}
+</code></pre>
+<h2 id="_8">自定义文档提取器</h2>
+<p>实现 <code>DocumentExtractor</code> 来控制消息在存储前如何转换：</p>
+<pre><code>val summarizingExtractor = DocumentExtractor { messages -&gt;
+    messages
+        .filter { it.role == Message.Role.Assistant }
+        .map { MemoryRecord(content = summarize(it.content)) }
+}
+
+install(LongTermMemory) {
+    ingestion {
+        storage = myStorage
+        documentExtractor = summarizingExtractor
+    }
+}
+</code></pre>
+<h2 id="_9">实现自定义存储</h2>
+<p>实现 <code>SearchStorage</code> 和/或 <code>WriteStorage</code> 以连接到你的向量数据库：</p>
+<pre><code>class MyVectorDbStorage : SearchStorage&lt;TextDocument, SearchRequest&gt;, WriteStorage&lt;TextDocument&gt; {
+    override suspend fun search(
+        request: SearchRequest, namespace: String?
+    ): List&lt;SearchResult&lt;TextDocument&gt;&gt; {
+        // Query your vector DB
+    }
+
+    override suspend fun add(
+        records: List&lt;TextDocument&gt;, namespace: String?
+    ): List&lt;String&gt; {
+        // Upsert into your vector DB and return the IDs of added records
+    }
+}
+</code></pre>
+<p>测试时，可以使用内置的 <code>InMemoryRecordStorage</code>，它会将记录保存在内存中。它同时支持 <code>KeywordSearchRequest</code>（实现为不区分大小写的子字符串匹配）和 <code>SimilaritySearchRequest</code>（实现为基于不区分大小写词集的 Jaccard 系数）；不使用向量嵌入。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/features/long-term-memory/">官方原文</a></div></main></div></body></html>

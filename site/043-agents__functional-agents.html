@@ -1,0 +1,337 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>函数式代理 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/agents/functional-agents/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2 active" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/agents/functional-agents/">https://docs.koog.ai/agents/functional-agents/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#创建最小函数式代理">创建最小函数式代理</a><a class="l2" href="#进行顺序-llm-调用">进行顺序 LLM 调用</a><a class="l2" href="#添加工具">添加工具</a><a class="l2" href="#后续步骤">后续步骤</a></div><article class="content"><h1 id="_1">函数式代理</h1>
+<p>使用函数式代理，你可以将逻辑实现为一个函数，该函数处理用户输入、与 LLM 交互、在必要时调用工具，并生成最终输出。
+与<a href="044-agents__graph-based-agents.html">基于图的代理</a>相比，
+这通常意味着更快的原型开发，但有以下缺点：</p>
+<ul>
+<li>不易可视化</li>
+<li>无状态持久化</li>
+</ul>
+<p>前提条件</p>
+<p>确保你的环境和项目满足以下要求：</p>
+<ul>
+<li>JDK 17+</li>
+<li>Kotlin 2.2.0+</li>
+<li>Gradle 8.0+ 或 Maven 3.8+</li>
+</ul>
+<p>将 <a href="https://central.sonatype.com/artifact/ai.koog/koog-agents/">Koog 包</a>添加为依赖项：</p>
+<p>Gradle (Kotlin)Gradle (Groovy)Maven</p>
+<p>build.gradle.kts</p>
+<pre><code>dependencies {
+    // Stable
+    implementation(&quot;ai.koog:koog-agents:1.3.0&quot;)
+
+    // Beta
+    implementation(&quot;ai.koog:koog-agents-additions:1.3.0-beta&quot;)
+}
+</code></pre>
+<p>build.gradle</p>
+<pre><code>dependencies {
+    // Stable
+    implementation 'ai.koog:koog-agents:1.3.0'
+
+    // Beta
+    implementation 'ai.koog:koog-agents-additions:1.3.0-beta'
+}
+</code></pre>
+<p>pom.xml</p>
+<pre><code>&lt;dependency&gt;
+    &lt;!-- Stable --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+        &lt;artifactId&gt;koog-agents-jvm&lt;/artifactId&gt;
+        &lt;version&gt;1.3.0&lt;/version&gt;
+    &lt;/dependency&gt;
+
+    &lt;!-- Beta --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+        &lt;artifactId&gt;koog-agents-additions-jvm&lt;/artifactId&gt;
+        &lt;version&gt;1.3.0-beta&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>从 LLM 提供商处获取 API 密钥，或通过 Ollama 运行本地 LLM。
+有关更多信息，请参阅<a href="025-quickstart.html">快速入门</a>。</p>
+<p>本页中的示例假设你正在通过 Ollama 在本地运行 Llama 3.2。</p>
+<p>本页介绍如何实现函数式策略，以便为你的代理快速原型开发一些自定义逻辑。</p>
+<h2 id="_2">创建最小函数式代理</h2>
+<p>要创建最小函数式代理，请使用与<a href="042-agents__basic-agents.html">基础代理</a>相同的 <a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent/-a-i-agent/index.html"><code>AIAgent</code></a> 接口，并向其传递一个
+<a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent/-a-i-agent-functional-strategy/index.html"><code>AIAgentFunctionalStrategy</code></a> 实例。
+你可以定义一个函数式策略，它接收输入并返回输出，进行一次 LLM 调用，然后返回
+响应中助手消息的内容。</p>
+<p>在 Kotlin 中，最方便的方式是使用 <code>functionalStrategy {...}</code> DSL 方法。在 Java 中，你可以使用 <code>AIAgent</code> 构建器上的 <code>functionalStrategy</code> 方法。</p>
+<p>KotlinJava</p>
+<pre><code>val strategy = functionalStrategy&lt;String, String&gt; { input -&gt;
+    val response = requestLLM(input)
+    response.parts.filterIsInstance&lt;MessagePart.Text&gt;().joinToString(&quot;\n&quot;) { it.text }
+}
+
+val mathAgent = AIAgent(
+    promptExecutor = simpleOllamaAIExecutor(),
+    llmModel = OllamaModels.Meta.LLAMA_3_2,
+    strategy = strategy
+)
+
+fun main() = runBlocking {
+    val result = mathAgent.run(&quot;What is 12 × 9?&quot;)
+    println(result)
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; mathAgent = AIAgent.builder()
+    .promptExecutor(SimpleLLMExecutorsKt.simpleOllamaAIExecutor(&quot;http://localhost:11434&quot;))
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .functionalStrategy(&quot;mathStrategy&quot;, (AIAgentFunctionalContext context, String input) -&gt; {
+        Message.Response response = context.requestLLM(input);
+        if (response instanceof Message.Assistant) {
+            return ((Message.Assistant) response).getContent();
+        }
+        return &quot;&quot;;
+    })
+    .build();
+
+String result = mathAgent.run(&quot;What is 12 × 9?&quot;);
+System.out.println(result);
+</code></pre>
+<p>代理可以生成以下输出：</p>
+<pre><code>The answer to 12 × 9 is 108.
+</code></pre>
+<h2 id="llm">进行顺序 LLM 调用</h2>
+<p>你可以扩展之前的策略，以进行多次顺序 LLM 调用：</p>
+<p>KotlinJava</p>
+<pre><code>fun Message.Assistant.text(): String =
+    parts.filterIsInstance&lt;MessagePart.Text&gt;().joinToString(&quot;\n&quot;) { it.text }
+
+val strategy = functionalStrategy&lt;String, String&gt; { input -&gt;
+    // The first LLM call produces an initial draft based on the user input
+    val draft = requestLLM(&quot;Draft: $input&quot;).text()
+    // The second LLM call improves the initial draft
+    val improved = requestLLM(&quot;Improve and clarify.&quot;).text()
+    // The final LLM call formats the improved text and returns the result
+    requestLLM(&quot;Format the result as bold.&quot;).text()
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; mathAgent = AIAgent.builder()
+    .promptExecutor(simpleOllamaAIExecutor(&quot;http://localhost:11434&quot;))
+    .systemPrompt(&quot;You are a precise math assistant.&quot;)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .functionalStrategy((AIAgentFunctionalContext context, String input) -&gt; {
+        // The first LLM call produces an initial draft based on the user input
+        Message.Response draftResponse = context.requestLLM(&quot;Draft: &quot; + input);
+        String draft = &quot;&quot;;
+        if (draftResponse instanceof Message.Assistant) {
+            draft = ((Message.Assistant) draftResponse).getContent();
+        }
+
+        // The second LLM call improves the initial draft
+        Message.Response improvedResponse = context.requestLLM(&quot;Improve and clarify.&quot;);
+        String improved = &quot;&quot;;
+        if (improvedResponse instanceof Message.Assistant) {
+            improved = ((Message.Assistant) improvedResponse).getContent();
+        }
+
+        // The final LLM call formats the improved text and returns the result
+        Message.Response finalResponse = context.requestLLM(&quot;Format the result as bold.&quot;);
+        if (finalResponse instanceof Message.Assistant) {
+            return ((Message.Assistant) finalResponse).getContent();
+        }
+        return &quot;&quot;;
+    })
+    .build();
+</code></pre>
+<p>代理可以生成以下输出：</p>
+<pre><code>To calculate the product of 12 and 9, we multiply these two numbers together.
+
+12 × 9 = **108**
+</code></pre>
+<h2 id="_3">添加工具</h2>
+<p>在许多情况下，函数式代理需要完成特定任务，
+例如读取和写入数据、调用 API 或执行其他确定性操作。
+在 Koog 中，你可以将此类能力公开为<a href="084-tools.html">工具</a>，并让 LLM 决定何时调用它们。</p>
+<p>以下是需要执行的操作：</p>
+<ol>
+<li>创建一个<a href="085-tools__annotation-based-tools.html">基于注解的工具</a>。</li>
+<li>将其添加到工具注册表，并将该注册表传递给代理。</li>
+<li>确保代理策略能够识别 LLM 响应中的工具调用，执行请求的工具，
+   将其结果发送回 LLM，并重复此过程，直到没有剩余的工具调用。</li>
+</ol>
+<p>KotlinJava</p>
+<pre><code>@LLMDescription(&quot;Tools for performing math operations&quot;)
+class MathTools : ToolSet {
+    @Tool
+    @LLMDescription(&quot;Multiplies two numbers and returns the result&quot;)
+    fun multiply(a: Int, b: Int): Int {
+        // This is not necessary, but it helps to see the tool call in the console output
+        println(&quot;Multiplying $a and $b...&quot;)
+        return a * b
+    }
+}
+
+val toolRegistry = ToolRegistry {
+    tool(MathTools()::multiply)
+}
+
+val strategy = functionalStrategy&lt;String, String&gt; { input -&gt;
+    // Send the user input to the LLM
+    var response = requestLLM(input)
+
+    // Only loop while the LLM requests tools
+    var toolCalls = response.parts.filterIsInstance&lt;MessagePart.Tool.Call&gt;()
+    while (toolCalls.isNotEmpty()) {
+        // Execute the tools and return the results
+        val results = executeTools(toolCalls)
+        // Send the tool results back to the LLM. The LLM may call more tools or return a final output
+        response = sendToolResults(results)
+        toolCalls = response.parts.filterIsInstance&lt;MessagePart.Tool.Call&gt;()
+    }
+
+    // When no tool calls remain, extract and return the assistant message content from the response
+    response.parts.filterIsInstance&lt;MessagePart.Text&gt;().joinToString(&quot;\n&quot;) { it.text }
+}
+
+val mathAgentWithTools = AIAgent(
+    promptExecutor = simpleOllamaAIExecutor(),
+    llmModel = OllamaModels.Meta.LLAMA_3_2,
+    toolRegistry = toolRegistry,
+    strategy = strategy
+)
+
+fun main() = runBlocking {
+    val result = mathAgentWithTools.run(&quot;Multiply 3 by 4, then multiply the result by 5.&quot;)
+    println(result)
+}
+</code></pre>
+<pre><code>@LLMDescription(description = &quot;Tools for performing math operations&quot;)
+public static class MathTools implements ToolSet {
+    @Tool
+    @LLMDescription(description = &quot;Multiplies two numbers and returns the result&quot;)
+    public int multiply(int a, int b) {
+        // This is not necessary, but it helps to see the tool call in the console output
+        System.out.println(&quot;Multiplying &quot; + a + &quot; and &quot; + b + &quot;...&quot;);
+        return a * b;
+    }
+}
+
+public static void main(String[] args) {
+    MathTools mathTools = new MathTools();
+    ToolRegistry toolRegistry = ToolRegistry.builder()
+        .tools(mathTools)
+        .build();
+
+    AIAgent&lt;String, String&gt; mathAgentWithTools = AIAgent.builder()
+        .promptExecutor(SimpleLLMExecutorsKt.simpleOllamaAIExecutor(&quot;http://localhost:11434&quot;))
+        .llmModel(OllamaModels.Meta.LLAMA_3_2)
+        .toolRegistry(toolRegistry)
+        .functionalStrategy(&quot;mathWithTools&quot;, (AIAgentFunctionalContext context, String input) -&gt; {
+            // Send the user input to the LLM
+            List&lt;Message.Response&gt; responses = context.requestLLMMultiple(input);
+
+            // Only loop while the LLM requests tools
+            while (context.containsToolCalls(responses)) {
+                // Extract tool calls from the response
+                List&lt;MessagePart.Tool.Call&gt; pendingCalls = context.extractToolCalls(responses);
+                // Execute the tools and return the results
+                List&lt;ReceivedToolResult&gt; results = context.executeMultipleTools(pendingCalls, false);
+                // Send the tool results back to the LLM
+                responses = context.sendMultipleToolResults(results);
+            }
+
+            // Extract and return the assistant message content from the response
+            Message.Response finalResponse = responses.get(0);
+            if (finalResponse instanceof Message.Assistant) {
+                return ((Message.Assistant) finalResponse).getContent();
+            }
+            return &quot;&quot;;
+        })
+        .build();
+
+    String result = mathAgentWithTools.run(&quot;Multiply 3 by 4, then multiply the result by 5.&quot;);
+    System.out.println(result);
+}
+</code></pre>
+<p>代理可以生成以下输出：</p>
+<pre><code>Multiplying 3 and 4...
+Multiplying 12 and 5...
+The result of multiplying 3 by 4 is 12. Multiplying 12 by 5 gives us a final answer of 60.
+</code></pre>
+<h2 id="_4">后续步骤</h2>
+<ul>
+<li>了解如何创建<a href="044-agents__graph-based-agents.html">基于图的代理</a></li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/agents/functional-agents/">官方原文</a></div></main></div></body></html>

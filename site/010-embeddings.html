@@ -1,0 +1,383 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Embeddings - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/embeddings/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2 active" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/embeddings/">https://docs.koog.ai/embeddings/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概览">概览</a><a class="l2" href="#入门">入门</a><a class="l3" href="#本地嵌入">本地嵌入</a><a class="l3" href="#ollama-模型概览">Ollama 模型概览</a><a class="l3" href="#选择模型">选择模型</a><a class="l2" href="#openai-嵌入">OpenAI 嵌入</a><a class="l2" href="#aws-bedrock-嵌入">AWS Bedrock 嵌入</a><a class="l3" href="#支持的-aws-bedrock-嵌入模型">支持的 AWS Bedrock 嵌入模型</a><a class="l2" href="#示例">示例</a><a class="l3" href="#代码到文本比较">代码到文本比较</a><a class="l3" href="#代码到代码比较">代码到代码比较</a><a class="l2" href="#api-文档">API 文档</a></div><article class="content"><h1 id="embeddings">Embeddings</h1>
+<p><code>embeddings</code> 模块提供用于生成和比较文本与代码嵌入的功能。嵌入是捕获语义含义的向量表示，可用于高效的相似度比较。</p>
+<h2 id="_1">概览</h2>
+<p>该模块包含两个主要组件：</p>
+<ol>
+<li><strong>embeddings-base</strong>：嵌入的核心接口和数据结构。</li>
+<li><strong>embeddings-llm</strong>：使用 Ollama 生成本地嵌入的实现。</li>
+</ol>
+<h2 id="_2">入门</h2>
+<p>以下部分包含如何通过下列方式使用嵌入的基础示例：</p>
+<ul>
+<li>通过 Ollama 使用本地嵌入模型</li>
+<li>使用 OpenAI 嵌入模型</li>
+</ul>
+<h3 id="_3">本地嵌入</h3>
+<p>要通过本地模型使用嵌入功能，需要在系统中安装并运行 Ollama。
+有关安装和运行说明，请参阅 <a href="https://github.com/ollama/ollama">Ollama 官方 GitHub 仓库</a>。</p>
+<pre><code>fun main() {
+    runBlocking {
+        // Create an OllamaClient instance
+        val client = OllamaClient()
+        // Create an embedder
+        val embedder = LLMEmbedder(client, OllamaModels.Embeddings.NOMIC_EMBED_TEXT)
+        // Create embeddings
+        val embedding = embedder.embed(&quot;This is the text to embed&quot;)
+        // Print embeddings to the output
+        println(embedding)
+    }
+}
+</code></pre>
+<p>要使用 Ollama 嵌入模型，请确保满足以下前置条件：</p>
+<ul>
+<li>已安装并运行 <a href="https://ollama.com/download">Ollama</a></li>
+<li>使用以下命令将嵌入模型下载到本地计算机：</li>
+</ul>
+<p><code>ollama pull &lt;ollama-model-id&gt;</code></p>
+<p>将 <code>&lt;ollama-model-id&gt;</code> 替换为具体模型的 Ollama 标识符。有关可用嵌入模型及其标识符的更多信息，请参阅 <a href="#ollama-models-overview">Ollama 模型概览</a>。</p>
+<h3 id="ollama">Ollama 模型概览</h3>
+<p>下表概述了可用的 Ollama 嵌入模型。</p>
+<table>
+<thead>
+<tr>
+<th>Model ID</th>
+<th>Ollama ID</th>
+<th>Parameters</th>
+<th>Dimensions</th>
+<th>Context Length</th>
+<th>Performance</th>
+<th>Tradeoffs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NOMIC_EMBED_TEXT</td>
+<td>nomic-embed-text</td>
+<td>137M</td>
+<td>768</td>
+<td>8192</td>
+<td>面向语义搜索和文本相似度任务的高质量嵌入</td>
+<td>在质量和效率之间取得平衡</td>
+</tr>
+<tr>
+<td>ALL_MINILM</td>
+<td>all-minilm</td>
+<td>33M</td>
+<td>384</td>
+<td>512</td>
+<td>推理速度快，适合通用文本嵌入且质量良好</td>
+<td>模型尺寸更小、上下文长度较短，但效率很高</td>
+</tr>
+<tr>
+<td>MULTILINGUAL_E5</td>
+<td>zylonai/multilingual-e5-large</td>
+<td>300M</td>
+<td>768</td>
+<td>512</td>
+<td>在 100 多种语言上表现强劲</td>
+<td>模型尺寸更大，但提供出色的多语言能力</td>
+</tr>
+<tr>
+<td>BGE_LARGE</td>
+<td>bge-large</td>
+<td>335M</td>
+<td>1024</td>
+<td>512</td>
+<td>非常适合英文文本检索和语义搜索</td>
+<td>模型尺寸更大，但提供高质量嵌入</td>
+</tr>
+<tr>
+<td>MXBAI_EMBED_LARGE</td>
+<td>mxbai-embed-large</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>文本数据的高维嵌入</td>
+<td>专为创建高维嵌入而设计</td>
+</tr>
+</tbody>
+</table>
+<p>有关这些模型的更多信息，请参阅 Ollama 的 <a href="https://ollama.com/blog/embedding-models">Embedding Models</a> 博文。</p>
+<h3 id="_4">选择模型</h3>
+<p>以下是根据需求选择 Ollama 嵌入模型的一些通用建议：</p>
+<ul>
+<li>对于通用文本嵌入，请使用 <code>NOMIC_EMBED_TEXT</code>。</li>
+<li>对于多语言支持，请使用 <code>MULTILINGUAL_E5</code>。</li>
+<li>对于最高质量（以性能为代价），请使用 <code>BGE_LARGE</code>。</li>
+<li>对于最高效率（以部分质量为代价），请使用 <code>ALL_MINILM</code>。</li>
+<li>对于高维嵌入，请使用 <code>MXBAI_EMBED_LARGE</code>。</li>
+</ul>
+<h2 id="openai">OpenAI 嵌入</h2>
+<p>要使用 OpenAI 嵌入模型创建嵌入，请使用 <code>OpenAILLMClient</code> 实例的 <code>embed</code> 方法，如下例所示。</p>
+<pre><code>suspend fun openAIEmbed(text: String) {
+    // Get the OpenAI API token from the OPENAI_KEY environment variable
+    val token = System.getenv(&quot;OPENAI_KEY&quot;) ?: error(&quot;Environment variable OPENAI_KEY is not set&quot;)
+    // Create an OpenAILLMClient instance
+    val client = OpenAILLMClient(token)
+    // Create an embedder
+    val embedder = LLMEmbedder(client, OpenAIModels.Embeddings.TextEmbeddingAda002)
+    // Create embeddings
+    val embedding = embedder.embed(text)
+    // Print embeddings to the output
+    println(embedding)
+}
+</code></pre>
+<h2 id="aws-bedrock">AWS Bedrock 嵌入</h2>
+<p>要使用 AWS Bedrock 嵌入模型创建嵌入，请使用 <code>BedrockLLMClient</code> 实例和所选模型的 <code>embed</code> 方法。示例：</p>
+<pre><code>suspend fun bedrockEmbed(text: String) {
+    // Get AWS credentials from environment/configuration
+    val awsAccessKeyId = System.getenv(&quot;AWS_ACCESS_KEY_ID&quot;) ?: error(&quot;AWS_ACCESS_KEY_ID not set&quot;)
+    val awsSecretAccessKey = System.getenv(&quot;AWS_SECRET_ACCESS_KEY&quot;) ?: error(&quot;AWS_SECRET_ACCESS_KEY not set&quot;)
+    // (Optional) AWS_SESSION_TOKEN for temporary credentials
+    val awsSessionToken = System.getenv(&quot;AWS_SESSION_TOKEN&quot;)
+    // Create a BedrockLLMClient instance
+    val client = BedrockLLMClient(
+        identityProvider = StaticCredentialsProvider {
+            this.accessKeyId = awsAccessKeyId
+            this.secretAccessKey = awsSecretAccessKey
+            awsSessionToken?.let { this.sessionToken = it }
+        },
+        settings = BedrockClientSettings()
+    )
+    // Create an embedder
+    val embedder = LLMEmbedder(client, BedrockModels.Embeddings.AmazonTitanEmbedText)
+    // Create embeddings
+    val embedding = embedder.embed(text)
+    // Print embeddings to the output
+    println(embedding)
+}
+</code></pre>
+<h3 id="aws-bedrock_1">支持的 AWS Bedrock 嵌入模型</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model name</th>
+<th>Model ID</th>
+<th>Input</th>
+<th>Output</th>
+<th>Dimensions</th>
+<th>Context Length</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Amazon</td>
+<td>Titan Embeddings G1 - Text</td>
+<td><code>amazon.titan-embed-text-v1</code></td>
+<td>Text</td>
+<td>Embedding</td>
+<td>1,536</td>
+<td>8192</td>
+<td>25+ 种语言，针对检索、语义相似度和聚类优化；用于搜索时请切分长文档。</td>
+</tr>
+<tr>
+<td>Amazon</td>
+<td>Titan Text Embeddings V2</td>
+<td><code>amazon.titan-embed-text-v2:0</code></td>
+<td>Text</td>
+<td>Embedding</td>
+<td>1,024</td>
+<td>8192</td>
+<td>高精度、灵活维度、多语言（100+）；较小维度可节省存储，输出已归一化。</td>
+</tr>
+<tr>
+<td>Cohere</td>
+<td>Cohere Embed English v3</td>
+<td><code>cohere.embed-english-v3</code></td>
+<td>Text</td>
+<td>Embedding</td>
+<td>1,024</td>
+<td>8192</td>
+<td>面向搜索、检索和理解文本细微差别的 SOTA 英文文本嵌入。</td>
+</tr>
+<tr>
+<td>Cohere</td>
+<td>Cohere Embed Multilingual v3</td>
+<td><code>cohere.embed-multilingual-v3</code></td>
+<td>Text</td>
+<td>Embedding</td>
+<td>1,024</td>
+<td>8192</td>
+<td>多语言嵌入，在跨语言搜索和语义理解方面达到 SOTA。</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>有关最新的模型支持，请参阅 <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html">AWS Bedrock 支持的模型文档</a>。</p>
+</blockquote>
+<h2 id="_5">示例</h2>
+<p>以下示例展示如何使用嵌入将代码与文本或其他代码片段进行比较。</p>
+<h3 id="_6">代码到文本比较</h3>
+<p>将代码片段与自然语言描述进行比较，以查找语义匹配：</p>
+<pre><code>suspend fun compareCodeToText(embedder: Embedder) { // Embedder type
+    // Code snippet
+    val code = &quot;&quot;&quot;
+        fun factorial(n: Int): Int {
+            return if (n &lt;= 1) 1 else n * factorial(n - 1)
+        }
+    &quot;&quot;&quot;.trimIndent()
+
+    // Text descriptions
+    val description1 = &quot;A recursive function that calculates the factorial of a number&quot;
+    val description2 = &quot;A function that sorts an array of integers&quot;
+
+    // Generate embeddings
+    val codeEmbedding = embedder.embed(code)
+    val desc1Embedding = embedder.embed(description1)
+    val desc2Embedding = embedder.embed(description2)
+
+    // Calculate differences (lower value means more similar)
+    val diff1 = embedder.diff(codeEmbedding, desc1Embedding)
+    val diff2 = embedder.diff(codeEmbedding, desc2Embedding)
+
+    println(&quot;Difference between code and description 1: $diff1&quot;)
+    println(&quot;Difference between code and description 2: $diff2&quot;)
+
+    // The code should be more similar to description1 than description2
+    if (diff1 &lt; diff2) {
+        println(&quot;The code is more similar to: '$description1'&quot;)
+    } else {
+        println(&quot;The code is more similar to: '$description2'&quot;)
+    }
+}
+</code></pre>
+<h3 id="_7">代码到代码比较</h3>
+<p>比较代码片段，以不受语法差异影响地查找语义相似性：</p>
+<pre><code>suspend fun compareCodeToCode(embedder: Embedder) { // Embedder type
+    // Two implementations of the same algorithm in different languages
+    val kotlinCode = &quot;&quot;&quot;
+        fun fibonacci(n: Int): Int {
+            return if (n &lt;= 1) n else fibonacci(n - 1) + fibonacci(n - 2)
+        }
+    &quot;&quot;&quot;.trimIndent()
+
+    val pythonCode = &quot;&quot;&quot;
+        def fibonacci(n):
+            if n &lt;= 1:
+                return n
+            else:
+                return fibonacci(n-1) + fibonacci(n-2)
+    &quot;&quot;&quot;.trimIndent()
+
+    val javaCode = &quot;&quot;&quot;
+        public static int bubbleSort(int[] arr) {
+            int n = arr.length;
+            for (int i = 0; i &lt; n-1; i++) {
+                for (int j = 0; j &lt; n-i-1; j++) {
+                    if (arr[j] &gt; arr[j+1]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+            return arr;
+        }
+    &quot;&quot;&quot;.trimIndent()
+
+    // Generate embeddings
+    val kotlinEmbedding = embedder.embed(kotlinCode)
+    val pythonEmbedding = embedder.embed(pythonCode)
+    val javaEmbedding = embedder.embed(javaCode)
+
+    // Calculate differences
+    val diffKotlinPython = embedder.diff(kotlinEmbedding, pythonEmbedding)
+    val diffKotlinJava = embedder.diff(kotlinEmbedding, javaEmbedding)
+
+    println(&quot;Difference between Kotlin and Python implementations: $diffKotlinPython&quot;)
+    println(&quot;Difference between Kotlin and Java implementations: $diffKotlinJava&quot;)
+
+    // The Kotlin and Python implementations should be more similar
+    if (diffKotlinPython &lt; diffKotlinJava) {
+        println(&quot;The Kotlin code is more similar to the Python code&quot;)
+    } else {
+        println(&quot;The Kotlin code is more similar to the Java code&quot;)
+    }
+}
+</code></pre>
+<h2 id="api">API 文档</h2>
+<p>有关嵌入相关的完整 API 参考，请参阅以下模块的参考文档：</p>
+<ul>
+<li><a href="https://api.koog.ai/embeddings/embeddings-base/ai.koog.embeddings.base/index.html">embeddings-base</a>：提供用于表示和比较文本与代码嵌入的核心接口和数据结构。</li>
+<li><a href="https://api.koog.ai/embeddings/embeddings-llm/index.html">embeddings-llm</a>：包含用于处理本地嵌入模型的实现。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/embeddings/">官方原文</a></div></main></div></body></html>

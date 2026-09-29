@@ -1,0 +1,371 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Client Protocol - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/agent-client-protocol/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1 active" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/agent-client-protocol/">https://docs.koog.ai/agent-client-protocol/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#与-koog-集成">与 Koog 集成</a><a class="l3" href="#添加依赖">添加依赖</a><a class="l3" href="#为-koog-agent-启用-acp">为 Koog agent 启用 ACP</a><a class="l3" href="#实现启用-acp-的-agent">实现启用 ACP 的 agent</a><a class="l2" href="#event-streaming">Event streaming</a><a class="l2" href="#执行同步">执行同步</a><a class="l2" href="#处理-acp-client-输入">处理 ACP client 输入</a><a class="l2" href="#转换消息">转换消息</a><a class="l2" href="#处理-agent-通知">处理 agent 通知</a><a class="l2" href="#发送自定义-events">发送自定义 events</a><a class="l2" href="#示例">示例</a><a class="l3" href="#运行基于控制台的-acp-client">运行基于控制台的 ACP client</a><a class="l3" href="#将启用-acp-的-koog-agent-连接到-jetbrains-ide">将启用 ACP 的 Koog agent 连接到 JetBrains IDE</a></div><article class="content"><h1 id="agent-client-protocol">Agent Client Protocol</h1>
+<p>Beta</p>
+<p>此功能属于 beta 模块（<code>1.3.0-beta</code>）。API 可能会在未来版本中发生变化。
+详情请参见<a href="021-module-versioning.html">模块版本控制</a>。</p>
+<p>Agent Client Protocol (ACP) 是一个开源的标准化协议，使客户端应用能够通过一致的双向接口与 AI agents 通信。
+通过在 Koog agent 中实现 ACP，
+你可以确保它能轻松集成到任何符合 ACP 的环境中，例如 IDE。</p>
+<p>更多信息请参见 <a href="https://agentclientprotocol.com">Agent Client Protocol</a> 文档。</p>
+<h2 id="koog">与 Koog 集成</h2>
+<p>Koog 框架使用 <a href="https://github.com/agentclientprotocol/kotlin-sdk">ACP Kotlin SDK</a> 并结合额外的 API 扩展来集成 ACP。
+该集成提供：</p>
+<ul>
+<li>Koog agent 与符合 ACP 的客户端应用之间的标准化通信</li>
+<li>工具调用、agent 思考过程和完成状态的自动执行更新</li>
+<li>Koog 的多模态消息格式与 ACP 内容块之间的无缝消息转换</li>
+<li>将 Koog agent 状态生命周期映射到 ACP session events</li>
+</ul>
+<p>Note</p>
+<p>由于 <a href="https://github.com/agentclientprotocol/kotlin-sdk">ACP Kotlin SDK</a> 是 JVM 专用的，
+ACP 集成目前仅在 JVM 平台上可用。</p>
+<h3 id="_1">添加依赖</h3>
+<p>ACP 支持是一个可选的 <a href="062-features.html">feature</a>，默认情况下 Koog 不包含它。
+要为你的 Koog agent 实现 ACP，
+请添加 <a href="https://mvnrepository.com/artifact/ai.koog/agents-features-acp">ai.koog:agents-features-acp</a> 依赖，
+它自身依赖于 <a href="https://mvnrepository.com/artifact/com.agentclientprotocol/acp">com.agentclientprotocol:acp</a>。</p>
+<p>例如，在 <code>build.gradle.kts</code> 中：</p>
+<pre><code>dependencies {
+    implementation(&quot;ai.koog:agents-features-acp:$koogVersion&quot;)
+}
+</code></pre>
+<h3 id="koog-agent-acp">为 Koog agent 启用 ACP</h3>
+<p>要将 Koog agent 的内部<a href="003-agent-events.html">事件系统</a>与 ACP 协议桥接起来，
+请安装 <code>ai.koog.agents.features.acp.AcpAgent</code> feature。
+安装后，它会监听生命周期事件（例如工具调用或 LLM 响应）
+并将它们发送给 ACP client。</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4o
+) {
+    install(AcpAgent) {
+        this.sessionId = sessionId
+        this.protocol = protocol
+        this.eventsProducer = eventsProducer
+        this.setDefaultNotifications = true
+    }
+}
+</code></pre>
+<p>关键配置选项：</p>
+<ul>
+<li><strong><code>sessionId</code></strong>：标识当前对话 session 的唯一字符串。</li>
+<li><strong><code>protocol</code></strong>：用于底层通信的 <a href="https://github.com/agentclientprotocol/kotlin-sdk/blob/master/acp/src/commonMain/kotlin/com/agentclientprotocol/protocol/Protocol.kt"><code>com.agentclientprotocol.protocol.Protocol</code></a> 实例。</li>
+<li><strong><code>eventsProducer</code></strong>：发送 ACP events 的 <code>kotlinx.coroutines.channels.ProducerScope&lt;Event&gt;</code>。
+  更多信息请参见 <a href="#event-streaming">Event streaming</a>。</li>
+<li><strong><code>setDefaultNotifications</code></strong>：是否为 agent 生命周期事件注册默认通知处理器。
+  更多信息请参见 <a href="#handling-agent-notifications">Handling agent notifications</a>。</li>
+</ul>
+<p>该 agent 必须在下一章所述的 ACP session 范围内运行。</p>
+<h3 id="acp-agent">实现启用 ACP 的 agent</h3>
+<p>要将你的 Koog agent 连接到 ACP clients，
+请实现 <a href="https://github.com/agentclientprotocol/kotlin-sdk">ACP Kotlin SDK</a> 中的两个核心接口：</p>
+<ul>
+<li><a href="https://github.com/agentclientprotocol/kotlin-sdk/blob/master/acp/src/commonMain/kotlin/com/agentclientprotocol/agent/AgentSupport.kt"><code>AgentSupport</code></a>：
+  管理 agent 的身份、能力和 session 生命周期（创建或加载 session）。</li>
+<li><a href="https://github.com/agentclientprotocol/kotlin-sdk/blob/master/acp/src/commonMain/kotlin/com/agentclientprotocol/agent/AgentSession.kt"><code>AgentSession</code></a>：
+  管理单个对话 session，处理 <code>prompt</code> 执行并管理取消。</li>
+</ul>
+<p>你应该在 <code>AgentSession</code> 的 <code>prompt()</code> 方法中初始化并运行启用 ACP 的 Koog agent。
+示例如下：</p>
+<p>AgentSessionAgentSupport</p>
+<pre><code>class MyAgentSession(
+    override val sessionId: SessionId,
+    private val promptExecutor: PromptExecutor,
+    private val protocol: Protocol,
+    private val clock: KoogClock
+) : AgentSession {
+
+    private var agentJob: Deferred&lt;Unit&gt;? = null
+    private val agentMutex = Mutex()
+
+    override suspend fun prompt(
+        content: List&lt;ContentBlock&gt;,
+        _meta: JsonElement?
+    ): Flow&lt;Event&gt; = channelFlow {
+        val agentConfig = AIAgentConfig(
+            prompt = prompt(&quot;acp&quot;) {
+                system(&quot;You are a helpful assistant.&quot;)
+            }.appendPrompt(content),
+            model = OpenAIModels.Chat.GPT4o,
+            maxAgentIterations = 1000
+        )
+
+        // Ensure only one agent session runs at a time
+        agentMutex.withLock {
+            val agent = AIAgent(
+                promptExecutor = promptExecutor,
+                agentConfig = agentConfig
+            ) {
+                install(AcpAgent) {
+                    this.sessionId = this@MyAgentSession.sessionId.value
+                    this.protocol = this@MyAgentSession.protocol
+                    this.eventsProducer = this@channelFlow
+                    this.setDefaultNotifications = true
+                }
+            }
+
+            agentJob = async { agent.run(&quot;Hello. How can you help me?&quot;) }
+            agentJob?.await()
+        }
+    }
+
+    private fun Prompt.appendPrompt(content: List&lt;ContentBlock&gt;): Prompt {
+        return withMessages { messages -&gt;
+            messages + listOf(content.toKoogMessage(clock))
+        }
+    }
+
+    override suspend fun cancel() {
+        agentJob?.cancel()
+    }
+}
+</code></pre>
+<pre><code>class MyAgentSupport(
+    private val promptExecutor: PromptExecutor,
+    private val clock: KoogClock,
+    private val protocol: Protocol,
+) : AgentSupport {
+
+    override suspend fun initialize(clientInfo: ClientInfo): AgentInfo {
+        return AgentInfo(
+            protocolVersion = LATEST_PROTOCOL_VERSION,
+            capabilities = AgentCapabilities(
+                loadSession = false, // Set to true if you implement session persistence
+                promptCapabilities = PromptCapabilities(
+                    audio = false,
+                    image = false,
+                    embeddedContext = true
+                )
+            )
+        )
+    }
+
+    @OptIn(ExperimentalUuidApi::class)
+    override suspend fun createSession(sessionParameters: SessionCreationParameters): AgentSession {
+        val sessionId = SessionId(Uuid.random().toString())
+        return MyAgentSession(sessionId, promptExecutor, protocol, clock)
+    }
+
+    override suspend fun loadSession(sessionId: SessionId, sessionParameters: SessionCreationParameters): AgentSession {
+        throw UnsupportedOperationException(&quot;Session loading not implemented&quot;)
+    }
+}
+</code></pre>
+<h2 id="event-streaming">Event streaming</h2>
+<p>示例中的 <code>AgentSession</code> 定义了一个返回 events 的 <code>channelFlow</code> 的 <code>prompt()</code> 函数。
+随后你安装 <code>AcpAgent</code> feature，并将 <code>this@channelFlow</code> 作为 <code>eventsProducer</code>。
+这允许从不同协程发送 events。</p>
+<h2 id="_2">执行同步</h2>
+<p>示例中的 <code>AgentSession</code> 使用 mutex 来同步对 agent 实例的访问，
+因为 ACP 不应在前一次 agent 执行完成前触发新的 agent 执行。
+为此，创建并运行 agent 的过程会发生在已定义 mutex 的 <code>withLock</code> 范围中。</p>
+<p>你还会在 <code>channelFlow</code> 范围内以 deferred job <code>agentJob</code> 的形式异步运行 agent，
+以确保 agent 不会被过早取消。</p>
+<h2 id="acp-client">处理 ACP client 输入</h2>
+<p>ACP clients 以 <a href="https://agentclientprotocol.com/protocol/schema#contentblock"><code>ContentBlock</code></a> 对象列表的形式发送用户输入。
+要在 Koog 中处理这些输入，请使用 <code>List&lt;ContentBlock&gt;.toKoogMessage()</code> 扩展函数
+将 ACP content blocks 转换为 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.message/-message/-user/index.html"><code>Message.User</code></a>，
+并将其追加到你的 <a href="075-prompts.html">agent prompt</a>。</p>
+<p>示例中的 <code>AgentSession</code> 定义了一个私有函数，用于扩展 ACP session 中的初始 agent prompt：</p>
+<pre><code>private fun Prompt.appendPrompt(content: List&lt;ContentBlock&gt;): Prompt {
+    return withMessages { messages -&gt;
+        messages + listOf(content.toKoogMessage(clock))
+    }
+}
+</code></pre>
+<p>Note</p>
+<p>需要一个 <code>KoogClock</code> 实例为消息加时间戳。</p>
+<p>更多信息请参见 <a href="#converting-messages">Converting messages</a>。</p>
+<h2 id="_3">转换消息</h2>
+<p><code>agents-features-acp</code> 模块提供扩展函数，
+用于在 Koog 内部消息类型与 <a href="https://agentclientprotocol.com/protocol/content">ACP content blocks</a> 之间无缝转换。</p>
+<p>从 ACP client 接收输入时，请使用以下函数：</p>
+<ul>
+<li><code>List&lt;ContentBlock&gt;.toKoogMessage()</code> 将 ACP content blocks 列表转换为 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.message/-message/-user/index.html"><code>Message.User</code></a></li>
+<li><code>ContentBlock.toKoogContentPart()</code> 将单个 ACP content block 转换为 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.message/-content-part/index.html"><code>ContentPart</code></a></li>
+</ul>
+<p>要从 Koog messages 构造 ACP events 或 content blocks，请使用以下函数：</p>
+<ul>
+<li><code>Message.Response.toAcpEvents()</code> 将 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.message/-message/-response/index.html"><code>Message.Response</code></a> 转换为 ACP session update events 列表</li>
+<li><code>ContentPart.toAcpContentBlock()</code> 将 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.message/-content-part/index.html"><code>ContentPart</code></a> 转换为单个 ACP content block</li>
+</ul>
+<h2 id="agent">处理 agent 通知</h2>
+<p>默认情况下，<code>setDefaultNotifications</code> 设置为 <code>true</code>，
+启用 ACP 的 agent 会自动处理以下通知：</p>
+<ul>
+<li><strong>Agent completion</strong></li>
+</ul>
+<p>当 agent 成功完成时，发送带有 <code>StopReason.END_TURN</code> 的 <code>PromptResponseEvent</code>
+- <strong>Agent execution failures</strong></p>
+<p>发送带有适当 stop reason 的 <code>PromptResponseEvent</code>：</p>
+<ul>
+<li>当 agent 超过最大迭代次数时发送 <code>StopReason.MAX_TURN_REQUESTS</code></li>
+<li>其他执行失败发送 <code>StopReason.REFUSAL</code></li>
+<li><strong>LLM responses</strong></li>
+</ul>
+<p>将 LLM responses 转换并作为 ACP events 发送（text、tool calls、reasoning）
+- <strong>Tool call lifecycle</strong></p>
+<p>报告 tool call 状态变化：</p>
+<ul>
+<li>tool call 开始时为 <code>ToolCallStatus.IN_PROGRESS</code></li>
+<li>tool call 成功时为 <code>ToolCallStatus.COMPLETED</code></li>
+<li>tool call 失败时为 <code>ToolCallStatus.FAILED</code></li>
+</ul>
+<p>如果你想自定义通知处理，
+请设置 <code>setDefaultNotifications = false</code>，并按照规范处理 agent events。</p>
+<h2 id="events">发送自定义 events</h2>
+<p>除了自动通知之外，
+你还可以在 agent 执行期间的任何时刻，
+在 <code>withAcpAgent</code> block 内使用 <code>sendEvent</code> 向 ACP client 发送自定义 events。
+这适用于进度更新、自定义状态消息或计划更新。</p>
+<p>你可以在 <code>AIAgentContext</code> 内执行此操作，例如在一个节点中：</p>
+<pre><code>val plan: Plan = TODO()
+
+val strategy = strategy&lt;Unit, Unit&gt;(&quot;my-strategy&quot;) {
+    val node by node&lt;Unit, Unit&gt; {
+        withAcpAgent {
+            sendEvent(
+                Event.SessionUpdateEvent(
+                    SessionUpdate.PlanUpdate(plan.entries)
+                )
+            )
+        }
+    }
+}
+</code></pre>
+<p>你还可以访问底层 <code>protocol</code>，向 client 发送自定义请求，例如认证请求：</p>
+<pre><code>val strategy = strategy&lt;Unit, Unit&gt;(&quot;my-strategy&quot;) {
+    val node by node&lt;Unit, Unit&gt; {
+        withAcpAgent {
+            protocol.sendRequest(
+                AcpMethod.AgentMethods.Authenticate,
+                AuthenticateRequest(methodId = AuthMethodId(&quot;Google&quot;))
+            )
+        }
+    }
+}
+</code></pre>
+<h2 id="_4">示例</h2>
+<p>你可以在 Koog repository 的 <a href="https://github.com/JetBrains/koog/tree/develop/examples/">/examples</a> 下找到可运行的 Koog agents 示例。</p>
+<h3 id="acp-client_1">运行基于控制台的 ACP client</h3>
+<p>此示例运行一个基于控制台的 ACP client，它会与一个简单的 Koog agent 交互。</p>
+<ol>
+<li>打开 <a href="https://github.com/JetBrains/koog/blob/develop/examples/simple-examples/">/examples/simple-examples</a>。</li>
+<li>查看 <a href="https://github.com/JetBrains/koog/blob/develop/examples/simple-examples/README.md">README</a>，了解如何为 LLM provider 配置 API key。</li>
+<li>运行 <code>runExampleAcpApp</code> Gradle task。</li>
+<li>当 ACP client 在控制台启动后，输入一个发给 agent 的请求，例如：</li>
+</ol>
+<p><code>List files in the current directory and create a new file named 'acp-test.txt' with the content 'Hello from ACP!'.</code>
+5. 观察控制台中的 event traces，
+   它们会展示 Koog events 如何被转换为 ACP events 并发送给 client。</p>
+<h3 id="acp-koog-agent-jetbrains-ide">将启用 ACP 的 Koog agent 连接到 JetBrains IDE</h3>
+<p>此示例演示如何创建启用 ACP 的 agent 并连接到 IntelliJ IDEA。</p>
+<ol>
+<li>打开 <a href="https://github.com/JetBrains/koog/tree/develop/examples/acp-agent">/examples/acp-agent</a></li>
+<li>运行 <code>installDist</code> Gradle task。</li>
+<li>这应创建 agent 可执行文件：<code>build/install/acp-agent/bin/acp-agent</code>
+   （Windows 为 <code>acp-agent.bat</code>）。</li>
+<li>打开 IntelliJ IDEA（或其他 JetBrains IDE）。</li>
+<li>转到 <strong>AI Chat</strong> &gt; <strong>Options</strong> &gt; <strong>Add Custom Agent</strong>。</li>
+<li>在打开的 <code>acp.json</code> 文件中，粘贴以下内容：</li>
+</ol>
+<p><code>{
+       "agent_servers": {
+           "Koog Agent": {
+               "command": "/absolute/path/to/acp-agent/build/install/acp-agent/bin/acp-agent",
+               "args": [],
+               "env": {
+                   "OPENAI_API_KEY": "paste-your-api-key-here"
+               }
+           }
+       }
+   }</code></p>
+<p>配置参数：</p>
+<ul>
+<li><code>agent_servers</code>：包含一个或多个 agent 配置的对象</li>
+<li><code>Koog Agent</code>：IDE 的 agent selector 中显示的名称</li>
+<li><code>command</code>：agent 可执行文件的绝对路径</li>
+<li><code>args</code>：命令行参数（此 agent 为空）</li>
+<li><code>env</code>：传递给 agent 进程的环境变量（本例中为 OpenAI API key）</li>
+<li>该 agent 应会出现在 <strong>AI Chat</strong> 工具窗口中。</li>
+</ul>
+<p>有关向 IDE 添加自定义 agents 的更多信息，
+请参见 <a href="https://www.jetbrains.com/help/ai-assistant/acp.html#add-custom-agent">AI Assistant documentation</a>
+以及<a href="https://blog.jetbrains.com/ai/2026/02/koog-x-acp-connect-an-agent-to-your-ide-and-more/">这篇博客文章</a>。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/agent-client-protocol/">官方原文</a></div></main></div></body></html>

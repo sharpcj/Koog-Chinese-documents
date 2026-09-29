@@ -1,0 +1,360 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>创建提示 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-creation/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2" open><summary><a class="nav-node active" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/prompts/prompt-creation/">https://docs.koog.ai/prompts/prompt-creation/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#基本结构">基本结构</a><a class="l2" href="#消息类型">消息类型</a><a class="l3" href="#system-message">System message</a><a class="l3" href="#user-messages">User messages</a><a class="l3" href="#assistant-messages">Assistant messages</a><a class="l3" href="#tool-messages">Tool messages</a><a class="l2" href="#文本消息构建器">文本消息构建器</a><a class="l2" href="#提示参数">提示参数</a><a class="l2" href="#扩展现有提示">扩展现有提示</a><a class="l2" href="#后续步骤">后续步骤</a></div><article class="content"><h1 id="_1">创建提示</h1>
+<p>Koog 提供了一种结构化方式来创建提示，并可控制消息类型、消息顺序和内容：</p>
+<ul>
+<li>对于 <strong>Kotlin</strong> 用户，通过类型安全的 Kotlin DSL。</li>
+<li>对于 <strong>Java</strong> 用户，通过流式 builder API。</li>
+</ul>
+<h2 id="_2">基本结构</h2>
+<p>Kotlin 中的 <code>prompt()</code> 函数或 Java 中的 <code>Prompt.builder()</code> 会创建一个带有唯一 ID 和消息列表的 Prompt 对象：</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;unique_prompt_id&quot;) {
+    // List of messages
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;unique_prompt_id&quot;)
+    // List of messages
+    .build();
+</code></pre>
+<h2 id="_3">消息类型</h2>
+<p>Kotlin DSL 和 Java builder API 支持以下消息类型，每种类型都对应对话中的特定角色：</p>
+<ul>
+<li><strong>System message</strong>：向 LLM 提供上下文、指令和约束，定义其行为。</li>
+<li><strong>User message</strong>：表示用户输入。</li>
+<li><strong>Assistant message</strong>：表示 LLM 响应，可用于 few-shot 学习或继续对话。</li>
+<li><strong>Tool message</strong>：表示工具调用及其结果。</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;unique_prompt_id&quot;) {
+    // Add a system message to set the context
+    system(&quot;You are a helpful assistant with access to tools.&quot;)
+    // Add a user message
+    user(&quot;What is 5 + 3 ?&quot;)
+    // Add an assistant message
+    assistant(&quot;The result is 8.&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;unique_prompt_id&quot;)
+    // Add a system message to set the context
+    .system(&quot;You are a helpful assistant with access to tools.&quot;)
+    // Add a user message
+    .user(&quot;What is 5 + 3 ?&quot;)
+    // Add an assistant message
+    .assistant(&quot;The result is 8.&quot;)
+    .build();
+</code></pre>
+<h3 id="system-message">System message</h3>
+<p>系统消息定义 LLM 的行为，并为整个对话设置上下文。
+它可以指定模型的角色和语气，为响应提供准则和约束，并提供响应示例。</p>
+<p>要创建系统消息，请将字符串作为参数传递给 Kotlin 的 <code>system()</code> 函数或 Java 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;system_message&quot;) {
+    system(&quot;You are a helpful assistant that explains technical concepts.&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;system_message&quot;)
+    .system(&quot;You are a helpful assistant that explains technical concepts.&quot;)
+    .build();
+</code></pre>
+<h3 id="user-messages">User messages</h3>
+<p>用户消息表示来自用户的输入。
+要创建用户消息，请将字符串作为参数传递给 Kotlin 的 <code>user()</code> 函数或 Java 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;user_message&quot;) {
+    system(&quot;You are a helpful assistant.&quot;)
+    user(&quot;What is Koog?&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;user_message&quot;)
+    .system(&quot;You are a helpful assistant.&quot;)
+    .user(&quot;What is Koog?&quot;)
+    .build();
+</code></pre>
+<p>大多数用户消息包含纯文本，但也可以包含多模态内容，例如图像、音频、视频和文档。
+有关详情和示例，请参阅 <a href="083-prompts__prompt-creation__multimodal-content.html">Multimodal content</a>。</p>
+<h3 id="assistant-messages">Assistant messages</h3>
+<p>助手消息表示 LLM 响应，可用于未来类似交互中的 few-shot 学习、继续对话，或展示预期的输出结构。</p>
+<p>要创建助手消息，请将字符串作为参数传递给 Kotlin 的 <code>assistant()</code> 函数或 Java 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;article_review&quot;) {
+    system(&quot;Evaluate the article.&quot;)
+
+    // Example 1
+    user(&quot;The article is clear and easy to understand.&quot;)
+    assistant(&quot;positive&quot;)
+
+    // Example 2
+    user(&quot;The article is hard to read but it's clear and useful.&quot;)
+    assistant(&quot;neutral&quot;)
+
+    // Example 3
+    user(&quot;The article is confusing and misleading.&quot;)
+    assistant(&quot;negative&quot;)
+
+    // New input to classify
+    user(&quot;The article is interesting and helpful.&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;article_review&quot;)
+    .system(&quot;Evaluate the article.&quot;)
+
+    // Example 1
+    .user(&quot;The article is clear and easy to understand.&quot;)
+    .assistant(&quot;positive&quot;)
+
+    // Example 2
+    .user(&quot;The article is hard to read but it's clear and useful.&quot;)
+    .assistant(&quot;neutral&quot;)
+
+    // Example 3
+    .user(&quot;The article is confusing and misleading.&quot;)
+    .assistant(&quot;negative&quot;)
+
+    // New input to classify
+    .user(&quot;The article is interesting and helpful.&quot;)
+    .build();
+</code></pre>
+<h3 id="tool-messages">Tool messages</h3>
+<p>工具消息表示工具调用及其结果，可用于预填充工具调用历史。</p>
+<p>Tip</p>
+<p>LLM 会在执行过程中生成工具调用。
+预填充工具调用有助于 few-shot 学习，或演示工具的预期使用方式。</p>
+<p>要创建工具消息，请在 Kotlin 中调用 <code>tool()</code> 函数，或在 Java 中调用 <code>toolCall()</code> 和 <code>toolResult()</code> 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;calculator_example&quot;) {
+    system(&quot;You are a helpful assistant with access to tools.&quot;)
+    user(&quot;What is 5 + 3?&quot;)
+    // Tool call
+    toolCall(
+        id = &quot;calculator_tool_id&quot;,
+        tool = &quot;calculator&quot;,
+        args = &quot;&quot;&quot;{&quot;operation&quot;: &quot;add&quot;, &quot;a&quot;: 5, &quot;b&quot;: 3}&quot;&quot;&quot;
+    )
+    // Tool result
+    toolResult(
+        id = &quot;calculator_tool_id&quot;,
+        tool = &quot;calculator&quot;,
+        output = &quot;8&quot;
+    )
+
+    // LLM response based on tool result
+    assistant(&quot;The result of 5 + 3 is 8.&quot;)
+    user(&quot;What is 4 + 5?&quot;)
+}
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;calculator_example&quot;)
+    .system(&quot;You are a helpful assistant with access to tools.&quot;)
+    .user(&quot;What is 5 + 3?&quot;)
+    // Tool call
+    .toolCall(&quot;calculator_tool_id&quot;, &quot;calculator&quot;, &quot;{\&quot;operation\&quot;: \&quot;add\&quot;, \&quot;a\&quot;: 5, \&quot;b\&quot;: 3}&quot;)
+    // Tool result
+    .toolResult(&quot;calculator_tool_id&quot;, &quot;calculator&quot;, &quot;8&quot;)
+    // LLM response based on tool result    
+    .assistant(&quot;The result of 5 + 3 is 8.&quot;)
+    .user(&quot;What is 4 + 5?&quot;)
+    .build();
+</code></pre>
+<h2 id="_4">文本消息构建器</h2>
+<p>Warning</p>
+<p>文本消息构建器仅在 Kotlin 中可用。</p>
+<p>构建 <code>system()</code>、<code>user()</code> 或 <code>assistant()</code> 消息时，可以使用辅助 <a href="https://api.koog.ai/prompt/prompt-model/ai.koog.prompt.text/-text-content-builder/index.html">text-building-functions</a> 进行富文本格式化。</p>
+<p>Kotlin</p>
+<pre><code>val prompt = prompt(&quot;text_example&quot;) {
+    user {
+        +&quot;Review the following code snippet:&quot;
+        +&quot;fun greet(name: String) = println(\&quot;Hello, \$name!\&quot;)&quot;
+
+        // Paragraph break
+        br()
+        text(&quot;Please include in your explanation:&quot;)
+
+        // Indent content
+        padding(&quot;  &quot;) {
+            +&quot;1. What the function does.&quot;
+            +&quot;2. How string interpolation works.&quot;
+        }
+    }
+}
+</code></pre>
+<p>你还可以使用 <a href="https://api.koog.ai/prompt/prompt-markdown/ai.koog.prompt.markdown/markdown.html">Markdown</a> 和 <a href="https://api.koog.ai/prompt/prompt-xml/ai.koog.prompt.xml/xml.html">XML</a> 构建器，以相应格式添加内容。</p>
+<p>Kotlin</p>
+<pre><code>val prompt = prompt(&quot;markdown_xml_example&quot;) {
+    // A user message in Markdown format
+    user {
+        markdown {
+            h2(&quot;Evaluate the article using the following criteria:&quot;)
+            bulleted {
+                item { +&quot;Clarity and readability&quot; }
+                item { +&quot;Accuracy of information&quot; }
+                item { +&quot;Usefulness to the reader&quot; }
+            }
+        }
+    }
+    // An assistant message in XML format
+    assistant {
+        xml {
+            xmlDeclaration()
+            tag(&quot;review&quot;) {
+                tag(&quot;clarity&quot;) { text(&quot;positive&quot;) }
+                tag(&quot;accuracy&quot;) { text(&quot;neutral&quot;) }
+                tag(&quot;usefulness&quot;) { text(&quot;positive&quot;) }
+            }
+        }
+    }
+}
+</code></pre>
+<p>Tip</p>
+<p>可以将文本构建函数与 XML 和 Markdown 构建器混合使用。</p>
+<h2 id="_5">提示参数</h2>
+<p>可以通过配置控制 LLM 行为的参数来自定义提示。</p>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(
+    id = &quot;custom_params&quot;,
+    params = LLMParams(
+        temperature = 0.7,
+        numberOfChoices = 1,
+        toolChoice = LLMParams.ToolChoice.Auto
+    )
+) {
+    system(&quot;You are a creative writing assistant.&quot;)
+    user(&quot;Write a song about winter.&quot;)
+}
+</code></pre>
+<pre><code>// Create params first
+LLMParams params = new LLMParams(
+    0.7,                    // temperature
+    null,                   // maxTokens
+    1,                      // numberOfChoices
+    null,                   // speculation
+    null,                   // schema
+    LLMParams.ToolChoice.Auto.INSTANCE, // toolChoice
+    null,                   // user
+    null                    // additionalProperties
+);
+
+Prompt prompt = Prompt.builder(&quot;custom_params&quot;)
+    .system(&quot;You are a creative writing assistant.&quot;)
+    .user(&quot;Write a song about winter.&quot;)
+    .build();
+
+// Apply params to the built prompt
+prompt = prompt.withParams(params);
+</code></pre>
+<p>支持以下参数：</p>
+<ul>
+<li><code>temperature</code>：控制模型响应中的随机性。</li>
+<li><code>toolChoice</code>：控制模型的工具调用行为。</li>
+<li><code>numberOfChoices</code>：请求多个备选响应。</li>
+<li><code>schema</code>：定义模型响应格式的结构。</li>
+<li><code>maxTokens</code>：限制响应中的 token 数量。</li>
+<li><code>speculation</code>：提供关于预期响应格式的提示（仅受特定模型支持）。</li>
+</ul>
+<p>更多信息请参阅 <a href="017-llm-parameters.html">LLM parameters</a>。</p>
+<h2 id="_6">扩展现有提示</h2>
+<p>你可以通过在 Kotlin 中调用 <code>prompt()</code> 函数，或在 Java 中调用 <code>Prompt.builder()</code> 并传入现有提示作为参数来扩展现有提示：</p>
+<p>KotlinJava</p>
+<pre><code>val basePrompt = prompt(&quot;base&quot;) {
+    system(&quot;You are a helpful assistant.&quot;)
+    user(&quot;Hello!&quot;)
+    assistant(&quot;Hi! How can I help you?&quot;)
+}
+
+val extendedPrompt = prompt(basePrompt) {
+    user(&quot;What's the weather like?&quot;)
+}
+</code></pre>
+<pre><code>Prompt basePrompt = Prompt.builder(&quot;base&quot;)
+    .system(&quot;You are a helpful assistant.&quot;)
+    .user(&quot;Hello!&quot;)
+    .assistant(&quot;Hi! How can I help you?&quot;)
+    .build();
+
+Prompt extendedPrompt = Prompt.builder(String.valueOf(basePrompt))
+    .user(&quot;What's the weather like?&quot;)
+    .build();
+</code></pre>
+<p>这会创建一个新提示，其中包含 <code>basePrompt</code> 的所有消息和新的用户消息。</p>
+<h2 id="_7">后续步骤</h2>
+<ul>
+<li>了解如何使用<a href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>。</li>
+<li>如果你使用单个 LLM 提供方，请通过 <a href="078-prompts__llm-clients.html">LLM clients</a> 运行提示。</li>
+<li>如果你使用多个 LLM 提供方，请通过 <a href="080-prompts__prompt-executors.html">prompt executors</a> 运行提示。</li>
+<li>了解如何通过 <a href="082-prompts__prompt-creation__cache-control.html">cache control</a> 使用 llm cache。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-creation/">官方原文</a></div></main></div></body></html>

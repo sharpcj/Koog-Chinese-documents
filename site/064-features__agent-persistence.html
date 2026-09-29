@@ -1,0 +1,387 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent 持久化 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/features/agent-persistence/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2 active" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/features/agent-persistence/">https://docs.koog.ai/features/agent-persistence/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#核心概念">核心概念</a><a class="l3" href="#检查点">检查点</a><a class="l3" href="#aiagentstorage-持久化">AIAgentStorage 持久化</a><a class="l2" href="#安装">安装</a><a class="l2" href="#配置选项">配置选项</a><a class="l3" href="#存储提供者">存储提供者</a><a class="l3" href="#连续持久化">连续持久化</a><a class="l2" href="#基本用法">基本用法</a><a class="l3" href="#创建检查点">创建检查点</a><a class="l3" href="#从检查点恢复">从检查点恢复</a><a class="l4" href="#回滚工具产生的所有副作用">回滚工具产生的所有副作用</a><a class="l3" href="#使用扩展函数">使用扩展函数</a><a class="l2" href="#高级用法">高级用法</a><a class="l3" href="#自定义存储提供者">自定义存储提供者</a><a class="l3" href="#设置执行点">设置执行点</a></div><article class="content"><h1 id="agent">Agent 持久化</h1>
+<p>Agent Persistence 是 Koog 框架中为 AI agent 提供检查点功能的特性。
+它允许你在执行过程中的特定位置保存和恢复 agent 的状态，从而支持以下能力：</p>
+<ul>
+<li>从特定位置恢复 agent 执行</li>
+<li>回滚到以前的状态</li>
+<li>跨会话持久化 agent 状态</li>
+</ul>
+<h2 id="_1">核心概念</h2>
+<h3 id="_2">检查点</h3>
+<p>检查点会捕获 agent 在执行中特定时刻的完整状态，包括：</p>
+<ul>
+<li>消息历史（用户、系统、助手和工具之间的所有交互）</li>
+<li>最后一个成功执行的节点</li>
+<li>该节点的输出数据</li>
+<li>选定的 LLM</li>
+<li>通用 LLM 参数</li>
+<li>选定的工具</li>
+<li><code>AIAgentStorage</code> 内容（执行期间存储的键值数据）</li>
+<li>创建时间戳</li>
+</ul>
+<p>检查点由唯一 ID 标识，并与特定 agent 关联。</p>
+<h3 id="aiagentstorage"><code>AIAgentStorage</code> 持久化</h3>
+<p>创建检查点时，框架会序列化 <code>AIAgentStorage</code> 中当前保存的所有值，并将其包含在检查点中。
+恢复时，这些值会被反序列化，并以检查点创建时的原样提供给恢复后的 agent。</p>
+<p><strong>只有可序列化的值会被持久化。</strong>
+使用的序列化器是在 <code>AIAgentConfig</code> 中通过其 <code>serializer</code> 属性配置的序列化器。
+无法由该序列化器编码的值会被静默跳过，并且不会出现在恢复后的存储中。</p>
+<p>写入检查点时，不可序列化的值会被静默丢弃。
+如果从检查点恢复后某个值缺失，请确认其类型可由已配置的序列化器序列化。</p>
+<p>更多信息请参阅<a href="027-serialization.html">序列化</a>。</p>
+<h2 id="_3">安装</h2>
+<p>要使用 Agent Persistence 特性，请将其添加到 agent 配置中：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = executor,
+    llmModel = OllamaModels.Meta.LLAMA_3_2,
+) {
+    install(Persistence) {
+        // Use in-memory storage for snapshots
+        storage = InMemoryPersistenceStorageProvider()
+    }
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .install(Persistence.Feature, cfg -&gt; {
+        // Use in-memory storage for snapshots
+        cfg.setStorage(new InMemoryPersistenceStorageProvider());
+    })
+.build();
+</code></pre>
+<h2 id="_4">配置选项</h2>
+<p>Agent Persistence 特性有三个主要配置选项：</p>
+<ul>
+<li><strong>存储提供者</strong>：用于保存和检索检查点的提供者。</li>
+<li><strong>连续持久化</strong>：每个节点运行后自动创建检查点。</li>
+<li><strong>回滚策略</strong>：决定回滚到检查点时将恢复哪种状态。</li>
+</ul>
+<h3 id="_5">存储提供者</h3>
+<p>设置用于保存和检索检查点的存储提供者：</p>
+<p>KotlinJava</p>
+<pre><code>install(Persistence) {
+    storage = InMemoryPersistenceStorageProvider()
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .install(Persistence.Feature, cfg -&gt; {
+        cfg.setStorage(new InMemoryPersistenceStorageProvider());
+    })
+    .build();
+</code></pre>
+<p>框架包含以下内置提供者：</p>
+<ul>
+<li><code>InMemoryPersistenceStorageProvider</code>：将检查点存储在内存中（应用重启后丢失）。</li>
+<li><code>FilePersistenceStorageProvider</code>：将检查点持久化到文件系统。</li>
+<li><code>NoPersistenceStorageProvider</code>：不存储检查点的空操作实现。这是默认提供者。</li>
+</ul>
+<p>你也可以通过实现 <code>PersistenceStorageProvider</code> 接口来实现自定义存储提供者。
+更多信息请参阅<a href="#自定义存储提供者">自定义存储提供者</a>。</p>
+<h3 id="_6">连续持久化</h3>
+<p>连续持久化意味着每个节点运行后都会自动创建一个检查点。
+要禁用连续持久化，请使用以下代码：</p>
+<p>KotlinJava</p>
+<pre><code>install(Persistence) {
+    enableAutomaticPersistence = false
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .install(Persistence.Feature, cfg -&gt; {
+        cfg.setEnableAutomaticPersistence(true);
+    })
+    .build();
+</code></pre>
+<p>如果禁用了连续持久化，你仍然可以手动创建检查点。</p>
+<h2 id="_7">基本用法</h2>
+<h3 id="_8">创建检查点</h3>
+<p>要了解如何在 agent 执行中的特定位置创建检查点，请参阅以下代码示例：</p>
+<p>KotlinJava</p>
+<pre><code>suspend fun example(context: AIAgentContext) {
+    // Create a checkpoint with the current state
+    val checkpoint = context.persistence().createCheckpointAfterNode(
+        agentContext = context,
+        nodePath = context.executionInfo.path(),
+        lastOutput = outputData,
+        lastOutputType = outputType,
+        checkpointId = context.runId,
+        version = 0L
+    )
+
+    // The checkpoint ID can be stored for later use
+    val checkpointId = checkpoint?.checkpointId
+}
+</code></pre>
+<pre><code>// PersistenceKt.persistence() is the Java-accessible form of the Kotlin extension function
+Persistence persistence = PersistenceKt.persistence(context);
+
+// Create a checkpoint with the current state
+AgentCheckpointData checkpoint = persistence.createCheckpointAfterNode(
+    context,
+    context.getExecutionInfo().path(),
+    outputData,
+    TypeToken.of(String.class),
+    0L,
+    context.getRunId()
+);
+
+// The checkpoint ID can be stored for later use
+String checkpointId = checkpoint != null ? checkpoint.getCheckpointId() : null;
+</code></pre>
+<h3 id="_9">从检查点恢复</h3>
+<p>要从特定检查点恢复 agent 状态，请参阅以下代码示例：</p>
+<p>KotlinJava</p>
+<pre><code>suspend fun example(context: AIAgentContext, checkpointId: String) {
+    // Roll back to a specific checkpoint
+    context.persistence().rollbackToCheckpoint(checkpointId, context)
+
+    // Or roll back to the latest checkpoint
+    context.persistence().rollbackToLatestCheckpoint(context)
+}
+</code></pre>
+<pre><code>Persistence persistence = PersistenceKt.persistence(context);
+
+// Roll back to a specific checkpoint
+persistence.rollbackToCheckpoint(checkpointId, context);
+
+// Or roll back to the latest checkpoint
+persistence.rollbackToLatestCheckpoint(context);
+</code></pre>
+<h4 id="_10">回滚工具产生的所有副作用</h4>
+<p>某些工具产生副作用是很常见的。具体来说，当你在后端运行 agent 时，
+某些工具很可能会执行一些数据库事务。这会让 agent 回到过去的状态变得更困难。</p>
+<p>假设你有一个 <code>createUser</code> 工具，它会在数据库中创建一个新用户。而你的 agent 随时间产生了多个工具调用：</p>
+<pre><code>tool call: createUser &quot;Alex&quot;
+
+-&gt;&gt;&gt;&gt; checkpoint-1 &lt;&lt;&lt;&lt;-
+
+tool call: createUser &quot;Daniel&quot;
+tool call: createUser &quot;Maria&quot;
+</code></pre>
+<p>现在你想回滚到一个检查点。仅恢复 agent 的状态（包括消息历史和策略图节点）并不足以
+达到检查点之前的真实世界状态。你还应该恢复工具调用产生的副作用。在我们的示例中，
+这意味着从数据库中移除 <code>Maria</code> 和 <code>Daniel</code>。</p>
+<p>在 Koog Persistence 中，你可以通过向 <code>Persistence</code> 特性配置提供 <code>RollbackToolRegistry</code> 来实现：</p>
+<p>KotlinJava</p>
+<pre><code>install(Persistence) {
+    enableAutomaticPersistence = true
+    rollbackToolRegistry = RollbackToolRegistry {
+        // For every `createUser` tool call there will be a `removeUser` invocation in the reverse order 
+        // when rolling back to the desired execution point.
+        // Note: `removeUser` tool should take the same exact arguments as `createUser`. 
+        // It's the developer's responsibility to make sure that `removeUser` invocation rolls back all side-effects of `createUser`:
+        registerRollback(::createUser, ::removeUser)
+    }
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .install(Persistence.Feature, cfg -&gt; {
+        cfg.setEnableAutomaticPersistence(true);
+        cfg.setRollbackToolRegistry(
+            RollbackToolRegistry.builder()
+                // For every tool in UserToolSet there will be a corresponding rollback tool
+                // in UserRollbackToolSet, invoked in reverse order when rolling back.
+                // UserRollbackToolSet methods must be annotated with @Reverts to link
+                // them to the corresponding tools in UserToolSet.
+                .registerRollbacks(new UserToolSet(), new UserRollbackToolSet())
+                .build()
+        );
+    })
+    .build();
+</code></pre>
+<h3 id="_11">使用扩展函数</h3>
+<p>Agent Persistence 特性提供了用于处理检查点的便捷扩展函数：</p>
+<p>KotlinJava</p>
+<pre><code>suspend fun example(context: AIAgentContext) {
+    // Access the checkpoint feature
+    val checkpointFeature = context.persistence()
+
+    // Or perform an action with the checkpoint feature
+    context.withPersistence { ctx -&gt;
+        // 'this' is the checkpoint feature
+        createCheckpointAfterNode(
+            agentContext = ctx,
+            nodePath = ctx.executionInfo.path(),
+            lastOutput = outputData,
+            lastOutputType = outputType,
+            checkpointId = ctx.runId,
+            version = 0L
+        )
+    }
+}
+</code></pre>
+<pre><code>// Access the persistence feature via PersistenceKt (the Kotlin extension function)
+Persistence persistence = PersistenceKt.persistence(context);
+
+// Use the persistence feature directly to create a checkpoint
+persistence.createCheckpointAfterNode(
+    context,
+    context.getExecutionInfo().path(),
+    outputData,
+    TypeToken.of(String.class),
+    0L,
+    context.getRunId()
+);
+</code></pre>
+<h2 id="_12">高级用法</h2>
+<h3 id="_13">自定义存储提供者</h3>
+<p>你可以通过实现 <code>PersistenceStorageProvider</code> 接口来实现自定义存储提供者：</p>
+<p>KotlinJava</p>
+<pre><code>class MyCustomStorageProvider&lt;MyFilterType&gt; : PersistenceStorageProvider&lt;MyFilterType&gt; {
+    override suspend fun getCheckpoints(sessionId: String, filter: MyFilterType?): List&lt;AgentCheckpointData&gt; {
+        TODO(&quot;Not yet implemented&quot;)
+    }
+
+    override suspend fun saveCheckpoint(sessionId: String, agentCheckpointData: AgentCheckpointData) {
+        TODO(&quot;Not yet implemented&quot;)
+    }
+
+    override suspend fun getLatestCheckpoint(sessionId: String, filter: MyFilterType?): AgentCheckpointData? {
+        TODO(&quot;Not yet implemented&quot;)
+    }
+}
+</code></pre>
+<pre><code>class MyCustomStorageProvider extends AsyncPersistenceStorageProvider&lt;Object&gt; {
+    @Override
+    public CompletableFuture&lt;List&lt;AgentCheckpointData&gt;&gt; getCheckpointsAsync(
+            String agentId, Object filter) {
+        throw new UnsupportedOperationException(&quot;Not yet implemented&quot;);
+    }
+
+    @Override
+    public CompletableFuture&lt;Boolean&gt; saveCheckpointAsync(
+            String agentId, AgentCheckpointData checkpointData) {
+        throw new UnsupportedOperationException(&quot;Not yet implemented&quot;);
+    }
+
+    @Override
+    public CompletableFuture&lt;AgentCheckpointData&gt; getLatestCheckpointAsync(
+            String agentId, Object filter) {
+        throw new UnsupportedOperationException(&quot;Not yet implemented&quot;);
+    }
+}
+</code></pre>
+<p>要在特性配置中使用你的自定义提供者，请在为 agent 配置 Agent Persistence
+特性时将其设置为存储。</p>
+<p>KotlinJava</p>
+<pre><code>install(Persistence) {
+    storage = MyCustomStorageProvider&lt;Any&gt;()
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+    .install(Persistence.Feature, cfg -&gt; {
+        cfg.setStorage(new MyCustomStorageProvider());
+    })
+    .build();
+</code></pre>
+<h3 id="_14">设置执行点</h3>
+<p>对于高级控制，你可以直接设置 agent 的执行点：</p>
+<p>KotlinJava</p>
+<pre><code>suspend fun example(context: AIAgentContext) {
+    // You can set the execution point after some node and provide an output from the node:
+    context.persistence().setExecutionPointAfterNode(
+        agentContext = context,
+        nodePath = context.executionInfo.path(),
+        messageHistory = customMessageHistory,
+        output = customOutput
+    )
+}
+</code></pre>
+<pre><code>Persistence persistence = PersistenceKt.persistence(context);
+
+// Set the execution point after a node and provide an output from the node:
+persistence.setExecutionPointAfterNode(
+    context,
+    context.getExecutionInfo().path(),
+    customMessageHistory,
+    customOutput
+);
+</code></pre>
+<p>这允许你对 agent 状态进行比仅从检查点恢复更细粒度的控制。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/features/agent-persistence/">官方原文</a></div></main></div></body></html>

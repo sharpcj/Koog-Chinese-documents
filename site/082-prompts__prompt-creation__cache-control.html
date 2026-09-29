@@ -1,0 +1,370 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>提示缓存控制 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-creation/cache-control/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2" open><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3 active" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/prompts/prompt-creation/cache-control/">https://docs.koog.ai/prompts/prompt-creation/cache-control/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#anthropic">Anthropic</a><a class="l3" href="#自动缓存请求级别">自动缓存（请求级别）</a><a class="l3" href="#手动缓存块级别">手动缓存（块级别）</a><a class="l4" href="#system-messages">System messages</a><a class="l4" href="#user-and-assistant-messages">User and assistant messages</a><a class="l4" href="#tool-definitions">Tool definitions</a><a class="l3" href="#缓存-ttl-选项">缓存 TTL 选项</a><a class="l3" href="#监控缓存使用情况">监控缓存使用情况</a><a class="l3" href="#组合自动缓存和块级缓存">组合自动缓存和块级缓存</a><a class="l2" href="#amazon-bedrock">Amazon Bedrock</a><a class="l3" href="#system-messages_1">System messages</a><a class="l3" href="#user-and-assistant-messages_1">User and assistant messages</a><a class="l3" href="#tool-definitions_1">Tool definitions</a><a class="l3" href="#缓存-ttl-选项_1">缓存 TTL 选项</a><a class="l2" href="#选择缓存策略">选择缓存策略</a></div><article class="content"><h1 id="_1">提示缓存控制</h1>
+<p>提示缓存控制允许你指示受支持的 LLM 提供方在服务端存储提示的一部分，这样后续共享相同前缀的请求就可以从缓存中提供，而不必重新处理 token。
+这可以降低重复性工作负载的延迟和成本，例如多轮对话、大型系统提示或固定工具定义。</p>
+<p>提示缓存与响应缓存</p>
+<p>提示缓存控制是一个<strong>提供方侧</strong>功能：提供方存储提示前缀，而不是响应。这不同于 <a href="079-prompts__llm-response-caching.html"><code>CachedPromptExecutor</code></a>，后者会在本地存储完整的 LLM 响应，使相同提示完全跳过网络调用。</p>
+<p>Koog 支持 <strong>Anthropic</strong> 和 <strong>Amazon Bedrock</strong> 的提示缓存控制。</p>
+<h2 id="anthropic">Anthropic</h2>
+<p>Anthropic 支持两种互补的提示缓存方式。</p>
+<h3 id="_2">自动缓存（请求级别）</h3>
+<p>在 <a href="017-llm-parameters.html"><code>AnthropicParams</code></a> 上设置 <code>cacheControl</code> 属性，并将其传递给提示。
+Anthropic 会自动将缓存断点放在请求中最后一个可缓存块处，无需你标注单个消息。
+这是多轮对话的推荐方法。</p>
+<p>KotlinJava</p>
+<pre><code>// Enable automatic caching with the default 5-minute TTL
+val params = AnthropicParams(cacheControl = AnthropicCacheControl.Default)
+
+val prompt = prompt(&quot;assistant&quot;, params = params) {
+    system(&quot;You are a helpful assistant with a very long system prompt...&quot;)
+    user(&quot;What can you help me with?&quot;)
+}
+
+val response = client.execute(prompt, AnthropicModels.Sonnet_4)
+println(response)
+</code></pre>
+<pre><code>// Enable automatic caching with the default 5-minute TTL
+AnthropicParams params = new AnthropicParams(
+    null, null, null, null, null, null, null, null,
+    null, null, null, null, null, null, null,
+    AnthropicCacheControl.Default.INSTANCE
+);
+
+Prompt prompt = Prompt.builder(&quot;assistant&quot;)
+    .system(&quot;You are a helpful assistant with a very long system prompt...&quot;)
+    .user(&quot;What can you help me with?&quot;)
+    .build()
+    .withParams(params);
+</code></pre>
+<h3 id="_3">手动缓存（块级别）</h3>
+<p>将 <code>cacheControl</code> 参数附加到单个消息或工具定义上，以便将缓存断点放在特定位置。直到并包括被标注块在内的所有内容都可以缓存。</p>
+<h4 id="system-messages">System messages</h4>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;assistant&quot;) {
+    // Cache the system prompt for 1 hour
+    system(&quot;You are a knowledgeable assistant...&quot;, AnthropicCacheControl.OneHour)
+    user(&quot;Summarize the latest AI research.&quot;)
+}
+
+val response = client.execute(prompt, AnthropicModels.Sonnet_4)
+println(response)
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;assistant&quot;)
+    // Cache the system prompt for 1 hour
+    .system(&quot;You are a knowledgeable assistant...&quot;, AnthropicCacheControl.OneHour.INSTANCE)
+    .user(&quot;Summarize the latest AI research.&quot;)
+    .build();
+</code></pre>
+<h4 id="user-and-assistant-messages">User and assistant messages</h4>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;conversation&quot;) {
+    system(&quot;You are a helpful assistant.&quot;)
+    // Cache after a large user message (e.g. document content)
+    user(listOf(MessagePart.Text(&quot;Here is a long document: ...&quot;, cacheControl = AnthropicCacheControl.Default)))
+    assistant(listOf(MessagePart.Text(&quot;I have read the document.&quot;)))
+    user(&quot;Summarize it.&quot;)
+}
+
+val response = client.execute(prompt, AnthropicModels.Sonnet_4)
+println(response)
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;conversation&quot;)
+    .system(&quot;You are a helpful assistant.&quot;)
+    // Cache after a large user message (e.g. document content)
+    .user(List.of(new ContentPart.Text(&quot;Here is a long document: ...&quot;)), AnthropicCacheControl.Default.INSTANCE)
+    .assistant(&quot;I have read the document.&quot;, AnthropicCacheControl.Default.INSTANCE)
+    .user(&quot;Summarize it.&quot;)
+    .build();
+</code></pre>
+<h4 id="tool-definitions">Tool definitions</h4>
+<p>当工具列表在许多请求中保持固定时，缓存最后一个工具定义意味着所有工具 schema 都会一起缓存。</p>
+<p>KotlinJava</p>
+<pre><code>val searchTool = ToolDescriptor(
+    name = &quot;web_search&quot;,
+    description = &quot;Search the web for information.&quot;,
+    requiredParameters = listOf(
+        ToolParameterDescriptor(&quot;query&quot;, &quot;Search query&quot;, ToolParameterType.String)
+    ),
+    // Cache all tool definitions up to and including this one
+    cacheControl = AnthropicCacheControl.Default
+)
+</code></pre>
+<pre><code>ToolDescriptor searchTool = new ToolDescriptor(
+    &quot;web_search&quot;,
+    &quot;Search the web for information.&quot;,
+    List.of(
+        new ToolParameterDescriptor(&quot;query&quot;, &quot;Search query&quot;, ToolParameterType.String.INSTANCE)
+    ),
+    Collections.emptyList(),
+    // Cache all tool definitions up to and including this one
+    AnthropicCacheControl.Default.INSTANCE
+);
+</code></pre>
+<h3 id="ttl">缓存 TTL 选项</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>TTL</th>
+<th>Price multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AnthropicCacheControl.Default</code></td>
+<td>5 minutes</td>
+<td>1.25× base input price</td>
+</tr>
+<tr>
+<td><code>AnthropicCacheControl.OneHour</code></td>
+<td>1 hour</td>
+<td>2× base input price</td>
+</tr>
+</tbody>
+</table>
+<p>缓存写入的收费高于常规输入 token，但缓存读取更便宜。
+请参阅 <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching">Anthropic prompt caching docs</a> 获取当前价格。</p>
+<h3 id="_4">监控缓存使用情况</h3>
+<p>Anthropic 会在响应用量中报告缓存统计信息。这些信息可通过原始 API 响应访问，也可以通过 tracing 或 logging 功能观察。</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cacheReadInputTokens</code></td>
+<td>从现有缓存条目读取的 token</td>
+</tr>
+<tr>
+<td><code>cacheCreationInputTokens</code></td>
+<td>写入新缓存条目的 token</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">组合自动缓存和块级缓存</h3>
+<p>两种模式可以同时使用。块级 <code>cacheControl</code> 标记让你精细控制断点位置，而 <code>AnthropicParams</code> 中的请求级 <code>cacheControl</code> 会自动处理对话尾部。</p>
+<p>KotlinJava</p>
+<pre><code>// Block-level: pin the system prompt in the 1-hour cache tier
+// Automatic: let Anthropic manage breakpoints for the conversation tail
+val params = AnthropicParams(cacheControl = AnthropicCacheControl.Default)
+
+val prompt = prompt(&quot;combined&quot;, params = params) {
+    system(&quot;You are a helpful assistant...&quot;, AnthropicCacheControl.OneHour)
+    user(&quot;Hello!&quot;)
+}
+</code></pre>
+<pre><code>// Block-level: pin the system prompt in the 1-hour cache tier
+// Automatic: let Anthropic manage breakpoints for the conversation tail
+AnthropicParams params = new AnthropicParams(
+    AnthropicCacheControl.Default.INSTANCE
+);
+
+Prompt prompt = Prompt.builder(&quot;combined&quot;)
+    .system(&quot;You are a helpful assistant...&quot;, AnthropicCacheControl.OneHour.INSTANCE)
+    .user(&quot;Hello!&quot;)
+    .build()
+    .withParams(params);
+</code></pre>
+<hr />
+<h2 id="amazon-bedrock">Amazon Bedrock</h2>
+<p>Amazon Bedrock 通过 Converse API 使用块级缓存模型。
+当在消息或工具上设置 <code>cacheControl</code> 时，Bedrock 会在被标注元素之后立即插入一个 <code>CachePoint</code> 块。</p>
+<p>Note</p>
+<p>Bedrock 提示缓存是 JVM-only 功能，因为 Bedrock 客户端本身仅支持 JVM。</p>
+<h3 id="system-messages_1">System messages</h3>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;assistant&quot;) {
+    // Cache the system prompt using the default TTL
+    system(&quot;You are a knowledgeable assistant...&quot;, BedrockCacheControl.Default)
+    user(&quot;What is prompt caching?&quot;)
+}
+
+val response = client.execute(prompt, BedrockModels.AnthropicClaude4Sonnet)
+println(response)
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;assistant&quot;)
+    // Cache the system prompt using the default TTL
+    .system(&quot;You are a knowledgeable assistant...&quot;, BedrockCacheControl.Default.INSTANCE)
+    .user(&quot;What is prompt caching?&quot;)
+    .build();
+</code></pre>
+<h3 id="user-and-assistant-messages_1">User and assistant messages</h3>
+<p>KotlinJava</p>
+<pre><code>val prompt = prompt(&quot;conversation&quot;) {
+    system(&quot;You are a helpful assistant.&quot;)
+    // Cache after the large context message
+    user(&quot;Here is the document: ...&quot;, BedrockCacheControl.FiveMinutes)
+    assistant(listOf(MessagePart.Text(&quot;I have read the document.&quot;)))
+    user(&quot;Summarize it.&quot;)
+}
+
+val response = client.execute(prompt, BedrockModels.AnthropicClaude4Sonnet)
+println(response)
+</code></pre>
+<pre><code>Prompt prompt = Prompt.builder(&quot;conversation&quot;)
+    .system(&quot;You are a helpful assistant.&quot;)
+    // Cache after the large context message
+    .user(&quot;Here is the document: ...&quot;, BedrockCacheControl.FiveMinutes.INSTANCE)
+    .assistant(&quot;I have read the document.&quot;, BedrockCacheControl.Default.INSTANCE)
+    .user(&quot;Summarize it.&quot;)
+    .build();
+</code></pre>
+<h3 id="tool-definitions_1">Tool definitions</h3>
+<p>KotlinJava</p>
+<pre><code>val searchTool = ToolDescriptor(
+    name = &quot;web_search&quot;,
+    description = &quot;Search the web for information.&quot;,
+    requiredParameters = listOf(
+        ToolParameterDescriptor(&quot;query&quot;, &quot;Search query&quot;, ToolParameterType.String)
+    ),
+    // Cache all tool definitions up to and including this one
+    cacheControl = BedrockCacheControl.Default
+)
+</code></pre>
+<pre><code>ToolDescriptor searchTool = new ToolDescriptor(
+    &quot;web_search&quot;,
+    &quot;Search the web for information.&quot;,
+    List.of(
+        new ToolParameterDescriptor(&quot;query&quot;, &quot;Search query&quot;, ToolParameterType.String.INSTANCE)
+    ),
+    Collections.emptyList(),
+    // Cache all tool definitions up to and including this one
+    BedrockCacheControl.Default.INSTANCE
+);
+</code></pre>
+<h3 id="ttl_1">缓存 TTL 选项</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>TTL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BedrockCacheControl.Default</code></td>
+<td>Provider default (no explicit TTL sent)</td>
+</tr>
+<tr>
+<td><code>BedrockCacheControl.FiveMinutes</code></td>
+<td>5 minutes</td>
+</tr>
+<tr>
+<td><code>BedrockCacheControl.OneHour</code></td>
+<td>1 hour</td>
+</tr>
+</tbody>
+</table>
+<p>请参阅 <a href="https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-caching.html">Amazon Bedrock prompt caching docs</a>，了解受支持的模型和价格。</p>
+<hr />
+<h2 id="_6">选择缓存策略</h2>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommended approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>包含大型固定系统提示的多轮聊天</td>
+<td>Anthropic 自动缓存，或在 Bedrock 中对 system 使用块级缓存</td>
+</tr>
+<tr>
+<td>在多个请求中复用的稳定工具定义</td>
+<td>在最后一个工具定义上使用块级 <code>cacheControl</code></td>
+</tr>
+<tr>
+<td>作为用户上下文传入的长文档</td>
+<td>在用户消息上使用块级 <code>cacheControl</code></td>
+</tr>
+<tr>
+<td>任意多轮对话（Anthropic）</td>
+<td>通过 <code>AnthropicParams.cacheControl</code> 使用自动缓存</td>
+</tr>
+<tr>
+<td>需要 1 小时缓存保留时间</td>
+<td><code>AnthropicCacheControl.OneHour</code> / <code>BedrockCacheControl.OneHour</code></td>
+</tr>
+</tbody>
+</table></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-creation/cache-control/">官方原文</a></div></main></div></body></html>

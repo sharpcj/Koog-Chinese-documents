@@ -1,0 +1,318 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用 AWS Bedrock 和 Koog 框架构建 AI Agent - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/examples/BedrockAgent/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1 active" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/examples/BedrockAgent/">https://docs.koog.ai/examples/BedrockAgent/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#你将学到什么">你将学到什么</a><a class="l2" href="#前提条件">前提条件</a><a class="l2" href="#刚才发生了什么">刚才发生了什么？🎯</a><a class="l2" href="#后续步骤与扩展">后续步骤与扩展</a><a class="l3" href="#增强工具">🔧 增强工具</a><a class="l3" href="#多设备">🌐 多设备</a><a class="l3" href="#记忆与上下文">🧠 记忆与上下文</a><a class="l3" href="#高级工作流">🔄 高级工作流</a><a class="l2" href="#关键要点">关键要点</a><a class="l2" href="#测试-agent">测试 Agent</a></div><article class="content"><h1 id="aws-bedrock-koog-ai-agent">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</h1>
+<p><a href="https://github.com/JetBrains/koog/blob/develop/examples/notebooks/BedrockAgent.ipynb">在 GitHub 上打开</a>
+ <a href="https://raw.githubusercontent.com/JetBrains/koog/develop/examples/notebooks/BedrockAgent.ipynb">下载 .ipynb</a></p>
+<p>欢迎阅读这份关于使用 Koog 框架并集成 AWS Bedrock 来创建智能 AI agent 的完整指南。在这个 notebook 中，我们将逐步构建一个可工作的 agent，它能通过自然语言命令控制一个简单的开关设备。</p>
+<h2 id="_1">你将学到什么</h2>
+<ul>
+<li>如何使用 Kotlin 注解为 AI agent 定义自定义工具</li>
+<li>为基于 LLM 的 agent 设置 AWS Bedrock 集成</li>
+<li>创建工具注册表并将其连接到 agent</li>
+<li>构建能够理解并执行命令的交互式 agent</li>
+</ul>
+<h2 id="_2">前提条件</h2>
+<ul>
+<li>具有适当权限的 AWS Bedrock 访问权限</li>
+<li>已配置 AWS 凭证（access key 和 secret key）</li>
+<li>对 Kotlin 协程有基本了解</li>
+</ul>
+<p>让我们开始构建第一个由 Bedrock 驱动的 AI agent！</p>
+<pre><code>%useLatestDescriptors
+// %use koog
+</code></pre>
+<pre><code>import ai.koog.agents.core.tools.annotations.LLMDescription
+import ai.koog.agents.core.tools.annotations.Tool
+import ai.koog.agents.core.tools.reflect.ToolSet
+
+// Simple state-holding device that our agent will control
+class Switch {
+    private var state: Boolean = false
+
+    fun switch(on: Boolean) {
+        state = on
+    }
+
+    fun isOn(): Boolean {
+        return state
+    }
+}
+
+/**
+ * ToolSet implementation that exposes switch operations to the AI agent.
+ *
+ * Key concepts:
+ * - @Tool annotation marks methods as callable by the agent
+ * - @LLMDescription provides natural language descriptions for the LLM
+ * - ToolSet interface allows grouping related tools together
+ */
+class SwitchTools(val switch: Switch) : ToolSet {
+
+    @Tool
+    @LLMDescription(&quot;Switches the state of the switch to on or off&quot;)
+    fun switchState(state: Boolean): String {
+        switch.switch(state)
+        return &quot;Switch turned ${if (state) &quot;on&quot; else &quot;off&quot;} successfully&quot;
+    }
+
+    @Tool
+    @LLMDescription(&quot;Returns the current state of the switch (on or off)&quot;)
+    fun getCurrentState(): String {
+        return &quot;Switch is currently ${if (switch.isOn()) &quot;on&quot; else &quot;off&quot;}&quot;
+    }
+}
+</code></pre>
+<pre><code>import ai.koog.agents.core.tools.ToolRegistry
+import ai.koog.agents.core.tools.reflect.asTools
+
+// Create our switch instance
+val switch = Switch()
+
+// Build the tool registry with our switch tools
+val toolRegistry = ToolRegistry {
+    // Convert our ToolSet to individual tools and register them
+    tools(SwitchTools(switch).asTools())
+}
+
+println(&quot;✅ Tool registry created with ${toolRegistry.tools.size} tools:&quot;)
+toolRegistry.tools.forEach { tool -&gt;
+    println(&quot;  - ${tool.name}&quot;)
+}
+</code></pre>
+<pre><code>✅ Tool registry created with 2 tools:
+  - getCurrentState
+  - switchState
+</code></pre>
+<pre><code>import ai.koog.prompt.executor.clients.bedrock.BedrockClientSettings
+import ai.koog.prompt.executor.clients.bedrock.BedrockRegions
+
+val region = BedrockRegions.US_WEST_2.regionCode
+val maxRetries = 3
+
+// Configure Bedrock client settings
+val bedrockSettings = BedrockClientSettings(
+    region = region, // Choose your preferred AWS region
+    maxRetries = maxRetries // Number of retry attempts for failed requests
+)
+
+println(&quot;🌐 Bedrock configured for region: $region&quot;)
+println(&quot;🔄 Max retries set to: $maxRetries&quot;)
+</code></pre>
+<pre><code>🌐 Bedrock configured for region: us-west-2
+🔄 Max retries set to: 3
+</code></pre>
+<pre><code>import ai.koog.prompt.executor.llms.all.simpleBedrockExecutor
+
+// Create the Bedrock LLM executor with credentials from environment
+val executor = simpleBedrockExecutor(
+    awsAccessKeyId = System.getenv(&quot;AWS_BEDROCK_ACCESS_KEY&quot;)
+        ?: throw IllegalStateException(&quot;AWS_BEDROCK_ACCESS_KEY environment variable not set&quot;),
+    awsSecretAccessKey = System.getenv(&quot;AWS_BEDROCK_SECRET_ACCESS_KEY&quot;)
+        ?: throw IllegalStateException(&quot;AWS_BEDROCK_SECRET_ACCESS_KEY environment variable not set&quot;),
+    settings = bedrockSettings
+)
+
+println(&quot;🔐 Bedrock executor initialized successfully&quot;)
+println(&quot;💡 Pro tip: Set AWS_BEDROCK_ACCESS_KEY and AWS_BEDROCK_SECRET_ACCESS_KEY environment variables&quot;)
+</code></pre>
+<pre><code>🔐 Bedrock executor initialized successfully
+💡 Pro tip: Set AWS_BEDROCK_ACCESS_KEY and AWS_BEDROCK_SECRET_ACCESS_KEY environment variables
+</code></pre>
+<pre><code>import ai.koog.agents.core.agent.AIAgent
+import ai.koog.prompt.executor.clients.bedrock.BedrockModels
+
+val agent = AIAgent(
+    executor = executor,
+    llmModel = BedrockModels.AnthropicClaude35SonnetV2, // State-of-the-art reasoning model
+    systemPrompt = &quot;&quot;&quot;
+        You are a helpful assistant that controls a switch device.
+
+        You can:
+        - Turn the switch on or off when requested
+        - Check the current state of the switch
+        - Explain what you're doing
+
+        Always be clear about the switch's current state and confirm actions taken.
+    &quot;&quot;&quot;.trimIndent(),
+    temperature = 0.1, // Low temperature for consistent, focused responses
+    toolRegistry = toolRegistry
+)
+
+println(&quot;🤖 AI Agent created successfully!&quot;)
+println(&quot;📋 System prompt configured&quot;)
+println(&quot;🛠️  Tools available: ${toolRegistry.tools.size}&quot;)
+println(&quot;🎯 Model: ${BedrockModels.AnthropicClaude35SonnetV2}&quot;)
+println(&quot;🌡️  Temperature: 0.1 (focused responses)&quot;)
+</code></pre>
+<pre><code>🤖 AI Agent created successfully!
+📋 System prompt configured
+🛠️  Tools available: 2
+🎯 Model: LLModel(provider=Bedrock, id=us.anthropic.claude-3-5-sonnet-20241022-v2:0, capabilities=[Temperature, Tools, ToolChoice, Image, Document, Completion], contextLength=200000, maxOutputTokens=8192)
+🌡️  Temperature: 0.1 (focused responses)
+</code></pre>
+<pre><code>import kotlinx.coroutines.runBlocking
+
+println(&quot;🎉 Bedrock Agent with Switch Tools - Ready to Go!&quot;)
+println(&quot;💬 You can ask me to:&quot;)
+println(&quot;   • Turn the switch on/off&quot;)
+println(&quot;   • Check the current switch state&quot;)
+println(&quot;   • Ask questions about the switch&quot;)
+println()
+println(&quot;💡 Example: 'Please turn on the switch' or 'What's the current state?'&quot;)
+println(&quot;📝 Type your request:&quot;)
+
+val input = readln()
+println(&quot;\n🤖 Processing your request...&quot;)
+
+runBlocking {
+    val response = agent.run(input)
+    println(&quot;\n✨ Agent response:&quot;)
+    println(response)
+}
+</code></pre>
+<pre><code>🎉 Bedrock Agent with Switch Tools - Ready to Go!
+💬 You can ask me to:
+   • Turn the switch on/off
+   • Check the current switch state
+   • Ask questions about the switch
+
+💡 Example: 'Please turn on the switch' or 'What's the current state?'
+📝 Type your request:
+
+The execution was interrupted
+</code></pre>
+<h2 id="_3">刚才发生了什么？🎯</h2>
+<p>当你运行 agent 时，幕后会发生如下过程：</p>
+<ol>
+<li><strong>自然语言处理</strong>：你的输入通过 Bedrock 发送给 Claude 3.5 Sonnet</li>
+<li><strong>意图识别</strong>：模型理解你想对开关执行什么操作</li>
+<li><strong>工具选择</strong>：agent 根据你的请求决定调用哪些工具</li>
+<li><strong>动作执行</strong>：在你的开关对象上调用相应的工具方法</li>
+<li><strong>响应生成</strong>：agent 用自然语言说明发生了什么</li>
+</ol>
+<p>这展示了 Koog 框架的核心能力——在自然语言理解和程序化动作之间实现无缝集成。</p>
+<h2 id="_4">后续步骤与扩展</h2>
+<p>准备进一步探索了吗？下面是一些可以尝试的想法：</p>
+<h3 id="_5">🔧 增强工具</h3>
+<pre><code>@Tool
+@LLMDescription(&quot;Sets a timer to automatically turn off the switch after specified seconds&quot;)
+fun setAutoOffTimer(seconds: Int): String
+
+@Tool
+@LLMDescription(&quot;Gets the switch usage statistics and history&quot;)
+fun getUsageStats(): String
+</code></pre>
+<h3 id="_6">🌐 多设备</h3>
+<pre><code>class HomeAutomationTools : ToolSet {
+    @Tool fun controlLight(room: String, on: Boolean): String
+    @Tool fun setThermostat(temperature: Double): String
+    @Tool fun lockDoor(doorName: String): String
+}
+</code></pre>
+<h3 id="_7">🧠 记忆与上下文</h3>
+<pre><code>val agent = AIAgent(
+    executor = executor,
+    // ... other config
+    features = listOf(
+        MemoryFeature(), // Remember past interactions
+        LoggingFeature()  // Track all actions
+    )
+)
+</code></pre>
+<h3 id="_8">🔄 高级工作流</h3>
+<pre><code>// Multi-step workflows with conditional logic
+@Tool
+@LLMDescription(&quot;Executes evening routine: dims lights, locks doors, sets thermostat&quot;)
+fun eveningRoutine(): String
+</code></pre>
+<h2 id="_9">关键要点</h2>
+<p>✅ <strong>工具就是函数</strong>：任何 Kotlin 函数都可以成为 agent 能力
+✅ <strong>注解决定行为</strong>：@Tool 和 @LLMDescription 让函数可被发现
+✅ <strong>ToolSets 组织能力</strong>：将相关工具按逻辑分组
+✅ <strong>Registries 是工具箱</strong>：ToolRegistry 包含所有可用的 agent 能力
+✅ <strong>Agents 编排一切</strong>：AIAgent 将 LLM 智能与工具组合在一起</p>
+<p>Koog 框架让构建复杂 AI agent 变得非常直接，这些 agent 能理解自然语言并执行现实世界动作。从简单场景开始，然后按需添加更多工具和功能来扩展 agent 的能力。</p>
+<p><strong>祝你构建 agent 愉快！</strong> 🚀</p>
+<h2 id="agent">测试 Agent</h2>
+<p>现在看看我们的 agent 实际运行效果！agent 现在可以理解自然语言请求，并使用我们提供的工具来控制开关。</p>
+<p><strong>试试这些命令：</strong>
+- "Turn on the switch"
+- "What's the current state?"
+- "Switch it off please"
+- "Is the switch on or off?"</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/examples/BedrockAgent/">官方原文</a></div></main></div></body></html>

@@ -1,0 +1,388 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Prompt executors - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-executors/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2" open><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3 active" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/prompts/prompt-executors/">https://docs.koog.ai/prompts/prompt-executors/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#executor-类型">Executor 类型</a><a class="l2" href="#创建-single-provider-executor">创建 single-provider executor</a><a class="l2" href="#创建-multi-provider-executor">创建 multi-provider executor</a><a class="l2" href="#创建-routing-executor">创建 routing executor</a><a class="l2" href="#预定义-prompt-executors">预定义 prompt executors</a><a class="l2" href="#运行-prompt">运行 prompt</a><a class="l2" href="#在-providers-之间切换">在 providers 之间切换</a><a class="l2" href="#配置-fallbacks">配置 fallbacks</a></div><article class="content"><h1 id="prompt-executors">Prompt executors</h1>
+<p>Prompt executors 提供了一层更高级的抽象，让你可以管理一个或多个 LLM clients 的生命周期。
+你可以通过统一接口使用多个 LLM providers，屏蔽 provider 特定细节，并在它们之间动态切换和回退。</p>
+<h2 id="executor">Executor 类型</h2>
+<p>Koog 提供三种实现 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.model/-prompt-executor/index.html"><code>PromptExecutor</code></a> 接口的主要 prompt executors：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>类</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Single-provider</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-single-l-l-m-prompt-executor/index.html"><code>SingleLLMPromptExecutor</code></a></td>
+<td>封装单个 provider 的单个 LLM client。如果你的 agent 只需要在单个 LLM provider 内的模型之间切换，请使用此 executor。</td>
+</tr>
+<tr>
+<td>Multi-provider</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-multi-l-l-m-prompt-executor/index.html"><code>MultiLLMPromptExecutor</code></a></td>
+<td>封装多个 LLM clients，并根据 LLM provider 路由调用。当请求的 client 不可用时，它可以选择使用已配置的 fallback provider 和 LLM。如果你的 agent 需要在不同 providers 的 LLM 之间切换，请使用此 executor。</td>
+</tr>
+<tr>
+<td>Routing</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-routing-l-l-m-prompt-executor/index.html"><code>RoutingLLMPromptExecutor</code></a></td>
+<td>使用路由策略将对给定 LLM model 的请求分发到多个 client instances。使用此 executor 可避免速率限制、提高吞吐量，并通过负载均衡实现故障转移策略。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="single-provider-executor">创建 single-provider executor</h2>
+<p>要为特定 LLM provider 创建 prompt executor，请执行以下操作：</p>
+<ol>
+<li>使用相应的 API key 为特定 provider 配置 LLM client。</li>
+<li>使用 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-multi-l-l-m-prompt-executor/index.html"><code>MultiLLMPromptExecutor</code></a> 创建 prompt executor。</li>
+</ol>
+<p>示例如下：</p>
+<p>KotlinJava</p>
+<pre><code>val openAIClient = OpenAILLMClient(System.getenv(&quot;OPENAI_API_KEY&quot;))
+val promptExecutor = MultiLLMPromptExecutor(openAIClient)
+</code></pre>
+<pre><code>OpenAILLMClient openAIClient = openAIClient(System.getenv(&quot;OPENAI_API_KEY&quot;));
+MultiLLMPromptExecutor promptExecutor = new MultiLLMPromptExecutor(openAIClient);
+</code></pre>
+<h2 id="multi-provider-executor">创建 multi-provider executor</h2>
+<p>要创建可与多个 LLM providers 配合使用的 prompt executor，请执行以下操作：</p>
+<ol>
+<li>使用相应 API keys 为所需 LLM providers 配置 clients。</li>
+<li>将配置好的 clients 传入 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-multi-l-l-m-prompt-executor/index.html"><code>MultiLLMPromptExecutor</code></a> 类构造函数，以创建带有多个 LLM providers 的 prompt executor。</li>
+</ol>
+<p>KotlinJava</p>
+<pre><code>val openAIClient = OpenAILLMClient(System.getenv(&quot;OPENAI_API_KEY&quot;))
+val ollamaClient = OllamaClient()
+
+val multiExecutor = MultiLLMPromptExecutor(
+    LLMProvider.OpenAI to openAIClient,
+    LLMProvider.Ollama to ollamaClient
+)
+</code></pre>
+<pre><code>OpenAILLMClient openAIClient = openAIClient(System.getenv(&quot;OPENAI_API_KEY&quot;));
+OllamaClient ollamaClient = ollamaClient();
+
+MultiLLMPromptExecutor promptExecutor = new MultiLLMPromptExecutor(openAIClient, ollamaClient);
+</code></pre>
+<h2 id="routing-executor">创建 routing executor</h2>
+<p>Experimental API</p>
+<p>Routing 能力是实验性的，未来版本中可能会发生变化。
+要使用它们，请通过 <code>@OptIn(ExperimentalRoutingApi::class)</code> 选择加入。</p>
+<p>要创建一个使用路由策略在多个 LLM client instances 之间分发请求的 prompt executor，请执行以下操作：</p>
+<ol>
+<li>配置多个 client instances（它们可以属于相同或不同的 LLM providers），并设置相应 API keys。</li>
+<li>使用路由策略创建 router，例如 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-round-robin-router/index.html"><code>RoundRobinRouter</code></a>。</li>
+<li>将 router 传入 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-routing-l-l-m-prompt-executor/index.html"><code>RoutingLLMPromptExecutor</code></a> 类构造函数。</li>
+</ol>
+<p>这对于避免速率限制、提高吞吐量以及实现故障转移策略很有用。</p>
+<p>KotlinJava</p>
+<pre><code>// Create multiple client instances
+val openAI1 = OpenAILLMClient(apiKey = &quot;openai-key-1&quot;)
+val openAI2 = OpenAILLMClient(apiKey = &quot;openai-key-2&quot;)
+val anthropic = AnthropicLLMClient(apiKey = &quot;anthropic-key&quot;)
+
+// Create router with round-robin strategy
+val router = RoundRobinRouter(openAI1, openAI2, anthropic)
+
+// Create routing executor
+val routingExecutor = RoutingLLMPromptExecutor(router)
+</code></pre>
+<pre><code>// Create multiple client instances
+OpenAILLMClient openAI1 = openAIClient(&quot;openai-key-1&quot;);
+OpenAILLMClient openAI2 = openAIClient(&quot;openai-key-2&quot;);
+AnthropicLLMClient anthropic = anthropicClient(&quot;anthropic-key&quot;);
+
+// Create router with round-robin strategy
+RoundRobinRouter router = new RoundRobinRouter(openAI1, openAI2, anthropic);
+
+// Create routing executor
+RoutingLLMPromptExecutor routingExecutor = new RoutingLLMPromptExecutor(router);
+</code></pre>
+<p>当你使用此 executor 执行 prompts 时，对 OpenAI models 的请求会使用 round-robin 策略在 <code>openAI1</code> 和 <code>openAI2</code> 之间交替。
+对 Anthropic models 的请求始终会发送到单个 <code>anthropic</code> client，因为 round-robin 会为每个 provider 维护独立计数器。</p>
+<p>你也可以通过创建实现 <a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-model/ai.koog.prompt.executor.llms/-l-l-m-client-router/index.html"><code>LLMClientRouter</code></a> 接口的类来实现自定义路由策略。</p>
+<h2 id="prompt-executors_1">预定义 prompt executors</h2>
+<p>为了更快设置，Koog 为常见 providers 在 Kotlin 和 Java 中提供了开箱即用的 executor 实现。</p>
+<p>下表包含<strong>预定义 single-provider executors</strong>，它们返回配置了特定 LLM client 的 <code>SingleLLMPromptExecutor</code>。</p>
+<table>
+<thead>
+<tr>
+<th>LLM provider</th>
+<th>Prompt executor</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-open-a-i-executor.html">simpleOpenAIExecutor</a></td>
+<td>封装运行 OpenAI models prompts 的 <code>OpenAILLMClient</code>。</td>
+</tr>
+<tr>
+<td>OpenAI</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-azure-open-a-i-executor.html">simpleAzureOpenAIExecutor</a></td>
+<td>封装配置为使用 Azure OpenAI Service 的 <code>OpenAILLMClient</code>。</td>
+</tr>
+<tr>
+<td>Anthropic</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-anthropic-executor.html">simpleAnthropicExecutor</a></td>
+<td>封装运行 Anthropic models prompts 的 <code>AnthropicLLMClient</code>。</td>
+</tr>
+<tr>
+<td>Google</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-google-a-i-executor.html">simpleGoogleAIExecutor</a></td>
+<td>封装运行 Google models prompts 的 <code>GoogleLLMClient</code>。</td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-open-router-executor.html">simpleOpenRouterExecutor</a></td>
+<td>封装运行 OpenRouter prompts 的 <code>OpenRouterLLMClient</code>。</td>
+</tr>
+<tr>
+<td>Amazon Bedrock</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-bedrock-executor.html">simpleBedrockExecutor</a></td>
+<td>封装运行 AWS Bedrock prompts 的 <code>BedrockLLMClient</code>。</td>
+</tr>
+<tr>
+<td>Amazon Bedrock</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-bedrock-executor-with-bearer-token.html">simpleBedrockExecutorWithBearerToken</a></td>
+<td>封装 <code>BedrockLLMClient</code>，并使用提供的 Bedrock API key 发送请求。</td>
+</tr>
+<tr>
+<td>Mistral</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-mistral-a-i-executor.html">simpleMistralAIExecutor</a></td>
+<td>封装运行 Mistral models prompts 的 <code>MistralAILLMClient</code>。</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td><a href="https://api.koog.ai/prompt/prompt-executor/prompt-executor-llms-all/ai.koog.prompt.executor.llms.all/simple-ollama-a-i-executor.html">simpleOllamaAIExecutor</a></td>
+<td>封装运行 Ollama prompts 的 <code>OllamaClient</code>。</td>
+</tr>
+</tbody>
+</table>
+<p>下面是创建预定义 executor 的示例：</p>
+<p>KotlinJava</p>
+<pre><code>// Create an OpenAI executor
+val promptExecutor = simpleOpenAIExecutor(&quot;OPENAI_API_KEY&quot;)
+</code></pre>
+<pre><code>// Create an OpenAI executor
+PromptExecutor openAIExecutor = simpleOpenAIExecutor(&quot;OPENAI_API_KEY&quot;);
+</code></pre>
+<h2 id="prompt">运行 prompt</h2>
+<p>要使用 prompt executor 运行 prompt，请执行以下操作：</p>
+<ol>
+<li>创建 prompt executor。</li>
+<li>使用 <code>execute()</code> 方法通过特定 LLM 运行 prompt。</li>
+</ol>
+<p>示例如下：</p>
+<p>KotlinJava</p>
+<pre><code>// Create an OpenAI executor
+val promptExecutor = simpleOpenAIExecutor(&quot;OPENAI_API_KEY&quot;)
+
+// Execute a prompt
+val response = promptExecutor.execute(
+    prompt = prompt(&quot;demo&quot;) { user(&quot;Summarize this.&quot;) },
+    model = OpenAIModels.Chat.GPT4o
+)
+</code></pre>
+<pre><code>// Create an OpenAI executor
+PromptExecutor promptExecutor = simpleOpenAIExecutor(&quot;OPENAI_API_KEY&quot;);
+
+// Create a prompt
+Prompt prompt = Prompt.builder(&quot;demo&quot;)
+    .user(&quot;Summarize this.&quot;)
+    .build();
+
+// Run the prompt
+List&lt;Message.Response&gt; response = promptExecutor.execute(prompt, OpenAIModels.Chat.GPT4o);
+</code></pre>
+<p>这会使用 <code>GPT4o</code> model 运行 prompt 并返回响应。</p>
+<p>Note</p>
+<p>Prompt executors 提供了使用多种能力运行 prompts 的方法，
+例如 streaming、多选生成和内容审核。
+由于 prompt executors 封装 LLM clients，每个 executor 都支持相应 client 的能力。
+详情请参阅 <a href="078-prompts__llm-clients.html">LLM clients</a>。</p>
+<h2 id="providers">在 providers 之间切换</h2>
+<p>当你使用 <code>MultiLLMPromptExecutor</code> 与多个 LLM providers 协作时，可以在它们之间切换。
+流程如下：</p>
+<ol>
+<li>为你想使用的每个 provider 创建一个 LLM client instance。</li>
+<li>创建一个将 LLM providers 映射到 LLM clients 的 <code>MultiLLMPromptExecutor</code>。</li>
+<li>使用 <code>execute()</code> 方法运行 prompt，并将来自相应 client 的 model 作为参数传入。
+   prompt executor 会根据 model provider 使用对应 client 来运行 prompt。</li>
+</ol>
+<p>下面是在 providers 之间切换的示例：</p>
+<p>KotlinJava</p>
+<pre><code>// Create LLM clients for OpenAI, Anthropic, and Google providers
+val openAIClient = OpenAILLMClient(&quot;OPENAI_API_KEY&quot;)
+val anthropicClient = AnthropicLLMClient(&quot;ANTHROPIC_API_KEY&quot;)
+val googleClient = GoogleLLMClient(&quot;GOOGLE_API_KEY&quot;)
+
+// Create a MultiLLMPromptExecutor that maps LLM providers to LLM clients
+val executor = MultiLLMPromptExecutor(
+    LLMProvider.OpenAI to openAIClient,
+    LLMProvider.Anthropic to anthropicClient,
+    LLMProvider.Google to googleClient
+)
+
+// Create a prompt
+val p = prompt(&quot;demo&quot;) { user(&quot;Summarize this.&quot;) }
+
+// Run the prompt with an OpenAI model; the prompt executor automatically switches to the OpenAI client
+val openAIResult = executor.execute(p, OpenAIModels.Chat.GPT4o)
+
+// Run the prompt with an Anthropic model; the prompt executor automatically switches to the Anthropic client
+val anthropicResult = executor.execute(p, AnthropicModels.Sonnet_4_5)
+</code></pre>
+<pre><code>// Create LLM clients for OpenAI, Anthropic, and Google providers
+OpenAILLMClient openAIClient = openAIClient(&quot;OPENAI_API_KEY&quot;);
+AnthropicLLMClient anthropicClient = anthropicClient(&quot;ANTHROPIC_API_KEY&quot;);
+GoogleLLMClient googleClient = googleClient(&quot;GOOGLE_API_KEY&quot;);
+
+// Create a MultiLLMPromptExecutor that maps LLM providers to LLM clients
+MultiLLMPromptExecutor promptExecutor = new MultiLLMPromptExecutor(
+    Map.of(
+        LLMProvider.OpenAI, openAIClient,
+        LLMProvider.Anthropic, anthropicClient,
+        LLMProvider.Google, googleClient
+    )
+);
+
+// Create a prompt
+Prompt prompt = Prompt.builder(&quot;demo&quot;)
+    .user(&quot;Summarize this.&quot;)
+    .build();
+
+// Run the prompt with an OpenAI model; the prompt executor automatically switches to the OpenAI client
+List&lt;Message.Response&gt; openAIResult = promptExecutor.execute(prompt, OpenAIModels.Chat.GPT4o);
+
+// Run the prompt with an Anthropic model; the prompt executor automatically switches to the Anthropic client
+List&lt;Message.Response&gt; anthropicResult = promptExecutor.execute(prompt, AnthropicModels.Sonnet_4_5);
+</code></pre>
+<p>你可以选择配置 fallback LLM provider 和 model，以便在请求的 client 不可用时使用。
+详情请参阅 <a href="#configuring-fallbacks">Configuring fallbacks</a>。</p>
+<h2 id="fallbacks">配置 fallbacks</h2>
+<p>Multi-provider 和 routing prompt executors 可以配置为在请求的 LLM client 不可用时使用 fallback LLM provider 和 model。</p>
+<p>要配置 fallback 机制，请在创建 <code>MultiLLMPromptExecutor</code> 或 <code>RoutingLLMPromptExecutor</code> 时传入 fallback 设置：</p>
+<p>KotlinJava</p>
+<pre><code>val openAIClient = OpenAILLMClient(System.getenv(&quot;OPENAI_API_KEY&quot;))
+val ollamaClient = OllamaClient()
+
+val multiExecutor = MultiLLMPromptExecutor(
+    LLMProvider.OpenAI to openAIClient,
+    LLMProvider.Ollama to ollamaClient,
+    fallback = MultiLLMPromptExecutor.FallbackPromptExecutorSettings(
+        fallbackProvider = LLMProvider.Ollama,
+        fallbackModel = OllamaModels.Meta.LLAMA_3_2
+    )
+)
+</code></pre>
+<pre><code>OpenAILLMClient openAIClient = openAIClient(System.getenv(&quot;OPENAI_API_KEY&quot;));
+OllamaClient ollamaClient = ollamaClient();
+
+MultiLLMPromptExecutor multiExecutor = new MultiLLMPromptExecutor(
+    Map.of(
+        LLMProvider.OpenAI, openAIClient,
+        LLMProvider.Ollama, ollamaClient
+    ),
+    new MultiLLMPromptExecutor.FallbackPromptExecutorSettings(
+        LLMProvider.Ollama,
+        OllamaModels.Meta.LLAMA_3_2
+    )
+);
+</code></pre>
+<p>如果你传入的 model 来自未包含在 <code>MultiLLMPromptExecutor</code> 中的 LLM provider，
+prompt executor 会使用 fallback model：</p>
+<p>KotlinJava</p>
+<pre><code>// Create a prompt
+val p = prompt(&quot;demo&quot;) { user(&quot;Summarize this&quot;) }
+// If you pass a Google model, the prompt executor will use the fallback model, as the Google client is not included
+val response = multiExecutor.execute(p, GoogleModels.Gemini2_5Pro)
+</code></pre>
+<pre><code>// Create a prompt
+Prompt p = Prompt.builder(&quot;demo&quot;)
+    .user(&quot;Summarize this&quot;)
+    .build();
+
+// If you pass a Google model, the prompt executor will use the fallback model, as the Google client is not included
+List&lt;Message.Response&gt; response = multiExecutor.execute(p, GoogleModels.Gemini2_5Pro);
+</code></pre>
+<p>Note</p>
+<p>Fallbacks 仅适用于 <code>execute()</code> 和 <code>executeMultipleChoices()</code> 方法。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/prompts/prompt-executors/">官方原文</a></div></main></div></body></html>

@@ -1,0 +1,345 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自定义节点实现 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/custom-nodes/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2 active" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/custom-nodes/">https://docs.koog.ai/custom-nodes/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#节点架构概述">节点架构概述</a><a class="l2" href="#实现自定义节点">实现自定义节点</a><a class="l3" href="#基本节点实现">基本节点实现</a><a class="l3" href="#带附加参数的节点">带附加参数的节点</a><a class="l3" href="#参数化节点">参数化节点</a><a class="l3" href="#有状态节点">有状态节点</a><a class="l2" href="#节点输入和输出类型">节点输入和输出类型</a><a class="l2" href="#最佳实践">最佳实践</a><a class="l2" href="#常见模式">常见模式</a><a class="l3" href="#直通节点">直通节点</a><a class="l3" href="#转换节点">转换节点</a><a class="l3" href="#llm-交互节点">LLM 交互节点</a><a class="l3" href="#工具运行节点">工具运行节点</a></div><article class="content"><h1 id="_1">自定义节点实现</h1>
+<p>本页提供有关如何在 Koog 框架中实现自定义节点的详细说明。
+自定义节点允许你通过创建执行特定操作的可复用组件来扩展智能体工作流的功能。</p>
+<p>要了解有关图节点是什么、其用法以及现有默认节点的更多信息，请参阅<a href="022-nodes-and-components.html">图节点</a>。</p>
+<h2 id="_2">节点架构概述</h2>
+<p>在深入实现细节之前，了解 Koog 框架中节点的架构非常重要。节点是智能体工作流的基本构建块，其中每个节点表示工作流中的特定操作或转换。你使用边来连接节点，边定义了节点之间的执行流。</p>
+<p>每个节点都有一个 <code>execute</code> 方法，该方法接收输入并产生输出，输出随后会传递给工作流中的下一个节点。</p>
+<h2 id="_3">实现自定义节点</h2>
+<p>自定义节点实现的范围从对输入数据执行基本逻辑并返回输出的简单实现，到接受参数并在多次运行之间维护状态的更复杂节点实现。</p>
+<h3 id="_4">基本节点实现</h3>
+<p>在图中实现自定义节点并定义自己的自定义逻辑的最简单方法是使用以下模式：</p>
+<p>KotlinJava</p>
+<pre><code>val myNode by node&lt;Input, Output&gt;(&quot;node_name&quot;) { input -&gt;
+    // Processing
+    returnValue
+}
+</code></pre>
+<pre><code>var myNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(Input.class)
+    .withOutput(Output.class)
+    .withAction((input, ctx) -&gt; {
+        // Processing
+        return returnValue;
+    })
+    .build();
+</code></pre>
+<p>上面的代码表示一个自定义节点 <code>myNode</code>，它具有预定义的 <code>Input</code> 和 <code>Output</code> 类型，以及可选的名字字符串参数（<code>node_name</code>）。在 Kotlin 中，你使用 <code>node</code> DSL 函数。在 Java 中，你使用 <code>AIAgentNode.builder()</code> 模式。</p>
+<p>在一个实际示例中，这里有一个简单的节点，它接收字符串输入并返回输入的长度：</p>
+<p>KotlinJava</p>
+<pre><code>val myNode by node&lt;String, Int&gt;(&quot;node_name&quot;) { input -&gt;
+    // Processing
+    input.length
+}
+</code></pre>
+<pre><code>var myNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(Integer.class)
+    .withAction((input, ctx) -&gt; {
+        // Processing
+        return input.length();
+    })
+    .build();
+</code></pre>
+<p>创建自定义节点的另一种方式是将其提取为可复用的函数。在 Kotlin 中，你可以在 <code>AIAgentSubgraphBuilderBase</code> 上定义一个扩展函数来调用 <code>node</code> 函数。在 Java 中，你可以将节点构建器调用提取到一个辅助方法中。</p>
+<p>KotlinJava</p>
+<pre><code>fun AIAgentSubgraphBuilderBase&lt;*, *&gt;.myCustomNode(
+    name: String? = null
+): AIAgentNodeDelegate&lt;Input, Output&gt; = node(name) { input -&gt;
+    // Custom logic
+    input // Return the input as output (pass-through)
+}
+
+val myCustomNode by myCustomNode(&quot;node_name&quot;)
+</code></pre>
+<pre><code>var myCustomNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        // Custom logic
+        return input; // Return the input as output (pass-through)
+    })
+    .build();
+</code></pre>
+<p>这会创建一个直通节点，执行一些自定义逻辑，但将输入原样返回作为输出，不做任何修改。</p>
+<h3 id="_5">带附加参数的节点</h3>
+<p>你可以创建接受参数以自定义其行为的节点：</p>
+<p>KotlinJava</p>
+<pre><code>    fun AIAgentSubgraphBuilderBase&lt;*, *&gt;.myNodeWithArguments(
+    name: String? = null,
+    arg1: String,
+    arg2: Int
+): AIAgentNodeDelegate&lt;Input, Output&gt; = node(name) { input -&gt;
+    // Use arg1 and arg2 in your custom logic
+    input // Return the input as the output
+}
+
+val myCustomNode by myNodeWithArguments(&quot;node_name&quot;, arg1 = &quot;value1&quot;, arg2 = 42)
+</code></pre>
+<pre><code>String arg1 = &quot;value1&quot;;
+int arg2 = 42;
+
+var myCustomNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        // Use arg1 and arg2 in your custom logic
+        return input; // Return the input as the output
+    })
+    .build();
+</code></pre>
+<h3 id="_6">参数化节点</h3>
+<p>你可以使用泛型输入和输出类型参数来定义节点。在 Kotlin 中，你可以使用带有 <code>reified</code> 类型参数的 <code>inline</code> 函数。在 Java 中，你在构建节点时显式指定类型。</p>
+<p>KotlinJava</p>
+<pre><code>inline fun &lt;reified T&gt; AIAgentSubgraphBuilderBase&lt;*, *&gt;.myParameterizedNode(
+    name: String? = null,
+): AIAgentNodeDelegate&lt;T, T&gt; = node(name) { input -&gt;
+    // Do some additional actions
+    // Return the input as the output
+    input
+}
+
+val strategy = strategy&lt;String, String&gt;(&quot;strategy_name&quot;) {
+    val myCustomNode by myParameterizedNode&lt;String&gt;(&quot;node_name&quot;)
+}
+</code></pre>
+<pre><code>// In Java, specify the types explicitly when building the node
+var myCustomNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        // Do some additional actions
+        // Return the input as the output
+        return input;
+    })
+    .build();
+</code></pre>
+<h3 id="_7">有状态节点</h3>
+<p>如果你的节点需要在多次运行之间维护状态，可以使用闭包变量。在 Kotlin 中，你在外层函数中声明一个变量。在 Java 中，由于 lambda 捕获必须是有效 final 的，你需要使用像 <code>AtomicInteger</code> 这样的线程安全包装器。</p>
+<p>KotlinJava</p>
+<pre><code>fun AIAgentSubgraphBuilderBase&lt;*, *&gt;.myStatefulNode(
+    name: String? = null
+): AIAgentNodeDelegate&lt;Input, Output&gt; {
+    var counter = 0
+
+    return node(name) { input -&gt;
+        counter++
+        println(&quot;Node executed $counter times&quot;)
+        input
+    }
+}
+</code></pre>
+<pre><code>// In Java, use AtomicInteger (or similar) since the lambda captures must be effectively final
+AtomicInteger counter = new AtomicInteger(0);
+
+var myStatefulNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        int count = counter.incrementAndGet();
+        System.out.println(&quot;Node executed &quot; + count + &quot; times&quot;);
+        return input;
+    })
+    .build();
+</code></pre>
+<h2 id="_8">节点输入和输出类型</h2>
+<p>节点可以具有不同的输入和输出类型。在 Kotlin 和 Java 中，这些都指定为泛型类型参数：</p>
+<p>KotlinJava</p>
+<pre><code>val stringToIntNode by node&lt;String, Int&gt;(&quot;node_name&quot;) { input: String -&gt;
+    // Processing
+    input.toInt() // Convert string to integer
+}
+</code></pre>
+<pre><code>var stringToIntNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(Integer.class)
+    .withAction((input, ctx) -&gt; {
+        // Processing
+        return Integer.parseInt(input); // Convert string to integer
+    })
+    .build();
+</code></pre>
+<p>Note</p>
+<p>输入和输出类型决定了节点如何与工作流中的其他节点连接。只有当源节点的输出类型与目标节点的输入类型兼容时，节点才能连接。</p>
+<h2 id="_9">最佳实践</h2>
+<p>在实现自定义节点时，请遵循以下最佳实践：</p>
+<ol>
+<li><strong>保持节点专注</strong>：每个节点应执行单一、定义明确的操作。</li>
+<li><strong>使用描述性名称</strong>：节点名称应清晰表明其用途。</li>
+<li><strong>记录参数</strong>：为所有参数提供清晰的文档。</li>
+<li><strong>优雅地处理错误</strong>：实现适当的错误处理，以防止工作流失败。</li>
+<li><strong>使节点可复用</strong>：将节点设计为可在不同工作流中复用。</li>
+<li><strong>使用类型参数</strong>：在适当的时候使用泛型类型参数，使节点更加灵活。</li>
+<li><strong>提供默认值</strong>：在可能的情况下，为参数提供合理的默认值。</li>
+</ol>
+<h2 id="_10">常见模式</h2>
+<p>以下各节提供了一些实现自定义节点的常见模式。</p>
+<h3 id="_11">直通节点</h3>
+<p>执行某项操作但将输入作为输出返回的节点。</p>
+<p>KotlinJava</p>
+<pre><code>val loggingNode by node&lt;String, String&gt;(&quot;node_name&quot;) { input -&gt;
+    println(&quot;Processing input: $input&quot;)
+    input // Return the input as the output
+}
+</code></pre>
+<pre><code>var loggingNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        System.out.println(&quot;Processing input: &quot; + input);
+        return input; // Return the input as the output
+    })
+    .build();
+</code></pre>
+<h3 id="_12">转换节点</h3>
+<p>对输入数据进行转换并生成修改后输出的节点。</p>
+<p>KotlinJava</p>
+<pre><code>val upperCaseNode by node&lt;String, String&gt;(&quot;node_name&quot;) { input -&gt;
+    println(&quot;Processing input: $input&quot;)
+    input.uppercase() // Transform the input to uppercase
+}
+</code></pre>
+<pre><code>var upperCaseNode = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        System.out.println(&quot;Processing input: &quot; + input);
+        return input.toUpperCase(); // Transform the input to uppercase
+    })
+    .build();
+</code></pre>
+<h3 id="llm">LLM 交互节点</h3>
+<p>与 LLM 交互的节点。在 Kotlin 中，你可以对 LLM 会话进行细粒度控制。在 Java 中，你通常使用预构建的工厂方法，例如 <code>AIAgentNode.llmRequest()</code>，它会自动处理提示词构建。</p>
+<p>KotlinJava</p>
+<pre><code>val summarizeTextNode by node&lt;String, String&gt;(&quot;node_name&quot;) { input -&gt;
+    llm.writeSession {
+        appendPrompt {
+            user(&quot;Please summarize the following text: $input&quot;)
+        }
+
+        val response = requestLLMWithoutTools()
+        response.parts.filterIsInstance&lt;MessagePart.Text&gt;().joinToString(&quot;\n&quot;) { it.text }
+    }
+}
+</code></pre>
+<pre><code>// In Java, LLM interaction is handled using pre-built factory nodes.
+// AIAgentNode.llmRequest() creates a node that sends the input string as a user
+// message to the LLM and returns the response. The prompt text is provided as
+// the node's input when it is executed in the graph.
+var summarizeTextNode = AIAgentNode.llmRequest(&quot;node_name&quot;);
+
+// To extract the text content from the LLM response, chain a separate node:
+var extractContent = AIAgentNode.builder(&quot;extract-content&quot;)
+    .withInput(Message.Assistant.class)
+    .withOutput(String.class)
+    .withAction((response, ctx) -&gt; response.getParts().stream()
+        .filter(p -&gt; p instanceof MessagePart.Text)
+        .map(p -&gt; ((MessagePart.Text) p).getText())
+        .collect(Collectors.joining()))
+    .build();
+</code></pre>
+<p>Note</p>
+<p>上面的 Kotlin 示例展示了对 LLM 会话的细粒度控制（自定义提示词构造、显式调用 <code>requestLLMWithoutTools</code>）。Java API 提供了更高级的工厂方法，例如 <code>AIAgentNode.llmRequest()</code>，它会自动处理提示词构造，其中输入字符串会成为用户消息。对于高级提示词自定义，可以组合多个节点或使用自定义子图。</p>
+<h3 id="_13">工具运行节点</h3>
+<p>执行工具的自定义节点。在 Kotlin 中，你可以手动构造工具调用并执行它们。在 Java 中，你通常使用子图，将工具编排委托给 LLM。</p>
+<p>KotlinJava</p>
+<pre><code>val nodeExecuteCustomTool by node&lt;String, String&gt;(&quot;node_name&quot;) { input -&gt;
+    val toolCall = MessagePart.Tool.Call(
+        id = UUID.randomUUID().toString(),
+        tool = toolName,
+        args = Json.encodeToString(ToolArgs(arg1 = input, arg2 = 42)) // Use the input as tool arguments
+    )
+
+    val result = environment.executeTool(toolCall)
+    result.output
+}
+</code></pre>
+<pre><code>// In Java, direct tool execution (as shown in the Kotlin example) is not available
+// through the Java builder API. Instead, use a subgraph that delegates tool calls
+// to the LLM, which decides when and how to invoke the tools:
+var toolSubgraph = AIAgentSubgraph.builder(&quot;tool-subgraph&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withTask(input -&gt; &quot;Use my_tool with input: &quot; + input)
+    .build();
+</code></pre>
+<p>Note</p>
+<p>Kotlin 示例通过手动构造 <code>MessagePart.Tool.Call</code> 并调用 <code>environment.executeTool()</code> 来演示底层工具执行。Java API 鼓励使用更高级的方法，即通过 <code>withTask()</code> 配合子图，由 LLM 自动编排工具调用。要限制可用的工具，请在 <code>.withInput()</code> 之前链式调用 <code>.limitedTools(List.of(myTool))</code>。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/custom-nodes/">官方原文</a></div></main></div></body></html>

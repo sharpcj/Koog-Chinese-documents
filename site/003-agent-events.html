@@ -1,0 +1,1502 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent 事件 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/agent-events/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2 active" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/agent-events/">https://docs.koog.ai/agent-events/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#预定义事件类型">预定义事件类型</a><a class="l3" href="#agent-事件">Agent 事件</a><a class="l4" href="#agentstartingevent">AgentStartingEvent</a><a class="l4" href="#agentcompletedevent">AgentCompletedEvent</a><a class="l4" href="#agentexecutionfailedevent">AgentExecutionFailedEvent</a><a class="l4" href="#agentclosingevent">AgentClosingEvent</a><a class="l3" href="#策略事件">策略事件</a><a class="l4" href="#graphstrategystartingevent">GraphStrategyStartingEvent</a><a class="l4" href="#functionalstrategystartingevent">FunctionalStrategyStartingEvent</a><a class="l4" href="#strategycompletedevent">StrategyCompletedEvent</a><a class="l3" href="#节点事件">节点事件</a><a class="l4" href="#nodeexecutionstartingevent">NodeExecutionStartingEvent</a><a class="l4" href="#nodeexecutioncompletedevent">NodeExecutionCompletedEvent</a><a class="l4" href="#nodeexecutionfailedevent">NodeExecutionFailedEvent</a><a class="l3" href="#子图事件">子图事件</a><a class="l4" href="#subgraphexecutionstartingevent">SubgraphExecutionStartingEvent</a><a class="l4" href="#subgraphexecutioncompletedevent">SubgraphExecutionCompletedEvent</a><a class="l4" href="#subgraphexecutionfailedevent">SubgraphExecutionFailedEvent</a><a class="l3" href="#llm-调用事件">LLM 调用事件</a><a class="l4" href="#llmcallstartingevent">LLMCallStartingEvent</a><a class="l4" href="#llmcallcompletedevent">LLMCallCompletedEvent</a><a class="l4" href="#llmcallfailedevent">LLMCallFailedEvent</a><a class="l3" href="#llm-流式事件">LLM 流式事件</a><a class="l4" href="#llmstreamingstartingevent">LLMStreamingStartingEvent</a><a class="l4" href="#llmstreamingframereceivedevent">LLMStreamingFrameReceivedEvent</a><a class="l4" href="#llmstreamingfailedevent">LLMStreamingFailedEvent</a><a class="l4" href="#llmstreamingcompletedevent">LLMStreamingCompletedEvent</a><a class="l3" href="#工具执行事件">工具执行事件</a><a class="l4" href="#toolcallstartingevent">ToolCallStartingEvent</a><a class="l4" href="#toolvalidationfailedevent">ToolValidationFailedEvent</a><a class="l4" href="#toolcallfailedevent">ToolCallFailedEvent</a><a class="l4" href="#toolcallcompletedevent">ToolCallCompletedEvent</a><a class="l2" href="#常见问题与故障排除">常见问题与故障排除</a><a class="l3" href="#如何仅跟踪代理执行的特定部分">如何仅跟踪代理执行的特定部分？</a><a class="l3" href="#我可以使用多个消息处理器吗">我可以使用多个消息处理器吗？</a><a class="l3" href="#如何创建自定义消息处理器">如何创建自定义消息处理器？</a></div><article class="content"><h1 id="agent">Agent 事件</h1>
+<p>Agent 事件是作为 agent 工作流一部分发生的操作或交互。它们包括：</p>
+<ul>
+<li>Agent 生命周期事件</li>
+<li>策略事件</li>
+<li>节点执行事件</li>
+<li>LLM 调用事件</li>
+<li>LLM 流式事件</li>
+<li>工具执行事件</li>
+</ul>
+<p>注意：功能事件定义在 agents-core 模块中，位于包 <code>ai.koog.agents.core.feature.model.events</code> 下。诸如 <code>agents-features-trace</code> 和 <code>agents-features-event-handler</code> 等功能会消费这些事件，以处理并转发 agent 执行期间创建的消息。</p>
+<h2 id="_1">预定义事件类型</h2>
+<p>Koog 提供了可用于自定义消息处理器的预定义事件类型。预定义事件可根据其关联的实体分为以下几类：</p>
+<ul>
+<li><a href="#agent-events">Agent 事件</a></li>
+<li><a href="#strategy-events">策略事件</a></li>
+<li><a href="#node-events">节点事件</a></li>
+<li><a href="#subgraph-events">子图事件</a></li>
+<li><a href="#llm-call-events">LLM 调用事件</a></li>
+<li><a href="#llm-streaming-events">LLM 流式事件</a></li>
+<li><a href="#tool-execution-events">工具执行事件</a></li>
+</ul>
+<h3 id="agent_1">Agent 事件</h3>
+<h4 id="agentstartingevent">AgentStartingEvent</h4>
+<p>表示 agent 运行的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>agentId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 运行的唯一标识符。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="agentcompletedevent">AgentCompletedEvent</h4>
+<p>表示 agent 运行的结束。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>agentId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>agent 运行的结果。如果没有结果，可以为 <code>null</code>。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="agentexecutionfailedevent">AgentExecutionFailedEvent</h4>
+<p>表示 agent 运行期间发生错误。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>agentId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>AIAgentError</td>
+<td>是</td>
+<td></td>
+<td>agent 运行期间发生的具体错误。有关更多信息，请参见 <a href="#aiagenterror">AIAgentError</a>。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="agentclosingevent">AgentClosingEvent</h4>
+<p>表示 agent 的关闭或终止。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>agentId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>AI agent 的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>AIAgentError</code> 类提供了有关 agent 运行期间发生的错误的更多详细信息。包含以下字段：</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>message</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>提供有关特定错误更多详细信息的消息。</td>
+</tr>
+<tr>
+<td><code>stackTrace</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>直到最后执行代码的堆栈记录集合。</td>
+</tr>
+<tr>
+<td><code>cause</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>错误的原因（如果可用）。</td>
+</tr>
+</tbody>
+</table>
+<p><code>AgentExecutionInfo</code> 类提供有关执行路径的上下文信息，支持跟踪 agent 运行中的嵌套执行上下文。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>parent</code></td>
+<td>AgentExecutionInfo</td>
+<td>否</td>
+<td>null</td>
+<td>对父执行上下文的引用。如果为 null，则表示根执行层级。</td>
+</tr>
+<tr>
+<td><code>partName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>表示当前执行部分或片段名称的字符串。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">策略事件</h3>
+<h4 id="graphstrategystartingevent">GraphStrategyStartingEvent</h4>
+<p>表示基于图的策略运行的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>strategyName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略的名称。</td>
+</tr>
+<tr>
+<td><code>graph</code></td>
+<td>StrategyEventGraph</td>
+<td>是</td>
+<td></td>
+<td>表示策略工作流的图结构。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="functionalstrategystartingevent">FunctionalStrategyStartingEvent</h4>
+<p>表示函数式策略运行的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>strategyName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略的名称。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="strategycompletedevent">StrategyCompletedEvent</h4>
+<p>表示策略运行的结束。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>strategyName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略的名称。</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>运行的结果。如果没有结果，可以为 <code>null</code>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">节点事件</h3>
+<h4 id="nodeexecutionstartingevent">NodeExecutionStartingEvent</h4>
+<p>表示节点运行的开始。包含以下字段：
+| 名称 | 数据类型 | 必需 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| <code>eventId</code> | String | 是 |  | 事件或事件组的唯一标识符。 |
+| <code>executionInfo</code> | AgentExecutionInfo | 是 |  | 提供与此事件关联的执行相关的上下文信息。 |
+| <code>runId</code> | String | 是 |  | 策略运行的唯一标识符。 |
+| <code>nodeName</code> | String | 是 |  | 其运行已开始的节点名称。 |
+| <code>input</code> | JsonElement | 否 | null | 节点的输入值。 |</p>
+<h4 id="nodeexecutioncompletedevent">NodeExecutionCompletedEvent</h4>
+<p>表示节点运行的结束。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>nodeName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>其运行已结束的节点名称。</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>节点的输入值。</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>节点产生的输出值。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="nodeexecutionfailedevent">NodeExecutionFailedEvent</h4>
+<p>表示节点运行期间发生的错误。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>nodeName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>发生错误的节点名称。</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>提供给节点的输入数据。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>AIAgentError</td>
+<td>是</td>
+<td></td>
+<td>节点运行期间发生的具体错误。有关更多信息，请参阅 <a href="#aiagenterror">AIAgentError</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">子图事件</h3>
+<h4 id="subgraphexecutionstartingevent">SubgraphExecutionStartingEvent</h4>
+<p>表示子图运行的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>subgraphName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>其运行已开始的子图名称。</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>子图的输入值。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="subgraphexecutioncompletedevent">SubgraphExecutionCompletedEvent</h4>
+<p>表示子图运行的结束。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>subgraphName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>其运行已结束的子图名称。</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>子图的输入值。</td>
+</tr>
+<tr>
+<td><code>output</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>子图产生的输出值。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="subgraphexecutionfailedevent">SubgraphExecutionFailedEvent</h4>
+<p>表示子图运行期间发生的错误。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>subgraphName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>发生错误的子图名称。</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>提供给子图的输入数据。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>AIAgentError</td>
+<td>是</td>
+<td></td>
+<td>子图运行期间发生的具体错误。有关更多信息，请参见 <a href="#aiagenterror">AIAgentError</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="llm">LLM 调用事件</h3>
+<h4 id="llmcallstartingevent">LLMCallStartingEvent</h4>
+<p>表示 LLM 调用的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>LLM 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>发送给模型的提示词。有关更多信息，请参见 <a href="#prompt">Prompt</a>。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>ModelInfo</td>
+<td>是</td>
+<td></td>
+<td>模型信息。请参见 <a href="#modelinfo">ModelInfo</a>。</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>List</td>
+<td>是</td>
+<td></td>
+<td>模型可以调用的工具列表。</td>
+</tr>
+</tbody>
+</table>
+<p><code>Prompt</code> 类表示提示词的数据结构，由消息列表、唯一标识符以及语言模型设置的可选参数组成。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages</code></td>
+<td>List</td>
+<td>是</td>
+<td></td>
+<td>提示词包含的消息列表。</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>提示词的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>params</code></td>
+<td>LLMParams</td>
+<td>否</td>
+<td>LLMParams()</td>
+<td>控制 LLM 生成内容方式的设置。</td>
+</tr>
+</tbody>
+</table>
+<p><code>ModelInfo</code> 类表示语言模型的信息，包括其提供方、模型标识符和特性。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>provider</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>提供方标识符（例如 "openai"、"google"、"anthropic"）。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>模型标识符（例如 "gpt-4"、"claude-3"）。</td>
+</tr>
+<tr>
+<td><code>displayName</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>模型的可选人类可读显示名称。</td>
+</tr>
+<tr>
+<td><code>contextLength</code></td>
+<td>Long</td>
+<td>否</td>
+<td>null</td>
+<td>模型可以处理的最大 token 数。</td>
+</tr>
+<tr>
+<td><code>maxOutputTokens</code></td>
+<td>Long</td>
+<td>否</td>
+<td>null</td>
+<td>模型可以生成的最大 token 数。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="llmcallcompletedevent">LLMCallCompletedEvent</h4>
+<p>表示 LLM 调用的结束。包含以下字段：
+| 名称 | 数据类型 | 必需 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| <code>eventId</code> | String | 是 |  | 事件或事件组的唯一标识符。 |
+| <code>executionInfo</code> | AgentExecutionInfo | 是 |  | 提供与此事件关联的执行相关的上下文信息。 |
+| <code>runId</code> | String | 是 |  | LLM 运行的唯一标识符。 |
+| <code>prompt</code> | Prompt | 是 |  | 调用中使用的提示词。 |
+| <code>model</code> | ModelInfo | 是 |  | 模型信息。参见 <a href="#modelinfo">ModelInfo</a>。 |
+| <code>responses</code> | List | 是 |  | 模型返回的一个或多个响应。 |
+| <code>moderationResponse</code> | ModerationResult | 否 | null | 审核响应（如果有）。 |</p>
+<h4 id="llmcallfailedevent">LLMCallFailedEvent</h4>
+<p>表示 LLM 调用期间发生错误。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>LLM 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>发送给模型的提示词。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>ModelInfo</td>
+<td>是</td>
+<td></td>
+<td>模型信息。参见 <a href="#modelinfo">ModelInfo</a>。</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>List</td>
+<td>是</td>
+<td></td>
+<td>模型可以调用的工具列表。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>AIAgentError</td>
+<td>是</td>
+<td></td>
+<td>调用期间发生的具体错误。有关更多信息，请参见 <a href="#aiagenterror">AIAgentError</a>。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="llm_1">LLM 流式事件</h3>
+<h4 id="llmstreamingstartingevent">LLMStreamingStartingEvent</h4>
+<p>表示 LLM 流式调用的开始。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>LLM 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>发送给模型的提示词。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>ModelInfo</td>
+<td>是</td>
+<td></td>
+<td>模型信息。参见 <a href="#modelinfo">ModelInfo</a>。</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>List</td>
+<td>是</td>
+<td></td>
+<td>模型可以调用的工具列表。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="llmstreamingframereceivedevent">LLMStreamingFrameReceivedEvent</h4>
+<p>表示从 LLM 接收到的流式帧。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必需</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>LLM 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>发送给模型的提示词。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>ModelInfo</td>
+<td>是</td>
+<td></td>
+<td>模型信息。参见 <a href="#modelinfo">ModelInfo</a>。</td>
+</tr>
+<tr>
+<td><code>frame</code></td>
+<td>StreamFrame</td>
+<td>是</td>
+<td></td>
+<td>从流中接收到的帧。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="llmstreamingfailedevent">LLMStreamingFailedEvent</h4>
+<p>表示 LLM 流式调用期间发生错误。包含以下字段：
+| 名称 | 数据类型 | 必填 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| <code>eventId</code> | String | 是 |  | 事件或事件组的唯一标识符。 |
+| <code>executionInfo</code> | AgentExecutionInfo | 是 |  | 提供与此事件关联的执行相关的上下文信息。 |
+| <code>runId</code> | String | 是 |  | LLM 运行的唯一标识符。 |
+| <code>prompt</code> | Prompt | 是 |  | 发送给模型的提示词。 |
+| <code>model</code> | ModelInfo | 是 |  | 模型信息。参见 <a href="#modelinfo">ModelInfo</a>。 |
+| <code>error</code> | AIAgentError | 是 |  | 流式传输期间发生的具体错误。有关更多信息，请参见 <a href="#aiagenterror">AIAgentError</a>。 |</p>
+<h4 id="llmstreamingcompletedevent">LLMStreamingCompletedEvent</h4>
+<p>表示 LLM 流式调用结束。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>LLM 运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td>Prompt</td>
+<td>是</td>
+<td></td>
+<td>发送给模型的提示词。</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td>ModelInfo</td>
+<td>是</td>
+<td></td>
+<td>模型信息。参见 <a href="#modelinfo">ModelInfo</a>。</td>
+</tr>
+<tr>
+<td><code>tools</code></td>
+<td>List</td>
+<td>是</td>
+<td></td>
+<td>模型可以调用的工具列表。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">工具执行事件</h3>
+<h4 id="toolcallstartingevent">ToolCallStartingEvent</h4>
+<p>表示模型调用工具的事件。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略/智能体运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>toolCallId</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>工具调用的标识符（如果可用）。</td>
+</tr>
+<tr>
+<td><code>toolName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>工具的名称。</td>
+</tr>
+<tr>
+<td><code>toolArgs</code></td>
+<td>JsonObject</td>
+<td>是</td>
+<td></td>
+<td>提供给工具的参数。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="toolvalidationfailedevent">ToolValidationFailedEvent</h4>
+<p>表示工具调用期间发生验证错误。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>策略/智能体运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>toolCallId</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>工具调用的标识符（如果可用）。</td>
+</tr>
+<tr>
+<td><code>toolName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>验证失败的工具的名称。</td>
+</tr>
+<tr>
+<td><code>toolArgs</code></td>
+<td>JsonObject</td>
+<td>是</td>
+<td></td>
+<td>提供给工具的参数。</td>
+</tr>
+<tr>
+<td><code>toolDescription</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>遇到验证错误的工具的说明。</td>
+</tr>
+<tr>
+<td><code>message</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>描述验证错误的消息。</td>
+</tr>
+<tr>
+<td><code>error</code></td>
+<td>AIAgentError</td>
+<td>是</td>
+<td></td>
+<td>发生的具体错误。有关更多信息，请参见 <a href="#aiagenterror">AIAgentError</a>。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="toolcallfailedevent">ToolCallFailedEvent</h4>
+<p>表示执行工具失败。包含以下字段：
+| 名称 | 数据类型 | 必填 | 默认值 | 描述 |
+| --- | --- | --- | --- | --- |
+| <code>eventId</code> | String | 是 |  | 事件或事件组的唯一标识符。 |
+| <code>executionInfo</code> | AgentExecutionInfo | 是 |  | 提供与此事件关联的执行相关的上下文信息。 |
+| <code>runId</code> | String | 是 |  | 策略/代理运行的唯一标识符。 |
+| <code>toolCallId</code> | String | 否 | null | 工具调用的标识符（如果可用）。 |
+| <code>toolName</code> | String | 是 |  | 工具的名称。 |
+| <code>toolArgs</code> | JsonObject | 是 |  | 提供给工具的参数。 |
+| <code>toolDescription</code> | String | 否 | null | 失败工具的描述。 |
+| <code>error</code> | AIAgentError | 是 |  | 尝试调用工具时发生的具体错误。有关更多信息，请参阅 <a href="#aiagenterror">AIAgentError</a>。 |</p>
+<h4 id="toolcallcompletedevent">ToolCallCompletedEvent</h4>
+<p>表示一次成功的工具调用及其返回结果。包含以下字段：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>eventId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>事件或事件组的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>executionInfo</code></td>
+<td>AgentExecutionInfo</td>
+<td>是</td>
+<td></td>
+<td>提供与此事件关联的执行相关的上下文信息。</td>
+</tr>
+<tr>
+<td><code>runId</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>运行的唯一标识符。</td>
+</tr>
+<tr>
+<td><code>toolCallId</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>工具调用的标识符。</td>
+</tr>
+<tr>
+<td><code>toolName</code></td>
+<td>String</td>
+<td>是</td>
+<td></td>
+<td>工具的名称。</td>
+</tr>
+<tr>
+<td><code>toolArgs</code></td>
+<td>JsonObject</td>
+<td>是</td>
+<td></td>
+<td>提供给工具的参数。</td>
+</tr>
+<tr>
+<td><code>toolDescription</code></td>
+<td>String</td>
+<td>否</td>
+<td>null</td>
+<td>已执行工具的描述。</td>
+</tr>
+<tr>
+<td><code>result</code></td>
+<td>JsonElement</td>
+<td>否</td>
+<td>null</td>
+<td>工具调用的结果。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">常见问题与故障排除</h2>
+<p>以下部分包含与 Tracing 功能相关的常见问题与解答。</p>
+<h3 id="_7">如何仅跟踪代理执行的特定部分？</h3>
+<p>使用 <code>messageFilter</code> 属性来过滤事件。例如，仅跟踪节点执行：</p>
+<p>KotlinJava</p>
+<pre><code>install(Tracing) {
+    val fileWriter = TraceFeatureMessageFileWriter.create(outputPath)
+    addMessageProcessor(fileWriter)
+
+    // Only trace LLM calls
+    fileWriter.setMessageFilter { message -&gt;
+        message is LLMCallStartingEvent || message is LLMCallCompletedEvent
+    }
+}
+</code></pre>
+<pre><code>.install(Tracing.Feature, config -&gt; {
+    var fileWriter = TraceFeatureMessageFileWriter.create(outputPath);
+    config.addMessageProcessor(fileWriter);
+
+    // Only trace LLM calls
+    fileWriter.setMessageFilter(message -&gt;
+        message instanceof LLMCallStartingEvent || message instanceof LLMCallCompletedEvent
+    );
+})
+</code></pre>
+<h3 id="_8">我可以使用多个消息处理器吗？</h3>
+<p>可以，你可以添加多个消息处理器，同时跟踪到不同的目标：</p>
+<p>KotlinJava</p>
+<pre><code>install(Tracing) {
+    addMessageProcessor(TraceFeatureMessageLogWriter(logger))
+    addMessageProcessor(TraceFeatureMessageFileWriter.create(outputPath))
+    addMessageProcessor(TraceFeatureMessageRemoteWriter(connectionConfig))
+}
+</code></pre>
+<pre><code>.install(Tracing.Feature, config -&gt; {
+    config.addMessageProcessor(TraceFeatureMessageLogWriter.create(logger));
+    config.addMessageProcessor(TraceFeatureMessageFileWriter.create(outputPath));
+    config.addMessageProcessor(new TraceFeatureMessageRemoteWriter());
+})
+</code></pre>
+<h3 id="_9">如何创建自定义消息处理器？</h3>
+<p>实现 <code>FeatureMessageProcessor</code> 接口：</p>
+<p>KotlinJava</p>
+<pre><code>class CustomTraceProcessor : FeatureMessageProcessor() {
+
+    override suspend fun processMessage(message: FeatureMessage) {
+        // Custom processing logic
+        if (message is NodeExecutionStartingEvent) {
+            // Process node start event
+        } else if (message is LLMCallCompletedEvent) {
+            // Process LLM call end event
+        } else {
+            // Handle other event types
+        }
+    }
+
+    override suspend fun close() {
+        // Close connections if established
+    }
+}
+
+val agent = AIAgent(
+    promptExecutor = simpleOllamaAIExecutor(),
+    llmModel = OllamaModels.Meta.LLAMA_3_2,
+) {
+    install(Tracing) {
+        // Use your custom processor
+        addMessageProcessor(CustomTraceProcessor())
+    }
+}
+</code></pre>
+<pre><code>class CustomTraceProcessor extends FeatureMessageProcessor {
+
+    @Override
+    protected void handleMessage(FeatureMessage message) {
+        // Custom processing logic
+        if (message instanceof NodeExecutionStartingEvent) {
+            // Process node start event
+        } else if (message instanceof LLMCallCompletedEvent) {
+            // Process LLM call end event
+        } else {
+            // Handle other event types
+        }
+    }
+
+    @Override
+    public void handleClose() {
+        // Close connections if established
+    }
+}
+
+var agent = AIAgent.builder()
+    .promptExecutor(PromptExecutor.builder().ollama().build())
+    .llmModel(OllamaModels.Meta.LLAMA_3_2)
+
+    .install(Tracing.Feature, config -&gt; {
+        // Use your custom processor
+        config.addMessageProcessor(new CustomTraceProcessor());
+    })
+    .build();
+</code></pre>
+<p>有关消息处理器可处理的现有事件类型的更多信息，请参阅<a href="#predefined-event-types">预定义事件类型</a>。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/agent-events/">官方原文</a></div></main></div></body></html>

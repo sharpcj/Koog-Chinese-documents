@@ -1,0 +1,606 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>History compression - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/history-compression/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1 active" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/history-compression/">https://docs.koog.ai/history-compression/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#何时压缩历史">何时压缩历史</a><a class="l2" href="#history-compression-实现">History compression 实现</a><a class="l3" href="#strategy-graph-中的-history-compression">Strategy graph 中的 history compression</a><a class="l3" href="#custom-node-中的-history-compression">Custom node 中的 history compression</a><a class="l2" href="#history-compression-strategies">History compression strategies</a><a class="l3" href="#wholehistory-default">WholeHistory (Default)</a><a class="l3" href="#fromlastnmessages">FromLastNMessages</a><a class="l3" href="#chunked">Chunked</a><a class="l3" href="#factretrievalhistorycompressionstrategy">FactRetrievalHistoryCompressionStrategy</a><a class="l2" href="#custom-history-compression-strategy-implementation">Custom history compression strategy implementation</a><a class="l2" href="#压缩期间的-memory-preservation">压缩期间的 memory preservation</a></div><article class="content"><h1 id="history-compression">History compression</h1>
+<p>AI Agent 会维护一份消息历史，其中包含用户消息、助手响应、工具调用和工具响应。
+随着 Agent 执行其 strategy，每次交互都会使这份历史增长。</p>
+<p>对于长时间运行的对话，历史可能变得很大并消耗大量 token。
+History compression 通过将完整消息列表总结为一条或多条只包含后续 Agent 运行所需重要信息的消息，帮助减少这种消耗。</p>
+<p>History compression 解决了 Agent 系统中的关键挑战：</p>
+<ul>
+<li>优化上下文使用。更聚焦且更小的上下文可提升 LLM 性能，并防止超过 token 限制导致失败。</li>
+<li>提升性能。压缩历史会减少 LLM 需要处理的消息数量，从而加快响应。</li>
+<li>增强准确性。聚焦相关信息有助于 LLM 保持专注，并在不受干扰的情况下完成任务。</li>
+<li>降低成本。减少无关消息可降低 token 使用量，从而降低 API 调用的总体成本。</li>
+</ul>
+<h2 id="_1">何时压缩历史</h2>
+<p>History compression 会在 Agent 工作流的特定步骤执行：</p>
+<ul>
+<li>在 Agent strategy 的逻辑步骤（subgraphs）之间。</li>
+<li>当上下文变得过长时。</li>
+</ul>
+<h2 id="history-compression_1">History compression 实现</h2>
+<p>在你的 Agent 中实现 history compression 主要有两种方式：</p>
+<ul>
+<li>在 strategy graph 中</li>
+<li>在 custom node 中</li>
+</ul>
+<h3 id="strategy-graph-history-compression">Strategy graph 中的 history compression</h3>
+<p>要在 strategy graph 中压缩历史，需要使用预定义节点，将当前消息历史压缩为简洁摘要：</p>
+<ul>
+<li><strong>Kotlin</strong>：<code>nodeLLMCompressHistory</code></li>
+<li><strong>Java</strong>：<code>AIAgentNode.llmCompressHistory()</code></li>
+</ul>
+<p>有关更多信息和具体示例，请参阅 <a href="022-nodes-and-components.html#history-compression-node">History compression node</a>。</p>
+<p>根据你决定在哪个步骤执行压缩，可以使用以下场景：</p>
+<ul>
+<li>当历史变得过长时压缩历史：在 edge 条件中检查消息数量，并添加 history compression node。要检查历史长度，请执行以下操作：</li>
+<li><strong>Kotlin</strong>：定义一个 helper extension。</li>
+<li><strong>Java</strong>：在 <code>.onCondition()</code> 中使用 inline lambda expressions。</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>// Define that the history is too long if there are more than 100 messages
+private suspend fun AIAgentContext.historyIsTooLong(): Boolean = llm.readSession { prompt.messages.size &gt; 100 }
+
+val strategy = strategy&lt;String, String&gt;(&quot;execute-with-history-compression&quot;) {
+    val callLLM by nodeLLMRequest()
+    val executeTool by nodeExecuteTools()
+    val sendToolResult by nodeLLMSendToolResults()
+
+    // Compress the LLM history and keep the current ReceivedToolResults for the next node
+    val compressHistory by nodeLLMCompressHistory&lt;ReceivedToolResults&gt;()
+
+    edge(nodeStart forwardTo callLLM)
+    edge(callLLM forwardTo nodeFinish onTextMessage { true })
+    edge(callLLM forwardTo executeTool onToolCalls { true })
+
+    // Compress history after executing any tool if the history is too long 
+    edge(executeTool forwardTo compressHistory onCondition { historyIsTooLong() })
+    edge(compressHistory forwardTo sendToolResult)
+    // Otherwise, proceed to the next LLM request
+    edge(executeTool forwardTo sendToolResult onCondition { !historyIsTooLong() })
+
+    edge(sendToolResult forwardTo executeTool onToolCalls { true })
+    edge(sendToolResult forwardTo nodeFinish onTextMessage { true })
+}
+</code></pre>
+<pre><code>var graph = AIAgentGraphStrategy.builder(&quot;execute-with-history-compression&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+var callLLM = AIAgentNode.llmRequest(null);
+var executeTool = AIAgentNode.executeTools(null);
+var sendToolResult = AIAgentNode.llmSendToolResults(null);
+
+// Compress the LLM history; the carried ReceivedToolResults flows into the next node.
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(ReceivedToolResults.class)
+    .build();
+
+// Edge from start to callLLM
+graph.edge(AIAgentEdge.builder()
+    .from(graph.nodeStart)
+    .to(callLLM)
+    .build());
+
+// Edge from callLLM to finish on text response
+graph.edge(AIAgentEdge.builder()
+    .from(callLLM)
+    .to(graph.nodeFinish)
+    .onTextMessage()
+    .build());
+
+// Edge from callLLM to executeTool on tool call
+graph.edge(AIAgentEdge.builder()
+    .from(callLLM)
+    .to(executeTool)
+    .onToolCalls()
+    .build());
+
+// Compress history after executing any tool if the history is too long
+graph.edge(AIAgentEdge.builder()
+    .from(executeTool)
+    .to(compressHistory)
+    .onCondition((message, ctx) -&gt;
+        ctx.getLlm().readSession(session -&gt;
+            session.getPrompt().getMessages().size() &gt; 100
+        )
+    )
+    .build());
+
+graph.edge(compressHistory, sendToolResult);
+
+// Otherwise, proceed to the next LLM request
+graph.edge(AIAgentEdge.builder()
+    .from(executeTool)
+    .to(sendToolResult)
+    .onCondition((message, ctx) -&gt;
+        ctx.getLlm().readSession(session -&gt;
+            session.getPrompt().getMessages().size() &lt;= 100
+        )
+    )
+    .build());
+
+// Edge from sendToolResult to executeTool on tool call
+graph.edge(AIAgentEdge.builder()
+    .from(sendToolResult)
+    .to(executeTool)
+    .onToolCalls()
+    .build());
+
+// Edge from sendToolResult to finish on text response
+graph.edge(AIAgentEdge.builder()
+    .from(sendToolResult)
+    .to(graph.nodeFinish)
+    .onTextMessage()
+    .build());
+</code></pre>
+<p>在此示例中，strategy 会在每次工具调用后检查历史是否过长。
+历史会在将工具结果发送回 LLM 之前被压缩。这样可以防止长对话期间上下文不断增长。</p>
+<ul>
+<li>要在 strategy 的逻辑步骤（subgraphs）之间压缩历史，可以按如下方式实现你的 strategy：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val strategy = strategy&lt;String, String&gt;(&quot;execute-with-history-compression&quot;) {
+    val collectInformation by subgraph&lt;String, String&gt; {
+        // Some steps to collect the information
+    }
+    val compressHistory by nodeLLMCompressHistory&lt;String&gt;()
+    val makeTheDecision by subgraph&lt;String, String&gt; {
+        // Some steps to make the decision based on the current compressed history and collected information
+    }
+
+    nodeStart then collectInformation then compressHistory then makeTheDecision
+}
+</code></pre>
+<pre><code>var graph = AIAgentGraphStrategy.builder(&quot;execute-with-history-compression&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+// Subgraph to collect information
+var collectInformation = AIAgentSubgraph.builder(&quot;collectInformation&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .limitedTools(Collections.emptyList())
+    .withTask(input -&gt; &quot;Collect information based on: &quot; + input)
+    .build();
+
+// Compress history after collecting information
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(String.class)
+    .build();
+
+// Subgraph to make decision based on compressed history
+var makeTheDecision = AIAgentSubgraph.builder(&quot;makeTheDecision&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .limitedTools(Collections.emptyList())
+    .withTask(input -&gt; &quot;Make a decision based on the information&quot;)
+    .build();
+
+// Build the flow: start -&gt; collectInformation -&gt; compressHistory -&gt; makeTheDecision -&gt; finish
+graph.edge(graph.nodeStart, collectInformation);
+graph.edge(collectInformation, compressHistory);
+graph.edge(compressHistory, makeTheDecision);
+graph.edge(makeTheDecision, graph.nodeFinish);
+</code></pre>
+<p>在此示例中，历史会在完成信息收集阶段后、进入决策阶段之前被压缩。</p>
+<h3 id="custom-node-history-compression">Custom node 中的 history compression</h3>
+<p>如果你正在实现 custom node，可以使用 <code>replaceHistoryWithTLDR()</code> 函数（Kotlin）压缩历史，如下所示：</p>
+<p>Kotlin</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR()
+}
+</code></pre>
+<p>这种方式让你能够根据具体需求，在 custom node 逻辑中的任意位置更灵活地实现压缩。</p>
+<p>要了解 custom nodes 的更多信息，请参阅 <a href="006-custom-nodes.html">Custom nodes</a>。</p>
+<h2 id="history-compression-strategies">History compression strategies</h2>
+<p>你可以使用可选的 <code>strategy</code> 参数自定义压缩过程：</p>
+<ul>
+<li><strong>Kotlin</strong>：将 strategy 传给 <code>nodeLLMCompressHistory(strategy=...)</code> 或 <code>replaceHistoryWithTLDR(strategy=...)</code>。</li>
+<li><strong>Java</strong>：使用 <code>.compressionStrategy()</code> builder 方法。</li>
+</ul>
+<p>框架提供了多个内置策略。</p>
+<h3 id="wholehistory-default">WholeHistory (Default)</h3>
+<p>默认策略会将整个历史压缩为一条 TLDR 消息，用于总结到目前为止已完成的内容。
+该策略适用于大多数通用场景：你希望在减少 token 使用量的同时，保持对整个对话上下文的感知。</p>
+<p>可以按如下方式使用：</p>
+<ul>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = HistoryCompressionStrategy.WholeHistory
+)
+</code></pre>
+<pre><code>// Using WholeHistory strategy in a compression node
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(String.class)
+    .compressionStrategy(HistoryCompressionStrategy.WholeHistory)
+    .build();
+
+// Note: This example only shows the node creation.
+// You would need to add edges and other nodes to complete the graph.
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(strategy = HistoryCompressionStrategy.WholeHistory)
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.replaceHistoryWithTLDR(HistoryCompressionStrategy.WholeHistory);
+    return null;
+});
+</code></pre>
+<h3 id="fromlastnmessages">FromLastNMessages</h3>
+<p>该策略只将最后 <code>n</code> 条消息压缩为一条 TLDR 消息，并完全丢弃更早的消息。
+当只有 Agent 最新完成的事项（或最新发现的事实、最新上下文）与解决问题相关时，这很有用。</p>
+<p>可以按如下方式使用：</p>
+<ul>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = HistoryCompressionStrategy.FromLastNMessages(5)
+)
+</code></pre>
+<pre><code>// Using FromLastNMessages strategy to compress only the last 5 messages
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(String.class)
+    .compressionStrategy(HistoryCompressionStrategy.FromLastNMessages(5))
+    .build();
+
+// Note: This example only shows the node creation.
+// You would need to add edges and other nodes to complete the graph.
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(strategy = HistoryCompressionStrategy.FromLastNMessages(5))
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.replaceHistoryWithTLDR(HistoryCompressionStrategy.FromLastNMessages(5));
+    return null;
+});
+</code></pre>
+<h3 id="chunked">Chunked</h3>
+<p>该策略会将完整消息历史拆分为固定大小的 chunks，并将每个 chunk 独立压缩为一条 TLDR 消息。
+当你不仅需要了解到目前为止已完成内容的简洁 TLDR，还希望跟踪整体进展，并且某些较早信息也可能重要时，这很有用。</p>
+<p>可以按如下方式使用：</p>
+<ul>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = HistoryCompressionStrategy.Chunked(10)
+)
+</code></pre>
+<pre><code>// Using Chunked strategy to compress history in chunks of 10 messages
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(String.class)
+    .compressionStrategy(HistoryCompressionStrategy.Chunked(10))
+    .build();
+
+// Note: This example only shows the node creation.
+// You would need to add edges and other nodes to complete the graph.
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(strategy = HistoryCompressionStrategy.Chunked(10))
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.replaceHistoryWithTLDR(HistoryCompressionStrategy.Chunked(10));
+    return null;
+});
+</code></pre>
+<h3 id="factretrievalhistorycompressionstrategy">FactRetrievalHistoryCompressionStrategy</h3>
+<p>该策略会在历史中搜索与所提供概念列表相关的特定事实，并检索这些事实。
+它会将整个历史改为仅包含这些事实，并将其作为后续 LLM 请求的上下文。
+当你知道哪些确切事实会有助于 LLM 更好地执行任务时，这很有用。</p>
+<p>可以按如下方式使用：</p>
+<ul>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = FactRetrievalHistoryCompressionStrategy(
+        Concept(
+            keyword = &quot;user_preferences&quot;,
+            // Description to the LLM -- what specifically to search for
+            description = &quot;User's preferences for the recommendation system, including the preferred conversation style, theme in the application, etc.&quot;,
+            // LLM would search for multiple relevant facts related to this concept:
+            factType = FactType.MULTIPLE
+        ),
+        Concept(
+            keyword = &quot;product_details&quot;,
+            // Description to the LLM -- what specifically to search for
+            description = &quot;Brief details about products in the catalog the user has been checking&quot;,
+            // LLM would search for multiple relevant facts related to this concept:
+            factType = FactType.MULTIPLE
+        ),
+        Concept(
+            keyword = &quot;issue_solved&quot;,
+            // Description to the LLM -- what specifically to search for
+            description = &quot;Was the initial user's issue resolved?&quot;,
+            // LLM would search for a single answer to the question:
+            factType = FactType.SINGLE
+        )
+    )
+)
+</code></pre>
+<pre><code>// Using FactRetrievalHistoryCompressionStrategy strategy to extract specific facts
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(ReceivedToolResult.class)
+    .compressionStrategy(new FactRetrievalHistoryCompressionStrategy(
+        new Concept(
+            &quot;user_preferences&quot;,
+            &quot;User's preferences for the recommendation system, including the preferred conversation style, theme in the application, etc.&quot;,
+            FactType.MULTIPLE
+        ),
+        new Concept(
+            &quot;product_details&quot;,
+            &quot;Brief details about products in the catalog the user has been checking&quot;,
+            FactType.MULTIPLE
+        ),
+        new Concept(
+            &quot;issue_solved&quot;,
+            &quot;Was the initial user's issue resolved?&quot;,
+            FactType.SINGLE
+        )
+    ))
+    .build();
+
+    // Note: This example only shows the node creation.
+    // You would need to add edges and other nodes to complete the graph.
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(
+        strategy = FactRetrievalHistoryCompressionStrategy(
+            Concept(
+                keyword = &quot;user_preferences&quot;, 
+                // Description to the LLM -- what specifically to search for
+                description = &quot;User's preferences for the recommendation system, including the preferred conversation style, theme in the application, etc.&quot;,
+                // LLM would search for multiple relevant facts related to this concept:
+                factType = FactType.MULTIPLE
+            ),
+            Concept(
+                keyword = &quot;product_details&quot;,
+                // Description to the LLM -- what specifically to search for
+                description = &quot;Brief details about products in the catalog the user has been checking&quot;,
+                // LLM would search for multiple relevant facts related to this concept:
+                factType = FactType.MULTIPLE
+            ),
+            Concept(
+                keyword = &quot;issue_solved&quot;,
+                // Description to the LLM -- what specifically to search for
+                description = &quot;Was the initial user's issue resolved?&quot;,
+                // LLM would search for a single answer to the question:
+                factType = FactType.SINGLE
+            )
+        )
+    )
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.replaceHistoryWithTLDR(new FactRetrievalHistoryCompressionStrategy(
+            new Concept(
+                &quot;user_preferences&quot;, 
+                // Description to the LLM -- what specifically to search for
+                &quot;User's preferences for the recommendation system, including the preferred conversation style, theme in the application, etc.&quot;,
+                // LLM would search for multiple relevant facts related to this concept:
+                FactType.MULTIPLE
+            ),
+            new Concept(
+                &quot;product_details&quot;,
+                // Description to the LLM -- what specifically to search for
+                &quot;Brief details about products in the catalog the user has been checking&quot;,
+                // LLM would search for multiple relevant facts related to this concept:
+                FactType.MULTIPLE
+            ),
+            new Concept(
+                &quot;issue_solved&quot;,
+                // Description to the LLM -- what specifically to search for
+                &quot;Was the initial user's issue resolved?&quot;,
+                // LLM would search for a single answer to the question:
+                FactType.SINGLE
+            )
+        ));
+    return null;
+});
+</code></pre>
+<h2 id="custom-history-compression-strategy-implementation">Custom history compression strategy implementation</h2>
+<p>Warning</p>
+<p>Custom history compression strategies 仅在 Kotlin 中可用。</p>
+<p>你可以通过扩展 <code>HistoryCompressionStrategy</code> 抽象类并实现 <code>compress</code> 方法来创建自己的 history compression strategy。</p>
+<p>示例如下：</p>
+<p>Kotlin</p>
+<pre><code>class MyCustomCompressionStrategy : HistoryCompressionStrategy() {
+    override suspend fun compress(
+        llmSession: AIAgentLLMWriteSession,
+        memoryMessages: List&lt;Message&gt;
+    ) {
+        // 1. Process the current history in llmSession.prompt.messages
+        // 2. Create new compressed messages
+        // 3. Update the prompt with the compressed messages
+
+        // Save original messages to preserve them
+        val originalMessages = llmSession.prompt.messages
+
+        // Example implementation:
+        val importantMessages = llmSession.prompt.messages
+            .filterIsInstance&lt;Message.Assistant&gt;()
+            .filter { message -&gt;
+                // Your custom filtering logic
+                message.parts.filterIsInstance&lt;MessagePart.Text&gt;().any { it.text.contains(&quot;important&quot;) }
+            }
+
+        // Note: you can also make LLM requests using the `llmSession` and ask the LLM to do some job for you using, for example, `llmSession.requestLLMWithoutTools()`
+        // Or you can change the current model: `llmSession.model = AnthropicModels.Opus_4_6` and ask some other LLM model -- but don't forget to change it back after
+
+        // Compose the prompt with the filtered messages
+        val compressedMessages = composeMessageHistory(
+            originalMessages,
+            importantMessages,
+            memoryMessages
+        )
+    }
+}
+</code></pre>
+<p>在此示例中，自定义策略会筛选包含单词 "important" 的消息，并只在压缩后的历史中保留这些消息。</p>
+<p>然后可以按如下方式使用：</p>
+<ul>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>Kotlin</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = MyCustomCompressionStrategy()
+)
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>Kotlin</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(strategy = MyCustomCompressionStrategy())
+}
+</code></pre>
+<h2 id="memory-preservation">压缩期间的 memory preservation</h2>
+<p>所有 history compression 方法都支持 memory preservation，用于决定压缩期间是否应保留 memory-related messages。在 Kotlin 中，使用 <code>preserveMemory</code> 参数。在 Java 中，使用 <code>.preserveMemory()</code> builder 方法。
+这些消息包含从 memory 检索到的事实，或表明 memory feature 未启用。</p>
+<p>要启用 memory preservation：</p>
+<ul>
+<li><strong>Kotlin</strong>：使用 <code>preserveMemory</code> 参数。</li>
+<li><strong>Java</strong>：使用 <code>.preserveMemory()</code> builder 方法。</li>
+<li>在 strategy graph 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val compressHistory by nodeLLMCompressHistory&lt;ProcessedInput&gt;(
+    strategy = HistoryCompressionStrategy.WholeHistory,
+    preserveMemory = true
+)
+</code></pre>
+<pre><code>// Using WholeHistory strategy with preserveMemory=true
+var compressHistory = AIAgentNode
+    .llmCompressHistory(&quot;compressHistory&quot;)
+    .withInput(String.class)
+    .compressionStrategy(HistoryCompressionStrategy.WholeHistory)
+    .preserveMemory(true)
+    .build();
+
+// Note: This example only shows the node creation.
+// You would need to add edges and other nodes to complete the graph.
+</code></pre>
+<ul>
+<li>在 custom node 中：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    replaceHistoryWithTLDR(
+        strategy = HistoryCompressionStrategy.WholeHistory,
+        preserveMemory = true
+    )
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.replaceHistoryWithTLDR(
+        /** strategy */ HistoryCompressionStrategy.WholeHistory,
+        /** preserveMemory */ true
+    );
+    return null;
+});
+</code></pre></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/history-compression/">官方原文</a></div></main></div></body></html>

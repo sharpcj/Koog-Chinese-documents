@@ -1,0 +1,423 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>基于类的工具 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/tools/class-based-tools/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2 active" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/tools/class-based-tools/">https://docs.koog.ai/tools/class-based-tools/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#工具实施">工具实施</a><a class="l2" href="#工具类-kotlin"># 工具类（ Kotlin ）</a><a class="l3" href="#usage-example"># Usage example</a><a class="l3" href="#reading-the-agent-context-from-a-tool"># Reading the agent context from a tool</a><a class="l3" href="#reading-raw-per-call-metadata"># Reading raw per-call metadata</a><a class="l2" href="#simpletool-class-kotlin"># SimpleTool class (Kotlin)</a><a class="l3" href="#usage-example_1"># Usage example</a><a class="l2" href="#annotation-based-methods-java"># Annotation-based methods (Java)</a><a class="l3" href="#usage-examples"># Usage examples</a><a class="l2" href="#sending-tool-result-to-llm-in-custom-format"># Sending tool result to LLM in custom format</a><a class="l3" href="#example"># Example</a></div><article class="content"><h1 id="_1">基于类的工具</h1>
+<p>本节介绍专为需要增强灵活性和自定义行为的场景设计的API。
+使用Kotlin中的这种方法，您可以完全控制工具，包括其参数、元数据、执行逻辑以及如何注册和调用。在Java中，使用具有基于反射的配准的基于注释的方法创建工具。</p>
+<p>这种级别的控制非常适合创建可扩展基本用例的复杂工具，从而实现与座席会话和工作流的无缝集成。</p>
+<p>本页介绍如何在Kotlin和Java中实现工具，通过注册表管理工具，调用它们，并在基于节点的代理架构中使用。</p>
+<p>備註</p>
+<p>API是Kotlin的多平台。Java工具使用基于注释的方法实现，并通过反射进行注册。这使您可以在Kotlin的不同平台上使用相同的工具，而Java提供完整的JVM互操作性。</p>
+<h2 id="_2">工具实施</h2>
+<p>Koog框架提供了以下实现工具的方法：</p>
+<p>对于Kotlin ：</p>
+<ul>
+<li>对所有工具使用基类<code>Tool</code>。当需要返回非文本结果或需要完全控制工具行为时，应使用此类。</li>
+<li>使用<code>SimpleTool</code>类扩展基本<code>Tool</code>类并简化创建返回文本结果的工具。对于以下情况，您应该使用此方法：
+工具只需要返回文本。</li>
+</ul>
+<p>两种方法都使用相同的核心组件，但在实现和返回的结果上有所不同。</p>
+<p>对于Java ：</p>
+<ul>
+<li>使用基于注释的方法（ <code>@Tool</code>和<code>@LLMDescription</code> ）和基于反射的配准。这是Java互操作性的推荐方法，因为由于挂起功能限制，不支持从Java中对Kotlin的<code>Tool</code>或<code>SimpleTool</code>进行子类划分。</li>
+</ul>
+<h2 id="kotlin"># 工具类（ Kotlin ）</h2>
+<p><a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/index.html"><code>Tool&lt;Args, Result&gt;</code></a>抽象类是在Kotlin中创建工具的基类。
+它允许您创建接受特定参数类型（ <code>Args</code> ）并返回各种类型（ <code>Result</code> ）结果的工具。</p>
+<p>每个工具由以下组件组成：</p>
+<p>组件说明
+| --- | --- |
+| <code>Args</code> |定义工具所需参数的可序列化数据类。|
+| <code>Result</code> |工具返回的可序列化类型的结果。如果要以自定义格式显示工具结果，请继承<a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool-result/-text-serializable/index.html">ToolResult.TextSerializable</a>类并实现<code>textForLLM(): String</code>方法|
+| <code>argsSerializer</code> |定义工具参数反序列化的重写变量。另请参阅<a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/args-serializer.html">argsSerializer</a>。|
+| <code>resultSerializer</code> |定义工具结果反序列化的重写变量。另请参阅<a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/result-serializer.html">resultSerializer</a>。如果您选择继承<a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool-result/-text-serializable/index.html">ToolResult.TextSerializable</a> ，请考虑使用<code>ToolResultUtils.toTextSerializer()</code> |
+| <code>descriptor</code> |指定工具元数据的重写变量： - <code>name</code> - <code>description</code> - <code>requiredParameters</code> （默认为空） - <code>optionalParameters</code> （默认为空）另请参阅<a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/descriptor.html">描述符</a>。|
+| <code>execute()</code> |实现工具逻辑的函数。它接受<code>Args</code>类型的参数并返回<code>Result</code>类型的结果。另请参阅execute ()。|</p>
+<p>Java Implementation</p>
+<p>In Java, instead of subclassing <code>Tool&lt;Args, Result&gt;</code>, use annotation-based methods with <code>@Tool</code> and <code>@LLMDescription</code>. The framework handles serialization and registration automatically through reflection. For more
+details, see <a href="#annotation-based-methods-java">Annotation-based methods</a> below.</p>
+<p>Tip</p>
+<p>Ensure your tools have clear descriptions and well-defined parameter names to make it easier for the LLM to understand and use them properly. In Kotlin, use the <code>descriptor</code> property; in Java, use <code>@LLMDescription</code> annotations.</p>
+<h3 id="usage-example"># Usage example</h3>
+<p>Here is an example of a custom tool implementation using the <code>Tool</code> class that returns a numeric result:</p>
+<p>Kotlin</p>
+<pre><code>// Implement a simple calculator tool that adds two digits
+object CalculatorTool : Tool&lt;CalculatorTool.Args, Int&gt;(
+    argsType = typeToken&lt;Args&gt;(),
+    resultType = typeToken&lt;Int&gt;(),
+    name = &quot;calculator&quot;,
+    description = &quot;A simple calculator that can add two digits (0-9).&quot;
+) {
+
+    // Arguments for the calculator tool
+    @Serializable
+    data class Args(
+        @property:LLMDescription(&quot;The first digit to add (0-9)&quot;)
+        val digit1: Int,
+        @property:LLMDescription(&quot;The second digit to add (0-9)&quot;)
+        val digit2: Int
+    ) {
+        init {
+            require(digit1 in 0..9) { &quot;digit1 must be a single digit (0-9)&quot; }
+            require(digit2 in 0..9) { &quot;digit2 must be a single digit (0-9)&quot; }
+        }
+    }
+
+    // Function to add two digits
+    override suspend fun execute(args: Args): Int = args.digit1 + args.digit2
+}
+</code></pre>
+<p>After implementing your tool, you need to add it to a tool registry and then use it with an agent. For details, see <a href="084-tools.html#tool-registry">Tool registry</a>.</p>
+<p>For more details, see <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/index.html">API reference</a>.</p>
+<h3 id="reading-the-agent-context-from-a-tool"># Reading the agent context from a tool</h3>
+<p>Tools that need the agent's full state (LLM context, run id, configuration, storage, ...) extend <code>AgentContextAwareTool&lt;Args, Result&gt;</code> instead of <code>Tool&lt;Args, Result&gt;</code>. The framework injects the live <code>AIAgentContext</code> driving the call, and the tool receives it as a typed parameter rather than reading it out of the argument schema.</p>
+<p>Kotlin</p>
+<pre><code>// A tool that reads the live AIAgentContext driving the call.
+object TracingCalculatorTool : AgentContextAwareTool&lt;TracingCalculatorTool.Args, Int&gt;(
+    argsType = typeToken&lt;Args&gt;(),
+    resultType = typeToken&lt;Int&gt;(),
+    name = &quot;tracing_calculator&quot;,
+    description = &quot;Adds two digits and emits a log line tagged with the agent run id.&quot;
+) {
+    @Serializable
+    data class Args(
+        @property:LLMDescription(&quot;The first digit to add (0-9)&quot;)
+        val digit1: Int,
+        @property:LLMDescription(&quot;The second digit to add (0-9)&quot;)
+        val digit2: Int
+    )
+
+    override suspend fun execute(args: Args, context: AIAgentContext): Int {
+        val runId = context.runId
+        // ... use runId for cross-cutting context (logging, tracing, correlation)
+        return args.digit1 + args.digit2
+    }
+}
+</code></pre>
+<p><code>AgentContextAwareTool</code> is dispatched by the framework via a per-call <code>ToolCallMetadata</code> side channel that the framework manages on the tool's behalf. Invoking such a tool outside an agent run throws <code>IllegalStateException</code> because no <code>AIAgentContext</code> was injected; production code should always go through <code>ContextualAgentEnvironment</code>, and unit tests can supply the context explicitly via <code>ToolCallMetadata.of(AgentContextAwareTool.AgentContextKey to context)</code>.</p>
+<h3 id="reading-raw-per-call-metadata"># Reading raw per-call metadata</h3>
+<p>A small number of tools want to read caller- or feature-contributed entries that are <em>not</em> the agent context (for example a distributed-tracing span id contributed by an observability feature). These tools extend <code>ToolBase&lt;Args, Result&gt;</code> directly, which exposes the full <code>ToolCallMetadata</code> bag:</p>
+<p>Kotlin</p>
+<pre><code>object SpanAwareCalculatorTool : ToolBase&lt;SpanAwareCalculatorTool.Args, Int&gt;(
+    argsType = typeToken&lt;Args&gt;(),
+    resultType = typeToken&lt;Int&gt;(),
+    name = &quot;span_aware_calculator&quot;,
+    description = &quot;Adds two digits, propagating a tracing span id from caller or feature metadata.&quot;
+) {
+    @Serializable
+    data class Args(
+        @property:LLMDescription(&quot;The first digit to add (0-9)&quot;)
+        val digit1: Int,
+        @property:LLMDescription(&quot;The second digit to add (0-9)&quot;)
+        val digit2: Int
+    )
+
+    override suspend fun execute(args: Args, metadata: ToolCallMetadata): Int {
+        val traceSpanId = metadata[&quot;trace.span.id&quot;] as? String
+        // ... use traceSpanId for cross-cutting context (logging, tracing, correlation)
+        return args.digit1 + args.digit2
+    }
+}
+</code></pre>
+<p>Callers can pass metadata through <code>SafeTool.execute(args, serializer, metadata)</code> or directly through <code>AIAgentEnvironment.executeTool(toolCall, metadata)</code>. Features can contribute metadata for every tool call during installation by calling <code>pipeline.provideToolCallMetadata(this) { eventContext -&gt; mapOf(...) }</code>. Caller-supplied metadata always wins over feature contributions on key collision.</p>
+<p>Existing tools that extend <code>Tool&lt;Args, Result&gt;</code> and override <code>execute(args)</code> continue to work unchanged: the framework dispatches them through the same path and discards any <code>ToolCallMetadata</code>. To opt in to metadata, switch to <code>AgentContextAwareTool</code> (typed context access) or <code>ToolBase</code> (raw bag access).</p>
+<h2 id="simpletool-class-kotlin"># SimpleTool class (Kotlin)</h2>
+<p>The <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-simple-tool/index.html"><code>SimpleTool&lt;Args&gt;</code></a> abstract class extends <code>Tool&lt;Args, ToolResult.Text&gt;</code> and simplifies the creation of tools that return text results.</p>
+<p>Each simple tool consists of the following components:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Args</code></td>
+<td>The serializable data class that defines arguments required for the custom tool.</td>
+</tr>
+<tr>
+<td><code>argsSerializer</code></td>
+<td>The overridden variable that defines how the arguments for the tool are serialized. See also <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/args-serializer.html">argsSerializer</a>.</td>
+</tr>
+<tr>
+<td><code>descriptor</code></td>
+<td>The overridden variable that specifies tool metadata: - <code>name</code> - <code>description</code> - <code>requiredParameters</code> (empty by default)  - <code>optionalParameters</code> (empty by default)  See also <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-tool/descriptor.html">descriptor</a>.</td>
+</tr>
+<tr>
+<td><code>doExecute()</code></td>
+<td>The overridden function that describes the main action performed by the tool. It takes arguments of type <code>Args</code> and returns a <code>String</code>. See also <a href="https://api.koog.ai/agents/agents-tools/ai.koog.agents.core.tools/-simple-tool/do-execute.html">doExecute()</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Java Implementation</p>
+<p>In Java, the equivalent approach is to use annotation-based methods that return <code>String</code>. The framework automatically handles the text result wrapping. For more details, see <a href="#annotation-based-methods-java">Annotation-based methods</a> below.</p>
+<p>Tip</p>
+<p>Ensure your tools have clear descriptions and well-defined parameter names to make it easier for the LLM to understand and use them properly. In Kotlin, use the <code>descriptor</code> and constructor parameters; in Java, use <code>@Tool</code> and <code>@LLMDescription</code> annotations.</p>
+<h3 id="usage-example_1"># Usage example</h3>
+<p>Here is an example of a custom tool implementation using <code>SimpleTool</code> in Kotlin:</p>
+<p>Kotlin</p>
+<pre><code>// Create a tool that casts a string expression to a double value
+object CastToDoubleTool : SimpleTool&lt;CastToDoubleTool.Args&gt;(
+    argsType = typeToken&lt;Args&gt;(),
+    name = &quot;cast_to_double&quot;,
+    description = &quot;casts the passed expression to double or returns 0.0 if the expression is not castable&quot;
+) {
+    // Define tool arguments
+    @Serializable
+    data class Args(
+        @property:LLMDescription(&quot;An expression to case to double&quot;)
+        val expression: String,
+        @property:LLMDescription(&quot;A comment on how to process the expression&quot;)
+        val comment: String
+    )
+
+    // Function that executes the tool with the provided arguments
+    override suspend fun execute(args: Args): String {
+        return &quot;Result: ${castToDouble(args.expression)}, &quot; + &quot;the comment was: ${args.comment}&quot;
+    }
+
+    // Function to cast a string expression to a double value
+    private fun castToDouble(expression: String): Double {
+        return expression.toDoubleOrNull() ?: 0.0
+    }
+}
+</code></pre>
+<h2 id="annotation-based-methods-java"># Annotation-based methods (Java)</h2>
+<p>To implement tools in Java, instead of subclassing <code>Tool</code> or <code>SimpleTool</code>, use annotation-based methods with <code>@Tool</code> and
+<code>@LLMDescription</code>. Koog handles serialization and registration automatically through reflection. To learn more about the
+implementation, see Java examples below.</p>
+<h3 id="usage-examples"># Usage examples</h3>
+<p>This is an example of a tool implementation in Java, equivalent to using the <code>Tool</code> class in Kotlin.</p>
+<p>Java</p>
+<pre><code>// Java equivalent: implement the tool as a Java method and register it via ToolRegistry.builder().
+// This is the recommended Java interop path instead of subclassing the Kotlin Tool base class.
+public final class CalculatorTool {
+    private CalculatorTool() {}
+
+    @Tool(customName = &quot;calculator&quot;)
+    @LLMDescription(description = &quot;A simple calculator that can add two digits (0-9).&quot;)
+    public static int calculator(
+            @LLMDescription(description = &quot;The first digit to add (0-9)&quot;) int digit1,
+            @LLMDescription(description = &quot;The second digit to add (0-9)&quot;) int digit2
+    ) {
+        if (digit1 &lt; 0 || digit1 &gt; 9) throw new IllegalArgumentException(&quot;digit1 must be a single digit (0-9)&quot;);
+        if (digit2 &lt; 0 || digit2 &gt; 9) throw new IllegalArgumentException(&quot;digit2 must be a single digit (0-9)&quot;);
+        return digit1 + digit2;
+    }
+
+    public static ToolRegistry registry() throws NoSuchMethodException {
+        return ToolRegistry.builder()
+            .tool(CalculatorTool.class.getMethod(&quot;calculator&quot;, int.class, int.class))
+            .build();
+    }
+}
+// Note: Subclassing the Kotlin Tool&lt;TArgs, TResult&gt; and overriding a suspend execute(...) from Java is not supported.
+// The Java interop uses reflection-based registration of Java methods as tools.
+</code></pre>
+<p>Here is an example of a tool implementation in Java, equivalent to using the <code>SimpleTool</code> class in Kotlin. This example
+implements a simple tool that returns a text result.</p>
+<p>Java</p>
+<pre><code>// Java equivalent of SimpleTool: provide a Java method and register it as a tool.
+public final class CastToDoubleTool {
+    private CastToDoubleTool() {}
+
+    @Tool(customName = &quot;cast_to_double&quot;)
+    @LLMDescription(description = &quot;casts the passed expression to double or returns 0.0 if the expression is not castable&quot;)
+    public static String castToDouble(
+            @LLMDescription(description = &quot;An expression to case to double&quot;) String expression,
+            @LLMDescription(description = &quot;A comment on how to process the expression&quot;) String comment
+    ) {
+        double value;
+        try {
+            value = Double.parseDouble(expression);
+        } catch (Exception e) {
+            value = 0.0;
+        }
+        return &quot;Result: &quot; + value + &quot;, the comment was: &quot; + comment;
+    }
+
+    public static ToolRegistry registry() throws NoSuchMethodException {
+        return ToolRegistry.builder()
+            .tool(CastToDoubleTool.class.getMethod(&quot;castToDouble&quot;, String.class, String.class))
+            .build();
+    }
+}
+// Note: Extending Kotlin SimpleTool&lt;TArgs&gt; from Java is not required; registering a Java method is the idiomatic approach.
+</code></pre>
+<h2 id="sending-tool-result-to-llm-in-custom-format"># Sending tool result to LLM in custom format</h2>
+<p>For Kotlin:</p>
+<p>If you are not happy with JSON results sent to LLM (in some cases, LLMs can work better if tool output is structured as Markdown, for instance), you have to follow the following steps:</p>
+<ol>
+<li>Implement <code>ToolResult.TextSerializable</code> interface, and override <code>textForLLM()</code> method</li>
+<li>Override <code>resultSerializer</code> using <code>ToolResultUtils.toTextSerializer&lt;T&gt;()</code></li>
+</ol>
+<p>For Java:</p>
+<p>Return formatted text (such as Markdown) directly as a <code>String</code> from your annotated method. The framework handles this automatically.</p>
+<h3 id="example"># Example</h3>
+<p>Here is an example showing custom formatted output in both Kotlin and Java:</p>
+<p>KotlinJava</p>
+<pre><code>// A tool that edits file
+object EditFile : Tool&lt;EditFile.Args, EditFile.Result&gt;(
+    argsType = typeToken&lt;Args&gt;(),
+    resultType = typeToken&lt;Result&gt;(),
+    name = &quot;edit_file&quot;,
+    description = &quot;Edits the given file&quot;
+) {
+    // Define tool arguments
+    @Serializable
+    public data class Args(
+        val path: String,
+        val original: String,
+        val replacement: String
+    )
+
+    @Serializable
+    public data class Result(
+        private val patchApplyResult: PatchApplyResult
+    ) {
+
+        @Serializable
+        public sealed interface PatchApplyResult {
+            @Serializable
+            public data class Success(val updatedContent: String) : PatchApplyResult
+
+            @Serializable
+            public sealed class Failure(public val reason: String) : PatchApplyResult
+        }
+
+        // Textual output (in Markdown format) that will be visible to the LLM after the tool finishes.
+        fun textForLLM(): String = markdown {
+            if (patchApplyResult is PatchApplyResult.Success) {
+                line {
+                    bold(&quot;Successfully&quot;).text(&quot; edited file (patch applied)&quot;)
+                }
+            } else {
+                line {
+                    text(&quot;File was &quot;)
+                        .bold(&quot;not&quot;)
+                        .text(&quot; modified (patch application failed: ${(patchApplyResult as PatchApplyResult.Failure).reason})&quot;)
+                }
+            }
+        }
+
+        override fun toString(): String = textForLLM()
+    }
+
+    // Function that executes the tool with the provided arguments
+    override suspend fun execute(args: Args): Result {
+        return TODO(&quot;Implement file edit&quot;)
+    }
+}
+</code></pre>
+<pre><code>import ai.koog.agents.core.tools.ToolRegistry;
+import ai.koog.agents.core.tools.annotations.LLMDescription;
+import ai.koog.agents.core.tools.annotations.Tool;
+
+// Java equivalent: return Markdown text directly to the LLM from a Java method and register it as a tool.
+// This avoids needing a custom serializable Result type (which would require Kotlin serialization support).
+public final class EditFile {
+    private EditFile() {}
+
+    @Tool(customName = &quot;edit_file&quot;)
+    @LLMDescription(description = &quot;Edits the given file&quot;)
+    public static String editFile(
+            String path,
+            String original,
+            String replacement
+    ) {
+        // TODO: Implement file edit logic; below is a placeholder illustrating Markdown output
+        boolean success = false;
+        if (success) {
+            return &quot;**Successfully** edited file (patch applied)&quot;;
+        } else {
+            return &quot;File was **not** modified (patch application failed: reason)&quot;;
+        }
+    }
+
+    public static ToolRegistry registry() throws NoSuchMethodException {
+        return ToolRegistry.builder()
+            .tool(EditFile.class.getMethod(&quot;editFile&quot;, String.class, String.class, String.class))
+            .build();
+    }
+}
+// Note: If you need a structured custom Result object from Java, you must expose a Kotlin @Serializable type
+// or another serializer-aware type. Returning String works out-of-the-box with Koog's Java interop.
+</code></pre>
+<p>After implementing your tool in Kotlin or Java, you need to add it to a tool registry and then use it with an agent.
+For details, see <a href="084-tools.html#tool-registry">Tool registry</a>.</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/tools/class-based-tools/">官方原文</a></div></main></div></body></html>

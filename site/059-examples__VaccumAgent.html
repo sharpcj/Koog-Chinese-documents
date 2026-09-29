@@ -1,0 +1,252 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>构建一个简单的吸尘器 Agent - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/examples/VaccumAgent/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1 active" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/examples/VaccumAgent/">https://docs.koog.ai/examples/VaccumAgent/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#为-vacuum-agent-创建工具">为 Vacuum Agent 创建工具</a><a class="l2" href="#设置-agent">设置 Agent</a><a class="l2" href="#运行-agent">运行 Agent</a></div><article class="content"><h1 id="agent">构建一个简单的吸尘器 Agent</h1>
+<p><a href="https://github.com/JetBrains/koog/blob/develop/examples/notebooks/VaccumAgent.ipynb">在 GitHub 上打开</a>
+ <a href="https://raw.githubusercontent.com/JetBrains/koog/develop/examples/notebooks/VaccumAgent.ipynb">下载 .ipynb</a></p>
+<p>在本 notebook 中，我们将探索如何使用新的 Kotlin agents framework 实现一个基本的 reflex agent。
+我们的示例是经典的“vacuum world”问题——
+一个有两个位置的简单环境，每个位置可以是 clean 或 dirty，而 agent 需要清理它们。</p>
+<p>首先，让我们理解环境模型：</p>
+<pre><code>import kotlin.random.Random
+
+/**
+ * Represents a simple vacuum world with two locations (A and B).
+ *
+ * The environment tracks:
+ * - The current location of the vacuum agent ('A' or 'B')
+ * - The cleanliness status of each location (true = dirty, false = clean)
+ */
+class VacuumEnv {
+    var location: Char = 'A'
+        private set
+
+    private val status = mutableMapOf(
+        'A' to Random.nextBoolean(),
+        'B' to Random.nextBoolean()
+    )
+
+    fun percept(): Pair&lt;Char, Boolean&gt; = location to status.getValue(location)
+
+    fun clean(): String {
+        status[location] = false
+        return &quot;cleaned&quot;
+    }
+
+    fun moveLeft(): String {
+        location = 'A'
+        return &quot;move to A&quot;
+    }
+
+    fun moveRight(): String {
+        location = 'B'
+        return &quot;move to B&quot;
+    }
+
+    fun isClean(): Boolean = status.values.all { it }
+
+    fun worldLayout(): String = &quot;${status.keys}&quot;
+
+    override fun toString(): String = &quot;location=$location, dirtyA=${status['A']}, dirtyB=${status['B']}&quot;
+}
+</code></pre>
+<p><code>VacuumEnv</code> 类对我们的简单世界建模：
+- 两个位置由字符 'A' 和 'B' 表示
+- 每个位置可以是 clean 或 dirty（随机初始化）
+- agent 在任意时刻可以位于其中一个位置
+- agent 可以感知自己的当前位置以及该位置是否 dirty
+- agent 可以执行操作：移动到指定位置，或清理当前位置</p>
+<h2 id="vacuum-agent">为 Vacuum Agent 创建工具</h2>
+<p>现在，让我们定义 AI agent 用于与环境交互的工具：</p>
+<pre><code>import ai.koog.agents.core.tools.annotations.LLMDescription
+import ai.koog.agents.core.tools.annotations.Tool
+import ai.koog.agents.core.tools.reflect.ToolSet
+
+/**
+ * Provides tools for the LLM agent to control the vacuum robot.
+ * All methods either mutate or read from the VacuumEnv passed to the constructor.
+ */
+@LLMDescription(&quot;Tools for controlling a two-cell vacuum world&quot;)
+class VacuumTools(private val env: VacuumEnv) : ToolSet {
+
+    @Tool
+    @LLMDescription(&quot;Returns current location and whether it is dirty&quot;)
+    fun sense(): String {
+        val (loc, dirty) = env.percept()
+        return &quot;location=$loc, dirty=$dirty, locations=${env.worldLayout()}&quot;
+    }
+
+    @Tool
+    @LLMDescription(&quot;Cleans the current cell&quot;)
+    fun clean(): String = env.clean()
+
+    @Tool
+    @LLMDescription(&quot;Moves the agent to cell A&quot;)
+    fun moveLeft(): String = env.moveLeft()
+
+    @Tool
+    @LLMDescription(&quot;Moves the agent to cell B&quot;)
+    fun moveRight(): String = env.moveRight()
+}
+</code></pre>
+<p><code>VacuumTools</code> 类在我们的 LLM agent 和环境之间创建一个接口：</p>
+<ul>
+<li>它实现了 Kotlin AI Agents framework 中的 <code>ToolSet</code></li>
+<li>每个工具都用 <code>@Tool</code> 注解，并带有面向 LLM 的描述</li>
+<li>这些工具允许 agent 感知环境并执行操作</li>
+<li>每个方法都会返回一个描述操作结果的字符串</li>
+</ul>
+<h2 id="agent_1">设置 Agent</h2>
+<p>接下来，我们将配置并创建 AI agent：</p>
+<pre><code>import ai.koog.agents.core.agent.AIAgent
+import ai.koog.agents.core.agent.config.AIAgentConfig
+import ai.koog.agents.core.tools.ToolRegistry
+import ai.koog.agents.core.tools.reflect.asTools
+import ai.koog.agents.ext.agent.chatAgentStrategy
+import ai.koog.agents.ext.tool.AskUser
+import ai.koog.agents.ext.tool.SayToUser
+import ai.koog.prompt.dsl.prompt
+import ai.koog.prompt.executor.clients.openai.OpenAIModels
+import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
+import ai.koog.prompt.params.LLMParams
+
+val env = VacuumEnv()
+val apiToken = System.getenv(&quot;OPENAI_API_KEY&quot;) ?: error(&quot;OPENAI_API_KEY environment variable not set&quot;)
+val executor = simpleOpenAIExecutor(apiToken = apiToken)
+
+val toolRegistry = ToolRegistry {
+    tool(SayToUser)
+    tool(AskUser)
+    tools(VacuumTools(env).asTools())
+}
+
+val systemVacuumPrompt = &quot;&quot;&quot;
+    You are a reflex vacuum-cleaner agent living in a two-cell world labelled A and B.
+    Your goal: make both cells clean, using the provided tools.
+    First, call sense() to inspect where you are. Then decide: if dirty → clean(); else moveLeft()/moveRight().
+    Continue until both cells are clean, then tell the user &quot;done&quot;.
+    Use sayToUser to inform the user about each step.
+&quot;&quot;&quot;.trimIndent()
+
+val agentConfig = AIAgentConfig(
+    prompt = prompt(&quot;chat&quot;, params = LLMParams(temperature = 1.0)) {
+        system(systemVacuumPrompt)
+    },
+    model = OpenAIModels.Chat.GPT4o,
+    maxAgentIterations = 50,
+)
+
+val agent = AIAgent(
+    promptExecutor = executor,
+    strategy = chatAgentStrategy(),
+    agentConfig = agentConfig,
+    toolRegistry = toolRegistry
+)
+</code></pre>
+<p>在此设置中：</p>
+<ol>
+<li>我们创建环境实例</li>
+<li>我们设置到 OpenAI 的 GPT-4o model 的连接</li>
+<li>我们注册 agent 可以使用的工具</li>
+<li>我们定义 system prompt，为 agent 提供目标和行为规则</li>
+<li>我们使用带有 chat strategy 的 <code>AIAgent</code> 构造函数创建 agent</li>
+</ol>
+<h2 id="agent_2">运行 Agent</h2>
+<p>最后，让我们运行 agent：</p>
+<pre><code>import kotlinx.coroutines.runBlocking
+
+runBlocking {
+    agent.run(&quot;Start cleaning, please&quot;)
+}
+</code></pre>
+<pre><code>Agent says: Currently in cell A. It's already clean.
+Agent says: Moved to cell B. It's already clean.
+</code></pre>
+<p>运行这段代码时：</p>
+<ol>
+<li>agent 收到开始清理的初始 prompt</li>
+<li>它使用工具感知环境并做出决策</li>
+<li>它会持续清理，直到两个单元格都 clean</li>
+<li>在整个过程中，它会不断告知用户自己正在做什么</li>
+</ol>
+<pre><code>// Finally we can validate that the work is finished by printing the env state
+
+env
+</code></pre>
+<pre><code>location=B, dirtyA=false, dirtyB=false
+</code></pre></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/examples/VaccumAgent/">官方原文</a></div></main></div></body></html>

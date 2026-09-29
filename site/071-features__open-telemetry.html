@@ -1,0 +1,913 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OpenTelemetry support - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/features/open-telemetry/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2" open><summary><a class="nav-node active" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/features/open-telemetry/">https://docs.koog.ai/features/open-telemetry/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#overview">Overview</a><a class="l2" href="#key-opentelemetry-concepts">Key OpenTelemetry concepts</a><a class="l2" href="#installation">Installation</a><a class="l2" href="#configuration">Configuration</a><a class="l3" href="#basic-configuration">Basic configuration</a><a class="l4" href="#setserviceinfo">setServiceInfo</a><a class="l4" href="#addspanexporter">addSpanExporter</a><a class="l4" href="#addspanprocessor">addSpanProcessor</a><a class="l4" href="#addresourceattributes">addResourceAttributes</a><a class="l4" href="#setverbose">setVerbose</a><a class="l4" href="#addmetricexporter">addMetricExporter</a><a class="l4" href="#addmetricfilter">addMetricFilter</a><a class="l3" href="#advanced-configuration">Advanced configuration</a><a class="l4" href="#resource-attributes">Resource attributes</a><a class="l2" href="#what-gets-traced">What gets traced</a><a class="l2" href="#span-types-and-attributes">Span types and attributes</a><a class="l3" href="#span-attributes">Span attributes</a><a class="l3" href="#message-content">Message content</a><a class="l2" href="#metrics">Metrics</a><a class="l3" href="#genaiprovidername">gen\ai.provider.name</a><a class="l3" href="#errortype">error.type</a><a class="l3" href="#restricttoolnamecardinality">restrictToolNameCardinality</a><a class="l2" href="#exporters">Exporters</a><a class="l3" href="#logging-exporter">Logging exporter</a><a class="l3" href="#opentelemetry-http-exporter">OpenTelemetry HTTP exporter</a><a class="l3" href="#opentelemetry-grpc-exporter">OpenTelemetry gRPC exporter</a><a class="l2" href="#integration-with-langfuse">Integration with Langfuse</a><a class="l2" href="#integration-with-wb-weave">Integration with W&amp;B Weave</a><a class="l2" href="#integration-with-datadog">Integration with Datadog</a><a class="l2" href="#integration-with-jaeger">Integration with Jaeger</a><a class="l3" href="#prerequisites">Prerequisites</a><a class="l3" href="#example">Example</a><a class="l2" href="#troubleshooting">Troubleshooting</a><a class="l3" href="#common-issues">Common issues</a><a class="l2" href="#mcp-model-context-protocol-telemetry-support">MCP (Model Context Protocol) telemetry support</a><a class="l3" href="#overview_1">Overview</a><a class="l3" href="#mcp-attributes">MCP attributes</a><a class="l3" href="#span-naming-convention">Span naming convention</a><a class="l3" href="#best-practices">Best practices</a><a class="l3" href="#example-full-mcp-client-with-telemetry">Example: Full MCP client with telemetry</a></div><article class="content"><h1 id="opentelemetry-support">OpenTelemetry support</h1>
+<p>This page provides details about the support for OpenTelemetry with the Koog agentic framework for tracing and
+monitoring your AI agents.</p>
+<h2 id="overview">Overview</h2>
+<p>OpenTelemetry is an observability framework that provides tools for generating, collecting, and exporting telemetry data
+(traces) from your applications. The Koog OpenTelemetry feature allows you to instrument your AI agents to collect
+telemetry data, which can help you:</p>
+<ul>
+<li>Monitor agent performance and behavior</li>
+<li>Debug issues in complex agent workflows</li>
+<li>Visualize the execution flow of your agents</li>
+<li>Track LLM calls and tool usage</li>
+<li>Analyze agent behavior patterns</li>
+</ul>
+<h2 id="key-opentelemetry-concepts">Key OpenTelemetry concepts</h2>
+<ul>
+<li><strong>Spans</strong>: spans represent individual units of work or operations within a distributed trace. They indicate the
+  beginning and end of a specific activity in an application, such as an agent execution, a function call, an LLM call,
+  or a tool call.</li>
+<li><strong>Attributes</strong>: attributes provide metadata about a telemetry-related item such as a span. Attributes are represented
+  as key-value pairs.</li>
+<li><strong>Events</strong>: events are specific points in time during the lifetime of a span (span-related events) that represent
+  something potentially noteworthy that happened.</li>
+<li><strong>Exporters</strong>: exporters are components responsible for sending the collected telemetry data to various backends or
+  destinations.</li>
+<li><strong>Collectors</strong>: collectors receive, process, and export telemetry data. They act as intermediaries between your
+  applications and your observability backend.</li>
+<li><strong>Samplers</strong>: samplers determine whether a trace should be recorded based on the sampling strategy. They are used to
+  manage the volume of telemetry data.</li>
+<li><strong>Resources</strong>: resources represent entities that produce telemetry data. They are identified by resource attributes,
+  which are key-value pairs that provide information about the resource.</li>
+</ul>
+<p>The OpenTelemetry feature in Koog automatically creates spans for various agent events, including:</p>
+<ul>
+<li>Agent execution start and end</li>
+<li>Node execution</li>
+<li>LLM calls</li>
+<li>Tool calls</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>To use OpenTelemetry with Koog, add the OpenTelemetry feature to your agent:</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = promptExecutor,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    systemPrompt = &quot;You are a helpful assistant.&quot;,
+    installFeatures = {
+        install(OpenTelemetry) {
+            // Configuration options go here
+        }
+    }
+)
+</code></pre>
+<pre><code>var agent = AIAgent.builder()
+    .promptExecutor(promptExecutor)
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .systemPrompt(&quot;You are a helpful assistant.&quot;)
+    .install(OpenTelemetry.Feature, config -&gt; {
+        // Configuration options go here
+    })
+    .build();
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<h3 id="basic-configuration">Basic configuration</h3>
+<p>Here is the full list of available properties that you set when configuring the OpenTelemetry feature in an agent:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serviceName</code></td>
+<td><code>String</code></td>
+<td><code>ai.koog</code></td>
+<td>The name of the service being instrumented.</td>
+</tr>
+<tr>
+<td><code>serviceVersion</code></td>
+<td><code>String</code></td>
+<td>Current Koog library version</td>
+<td>The version of the service being instrumented.</td>
+</tr>
+<tr>
+<td><code>isVerbose</code></td>
+<td><code>Boolean</code></td>
+<td><code>false</code></td>
+<td>Whether to enable verbose logging for debugging OpenTelemetry configuration.</td>
+</tr>
+<tr>
+<td><code>tracer</code></td>
+<td><code>Tracer</code></td>
+<td></td>
+<td>The OpenTelemetry tracer instance used for creating spans.</td>
+</tr>
+</tbody>
+</table>
+<p>Note</p>
+<p>The <code>tracer</code> property is a public property that you can access, but it is configured automatically based on the
+exporters and resource attributes you provide.</p>
+<p>The <code>OpenTelemetryConfig</code> class also includes methods that represent actions related to different configuration
+items. Here is an example of installing the OpenTelemetry feature with a basic set of configuration items:</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    // Set your service configuration
+    setServiceInfo(&quot;my-agent-service&quot;, &quot;1.0.0&quot;)
+
+    // Add the Logging exporter
+    addSpanExporter(LoggingSpanExporter.create())
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    // Set your service configuration
+    config.setServiceInfo(&quot;my-agent-service&quot;, &quot;1.0.0&quot;);
+
+    // Add the Logging exporter
+    config.addSpanExporter(LoggingSpanExporter.create());
+})
+</code></pre>
+<p>For a reference of available methods, see the sections below.</p>
+<h4 id="setserviceinfo">setServiceInfo</h4>
+<p>Sets the service information including name and version. Takes the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>serviceName</code></td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+<td>The name of the service being instrumented.</td>
+</tr>
+<tr>
+<td><code>serviceVersion</code></td>
+<td>String</td>
+<td>Yes</td>
+<td></td>
+<td>The version of the service being instrumented.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="addspanexporter">addSpanExporter</h4>
+<p>Adds a span exporter to send telemetry data to external systems. Takes the following argument:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>exporter</code></td>
+<td><code>SpanExporter</code></td>
+<td>Yes</td>
+<td></td>
+<td>The <code>SpanExporter</code> instance to be added to the list of custom span exporters.</td>
+</tr>
+</tbody>
+</table>
+<p>Both Kotlin SDK (<code>io.opentelemetry.kotlin.tracing.export.SpanExporter</code>) and Java SDK (<code>io.opentelemetry.sdk.trace.export.SpanExporter</code>) exporters are accepted. Java SDK exporters are automatically converted via the compat bridge.</p>
+<p>The exporter is registered behind a <code>batchSpanProcessor</code> — the OpenTelemetry-recommended default for production: spans are buffered and flushed on a worker so the agent never blocks on network I/O when a span ends. If you need full control over the processor (custom batching parameters, a simple processor for tests, or a composite processor), use <a href="#addspanprocessor"><code>addSpanProcessor</code></a> instead.</p>
+<h4 id="addspanprocessor">addSpanProcessor</h4>
+<p>Registers a <code>SpanProcessor</code> directly, bypassing the <code>batchSpanProcessor</code> wrapping done by <a href="#addspanexporter"><code>addSpanExporter</code></a>. The factory runs inside the SDK's <code>TraceExportConfigDsl</code> scope, which exposes <code>batchSpanProcessor</code>, <code>simpleSpanProcessor</code>, and <code>compositeSpanProcessor</code>. Takes the following argument:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>factory</code></td>
+<td><code>TraceExportConfigDsl.() -&gt; SpanProcessor</code></td>
+<td>Yes</td>
+<td></td>
+<td>Lambda that returns the <code>SpanProcessor</code> to register.</td>
+</tr>
+</tbody>
+</table>
+<p>Reach for this when:</p>
+<ul>
+<li>You want custom batching parameters: <code>addSpanProcessor { batchSpanProcessor(exporter, scheduleDelayMs = 500) }</code>.</li>
+<li>You want spans flushed synchronously (useful in tests): <code>addSpanProcessor { simpleSpanProcessor(exporter) }</code>.</li>
+<li>You want to fan out to several processors at once: <code>addSpanProcessor { compositeSpanProcessor(p1, p2) }</code>.</li>
+</ul>
+<p>For Java SDK exporters, wrap with <code>toOtelKotlinSpanExporter()</code> from the compat package first.</p>
+<h4 id="addresourceattributes">addResourceAttributes</h4>
+<p>Adds resource attributes to provide additional context about the service. Takes the following argument:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attributes</code></td>
+<td><code>Map&lt;String, Any&gt;</code></td>
+<td>Yes</td>
+<td></td>
+<td>The key-value pairs that provide additional details about the service. Supported value types: <code>String</code>, <code>Long</code>, <code>Double</code>, <code>Boolean</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="setverbose">setVerbose</h4>
+<p>Enables or disables verbose logging. Takes the following argument:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>verbose</code></td>
+<td><code>Boolean</code></td>
+<td>Yes</td>
+<td><code>false</code></td>
+<td>If true, the application collects more detailed telemetry data.</td>
+</tr>
+</tbody>
+</table>
+<p>Note</p>
+<p>Some content of OpenTelemetry spans is masked by default for security reasons. For example, LLM messages are masked as <code>HIDDEN:non-empty</code> instead of the actual message content. To get the content, set the value of the <code>verbose</code> argument to <code>true</code>.</p>
+<h4 id="addmetricexporter">addMetricExporter</h4>
+<p>Adds a metric exporter to send metric data to external systems. Takes the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>exporter</code></td>
+<td><code>MetricExporter</code></td>
+<td>Yes</td>
+<td></td>
+<td>The <code>MetricExporter</code> instance to register with a periodic metric reader.</td>
+</tr>
+<tr>
+<td><code>meterInterval</code></td>
+<td><code>Duration</code></td>
+<td>No</td>
+<td><code>1s</code></td>
+<td>The interval between metric reads. Also available as a <code>java.time.Duration</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>If no metric exporter is registered, metrics are disabled. Metrics are a JVM-only capability backed by the Java OpenTelemetry SDK; the Kotlin Multiplatform SDK 0.2.0 does not yet expose a metrics API.</p>
+<h4 id="addmetricfilter">addMetricFilter</h4>
+<p>Restricts the attribute keys that are reported for a specific metric instrument. This installs an OpenTelemetry <code>View</code> that drops any attribute not listed. Takes the following arguments:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metricName</code></td>
+<td><code>String</code></td>
+<td>Yes</td>
+<td></td>
+<td>The name of the metric instrument to apply the filter to.</td>
+</tr>
+<tr>
+<td><code>keysToRetain</code></td>
+<td><code>Set&lt;String&gt;</code></td>
+<td>Yes</td>
+<td></td>
+<td>The attribute keys that should be retained for this metric.</td>
+</tr>
+</tbody>
+</table>
+<p>Use this to keep high-cardinality attributes (for example, request identifiers) from blowing up your metric backend while still exporting the metric itself.</p>
+<h3 id="advanced-configuration">Advanced configuration</h3>
+<p>For more advanced configuration, you can also customize resource attributes to add more information about the process that is producing telemetry data.</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    // Set your service configuration
+    setServiceInfo(&quot;my-agent-service&quot;, &quot;1.0.0&quot;)
+
+    // Add the Logging exporter
+    addSpanExporter(LoggingSpanExporter.create())
+
+    // Add resource attributes
+    addResourceAttributes(mapOf(
+        &quot;custom.attribute&quot; to &quot;custom-value&quot;)
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    // Set your service configuration
+    config.setServiceInfo(&quot;my-agent-service&quot;, &quot;1.0.0&quot;);
+
+    // Add the Logging exporter
+    config.addSpanExporter(LoggingSpanExporter.create());
+
+    // Add resource attributes
+    config.addResourceAttributes(Map.of(
+        &quot;custom.attribute&quot;, &quot;custom-value&quot;
+    ));
+})
+</code></pre>
+<h4 id="resource-attributes">Resource attributes</h4>
+<p>Resource attributes represent additional information about a process producing telemetry data. Koog includes a set of
+resource attributes that are set by default:</p>
+<ul>
+<li><code>service.name</code></li>
+<li><code>service.version</code></li>
+<li><code>service.instance.time</code></li>
+<li><code>os.type</code></li>
+<li><code>os.version</code></li>
+<li><code>os.arch</code></li>
+</ul>
+<p>The default value of the <code>service.name</code> attribute is <code>ai.koog</code>, while the default <code>service.version</code> value is the
+currently used Koog library version.</p>
+<p>In addition to default resource attributes, you can also add custom attributes. To add a custom attribute to an
+OpenTelemetry configuration in Koog, use the <code>addResourceAttributes()</code> method in an OpenTelemetry configuration that
+takes a key and a value as its arguments.</p>
+<p>KotlinJava</p>
+<pre><code>addResourceAttributes(mapOf(
+    &quot;custom.attribute&quot; to &quot;custom-value&quot;)
+)
+</code></pre>
+<pre><code>config.addResourceAttributes(Map.of(
+    &quot;custom.attribute&quot;, &quot;custom-value&quot;
+));
+</code></pre>
+<h2 id="what-gets-traced">What gets traced</h2>
+<p>The OpenTelemetry feature captures the following agent activity:</p>
+<ul>
+<li><strong>Agent lifecycle events</strong>: agent start, stop, errors</li>
+<li><strong>LLM interactions</strong>: prompts, responses, token usage, latency, and failures (spans are marked with span status <code>ERROR</code> and <code>error.type</code> when an LLM call throws)</li>
+<li><strong>Tool calls</strong>: execution traces for tool invocations</li>
+<li><strong>System context</strong>: metadata such as model name, environment, Koog version</li>
+</ul>
+<p>By default, the contents of LLM prompts and responses are masked in exported spans to avoid exposing sensitive data.
+To include the full content, call <a href="#setverbose"><code>setVerbose(true)</code></a>.</p>
+<p>For a detailed breakdown of individual span types and attributes, see <a href="#span-types-and-attributes">Span types and attributes</a>.</p>
+<h2 id="span-types-and-attributes">Span types and attributes</h2>
+<p>The OpenTelemetry feature automatically creates different types of spans to track various operations in your agent:</p>
+<ul>
+<li><strong>CreateAgentSpan</strong>: created when you run an agent, closed when the agent is closed or the process is terminated.</li>
+<li><strong>InvokeAgentSpan</strong>: the invocation of an agent.</li>
+<li><strong>StrategySpan</strong>: the execution of an agent's strategy (the top-level execution flow).</li>
+<li><strong>NodeExecuteSpan</strong>: the execution of a node in the agent's strategy. This is a custom, Koog-specific span.</li>
+<li><strong>SubgraphExecuteSpan</strong>: the execution of a subgraph within the agent strategy. This is a custom, Koog-specific span.</li>
+<li><strong>InferenceSpan</strong>: an LLM call.</li>
+<li><strong>ExecuteToolSpan</strong>: a tool call.</li>
+<li><strong>McpClientSpan</strong>: an MCP (Model Context Protocol) client operation. This span follows OpenTelemetry semantic conventions for MCP.</li>
+</ul>
+<p>Spans are organized in a nested, hierarchical structure. Here is an example of a span structure:</p>
+<pre><code>CreateAgentSpan
+    InvokeAgentSpan
+        StrategySpan
+            NodeExecuteSpan
+                InferenceSpan
+            NodeExecuteSpan
+                ExecuteToolSpan
+            SubgraphExecuteSpan
+                NodeExecuteSpan
+                    InferenceSpan
+</code></pre>
+<h3 id="span-attributes">Span attributes</h3>
+<p>Span attributes provide metadata related to a span. Each span has its set of attributes, while some spans can also
+repeat attributes.</p>
+<p>Koog supports a list of predefined attributes that follow OpenTelemetry's <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-spans/">Semantic conventions for generative AI spans</a>. For example, the conventions define an attribute named
+<code>gen_ai.conversation.id</code>, which is usually a required attribute for a span. In Koog, the value of this attribute is the
+unique identifier for an agent run, that is automatically set when you call the <code>agent.run()</code> method.</p>
+<p>In addition, Koog also includes custom, Koog-specific attributes. You can recognize most of these attributes by the
+<code>koog.</code> prefix. Here are the available custom attributes:</p>
+<ul>
+<li><code>koog.strategy.name</code>: the name of the agent strategy. A strategy is a Koog-related entity that describes the
+  purpose of the agent. Used in the <code>StrategySpan</code> span.</li>
+<li><code>koog.node.id</code>: the identifier (name) of the node being executed. Used in the <code>NodeExecuteSpan</code> span.</li>
+<li><code>koog.node.input</code>: the input passed to the node at the beginning of execution. Present on <code>NodeExecuteSpan</code> when node starts.</li>
+<li><code>koog.node.output</code>: the output produced by the node upon completion. Present on <code>NodeExecuteSpan</code> when node completes successfully.</li>
+<li><code>koog.subgraph.id</code>: the identifier (name) of the subgraph being executed. Used in the <code>SubgraphExecuteSpan</code> span.</li>
+<li><code>koog.subgraph.input</code>: the input passed to the subgraph at the beginning of execution. Present on <code>SubgraphExecuteSpan</code> when subgraph starts.</li>
+<li><code>koog.subgraph.output</code>: the output produced by the subgraph upon completion. Present on <code>SubgraphExecuteSpan</code> when subgraph completes successfully.</li>
+<li><code>koog.moderation.result</code>: the JSON-encoded moderation outcome for the LLM call when one is available. Present on the <code>InferenceSpan</code> only when moderation was performed for the call. The OpenTelemetry GenAI semantic conventions do not define a moderation attribute, so Koog publishes this under the <code>koog.</code> namespace.</li>
+</ul>
+<h3 id="message-content">Message content</h3>
+<p>Per the OpenTelemetry GenAI semantic conventions, message content is carried on the <code>InferenceSpan</code> via two span
+attributes rather than per-message events:</p>
+<ul>
+<li><code>gen_ai.input.messages</code>: a JSON array of the messages sent to the model (system / user / assistant / tool roles).</li>
+<li><code>gen_ai.output.messages</code>: a JSON array of the messages returned by the model.</li>
+</ul>
+<p>Earlier versions of Koog emitted per-message OpenTelemetry events
+(<code>gen_ai.system.message</code>, <code>gen_ai.user.message</code>, <code>gen_ai.assistant.message</code>, <code>gen_ai.tool.message</code>, <code>gen_ai.choice</code>)
+to capture message content. Those events have been removed from the OpenTelemetry GenAI specification and are no longer
+emitted by Koog. Backends that still expect the indexed <code>gen_ai.prompt.{i}.*</code> / <code>gen_ai.completion.{i}.*</code> shape (Langfuse, Weave) continue to receive it through the corresponding span adapters.</p>
+<h2 id="metrics">Metrics</h2>
+<p>In addition to spans, the OpenTelemetry feature emits metrics that follow OpenTelemetry's <a href="https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-metrics/">Semantic conventions for GenAI metrics</a>. Metrics are exported through the meter provider configured via <a href="#addmetricexporter">addMetricExporter</a>; if no exporter is registered, a console <code>LoggingMetricExporter</code> is used by default.</p>
+<p>The following instruments are registered:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Instrument</th>
+<th>Unit</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gen_ai.client.token.usage</code></td>
+<td>Histogram</td>
+<td><code>{token}</code></td>
+<td>Token usage reported for each LLM call, split by <code>gen_ai.token.type</code> (<code>input</code>/<code>output</code>).</td>
+</tr>
+<tr>
+<td><code>gen_ai.client.operation.duration</code></td>
+<td>Histogram</td>
+<td><code>s</code></td>
+<td>Duration of GenAI operations — both <code>text_completion</code> (LLM calls) and <code>execute_tool</code> (tool invocations).</td>
+</tr>
+<tr>
+<td><code>koog.gen_ai.client.tool.call.count</code></td>
+<td>Counter</td>
+<td><code>{call}</code></td>
+<td>Koog-specific counter of tool calls performed by the agent, labelled by tool name and call status.</td>
+</tr>
+</tbody>
+</table>
+<p>Explicit histogram bucket boundaries are provided as advice in line with the semantic conventions:</p>
+<ul>
+<li><code>gen_ai.client.token.usage</code>: <code>[1, 4, 16, 64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304, 16777216, 67108864]</code></li>
+<li><code>gen_ai.client.operation.duration</code>: <code>[0.01, 0.02, 0.04, 0.08, 0.16, 0.32, 0.64, 1.28, 2.56, 5.12, 10.24, 20.48, 40.96, 81.92]</code></li>
+</ul>
+<h3 id="gen_aiprovidername">gen_ai.provider.name</h3>
+<p>Every data point carries a <code>gen_ai.provider.name</code> attribute:</p>
+<ul>
+<li>For <code>text_completion</code> operations, the value is the LLM provider id (for example, <code>openai</code>, <code>anthropic</code>).</li>
+<li>For <code>execute_tool</code> operations, the value is <code>koog</code>, because tool execution happens in-process rather than against a third-party provider. MCP tool executions keep this value and surface MCP-specific details through separate <code>mcp.*</code> attributes on the corresponding span, so tool metrics stay at low cardinality.</li>
+</ul>
+<h3 id="errortype">error.type</h3>
+<p><code>error.type</code> is set only on failed <code>gen_ai.client.operation.duration</code> data points, per the GenAI semconv requirement. The value is the canonical Java class name of the error that caused the failure, so it is bounded by the exception hierarchy and safe to use as a metric dimension:</p>
+<ul>
+<li>Subclasses of <code>AIAgentError</code> — for <code>execute_tool</code> failures and tool validation failures.</li>
+<li>Any <code>Throwable</code> raised by the LLM client or agent runtime — for <code>text_completion</code> failures that surface through the agent-level failure hook.</li>
+<li><code>_OTHER</code> — fallback when an in-flight operation is flushed at agent close without an associated error.</li>
+</ul>
+<p>The attribute is not set on successful operations.</p>
+<h3 id="restricttoolnamecardinality">restrictToolNameCardinality</h3>
+<p>Tool metrics are labeled with <code>gen_ai.tool.name</code>. If you expose tools whose names are dynamic or user-generated, the tool-name cardinality can grow without bound. Use <code>restrictToolNameCardinality</code> to map any name outside an allow-list to a single fallback value.</p>
+<p>For metric-specific attribute filtering that applies to any instrument and any attribute key, use <a href="#addmetricfilter">addMetricFilter</a>.</p>
+<h2 id="exporters">Exporters</h2>
+<p>Exporters send collected telemetry data to an OpenTelemetry Collector or other types of destinations or backend
+implementations. To add an exporter, use the <code>addSpanExporter()</code> method when installing the OpenTelemetry feature. The
+method takes the following argument:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>exporter</code></td>
+<td>SpanExporter</td>
+<td>Yes</td>
+<td></td>
+<td>The SpanExporter instance to be added to the list of custom span exporters.</td>
+</tr>
+</tbody>
+</table>
+<p>The sections below provide information about some of the most commonly used exporters. Koog accepts both Kotlin SDK and Java SDK exporters — Java SDK exporters are automatically converted via the compat bridge.</p>
+<p>Note</p>
+<p>If you do not configure any custom exporters, Koog will use a console stdout exporter by default. This helps during local development and debugging.</p>
+<h3 id="logging-exporter">Logging exporter</h3>
+<p>A logging exporter that outputs trace information to the console. <code>LoggingSpanExporter</code>
+(<code>io.opentelemetry.exporter.logging.LoggingSpanExporter</code>) is a part of the <code>opentelemetry-java</code> SDK.</p>
+<p>This type of export is useful for development and debugging purposes.</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    // Add the logging exporter
+    addSpanExporter(LoggingSpanExporter.create())
+    // Add more exporters as needed
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    // Add the logging exporter
+    config.addSpanExporter(LoggingSpanExporter.create());
+    // Add more exporters as needed
+})
+</code></pre>
+<h3 id="opentelemetry-http-exporter">OpenTelemetry HTTP exporter</h3>
+<p>OpenTelemetry HTTP exporter (<code>OtlpHttpSpanExporter</code>) is a part of the <code>opentelemetry-java</code> SDK
+(<code>io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter</code>) and sends span data to a backend through HTTP.</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    // Add OpenTelemetry HTTP exporter 
+    addSpanExporter(
+        OtlpHttpSpanExporter.builder()
+            // Set the maximum time to wait for the collector to process an exported batch of spans 
+            .setTimeout(30, TimeUnit.SECONDS)
+            // Set the OpenTelemetry endpoint to connect to
+            .setEndpoint(&quot;http://localhost:3000/api/public/otel/v1/traces&quot;)
+            // Add the authorization header
+            .addHeader(&quot;Authorization&quot;, &quot;Basic $AUTH_STRING&quot;)
+            .build()
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    // Add OpenTelemetry HTTP exporter
+    config.addSpanExporter(
+        OtlpHttpSpanExporter.builder()
+            // Set the maximum time to wait for the collector to process an exported batch of spans
+            .setTimeout(30, TimeUnit.SECONDS)
+            // Set the OpenTelemetry endpoint to connect to
+            .setEndpoint(&quot;http://localhost:3000/api/public/otel/v1/traces&quot;)
+            // Add the authorization header
+            .addHeader(&quot;Authorization&quot;, &quot;Basic &quot; + AUTH_STRING)
+            .build()
+    );
+})
+</code></pre>
+<h3 id="opentelemetry-grpc-exporter">OpenTelemetry gRPC exporter</h3>
+<p>OpenTelemetry gRPC exporter (<code>OtlpGrpcSpanExporter</code>) is a part of the <code>opentelemetry-java</code> SDK
+(<code>io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter</code>). It exports telemetry data to a backend through gRPC and
+lets you define the host and port of the backend, collector, or endpoint that receives the data. The default port is
+<code>4317</code>.</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    // Add OpenTelemetry gRPC exporter 
+    addSpanExporter(
+        OtlpGrpcSpanExporter.builder()
+            // Set the host and the port
+            .setEndpoint(&quot;http://localhost:4317&quot;)
+            .build()
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    // Add OpenTelemetry gRPC exporter
+    config.addSpanExporter(
+        OtlpGrpcSpanExporter.builder()
+            // Set the host and the port
+            .setEndpoint(&quot;http://localhost:4317&quot;)
+            .build()
+    );
+})
+</code></pre>
+<h2 id="integration-with-langfuse">Integration with Langfuse</h2>
+<p>Langfuse provides trace visualization and analytics for LLM/agent workloads.</p>
+<p>You can configure Koog to export OpenTelemetry traces directly to Langfuse using a helper function:</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    addLangfuseExporter(
+        langfuseUrl = &quot;https://cloud.langfuse.com&quot;,
+        langfusePublicKey = &quot;...&quot;,
+        langfuseSecretKey = &quot;...&quot;
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    LangfuseKt.addLangfuseExporter(
+        config,
+        &quot;https://cloud.langfuse.com&quot;,
+        &quot;...&quot;,
+        &quot;...&quot;
+    );
+})
+</code></pre>
+<p>Please read the <a href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">full documentation</a> about integration with Langfuse.</p>
+<h2 id="integration-with-wb-weave">Integration with W&amp;B Weave</h2>
+<p>W&amp;B Weave provides trace visualization and analytics for LLM/agent workloads. Integration with W&amp;B Weave can be configured via a predefined exporter:</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    addWeaveExporter(
+        weaveOtelBaseUrl = &quot;https://trace.wandb.ai&quot;,
+        weaveEntity = &quot;my-team&quot;,
+        weaveProjectName = &quot;my-project&quot;,
+        weaveApiKey = &quot;...&quot;
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    WeaveKt.addWeaveExporter(
+        config,
+        &quot;https://trace.wandb.ai&quot;,
+        &quot;my-team&quot;,
+        &quot;my-project&quot;,
+        &quot;...&quot;
+    );
+})
+</code></pre>
+<p>Please read the <a href="074-features__open-telemetry__opentelemetry-weave-exporter.html">full documentation</a> about integration with W&amp;B Weave.</p>
+<h2 id="integration-with-datadog">Integration with Datadog</h2>
+<p>Datadog provides monitoring, observability, and analytics for cloud-scale applications. Integration with Datadog can be configured via a predefined exporter:</p>
+<p>KotlinJava</p>
+<pre><code>install(OpenTelemetry) {
+    addDatadogExporter(
+        datadogApiKey = &quot;...&quot;,
+        url = &quot;datadoghq.com&quot;
+    )
+}
+</code></pre>
+<pre><code>install(OpenTelemetry.Feature, config -&gt; {
+    DatadogKt.addDatadogExporter(
+        config,
+        &quot;...&quot;,           // datadogApiKey
+        &quot;datadoghq.com&quot;  // url
+    );
+})
+</code></pre>
+<p>Please read the <a href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">full documentation</a> about integration with Datadog.</p>
+<h2 id="integration-with-jaeger">Integration with Jaeger</h2>
+<p>Jaeger is a popular distributed tracing system that works with OpenTelemetry. The <code>opentelemetry</code> directory within
+<code>examples</code> in the Koog repository includes an example of using OpenTelemetry with Jaeger and Koog agents.</p>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>To test OpenTelemetry with Koog and Jaeger, start the Jaeger OpenTelemetry all-in-one process using the provided
+<code>docker-compose.yaml</code> file, by running the following command:</p>
+<pre><code>docker compose up -d
+</code></pre>
+<p>The provided Docker Compose YAML file includes the following content:</p>
+<pre><code># docker-compose.yaml
+services:
+  jaeger-all-in-one:
+    image: jaegertracing/all-in-one:1.39
+    container_name: jaeger-all-in-one
+    environment:
+      - COLLECTOR_OTLP_ENABLED=true
+    ports:
+      - &quot;4317:4317&quot;
+      - &quot;16686:16686&quot;
+</code></pre>
+<p>To access the Jaeger UI and view your traces, open <code>http://localhost:16686</code>.</p>
+<h3 id="example">Example</h3>
+<p>To export telemetry data for use in Jaeger, the example uses <code>LoggingSpanExporter</code>
+(<code>io.opentelemetry.exporter.logging.LoggingSpanExporter</code>) and <code>OtlpGrpcSpanExporter</code>
+(<code>io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter</code>) from the <code>opentelemetry-java</code> SDK.</p>
+<p>Here is the full code sample:</p>
+<p>KotlinJava</p>
+<pre><code>fun main() = runBlocking {
+    val agent = AIAgent(
+        promptExecutor = promptExecutor,
+        llmModel = OpenAIModels.Chat.O4Mini,
+        systemPrompt = &quot;You are a code assistant. Provide concise code examples.&quot;
+    ) {
+        install(OpenTelemetry) {
+            // Add a console logger for local debugging
+            addSpanExporter(LoggingSpanExporter.create())
+
+            // Send traces to OpenTelemetry collector
+            addSpanExporter(
+                OtlpGrpcSpanExporter.builder()
+                    .setEndpoint(&quot;http://localhost:4317&quot;)
+                    .build()
+            )
+        }
+    }
+
+    agent.use { agent -&gt;
+        println(&quot;Running the agent with OpenTelemetry tracing...&quot;)
+
+        val result = agent.run(&quot;Tell me a joke about programming&quot;)
+
+        println(&quot;Agent run completed with result: '$result'.&quot; +
+                &quot;\nCheck Jaeger UI at http://localhost:16686 to view traces&quot;)
+    }
+}
+</code></pre>
+<pre><code>public static void main(String[] args) {
+    var agent = AIAgent.builder()
+        .promptExecutor(promptExecutor)
+        .llmModel(OpenAIModels.Chat.O4Mini)
+        .systemPrompt(&quot;You are a code assistant. Provide concise code examples.&quot;)
+        .install(OpenTelemetry.Feature, config -&gt; {
+            // Add a console logger for local debugging
+            config.addSpanExporter(LoggingSpanExporter.create());
+
+            // Send traces to OpenTelemetry collector
+            config.addSpanExporter(
+                OtlpGrpcSpanExporter.builder()
+                    .setEndpoint(&quot;http://localhost:4317&quot;)
+                    .build()
+            );
+        })
+        .build();
+
+    System.out.println(&quot;Running the agent with OpenTelemetry tracing...&quot;);
+
+    var result = agent.run(&quot;Tell me a joke about programming&quot;);
+
+    System.out.println(
+        &quot;Agent run completed with result: '&quot; + result + &quot;'.&quot; +
+            &quot;\nCheck Jaeger UI at http://localhost:16686 to view traces&quot;
+    );
+}
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common issues</h3>
+<ol>
+<li>
+<p><strong>No traces appearing in the backend</strong></p>
+</li>
+<li>
+<p>Confirm all required environment variables are set and exported in your shell.</p>
+</li>
+<li>Verify that your API key or secret is valid, has not been revoked, and has write/trace permissions.</li>
+<li>Ensure the service is running and the OpenTelemetry port (4317) is accessible.</li>
+<li>Check that the exporter is configured with the correct endpoint.</li>
+<li>Wait a few seconds after agent execution — traces may not appear instantly.</li>
+<li>
+<p><strong>Connection issues</strong></p>
+</li>
+<li>
+<p>Confirm your environment can reach the exporter's intake endpoint.</p>
+</li>
+<li>Check for firewall or proxy settings that block outbound HTTPS traffic.</li>
+<li>
+<p><strong>Missing spans or incomplete traces</strong></p>
+</li>
+<li>
+<p>Verify that the agent execution completes successfully.</p>
+</li>
+<li>Ensure that you're not closing the application too quickly after agent execution.</li>
+<li>Add a delay after agent execution to allow time for spans to be exported.</li>
+<li>
+<p><strong>Excessive number of spans</strong></p>
+</li>
+<li>
+<p>Consider using a different sampling strategy by configuring the <code>sampler</code> property.</p>
+</li>
+<li>For example, use <code>Sampler.traceIdRatioBased(0.1)</code> to sample only 10% of traces.</li>
+<li>
+<p><strong>Span adapters override each other</strong></p>
+</li>
+<li>
+<p>Currently, the OpenTelemetry agent feature does not support applying multiple span adapters <a href="https://youtrack.jetbrains.com/issue/KG-265/Adding-Weave-exporter-breaks-Langfuse-exporter">KG-265</a>.</p>
+</li>
+</ol>
+<h2 id="mcp-model-context-protocol-telemetry-support">MCP (Model Context Protocol) telemetry support</h2>
+<p>Koog provides comprehensive OpenTelemetry instrumentation for MCP operations following the <a href="https://github.com/open-telemetry/semantic-conventions/pull/2083">official OpenTelemetry semantic conventions for MCP</a>.</p>
+<h3 id="overview_1">Overview</h3>
+<p>The MCP telemetry support includes:</p>
+<ul>
+<li><strong>Automatic enrichment</strong> of tool execution spans with MCP-specific attributes</li>
+<li><strong>Client-side instrumentation</strong> for MCP client operations (tools/call)</li>
+<li><strong>Full semantic convention compliance</strong> with all required, conditionally required, and recommended attributes</li>
+</ul>
+<h3 id="mcp-attributes">MCP attributes</h3>
+<p>MCP telemetry follows OpenTelemetry semantic conventions and includes the following attribute groups:</p>
+<p><strong>Required attributes:</strong>
+- <code>mcp.method.name</code>: The MCP method name (e.g., "tools/call")</p>
+<p><strong>Conditionally required attributes:</strong>
+- <code>gen_ai.tool.name</code>: When operation involves a tool
+- <code>gen_ai.prompt.name</code>: When operation involves a prompt
+- <code>jsonrpc.request.id</code>: When executing a request (not a notification)
+- <code>error.type</code>: When operation fails</p>
+<p><strong>Recommended attributes:</strong>
+- <code>mcp.session.id</code>: Session identifier
+- <code>mcp.protocol.version</code>: MCP protocol version (e.g., "2025-06-18")
+- <code>network.transport</code>: Transport type ("pipe" for stdio, "tcp" for HTTP)
+- <code>server.address</code> and <code>server.port</code>: For client operations</p>
+<h3 id="span-naming-convention">Span naming convention</h3>
+<p>MCP spans follow the naming convention: <code>{mcp.method.name} {target}</code></p>
+<p>Where <code>{target}</code> is the tool name or prompt name when applicable. Examples:
+- <code>"tools/call search"</code> - calling a tool named "search"</p>
+<h3 id="best-practices">Best practices</h3>
+<ul>
+<li><strong>Always set session IDs</strong> when working with persistent MCP sessions to enable session tracking</li>
+<li><strong>Propagate request IDs</strong> from JSON-RPC requests for complete request tracing</li>
+<li><strong>Monitor metrics</strong> to identify performance bottlenecks in MCP operations</li>
+</ul>
+<h3 id="example-full-mcp-client-with-telemetry">Example: Full MCP client with telemetry</h3>
+<p>Kotlin</p>
+<pre><code>// Create MCP tools registry
+val toolRegistry = McpToolRegistryProvider.fromSseUrl(&quot;http://localhost:3000&quot;)
+
+// Create agent with OpenTelemetry enabled and pass the tool registry
+val agent = AIAgent(
+    promptExecutor = promptExecutor,
+    llmModel = OpenAIModels.Chat.GPT4o,
+    systemPrompt = &quot;You are a helpful assistant.&quot;,
+    toolRegistry = toolRegistry
+) {
+    install(OpenTelemetry) {
+        setServiceInfo(&quot;mcp-agent-service&quot;, &quot;1.0.0&quot;)
+        addSpanExporter(LoggingSpanExporter.create())
+    }
+}
+
+// Run agent - MCP tool calls will be automatically instrumented
+agent.use {
+    it.run(&quot;Use the search tool to find information&quot;)
+}
+</code></pre>
+<p>This setup provides complete observability for MCP operations with minimal code changes, following OpenTelemetry best practices and semantic conventions.</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/features/open-telemetry/">官方原文</a></div></main></div></body></html>

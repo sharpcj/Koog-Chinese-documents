@@ -1,0 +1,244 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>检索增强生成（RAG） - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/retrieval-augmented-generation/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2 active" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/retrieval-augmented-generation/">https://docs.koog.ai/retrieval-augmented-generation/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#koog-当前提供的能力">Koog 当前提供的能力</a><a class="l2" href="#使用-embeddingstorage-嵌入和检索文档">使用 EmbeddingStorage 嵌入和检索文档</a><a class="l2" href="#将相关性搜索作为-agent-工具提供agentic-rag">将相关性搜索作为 agent 工具提供（agentic RAG）</a><a class="l2" href="#可用实现">可用实现</a><a class="l3" href="#向量存储后端">向量存储后端</a><a class="l3" href="#文档嵌入器">文档嵌入器</a><a class="l3" href="#组合式存储实现">组合式存储实现</a><a class="l2" href="#当前限制">当前限制</a><a class="l2" href="#如何选择起点">如何选择起点</a><a class="l2" href="#另请参阅">另请参阅</a></div><article class="content"><h1 id="rag">检索增强生成（RAG）</h1>
+<p>Beta</p>
+<p>此功能属于 beta 模块（<code>1.3.0-beta</code>）。API 可能会在未来版本中发生变化。
+详情请参阅<a href="021-module-versioning.html">模块版本管理</a>。</p>
+<p>Koog 提供了检索增强生成（RAG）的构建块：嵌入文本、存储已嵌入的文档，以及为查询检索最相关的结果。</p>
+<p>本页重点介绍当前 <code>rag</code> 模块中可用的内容以及如何使用它。</p>
+<h2 id="koog">Koog 当前提供的能力</h2>
+<p>当前 RAG 支持拆分为两个模块：</p>
+<ul>
+<li><code>rag-base</code>：用于检索、存储、搜索请求、过滤以及文件/文档提供者的通用抽象</li>
+<li><code>rag-vector</code>：将文档嵌入与向量存储结合起来的本地实现</li>
+</ul>
+<h2 id="embeddingstorage">使用 EmbeddingStorage 嵌入和检索文档</h2>
+<p>最完整的开箱即用 RAG 流程使用 <code>rag-vector</code> 模块中的 <code>EmbeddingStorage</code>。它将 <code>DocumentEmbedder</code>（把文档转换为向量）与 <code>VectorStorageBackend</code>（持久化向量）结合在一起。</p>
+<p>步骤如下：</p>
+<ol>
+<li>创建一个由嵌入模型（Ollama 或 OpenAI）支持的 <code>Embedder</code>。</li>
+<li>创建一个读取文件内容并委托给 embedder 的 <code>JVMTextDocumentEmbedder</code>。</li>
+<li>使用内存或基于文件的后端创建 <code>EmbeddingStorage</code>。</li>
+<li>使用 <code>add()</code> 添加文档。</li>
+<li>使用 <code>search(SimilaritySearchRequest(...))</code> 搜索。</li>
+</ol>
+<p>KotlinJava</p>
+<pre><code>// 1. Create an embedder backed by a local Ollama model
+val embedder = LLMEmbedder(
+    client = OllamaClient(),
+    model = OllamaModels.Embeddings.NOMIC_EMBED_TEXT
+)
+
+// 2. Create a JVM document embedder that reads files and embeds their text
+val documentEmbedder = JVMTextDocumentEmbedder(embedder)
+
+// 3. Create an EmbeddingStorage with an in-memory backend
+val storage = EmbeddingStorage(
+    embedder = documentEmbedder,
+    storage = InMemoryVectorStorageBackend()
+)
+
+// 4. Add documents to the storage
+storage.add(
+    listOf(
+        Path.of(&quot;./docs/faq.txt&quot;),
+        Path.of(&quot;./docs/pricing.txt&quot;),
+        Path.of(&quot;./docs/getting-started.txt&quot;)
+    )
+)
+
+// 5. Search for the most relevant documents
+val results = storage.search(
+    SimilaritySearchRequest(
+        queryText = &quot;How do I reset my password?&quot;,
+        limit = 3,
+        minScore = 0.5
+    )
+)
+
+results.forEach { result -&gt;
+    println(&quot;${result.document} (score: ${result.score.value})&quot;)
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h2 id="agent-agentic-rag">将相关性搜索作为 agent 工具提供（agentic RAG）</h2>
+<p>你可以把 RAG 存储暴露为 agent 按需调用的工具，而不是预先把所有检索到的文档注入 prompt。这样 agent 可以自行控制何时搜索以及搜索什么。</p>
+<p>下面的示例将一个 <code>SearchStorage</code>（<code>EmbeddingStorage</code> 实现的基础搜索接口）包装在使用 <code>@Tool</code> 和 <code>@LLMDescription</code> 注解的函数中，然后将它注册到 <code>ToolRegistry</code> 以供 agent 使用。</p>
+<p>KotlinJava</p>
+<pre><code>// Define a tool that searches the RAG storage
+@Tool
+@LLMDescription(&quot;Search the knowledge base for documents relevant to a query. Returns the content of the most relevant documents.&quot;)
+suspend fun searchKnowledgeBase(
+    @LLMDescription(&quot;The search query describing what information you need&quot;)
+    query: String,
+    @LLMDescription(&quot;Maximum number of documents to return&quot;)
+    count: Int
+): String {
+    val results = ragStorage.search(
+        SimilaritySearchRequest(
+            queryText = query,
+            limit = count,
+            minScore = 0.5
+        )
+    )
+
+    if (results.isEmpty()) {
+        return &quot;No relevant documents found for: $query&quot;
+    }
+
+    val response = StringBuilder(&quot;Found ${results.size} relevant documents:\n\n&quot;)
+    results.forEachIndexed { index, result -&gt;
+        val content = Files.readString(result.document)
+        response.append(&quot;Document ${index + 1}: ${result.document.fileName}&quot;)
+        response.append(&quot; (score: ${&quot;%.2f&quot;.format(result.score.value)})\n&quot;)
+        response.append(&quot;Content: $content\n\n&quot;)
+    }
+    return response.toString()
+}
+
+fun main() {
+    runBlocking {
+        // Register the search tool and create an agent
+        val tools = ToolRegistry {
+            tool(::searchKnowledgeBase.asTool())
+        }
+
+        val agent = AIAgent(
+            toolRegistry = tools,
+            promptExecutor = simpleOpenAIExecutor(apiKey),
+            llmModel = OpenAIModels.Chat.GPT4o
+        )
+
+        val response = agent.run(&quot;What is your refund policy?&quot;)
+        println(&quot;Agent response: $response&quot;)
+    }
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>通过这种方法，agent 会根据用户查询自行决定何时调用搜索工具。当 agent 处理多样化请求且只有部分请求需要知识库查找时，这会很有用。</p>
+<h2 id="_1">可用实现</h2>
+<h3 id="_2">向量存储后端</h3>
+<ul>
+<li><code>InMemoryVectorStorageBackend</code>：将向量存储在内存中；适合测试和原型</li>
+<li><code>FileVectorStorageBackend</code>：将向量持久化到磁盘，以便重启后继续使用</li>
+<li><code>JVMFileVectorStorageBackend</code>：使用 <code>java.nio.file.Path</code> 的 JVM 专用文件后端</li>
+</ul>
+<h3 id="_3">文档嵌入器</h3>
+<ul>
+<li><code>TextDocumentEmbedder</code>：按文档和路径类型参数化的通用文档转文本嵌入器</li>
+<li><code>JVMTextDocumentEmbedder</code>：从 <code>java.nio.file.Path</code> 读取文件的 JVM 专用嵌入器</li>
+</ul>
+<h3 id="_4">组合式存储实现</h3>
+<ul>
+<li><code>EmbeddingStorage</code>：将任意 <code>DocumentEmbedder</code> 与任意 <code>VectorStorageBackend</code> 组合起来</li>
+<li><code>InMemoryDocumentEmbeddingStorage</code>：<code>EmbeddingStorage</code> + <code>InMemoryVectorStorageBackend</code> 的便捷快捷方式</li>
+<li><code>FileDocumentEmbeddingStorage</code>：<code>EmbeddingStorage</code> + <code>FileVectorStorageBackend</code> 的便捷快捷方式</li>
+<li><code>JVMFileDocumentEmbeddingStorage</code>：基于 JVM 文件的嵌入存储</li>
+<li><code>TextFileDocumentEmbeddingStorage</code>：用于文本文档的文件存储</li>
+<li><code>JVMFileEmbeddingStorage</code>：用于文本文档的 JVM 文件存储</li>
+</ul>
+<h2 id="_5">当前限制</h2>
+<p>内置流程适用于本地和参考实现，但它还不是完整的生产级 RAG 平台。</p>
+<p>重要限制：</p>
+<ul>
+<li>内置实现仅支持相似性搜索</li>
+<li><code>rag</code> 模块中没有内置分块流水线</li>
+<li>富元数据的生产记录建模仍然有限</li>
+<li>当前 <code>rag</code> 模块未提供生产向量数据库集成（Pinecone、Weaviate、pgvector、Milvus）</li>
+</ul>
+<p>如果你正在构建自定义后端，请从 <code>rag-base</code> 抽象开始，并实现你自己的存储适配器。</p>
+<h2 id="_6">如何选择起点</h2>
+<p>如果满足以下情况，请使用 <code>rag-vector</code>：</p>
+<ul>
+<li>你想构建本地 RAG 原型</li>
+<li>你想使用简单的参考实现</li>
+<li>你想在 Koog 内部试验嵌入和检索流程</li>
+</ul>
+<p>如果满足以下情况，请使用 <code>rag-base</code>：</p>
+<ul>
+<li>你正在构建自己的存储后端</li>
+<li>你想集成外部向量数据库</li>
+<li>你想在其他 Koog 模块中复用这些抽象</li>
+</ul>
+<h2 id="_7">另请参阅</h2>
+<ul>
+<li><a href="010-embeddings.html">Embeddings</a></li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/retrieval-augmented-generation/">官方原文</a></div></main></div></body></html>

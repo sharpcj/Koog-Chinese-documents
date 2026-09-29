@@ -1,0 +1,170 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>节点之间的数据传递 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/data-transfer-between-nodes/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2 active" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/data-transfer-between-nodes/">https://docs.koog.ai/data-transfer-between-nodes/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概览">概览</a><a class="l2" href="#键和值结构">键和值结构</a><a class="l3" href="#aiagentstoragekey">AIAgentStorageKey</a><a class="l2" href="#用法示例">用法示例</a><a class="l3" href="#定义表示你的数据的类">定义表示你的数据的类</a><a class="l3" href="#创建存储-key">创建存储 key</a><a class="l3" href="#存储数据">存储数据</a><a class="l3" href="#检索数据">检索数据</a><a class="l2" href="#api-文档">API 文档</a><a class="l2" href="#其他信息">其他信息</a></div><article class="content"><h1 id="_1">节点之间的数据传递</h1>
+<h2 id="_2">概览</h2>
+<p>Koog 提供了一种使用 <code>AIAgentStorage</code> 存储和传递数据的方式。<code>AIAgentStorage</code> 是一个 key-value 存储系统，旨在以类型安全的方式在不同节点甚至子图之间传递数据。</p>
+<p>可以通过 agent 节点中可用的 <code>storage</code> 属性（<code>storage: AIAgentStorage</code>）访问该存储，从而在 AI agent 系统的不同组件之间无缝共享数据。</p>
+<h2 id="_3">键和值结构</h2>
+<p>key-value 数据存储结构依赖于 <code>AIAgentStorageKey</code> 数据类。有关 <code>AIAgentStorageKey</code> 的更多信息，请参见下面的章节。</p>
+<h3 id="aiagentstoragekey">AIAgentStorageKey</h3>
+<p>该存储使用类型化 key 系统，在存储和检索数据时提供类型安全。</p>
+<p><code>AIAgentStorageKey&lt;T&gt;</code> 类表示用于标识和访问数据的存储 key。以下是此类的关键特性：</p>
+<ul>
+<li>泛型类型参数 <code>T</code> 指定与此 key 关联的数据类型，从而提供类型安全。</li>
+<li>每个 key 都有一个 <code>name</code> 属性，它是一个字符串标识符，便于识别和调试。</li>
+<li>每个 key 实例都是唯一的。<code>name</code> 不用于判断唯一性，因此可以有多个同名 key。这允许复用现有策略组件，而不会有意外覆盖存储中数据的风险。</li>
+</ul>
+<h2 id="_4">用法示例</h2>
+<p>以下章节给出了创建存储 key 并用它存储和检索数据的实际示例。</p>
+<h3 id="_5">定义表示你的数据的类</h3>
+<p>存储要传递的数据的第一步，是创建一个表示该数据的类。下面是一个包含基础用户数据的简单类示例：</p>
+<p>KotlinJava</p>
+<pre><code>class UserData(
+   val name: String,
+   val age: Int
+)
+</code></pre>
+<pre><code>record UserData(
+    String name,
+    int age
+) {}
+</code></pre>
+<p>定义完成后，按如下方式使用该类创建存储 key。</p>
+<h3 id="key">创建存储 key</h3>
+<p>为已定义的数据结构创建一个类型化存储 key：</p>
+<p>KotlinJava</p>
+<pre><code>val userDataKey = createStorageKey&lt;UserData&gt;(&quot;user-data&quot;)
+</code></pre>
+<pre><code>AIAgentStorageKey&lt;UserData&gt; userDataKey = AIAgentStorage.createStorageKey(&quot;user-data&quot;, TypeToken.of(UserData.class));
+</code></pre>
+<p><code>createStorageKey</code> 函数接收一个用于识别和调试的字符串参数，以及一个表示值类型的 <code>TypeToken</code>（在 Java 中；Kotlin 会自动使用 reified generics）。</p>
+<h3 id="_6">存储数据</h3>
+<p>若要使用已创建的存储 key 保存数据，请在节点中使用 <code>storage.set(key: AIAgentStorageKey&lt;T&gt;, value: T)</code> 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val nodeSaveData by node&lt;Unit, Unit&gt; {
+    storage.set(userDataKey, UserData(&quot;John&quot;, 26))
+}
+</code></pre>
+<pre><code>var nodeSaveData = AIAgentNode.builder(&quot;nodeSaveData&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        ctx.getStorage().set(userDataKey, new UserData(&quot;John&quot;, 26));
+        return &quot;&quot;;
+    })
+    .build();
+</code></pre>
+<h3 id="_7">检索数据</h3>
+<p>若要检索数据，请在节点中使用 <code>storage.get</code> 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val nodeRetrieveData by node&lt;String, Unit&gt; { message -&gt;
+    storage.get(userDataKey)?.let { userFromStorage -&gt;
+        println(&quot;Hello dear $userFromStorage, here's a message for you: $message&quot;)
+    }
+}
+</code></pre>
+<pre><code>var nodeRetrieveData = AIAgentNode.builder(&quot;nodeRetrieveData&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((message, ctx) -&gt; {
+        var userData = ctx.getStorage().get(userDataKey);
+        System.out.println(&quot;Hello dear %s, here's a message for you: %s&quot;.formatted(userData, message));
+        return &quot;&quot;;
+    })
+    .build();
+</code></pre>
+<h2 id="api">API 文档</h2>
+<p>有关 <code>AIAgentStorage</code> 类的完整参考，请参见 <a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/index.html">AIAgentStorage</a>。</p>
+<p>有关 <code>AIAgentStorage</code> 类中可用的各个函数，请参见以下 API 参考：</p>
+<ul>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/clear.html">clear</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/get.html">get</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/get-value.html">getValue</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/put-all.html">putAll</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/remove.html">remove</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/set.html">set</a></li>
+<li><a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.agent.entity/-a-i-agent-storage/to-map.html">toMap</a></li>
+</ul>
+<h2 id="_8">其他信息</h2>
+<ul>
+<li><code>AIAgentStorage</code> 是线程安全的，它使用 Mutex 来确保并发访问得到妥善处理。</li>
+<li>检索值时会自动处理类型转换，从而在整个应用中保证类型安全。</li>
+<li>对于值的非空访问，请使用 <code>getValue</code> 方法；如果 key 不存在，该方法会抛出异常。</li>
+<li>你可以使用 <code>clear</code> 方法完全清空存储，它会移除所有已存储的 key-value 对。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/data-transfer-between-nodes/">官方原文</a></div></main></div></body></html>

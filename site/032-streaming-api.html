@@ -1,0 +1,734 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>流式 API - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/streaming-api/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2 active" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/streaming-api/">https://docs.koog.ai/streaming-api/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#api-概览">API 概览</a><a class="l3" href="#增量帧与完整帧">增量帧与完整帧</a><a class="l2" href="#用法">用法</a><a class="l3" href="#直接操作帧">直接操作帧</a><a class="l3" href="#操作推理帧">操作推理帧</a><a class="l3" href="#操作原始文本流派生">操作原始文本流（派生）</a><a class="l3" href="#在事件处理器中监听流事件">在事件处理器中监听流事件</a><a class="l3" href="#将帧转换为-messageresponse">将帧转换为 Message.Response</a><a class="l2" href="#示例">示例</a><a class="l3" href="#流式传输中的结构化数据markdown-示例">流式传输中的结构化数据（Markdown 示例）</a><a class="l4" href="#1-定义数据结构">1. 定义数据结构</a><a class="l4" href="#2-定义-markdown-结构">2. 定义 Markdown 结构</a><a class="l4" href="#3-为数据结构创建解析器">3. 为数据结构创建解析器</a><a class="l4" href="#4-在智能体策略中使用解析器">4. 在智能体策略中使用解析器</a><a class="l3" href="#高级用法结合工具进行流式处理">高级用法：结合工具进行流式处理</a><a class="l3" href="#1-为数据结构定义工具">1. 为数据结构定义工具</a><a class="l3" href="#2-将工具与流式数据结合使用">2. 将工具与流式数据结合使用</a><a class="l3" href="#3-在智能体配置中注册工具">3. 在智能体配置中注册工具</a><a class="l2" href="#最佳实践">最佳实践</a></div><article class="content"><h1 id="api">流式 API</h1>
+<p>Koog 的 <strong>Streaming API</strong> 让你能够以 <code>Flow&lt;StreamFrame&gt;</code>（Kotlin）/ <code>Flow.Publisher&lt;StreamFrame&gt;</code>（Java）的形式<strong>增量消费 LLM 输出</strong>。
+无需等待完整响应，你的代码可以：</p>
+<ul>
+<li>在助手文本到达时实时渲染，</li>
+<li>实时检测<strong>工具调用</strong>并对其做出响应，</li>
+<li>了解流何时<strong>结束</strong>以及结束原因。</li>
+</ul>
+<p>流携带<strong>类型化的帧</strong>，分为两类：</p>
+<p>KotlinJava</p>
+<p><strong>增量帧</strong>（增量/部分内容）：</p>
+<ul>
+<li><code>StreamFrame.TextDelta(text: String, index: Int?)</code> — 增量助手文本</li>
+<li><code>StreamFrame.ReasoningDelta(text: String?, summary: String?, index: Int?)</code> — 增量推理文本和摘要</li>
+<li><code>StreamFrame.ToolCallDelta(id: String?, name: String?, content: String?, index: Int?)</code> — 部分工具调用</li>
+</ul>
+<p><strong>完整帧</strong>（完整内容）：</p>
+<ul>
+<li><code>StreamFrame.TextComplete(text: String, index: Int?)</code> — 完整助手文本</li>
+<li><code>StreamFrame.ReasoningComplete(content: List&lt;String&gt;, summary: List&lt;String&gt;?, encrypted: String?, index: Int?)</code> — 完整推理，包含可选摘要和加密内容</li>
+<li><code>StreamFrame.ToolCallComplete(id: String?, name: String, content: String, index: Int?)</code> — 完整工具调用</li>
+</ul>
+<p><strong>结束标记</strong>：</p>
+<ul>
+<li><code>StreamFrame.End(finishReason: String?, metaInfo: ResponseMetaInfo)</code> — 流结束标记，包含响应元数据</li>
+</ul>
+<p><strong>增量帧</strong>（增量/部分内容）：</p>
+<ul>
+<li><code>StreamFrame.TextDelta</code> — 增量助手文本。字段：<code>getText()</code>、<code>getIndex()</code>。</li>
+<li><code>StreamFrame.ReasoningDelta</code> — 增量推理文本和摘要。字段：<code>getText()</code>、<code>getSummary()</code>、<code>getIndex()</code>。</li>
+<li><code>StreamFrame.ToolCallDelta</code> — 部分工具调用。字段：<code>getId()</code>、<code>getName()</code>、<code>getContent()</code>、<code>getIndex()</code>。</li>
+</ul>
+<p><strong>完整帧</strong>（完整内容）：</p>
+<ul>
+<li><code>StreamFrame.TextComplete</code> — 完整助手文本。字段：<code>getText()</code>、<code>getIndex()</code>。</li>
+<li><code>StreamFrame.ReasoningComplete</code> — 完整推理，包含可选摘要和加密内容。字段：<code>getText()</code>（返回 <code>List&lt;String&gt;</code>）、<code>getSummary()</code>（返回 <code>List&lt;String&gt;</code>）、<code>getEncrypted()</code>、<code>getIndex()</code>。</li>
+<li><code>StreamFrame.ToolCallComplete</code> — 完整工具调用。字段：<code>getId()</code>、<code>getName()</code>、<code>getContent()</code>、<code>getIndex()</code>。还提供 <code>getContentJson()</code> 和 <code>getContentJsonResult()</code> 用于 JSON 解析。</li>
+</ul>
+<p><strong>结束标记</strong>：</p>
+<ul>
+<li><code>StreamFrame.End</code> — 流结束标记。字段：<code>getFinishReason()</code>、<code>getMetaInfo()</code>。</li>
+</ul>
+<p>提供了辅助方法用于提取纯文本、将帧转换为 <code>Message.Response</code> 对象，以及安全地<strong>合并分块的工具调用</strong>。</p>
+<h2 id="api_1">API 概览</h2>
+<p>通过流式处理，你可以：</p>
+<ul>
+<li>在数据到达时进行处理（提升 UI 响应性）</li>
+<li>实时解析结构化信息（Markdown/JSON 等）</li>
+<li>在对象完成时发出对象</li>
+<li>实时触发工具</li>
+<li>实时访问模型推理（适用于支持的模型）</li>
+</ul>
+<p>你可以直接操作<strong>帧</strong>本身，也可以操作从帧派生的<strong>纯文本</strong>。</p>
+<h3 id="_1">增量帧与完整帧</h3>
+<p>流式 API 区分两种类型的帧：</p>
+<ul>
+<li><strong>增量帧</strong>（<code>DeltaFrame</code>）— 以分块形式到达的增量/部分内容。这些非常适合在内容流式传输时进行实时显示。例如：<code>TextDelta</code>、<code>ReasoningDelta</code>、<code>ToolCallDelta</code>。</li>
+<li><strong>完整帧</strong>（<code>CompleteFrame</code>）— 在该内容类型的所有增量帧接收完毕后发出的完整内容。这些适用于最终处理和转换为 <code>Message.Response</code> 对象。例如：<code>TextComplete</code>、<code>ReasoningComplete</code>、<code>ToolCallComplete</code>。</li>
+</ul>
+<p>通常，你会使用增量帧进行 UI 更新，使用完整帧提取最终结构化数据。</p>
+<hr />
+<h2 id="_2">用法</h2>
+<h3 id="_3">直接操作帧</h3>
+<p>这是最通用的方法：对每种帧类型做出响应。</p>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    appendPrompt { user(&quot;Tell me a joke, then call a tool with JSON args.&quot;) }
+
+    val stream = requestLLMStreaming() // Flow&lt;StreamFrame&gt;
+
+    stream.collect { frame -&gt;
+        when (frame) {
+            is StreamFrame.TextDelta -&gt; print(frame.text)
+            is StreamFrame.ReasoningDelta -&gt; print(&quot;[Reasoning] text=${frame.text} summary=${frame.summary}&quot;)
+            is StreamFrame.ToolCallComplete -&gt; {
+                println(&quot;\n🔧 Tool call: ${frame.name} args=${frame.content}&quot;)
+                // Optionally parse lazily:
+                // val json = frame.contentJson
+            }
+            is StreamFrame.End -&gt; println(&quot;\n[END] reason=${frame.finishReason}&quot;)
+            else -&gt; {} // Handle other frame types (TextComplete, ToolCallDelta, etc.)
+        }
+    }
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.appendPrompt(prompt -&gt; {
+        prompt.user(&quot;Tell me a joke, then call a tool with JSON args.&quot;);
+        return null;
+    });
+
+    Flow.Publisher&lt;StreamFrame&gt; stream = session.requestLLMStreaming();
+
+    stream.subscribe(new Flow.Subscriber&lt;&gt;() {
+        @Override
+        public void onSubscribe(Flow.Subscription subscription) {
+            subscription.request(Long.MAX_VALUE);
+        }
+
+        @Override
+        public void onNext(StreamFrame frame) {
+            if (frame instanceof StreamFrame.TextDelta delta) {
+                System.out.print(delta.getText());
+            } else if (frame instanceof StreamFrame.ReasoningDelta reasoning) {
+                System.out.print(&quot;[Reasoning] text=&quot; + reasoning.getText()
+                    + &quot; summary=&quot; + reasoning.getSummary());
+            } else if (frame instanceof StreamFrame.ToolCallComplete toolCall) {
+                System.out.println(&quot;\nTool call: &quot; + toolCall.getName()
+                    + &quot; args=&quot; + toolCall.getContent());
+            } else if (frame instanceof StreamFrame.End end) {
+                System.out.println(&quot;\n[END] reason=&quot; + end.getFinishReason());
+            }
+            // Handle other frame types (TextComplete, ToolCallDelta, etc.)
+        }
+
+        @Override
+        public void onError(Throwable throwable) {
+            System.err.println(&quot;Stream error: &quot; + throwable.getMessage());
+        }
+
+        @Override
+        public void onComplete() {
+        }
+    });
+
+    return null;
+});
+</code></pre>
+<p>需要注意的是，你可以通过直接操作原始字符串流来解析输出。
+这种方法为解析过程提供了更大的灵活性和控制力。</p>
+<p>以下是一个原始字符串流，包含输出结构的 Markdown 定义：</p>
+<p>KotlinJava</p>
+<pre><code>fun markdownBookDefinition(): MarkdownStructureDefinition {
+    return MarkdownStructureDefinition(&quot;name&quot;, schema = { /*...*/ })
+}
+
+val mdDefinition = markdownBookDefinition()
+
+llm.writeSession {
+    val stream = requestLLMStreaming(mdDefinition)
+    // Access the raw string chunks directly
+    stream.collect { chunk -&gt;
+        // Process each chunk of text as it arrives
+        println(&quot;Received chunk: $chunk&quot;) // The chunks together will be structured as a text following the mdDefinition schema
+    }
+}
+</code></pre>
+<pre><code>StructureDefinition mdDefinition = markdownBookDefinition();
+
+ctx.getLlm().writeSession(session -&gt; {
+    session.appendPrompt(prompt -&gt; {
+        prompt.user(input);
+    });
+
+    Flow.Publisher&lt;StreamFrame&gt; stream = session.requestLLMStreaming(mdDefinition);
+
+    // Access the raw frames directly
+    stream.subscribe(new Flow.Subscriber&lt;&gt;() {
+        @Override
+        public void onSubscribe(Flow.Subscription subscription) {
+            subscription.request(Long.MAX_VALUE);
+        }
+
+        @Override
+        public void onNext(StreamFrame frame) {
+            // Process each frame as it arrives
+            System.out.println(&quot;Received frame: &quot; + frame);
+        }
+
+        @Override
+        public void onError(Throwable throwable) {
+            System.err.println(&quot;Stream error: &quot; + throwable.getMessage());
+        }
+
+        @Override
+        public void onComplete() {
+        }
+    });
+
+    return null;
+});
+</code></pre>
+<h3 id="_4">操作推理帧</h3>
+<p>支持推理的模型（如 Claude Sonnet 4.5 或 GPT-o1）在流式传输期间会发出推理帧。你可以同时访问推理过程及其摘要：</p>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    appendPrompt { user(&quot;Solve this complex problem: ...&quot;) }
+
+    val stream = requestLLMStreaming()
+    val reasoningSteps = mutableListOf&lt;String&gt;()
+    val summarySteps = mutableListOf&lt;String&gt;()
+
+    stream.collect { frame -&gt;
+        when (frame) {
+            is StreamFrame.ReasoningDelta -&gt; {
+                frame.text?.let { 
+                    reasoningSteps.add(it)
+                    print(frame.text) // Display reasoning as it arrives
+                }
+                frame.summary?.let {
+                    summarySteps.add(it)
+                    print(frame.summary) // Display reasoning summary as it arrives
+                }
+            }
+            is StreamFrame.ReasoningComplete -&gt; {
+                // Access complete reasoning
+                println(&quot;\nComplete reasoning: ${frame.content.joinToString(&quot;&quot;)}&quot;)
+                println(&quot;Summary: ${frame.summary?.joinToString(&quot;&quot;) ?: &quot;N/A&quot;}&quot;)
+            }
+            is StreamFrame.TextDelta -&gt; print(frame.text)
+            is StreamFrame.End -&gt; println(&quot;\n[END]&quot;)
+            else -&gt; {}
+        }
+    }
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    session.appendPrompt(prompt -&gt; {
+        prompt.user(&quot;Solve this complex problem: ...&quot;);
+        return null;
+    });
+
+    Flow.Publisher&lt;StreamFrame&gt; stream = session.requestLLMStreaming();
+    List&lt;String&gt; reasoningSteps = new ArrayList&lt;&gt;();
+    List&lt;String&gt; summarySteps = new ArrayList&lt;&gt;();
+
+    stream.subscribe(new Flow.Subscriber&lt;StreamFrame&gt;() {
+        @Override
+        public void onSubscribe(Flow.Subscription subscription) {
+            subscription.request(Long.MAX_VALUE);
+        }
+
+        @Override
+        public void onNext(StreamFrame frame) {
+            if (frame instanceof StreamFrame.ReasoningDelta reasoning) {
+                if (reasoning.getText() != null) {
+                    reasoningSteps.add(reasoning.getText());
+                    System.out.print(reasoning.getText());
+                }
+                if (reasoning.getSummary() != null) {
+                    summarySteps.add(reasoning.getSummary());
+                    System.out.print(reasoning.getSummary());
+                }
+            } else if (frame instanceof StreamFrame.ReasoningComplete complete) {
+                // Access complete reasoning
+                System.out.println(&quot;\nComplete reasoning: &quot;
+                    + String.join(&quot;&quot;, complete.getContent()));
+                System.out.println(&quot;Summary: &quot;
+                    + (complete.getSummary() != null
+                        ? String.join(&quot;&quot;, complete.getSummary()) : &quot;N/A&quot;));
+            } else if (frame instanceof StreamFrame.TextDelta delta) {
+                System.out.print(delta.getText());
+            } else if (frame instanceof StreamFrame.End) {
+                System.out.println(&quot;\n[END]&quot;);
+            }
+        }
+
+        @Override
+        public void onError(Throwable throwable) { }
+
+        @Override
+        public void onComplete() { }
+    });
+
+    return null;
+});
+</code></pre>
+<h3 id="_5">操作原始文本流（派生）</h3>
+<p>如果你已有期望 <code>Flow&lt;String&gt;</code> 的流式解析器，
+可以通过 <code>filterTextOnly()</code> 派生文本块，或使用 <code>collectText()</code> 收集它们。</p>
+<p>KotlinJava</p>
+<pre><code>llm.writeSession {
+    val frames = requestLLMStreaming()
+
+    // Stream text chunks as they come:
+    frames.filterTextOnly().collect { chunk -&gt; print(chunk) }
+
+    // Or, gather all text into one String after End:
+    val fullText = frames.collectText()
+    println(&quot;\n---\n$fullText&quot;)
+}
+</code></pre>
+<pre><code>ctx.getLlm().writeSession(session -&gt; {
+    Flow.Publisher&lt;StreamFrame&gt; frames = session.requestLLMStreaming();
+
+    // Stream text chunks as they come (equivalent of filterTextOnly):
+    StringBuilder fullText = new StringBuilder();
+    frames.subscribe(new Flow.Subscriber&lt;&gt;() {
+        @Override
+        public void onSubscribe(Flow.Subscription subscription) {
+            subscription.request(Long.MAX_VALUE);
+        }
+
+        @Override
+        public void onNext(StreamFrame frame) {
+            if (frame instanceof StreamFrame.TextDelta delta) {
+                System.out.print(delta.getText());
+                fullText.append(delta.getText());
+            }
+        }
+
+        @Override
+        public void onError(Throwable throwable) { }
+
+        @Override
+        public void onComplete() {
+            // fullText now contains all text (equivalent of collectText)
+            System.out.println(&quot;\n---\n&quot; + fullText);
+        }
+    });
+
+    return null;
+});
+</code></pre>
+<h3 id="_6">在事件处理器中监听流事件</h3>
+<p>你可以在<a href="063-features__agent-event-handlers.html">智能体事件处理器</a>中监听流事件。</p>
+<p>KotlinJava</p>
+<pre><code>handleEvents {
+    onToolCallStarting { context -&gt;
+        println(&quot;\n🔧 Using ${context.toolName} with ${context.toolArgs}... &quot;)
+    }
+
+    onLLMStreamingFrameReceived { context -&gt;
+        when (val frame = context.streamFrame) {
+            is StreamFrame.TextDelta -&gt; print(frame.text)
+            is StreamFrame.ReasoningDelta -&gt; print(&quot;[Reasoning] text=${frame.text} summary=${frame.summary}&quot;)
+            else -&gt; {} // Handle other frame types if needed
+        }
+    }
+
+    onLLMStreamingFailed { context -&gt;
+        println(&quot;❌ Error: ${context.error}&quot;)
+    }
+
+    onLLMStreamingCompleted {
+        println(&quot;🏁 Done&quot;)
+    }
+}
+</code></pre>
+<pre><code>.install(EventHandler.Feature, config -&gt; {
+    config.onToolCallStarting(ctx -&gt; {
+        System.out.println(&quot;\nUsing &quot; + ctx.getToolName() + &quot; with &quot; + ctx.getToolArgs() + &quot;... &quot;);
+    });
+
+    config.onLLMStreamingFrameReceived(ctx -&gt; {
+        StreamFrame frame = ctx.getStreamFrame();
+        if (frame instanceof StreamFrame.TextDelta delta) {
+            System.out.print(delta.getText());
+        } else if (frame instanceof StreamFrame.ReasoningDelta reasoning) {
+            System.out.print(&quot;[Reasoning] text=&quot; + reasoning.getText()
+                + &quot; summary=&quot; + reasoning.getSummary());
+        }
+    });
+
+    config.onLLMStreamingFailed(ctx -&gt; {
+        System.out.println(&quot;Error: &quot; + ctx.getError());
+    });
+
+    config.onLLMStreamingCompleted(ctx -&gt; {
+        System.out.println(&quot;Done&quot;);
+    });
+})
+</code></pre>
+<h3 id="messageresponse">将帧转换为 <code>Message.Response</code></h3>
+<p>你可以将收集到的帧列表转换为标准消息对象：</p>
+<ul>
+<li><code>toAssistantMessageOrNull()</code> — 从文本帧中提取 <code>Message.Assistant</code></li>
+<li><code>toReasoningMessageOrNull()</code> — 从推理帧中提取 <code>MessagePart.Reasoning</code></li>
+<li><code>toToolCallMessages()</code> — 从工具调用帧中提取 <code>MessagePart.Tool.Call</code></li>
+<li><code>toMessageResponses()</code> — 将所有完整帧转换为对应的 <code>Message.Response</code> 对象</li>
+</ul>
+<h2 id="_7">示例</h2>
+<h3 id="markdown">流式传输中的结构化数据（Markdown 示例）</h3>
+<p>虽然可以操作原始字符串流，
+但操作<a href="033-structured-output.html">结构化数据</a>通常更为方便。</p>
+<p>结构化数据方法包含以下关键组件：</p>
+<ol>
+<li><strong>MarkdownStructureDefinition</strong>：一个帮助你以 Markdown 格式定义结构化数据模式和示例的类。</li>
+<li><strong>markdownStreamingParser</strong>：一个创建解析器的函数，该解析器处理 Markdown 块流并发出事件。</li>
+</ol>
+<p>以下各节提供了与处理结构化数据流相关的分步说明和代码示例。</p>
+<h4 id="1">1. 定义数据结构</h4>
+<p>首先，定义一个数据类来表示你的结构化数据：</p>
+<p>KotlinJava</p>
+<pre><code>@Serializable
+data class Book(
+    val title: String,
+    val author: String,
+    val description: String
+)
+</code></pre>
+<pre><code>// TODO not yet supported in Java
+</code></pre>
+<h4 id="2-markdown">2. 定义 Markdown 结构</h4>
+<p>使用 <code>MarkdownStructureDefinition</code> 类创建一个定义，指定数据在 Markdown 中的结构：</p>
+<p>KotlinJava</p>
+<pre><code>fun markdownBookDefinition(): MarkdownStructureDefinition {
+    return MarkdownStructureDefinition(&quot;bookList&quot;, schema = {
+        markdown {
+            header(1, &quot;title&quot;)
+            bulleted {
+                item(&quot;author&quot;)
+                item(&quot;description&quot;)
+            }
+        }
+    }, examples = {
+        markdown {
+            header(1, &quot;The Great Gatsby&quot;)
+            bulleted {
+                item(&quot;F. Scott Fitzgerald&quot;)
+                item(&quot;A novel set in the Jazz Age that tells the story of Jay Gatsby's unrequited love for Daisy Buchanan.&quot;)
+            }
+        }
+    })
+}
+</code></pre>
+<pre><code>// TODO not yet supported in Java
+</code></pre>
+<h4 id="3">3. 为数据结构创建解析器</h4>
+<p><code>markdownStreamingParser</code> 为不同的 Markdown 元素提供了多个处理器：</p>
+<p>KotlinJava</p>
+<pre><code>markdownStreamingParser {
+    // Handle level 1 headings (level ranges from 1 to 6)
+    onHeader(1) { headerText -&gt; }
+    // Handle bullet points
+    onBullet { bulletText -&gt; }
+    // Handle code blocks
+    onCodeBlock { codeBlockContent -&gt; }
+    // Handle lines matching a regex pattern
+    onLineMatching(Regex(&quot;pattern&quot;)) { line -&gt; }
+    // Handle the end of the stream
+    onFinishStream { remainingText -&gt; }
+}
+</code></pre>
+<pre><code>// TODO not yet supported in Java
+</code></pre>
+<p>使用已定义的处理器，你可以实现一个函数，通过 <code>markdownStreamingParser</code> 函数解析 Markdown 流并发出数据对象。</p>
+<p>KotlinJava</p>
+<pre><code>fun parseMarkdownStreamToBooks(markdownStream: Flow&lt;StreamFrame&gt;): Flow&lt;Book&gt; {
+   return flow {
+      markdownStreamingParser {
+         var currentBookTitle = &quot;&quot;
+         val bulletPoints = mutableListOf&lt;String&gt;()
+
+         // Handle the event of receiving the Markdown header in the response stream
+         onHeader(1) { headerText -&gt;
+            // If there was a previous book, emit it
+            if (currentBookTitle.isNotEmpty() &amp;&amp; bulletPoints.isNotEmpty()) {
+               val author = bulletPoints.getOrNull(0) ?: &quot;&quot;
+               val description = bulletPoints.getOrNull(1) ?: &quot;&quot;
+               emit(Book(currentBookTitle, author, description))
+            }
+
+            currentBookTitle = headerText
+            bulletPoints.clear()
+         }
+
+         // Handle the event of receiving the Markdown bullets list in the response stream
+         onBullet { bulletText -&gt;
+            bulletPoints.add(bulletText)
+         }
+
+         // Handle the end of the response stream
+         onFinishStream {
+            // Emit the last book, if present
+            if (currentBookTitle.isNotEmpty() &amp;&amp; bulletPoints.isNotEmpty()) {
+               val author = bulletPoints.getOrNull(0) ?: &quot;&quot;
+               val description = bulletPoints.getOrNull(1) ?: &quot;&quot;
+               emit(Book(currentBookTitle, author, description))
+            }
+         }
+      }.parseStream(markdownStream.filterTextOnly())
+   }
+}
+</code></pre>
+<pre><code>// TODO not yet supported in Java
+</code></pre>
+<h4 id="4">4. 在智能体策略中使用解析器</h4>
+<p>KotlinJava</p>
+<pre><code>val agentStrategy = strategy&lt;String, List&lt;Book&gt;&gt;(&quot;library-assistant&quot;) {
+   // Describe the node containing the output stream parsing
+   val getMdOutput by node&lt;String, List&lt;Book&gt;&gt; { booksDescription -&gt;
+      val books = mutableListOf&lt;Book&gt;()
+      val mdDefinition = markdownBookDefinition()
+
+      llm.writeSession {
+         appendPrompt { user(booksDescription) }
+         // Initiate the response stream in the form of the definition `mdDefinition`
+         val markdownStream = requestLLMStreaming(mdDefinition)
+         // Call the parser with the result of the response stream and perform actions with the result
+         parseMarkdownStreamToBooks(markdownStream).collect { book -&gt;
+            books.add(book)
+            println(&quot;Parsed Book: ${book.title} by ${book.author}&quot;)
+         }
+      }
+
+      books
+   }
+   // Describe the agent's graph making sure the node is accessible
+   edge(nodeStart forwardTo getMdOutput)
+   edge(getMdOutput forwardTo nodeFinish)
+}
+</code></pre>
+<pre><code>// TODO not yet supported in Java
+</code></pre>
+<h3 id="_8">高级用法：结合工具进行流式处理</h3>
+<p>你还可以将 Streaming API 与工具结合使用，在数据到达时进行处理。
+以下各节提供了关于如何定义工具并将其与流式数据结合使用的简要分步指南。</p>
+<h3 id="1_1">1. 为数据结构定义工具</h3>
+<p>KotlinJava</p>
+<pre><code>@Serializable
+data class Book(
+   val title: String,
+   val author: String,
+   val description: String
+)
+
+class BookTool(): SimpleTool&lt;Book&gt;(
+    argsType = typeToken&lt;Book&gt;(),
+    name = NAME,
+    description = &quot;A tool to parse book information from Markdown&quot;
+) {
+
+    companion object { const val NAME = &quot;book&quot; }
+
+    override suspend fun execute(args: Book): String {
+        println(&quot;${args.title} by ${args.author}:\n ${args.description}&quot;)
+        return &quot;Done&quot;
+    }
+}
+</code></pre>
+<pre><code>class BookTool implements ToolSet {
+    @Tool
+    @LLMDescription(&quot;A tool to parse book information from Markdown&quot;)
+    public String book(
+        @LLMDescription(&quot;Title of the book&quot;) String title,
+        @LLMDescription(&quot;Author of the book&quot;) String author,
+        @LLMDescription(&quot;Description of the book&quot;) String description
+    ) {
+        System.out.println(title + &quot; by &quot; + author + &quot;:\n &quot; + description);
+        return &quot;Done&quot;;
+    }
+}
+</code></pre>
+<h3 id="2">2. 将工具与流式数据结合使用</h3>
+<p>KotlinJava</p>
+<pre><code>val agentStrategy = strategy&lt;String, Unit&gt;(&quot;library-assistant&quot;) {
+   val getMdOutput by node&lt;String, Unit&gt; { input -&gt;
+      val mdDefinition = markdownBookDefinition()
+
+      llm.writeSession {
+         appendPrompt { user(input) }
+         val markdownStream = requestLLMStreaming(mdDefinition)
+
+         parseMarkdownStreamToBooks(markdownStream).collect { book -&gt;
+            callToolRaw(BookTool.NAME, book)
+            /* Other possible options:
+                callTool(BookTool::class, book)
+                callTool&lt;BookTool&gt;(book)
+                findTool(BookTool::class).execute(book)
+            */
+         }
+
+         // We can make parallel tool calls
+         parseMarkdownStreamToBooks(markdownStream).toParallelToolCallsRaw(toolClass=BookTool::class).collect {
+            println(&quot;Tool call result: $it&quot;)
+         }
+      }
+   }
+
+   edge(nodeStart forwardTo getMdOutput)
+   edge(getMdOutput forwardTo nodeFinish)
+ }
+</code></pre>
+<pre><code>var strategy = AIAgentGraphStrategy.builder(&quot;library-assistant&quot;)
+    .withInput(String.class)
+    .withOutput(Void.class);
+
+var getMdOutput = AIAgentNode.builder(&quot;getMdOutput&quot;)
+    .withInput(String.class)
+    .withOutput(Void.class)
+    .withAction((input, ctx) -&gt; {
+        StructureDefinition mdDefinition = markdownBookDefinition();
+
+        ctx.getLlm().writeSession(session -&gt; {
+            session.appendPrompt(prompt -&gt; {
+                prompt.user(input);
+                return null;
+            });
+
+            Flow.Publisher&lt;StreamFrame&gt; markdownStream = session.requestLLMStreaming(mdDefinition);
+
+            // Process streamed frames and invoke tools on ToolCallComplete frames
+            markdownStream.subscribe(new Flow.Subscriber&lt;StreamFrame&gt;() {
+                @Override
+                public void onSubscribe(Flow.Subscription subscription) {
+                    subscription.request(Long.MAX_VALUE);
+                }
+
+                @Override
+                public void onNext(StreamFrame frame) {
+                    if (frame instanceof StreamFrame.ToolCallComplete toolCall) {
+                        System.out.println(&quot;Tool call: &quot; + toolCall.getName()
+                            + &quot; args=&quot; + toolCall.getContent());
+                    }
+                }
+
+                @Override
+                public void onError(Throwable throwable) { }
+
+                @Override
+                public void onComplete() { }
+            });
+
+            return null;
+        });
+
+        return null;
+    })
+    .build();
+
+strategy.edge(strategy.nodeStart, getMdOutput);
+strategy.edge(getMdOutput, strategy.nodeFinish);
+</code></pre>
+<h3 id="3_1">3. 在智能体配置中注册工具</h3>
+<p>KotlinJava</p>
+<pre><code>val toolRegistry = ToolRegistry {
+    tool(BookTool())
+}
+
+val runner = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(&quot;OPENAI_API_KEY&quot;),
+    llmModel = OpenAIModels.Chat.GPT4o,
+    toolRegistry = toolRegistry
+)
+</code></pre>
+<pre><code>ToolRegistry toolRegistry = ToolRegistry.builder()
+    .tools(new BookTool())
+    .build();
+
+AIAgent&lt;String, String&gt; runner = AIAgent.&lt;String, String&gt;builder()
+    .promptExecutor(PromptExecutor.builder().openAI(&quot;OPENAI_API_KEY&quot;).build())
+    .llmModel(OpenAIModels.Chat.GPT4o)
+    .toolRegistry(toolRegistry)
+    .build();
+</code></pre>
+<h2 id="_9">最佳实践</h2>
+<ol>
+<li><strong>定义清晰的结构</strong>：为你的数据创建清晰明确的 Markdown 结构。</li>
+<li><strong>提供良好的示例</strong>：在 <code>MarkdownStructureDefinition</code> 中包含全面的示例以指导 LLM。</li>
+<li><strong>处理不完整数据</strong>：在解析流中的数据时，始终检查 null 或空值。</li>
+<li><strong>清理资源</strong>：使用 <code>onFinishStream</code> 处理器清理资源并处理任何剩余数据。</li>
+<li><strong>处理错误</strong>：为格式错误的 Markdown 或意外数据实现适当的错误处理。</li>
+<li><strong>测试</strong>：使用各种输入场景测试你的解析器，包括部分块和格式错误的输入。</li>
+<li><strong>并行处理</strong>：对于独立的数据项，考虑使用并行工具调用以获得更好的性能。</li>
+</ol></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/streaming-api/">官方原文</a></div></main></div></body></html>

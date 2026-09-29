@@ -1,0 +1,450 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自定义策略图 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/custom-strategy-graphs/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2 active" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/custom-strategy-graphs/">https://docs.koog.ai/custom-strategy-graphs/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#策略图架构">策略图架构</a><a class="l2" href="#策略图组件">策略图组件</a><a class="l3" href="#节点">节点</a><a class="l3" href="#边">边</a><a class="l4" href="#条件">条件</a><a class="l3" href="#子图">子图</a><a class="l2" href="#基本策略图创建">基本策略图创建</a><a class="l2" href="#可视化策略图">可视化策略图</a><a class="l2" href="#高级策略技术">高级策略技术</a><a class="l3" href="#历史压缩">历史压缩</a><a class="l3" href="#并行工具执行">并行工具执行</a><a class="l3" href="#并行节点执行">并行节点执行</a><a class="l3" href="#条件分支">条件分支</a><a class="l2" href="#最佳实践">最佳实践</a><a class="l2" href="#使用示例">使用示例</a><a class="l3" href="#语气分析策略">语气分析策略</a><a class="l2" href="#故障排除">故障排除</a><a class="l3" href="#图无法到达-finish-节点">图无法到达 finish 节点</a><a class="l3" href="#工具调用未运行">工具调用未运行</a><a class="l3" href="#历史记录变得过大">历史记录变得过大</a><a class="l3" href="#图出现意外行为">图出现意外行为</a><a class="l3" href="#出现性能问题">出现性能问题</a></div><article class="content"><h1 id="_1">自定义策略图</h1>
+<p>策略图是 Koog 框架中智能体工作流的骨干。它们定义了智能体如何处理输入、与工具交互以及生成输出。策略图由通过边连接的节点组成，并通过条件决定执行流程。</p>
+<p>创建策略图让你能够根据具体需求定制智能体的行为，无论你是在构建简单的聊天机器人、复杂的数据处理流水线，还是介于两者之间的任何东西。</p>
+<h2 id="_2">策略图架构</h2>
+<p>从高层来看，策略图由以下组件组成：</p>
+<ul>
+<li><strong>策略（Strategy）</strong>：图的顶层容器，使用 <code>strategy</code> 函数创建，并通过泛型参数指定输入和输出类型。</li>
+<li><strong>子图（Subgraphs）</strong>：图中可以拥有自己的一组工具和上下文的部分。</li>
+<li><strong>节点（Nodes）</strong>：工作流中的单个操作或转换。</li>
+<li><strong>边（Edges）</strong>：节点之间的连接，用于定义转换条件和转换。</li>
+</ul>
+<p>策略图从一个名为 <code>nodeStart</code> 的特殊节点开始，并在 <code>nodeFinish</code> 结束。
+这些节点之间的路径由图中指定的边和条件决定。</p>
+<h2 id="_3">策略图组件</h2>
+<h3 id="_4">节点</h3>
+<p>节点是策略图的构建块。每个节点代表一个特定的操作。</p>
+<p>Koog 框架提供了预定义节点，同时也允许你使用 <code>node</code> 函数创建自定义节点。</p>
+<p>有关详细信息，请参阅<a href="022-nodes-and-components.html">预定义节点和组件</a>以及<a href="006-custom-nodes.html">自定义节点</a>。</p>
+<h3 id="_5">边</h3>
+<p>边连接节点并定义策略图中的操作流程。
+边使用 <code>edge</code> 函数和 <code>forwardTo</code> 中缀函数创建：</p>
+<p>KotlinJava</p>
+<pre><code>edge(sourceNode forwardTo targetNode)
+</code></pre>
+<pre><code>strategy.edge(sourceNode, targetNode);
+</code></pre>
+<h4 id="_6">条件</h4>
+<p>条件决定何时沿策略图中的特定边前进。条件有多种类型，以下是一些常见的类型：</p>
+<table>
+<thead>
+<tr>
+<th>条件类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onCondition</td>
+<td>一种通用条件，接受一个返回布尔值的 lambda 表达式。</td>
+</tr>
+<tr>
+<td>onToolCalls</td>
+<td>当 LLM 调用一个或多个工具时匹配的条件。</td>
+</tr>
+<tr>
+<td>onTextMessage</td>
+<td>当 LLM 以文本消息响应时匹配的条件。</td>
+</tr>
+<tr>
+<td>onToolNotCalled</td>
+<td>当 LLM 未调用工具时匹配的条件。</td>
+</tr>
+</tbody>
+</table>
+<p>你可以使用 <code>transformed</code> 函数在将输出传递给目标节点之前对其进行转换：</p>
+<p>KotlinJava</p>
+<pre><code>edge(sourceNode forwardTo targetNode 
+        onCondition { input -&gt; input.length &gt; 10 }
+        transformed { input -&gt; input.uppercase() }
+)
+</code></pre>
+<pre><code>strategy.edge(AIAgentEdge.builder()
+    .from(sourceNode)
+    .to(targetNode)
+    .onCondition(input -&gt; input.length() &gt; 10)
+    .transformed(input -&gt; input.toUpperCase())
+    .build());
+</code></pre>
+<h3 id="_7">子图</h3>
+<p>子图是策略图中独立运行的部分，拥有自己的一套工具和上下文。
+策略图可以包含多个子图。每个子图通过使用 <code>subgraph</code> 函数来定义：</p>
+<p>KotlinJava</p>
+<pre><code>val strategy = strategy&lt;Input, Output&gt;(&quot;strategy-name&quot;) {
+    val firstSubgraph by subgraph&lt;FirstInput, FirstOutput&gt;(&quot;first&quot;) {
+        // Define nodes and edges for this subgraph
+    }
+    val secondSubgraph by subgraph&lt;SecondInput, SecondOutput&gt;(&quot;second&quot;) {
+        // Define nodes and edges for this subgraph
+    }
+}
+</code></pre>
+<pre><code>var firstSubgraph = AIAgentSubgraph.builder(&quot;first&quot;)
+    .withInput(FirstInput.class)
+    .withOutput(FirstOutput.class)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+    })
+    .build();
+
+var secondSubgraph = AIAgentSubgraph.builder(&quot;second&quot;)
+    .withInput(SecondInput.class)
+    .withOutput(SecondOutput.class)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+    })
+    .build();
+</code></pre>
+<p>子图可以使用工具注册表中的任何工具。
+但是，你可以指定该注册表中可在子图中使用的工具子集，并将其作为参数传递给 <code>subgraph</code> 函数：</p>
+<p>KotlinJava</p>
+<pre><code>val strategy = strategy&lt;Input, Output&gt;(&quot;strategy-name&quot;) {
+    val firstSubgraph by subgraph&lt;FirstInput, FirstOutput&gt;(
+        name = &quot;first&quot;,
+        tools = listOf(someTool)
+    ) {
+        // Define nodes and edges for this subgraph
+    }
+   // Define other subgraphs
+}
+</code></pre>
+<pre><code>var firstSubgraph = AIAgentSubgraph.builder(&quot;first&quot;)
+    .withInput(FirstInput.class)
+    .withOutput(FirstOutput.class)
+    .limitedTools(someTools)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+    })
+    .build();
+</code></pre>
+<h2 id="_8">基本策略图创建</h2>
+<p>基本策略图的运行方式如下：</p>
+<ol>
+<li>将输入发送给 LLM。</li>
+<li>如果 LLM 以消息响应，则结束流程。</li>
+<li>如果 LLM 调用工具，则运行该工具。</li>
+<li>将工具结果发送回 LLM。</li>
+<li>如果 LLM 以消息响应，则结束流程。</li>
+<li>如果 LLM 调用另一个工具，则运行该工具，然后从步骤 4 开始重复该过程。</li>
+</ol>
+<p><img alt="basic-strategy-graph" src="../img/basic-strategy-graph.png" /></p>
+<p>以下是一个基本策略图的示例：</p>
+<p>KotlinJava</p>
+<pre><code>val myStrategy = strategy&lt;String, String&gt;(&quot;my-strategy&quot;) {
+    val nodeCallLLM by nodeLLMRequest()
+    val executeToolCall by nodeExecuteTools()
+    val sendToolResult by nodeLLMSendToolResults()
+
+    edge(nodeStart forwardTo nodeCallLLM)
+    edge(nodeCallLLM forwardTo nodeFinish onTextMessage { true })
+    edge(nodeCallLLM forwardTo executeToolCall onToolCalls { true })
+    edge(executeToolCall forwardTo sendToolResult)
+    edge(sendToolResult forwardTo nodeFinish onTextMessage { true })
+    edge(sendToolResult forwardTo executeToolCall onToolCalls { true })
+}
+</code></pre>
+<pre><code>var graph = AIAgentGraphStrategy.builder(&quot;single_run&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+var nodeCallLLM = AIAgentNode.llmRequest(&quot;sendInput&quot;);
+var nodeExecuteTool = AIAgentNode.executeTools(&quot;nodeExecuteTool&quot;);
+var nodeSendToolResult = AIAgentNode.llmSendToolResults(&quot;nodeSendToolResult&quot;);
+
+graph.edge(AIAgentEdge.builder()
+    .from(graph.nodeStart)
+    .to(nodeCallLLM)
+    .build());
+
+graph.edge(AIAgentEdge.builder()
+    .from(nodeCallLLM)
+    .to(nodeExecuteTool)
+    .onToolCalls()
+    .build());
+
+graph.edge(AIAgentEdge.builder()
+    .from(nodeCallLLM)
+    .to(graph.nodeFinish)
+    .onTextMessage()
+    .build());
+
+graph.edge(nodeExecuteTool, nodeSendToolResult);
+
+graph.edge(AIAgentEdge.builder()
+    .from(nodeSendToolResult)
+    .to(graph.nodeFinish)
+    .onTextMessage()
+    .build());
+
+graph.edge(AIAgentEdge.builder()
+    .from(nodeSendToolResult)
+    .to(nodeExecuteTool)
+    .onToolCalls()
+    .build());
+
+var strategy = graph.build();
+</code></pre>
+<h2 id="_9">可视化策略图</h2>
+<p>在 JVM 上，你可以为策略图生成 <a href="https://mermaid.js.org/syntax/stateDiagram.html">Mermaid 状态图</a>。</p>
+<p>对于上一个示例中创建的图，你可以运行：</p>
+<p>KotlinJava</p>
+<pre><code>val mermaidDiagram: String = myStrategy.asMermaidDiagram()
+
+println(mermaidDiagram)
+</code></pre>
+<pre><code>var mermaidDiagram = MermaidDiagramGenerator.INSTANCE.generate(myStrategy);
+System.out.println(mermaidDiagram);
+</code></pre>
+<p>输出将是：</p>
+<pre><code>---
+title: my-strategy
+---
+stateDiagram
+    state &quot;nodeCallLLM&quot; as nodeCallLLM
+    state &quot;executeToolCall&quot; as executeToolCall
+    state &quot;sendToolResult&quot; as sendToolResult
+
+    [*] --&gt; nodeCallLLM
+    nodeCallLLM --&gt; [*] : transformed
+    nodeCallLLM --&gt; executeToolCall : onCondition
+    executeToolCall --&gt; sendToolResult
+    sendToolResult --&gt; [*] : transformed
+    sendToolResult --&gt; executeToolCall : onCondition
+</code></pre>
+<h2 id="_10">高级策略技术</h2>
+<h3 id="_11">历史压缩</h3>
+<p>对于长时间运行的对话，历史记录可能会变得很大并消耗大量 token。要了解如何压缩历史记录，请参阅<a href="013-history-compression.html">历史压缩</a>。</p>
+<h3 id="_12">并行工具执行</h3>
+<p>对于需要并行执行多个工具的工作流，你可以使用带有 <code>parallel = true</code> 的 <code>nodeExecuteTools</code> 节点：</p>
+<pre><code>val executeMultipleTools by nodeExecuteTools(parallel = true)
+val processMultipleResults by nodeLLMSendToolResults()
+
+edge(someNode forwardTo executeMultipleTools)
+edge(executeMultipleTools forwardTo processMultipleResults)
+</code></pre>
+<p>你也可以使用 <code>toParallelToolCallsRaw</code> 扩展函数来处理流式数据：</p>
+<pre><code>parseMarkdownStreamToBooks(markdownStream).toParallelToolCallsRaw(BookTool::class).collect()
+</code></pre>
+<p>要了解更多信息，请参阅<a href="084-tools.html#parallel-tool-calls">工具</a>。</p>
+<h3 id="_13">并行节点执行</h3>
+<p>并行节点执行让你可以同时运行多个节点，从而提升性能并支持复杂的工作流。</p>
+<p>要启动并行节点运行，请使用 <code>parallel</code> 方法：</p>
+<pre><code>val calc by parallel&lt;String, Int&gt;(
+    nodeCalcTokens, nodeCalcSymbols, nodeCalcWords,
+) {
+    selectByMax { it }
+}
+</code></pre>
+<p>上面的代码创建了一个名为 <code>calc</code> 的节点，它并行运行 <code>nodeCalcTokens</code>、<code>nodeCalcSymbols</code> 和 <code>nodeCalcWords</code> 节点，并将结果作为 <code>AsyncParallelResult</code> 的实例返回。</p>
+<p>有关并行节点执行的更多信息及详细参考，请参见<a href="023-parallel-node-execution.html">并行节点执行</a>。</p>
+<h3 id="_14">条件分支</h3>
+<p>对于需要根据特定条件选择不同路径的复杂工作流，你可以使用条件分支：</p>
+<pre><code>val branchA by node&lt;String, String&gt; { input -&gt;
+    // Logic for branch A
+    &quot;Branch A: $input&quot;
+}
+
+val branchB by node&lt;String, String&gt; { input -&gt;
+    // Logic for branch B
+    &quot;Branch B: $input&quot;
+}
+
+edge(
+    (someNode forwardTo branchA)
+            onCondition { input -&gt; input.contains(&quot;A&quot;) }
+)
+edge(
+    (someNode forwardTo branchB)
+            onCondition { input -&gt; input.contains(&quot;B&quot;) }
+)
+</code></pre>
+<h2 id="_15">最佳实践</h2>
+<p>创建自定义策略图时，请遵循以下最佳实践：</p>
+<ul>
+<li>保持简单。从简单的图开始，根据需要再增加复杂度。</li>
+<li>为节点和边赋予描述性名称，使图更易于理解。</li>
+<li>处理所有可能的路径和边界情况。</li>
+<li>使用各种输入测试你的图，确保其行为符合预期。</li>
+<li>记录图的目的和行为，以供将来参考。</li>
+<li>使用预定义策略或常见模式作为起点。</li>
+<li>对于长时间运行的对话，使用历史压缩来减少 token 使用量。</li>
+<li>使用子图来组织你的图并管理工具访问权限。</li>
+</ul>
+<h2 id="_16">使用示例</h2>
+<h3 id="_17">语气分析策略</h3>
+<p>语气分析策略是一个很好的示例，展示了包含历史压缩的基于工具的策略：</p>
+<pre><code>fun toneStrategy(name: String, toolRegistry: ToolRegistry): AIAgentGraphStrategy&lt;String, String&gt; {
+    return strategy(name) {
+        val nodeSendInput by nodeLLMRequest()
+        val nodeExecuteTool by nodeExecuteTools()
+        val nodeSendToolResult by nodeLLMSendToolResults()
+        val nodeCompressHistory by nodeLLMCompressHistory&lt;ReceivedToolResults&gt;()
+
+        // Define the flow of the agent
+        edge(nodeStart forwardTo nodeSendInput)
+
+        // If the LLM responds with a message, finish
+        edge(
+            (nodeSendInput forwardTo nodeFinish)
+                onTextMessage { true }
+        )
+
+        // If the LLM calls a tool, execute it
+        edge(
+            (nodeSendInput forwardTo nodeExecuteTool)
+                    onToolCalls { true }
+        )
+
+        // If the history gets too large, compress it
+        edge(
+            (nodeExecuteTool forwardTo nodeCompressHistory)
+                    onCondition { _ -&gt; llm.readSession { prompt.messages.size &gt; 100 } }
+        )
+
+        edge(nodeCompressHistory forwardTo nodeSendToolResult)
+
+        // Otherwise, send the tool result directly
+        edge(
+            (nodeExecuteTool forwardTo nodeSendToolResult)
+                    onCondition { _ -&gt; llm.readSession { prompt.messages.size &lt;= 100 } }
+        )
+
+        // If the LLM calls another tool, execute it
+        edge(
+            (nodeSendToolResult forwardTo nodeExecuteTool)
+                    onToolCalls { true }
+        )
+
+        // If the LLM responds with a message, finish
+        edge(
+            (nodeSendToolResult forwardTo nodeFinish)
+                onTextMessage { true }
+        )
+    }
+}
+</code></pre>
+<p>该策略执行以下操作：</p>
+<ol>
+<li>将输入发送给 LLM。</li>
+<li>如果 LLM 返回一条消息，该策略结束流程。</li>
+<li>如果 LLM 调用工具，该策略运行该工具。</li>
+<li>如果历史记录过大（超过 100 条消息），该策略会在发送工具结果之前对其进行压缩。</li>
+<li>否则，该策略直接发送工具结果。</li>
+<li>如果 LLM 调用另一个工具，该策略运行它。</li>
+<li>如果 LLM 返回一条消息，该策略结束流程。</li>
+</ol>
+<h2 id="_18">故障排除</h2>
+<p>在创建自定义策略图时，你可能会遇到一些常见问题。以下是一些故障排除提示：</p>
+<h3 id="finish">图无法到达 finish 节点</h3>
+<p>如果你的图无法到达 finish 节点，请检查以下内容：</p>
+<ul>
+<li>从起始节点出发的所有路径最终都通向 finish 节点。</li>
+<li>你的条件限制性不会过强，以免阻止边的执行。</li>
+<li>图中不存在没有退出条件的循环。</li>
+</ul>
+<h3 id="_19">工具调用未运行</h3>
+<p>如果工具调用未运行，请检查以下内容：</p>
+<ul>
+<li>工具已正确注册到工具注册表中。</li>
+<li>从 LLM 节点到工具执行节点的边具有正确的条件（<code>onToolCall { true }</code>）。</li>
+</ul>
+<h3 id="_20">历史记录变得过大</h3>
+<p>如果你的历史记录变得过大并消耗过多 token，请考虑以下做法：</p>
+<ul>
+<li>添加一个历史记录压缩节点。</li>
+<li>使用条件检查历史记录的大小，并在其变得过大时进行压缩。</li>
+<li>使用更激进的压缩策略（例如，使用较小 N 值的 <code>FromLastNMessages</code>）。</li>
+</ul>
+<h3 id="_21">图出现意外行为</h3>
+<p>如果你的图出现了意外的分支，请检查以下内容：</p>
+<ul>
+<li>你的条件定义正确。</li>
+<li>条件按预期顺序求值（边按定义顺序检查）。</li>
+<li>你没有意外地用更通用的条件覆盖了其他条件。</li>
+</ul>
+<h3 id="_22">出现性能问题</h3>
+<p>如果你的图存在性能问题，请考虑以下做法：</p>
+<ul>
+<li>通过移除不必要的节点和边来简化图。</li>
+<li>对独立操作使用并行工具执行。</li>
+<li>压缩历史记录。</li>
+<li>使用更高效的节点和操作。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/custom-strategy-graphs/">官方原文</a></div></main></div></body></html>

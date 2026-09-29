@@ -1,0 +1,131 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>为什么选择 Koog - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/why-koog/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0 active" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/why-koog/">https://docs.koog.ai/why-koog/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#与-java-和-kotlin-应用程序集成">与 Java 和 Kotlin 应用程序集成</a><a class="l2" href="#通过-jetbrains-产品进行真实世界验证">通过 JetBrains 产品进行真实世界验证</a><a class="l2" href="#开箱即用的高级解决方案">开箱即用的高级解决方案</a><a class="l2" href="#广泛集成多平台支持增强的可观测性">广泛集成、多平台支持、增强的可观测性</a><a class="l2" href="#与-ml-工程师和产品团队协作">与 ML 工程师和产品团队协作</a><a class="l2" href="#对开发者社区的承诺">对开发者社区的承诺</a><a class="l2" href="#从哪里开始">从哪里开始</a></div><article class="content"><h1 id="koog">为什么选择 Koog</h1>
+<p>Koog 旨在以 JetBrains 级别的质量解决现实世界中的问题。
+它提供先进的 AI 算法、开箱即用的经过验证的技术、Kotlin DSL 以及 Java 流畅 API，还有超越传统框架的强大多平台支持。</p>
+<p>它的主要关注点是可靠性——使 AI 智能体能够被放心地用于要求严苛的企业环境。</p>
+<h2 id="java-kotlin">与 Java 和 Kotlin 应用程序集成</h2>
+<p>Koog 为 Kotlin 开发者提供了专门设计的 Kotlin 领域特定语言（DSL），并为 Java 用户提供了流畅的 Java API。
+同一个框架为这两种 JVM 语言都带来了原生的使用体验，确保无缝集成到 Kotlin 和 Java 应用程序中，同时显著提升生产力并改善整体开发者体验。</p>
+<h2 id="jetbrains">通过 JetBrains 产品进行真实世界验证</h2>
+<p>Koog 为多个 JetBrains 产品提供支持，包括内部 AI 智能体。
+这种真实世界的集成确保 Koog 持续接受测试、改进，并针对实际用例进行验证。
+它专注于在实践中行之有效的方法，融合了来自大量反馈和真实产品场景的洞见。
+这种集成为 Koog 带来了区别于其他框架的优势。</p>
+<h2 id="_1">开箱即用的高级解决方案</h2>
+<p>Koog 包含预构建的、可组合的解决方案，以简化和加速智能体系统的开发，这使其区别于仅提供基本组件的框架：</p>
+<ul>
+<li><strong>带有领域建模的图工作流。</strong> 将 AI 工作流建模为基于经过验证的领域模型构建的显式图。通过将需求表达为结构化数据类，而不是依赖朴素的提示词，你可以精确控制智能体行为，并显著提高可靠性和可预测性。</li>
+<li><strong>多种历史压缩策略。</strong> Koog 开箱即用地提供了用于压缩和管理长时间运行对话的高级策略，无需手动试验各种方法。借助由 ML 工程师测试和改进的精细调优提示词、技术和算法，你可以依赖经过验证的方法来提升性能。有关压缩策略的更多详细信息，请参阅<a href="013-history-compression.html">历史压缩</a>。要了解 Koog 在真实场景中如何处理压缩和上下文管理，请查看<a href="https://blog.jetbrains.com/ai/2025/07/when-tool-calling-becomes-an-addiction-debugging-llm-patterns-in-koog/">这篇文章</a>。</li>
+<li><strong>高级持久化（持久执行）。</strong> Koog 允许你恢复完整的智能体状态机，而不仅仅是聊天消息。这实现了检查点、故障恢复，甚至能够回退到状态机执行过程中的任意点等功能。</li>
+<li><strong>所有现代智能体模式，一个框架。</strong> 图工作流、GOAP（目标导向行动规划）和 LLM 规划、多智能体编排——完全支持且完全可组合。构建完全符合你用例需求的智能体。</li>
+<li><strong>无缝 LLM 切换。</strong> 你可以在任意时刻将对话切换到具有一组新可用工具的不同大语言模型（LLM），而不会丢失现有对话历史。Koog 会自动重写历史并处理不可用的工具，从而实现平滑过渡和自然的交互流程。</li>
+<li><strong>健壮的重试组件。</strong> Koog 包含重试机制，让你可以包装智能体系统中的任意操作集，并重试它们直到满足可配置的条件。你可以提供反馈并调整每次尝试，以确保可靠的结果。如果 LLM 调用超时、工具未按预期工作或出现网络问题，Koog 可确保你的智能体即使在临时故障期间也能保持韧性并有效运行。有关更多技术细节，请参阅<a href="013-history-compression.html">重试功能</a>。</li>
+</ul>
+<h2 id="_2">广泛集成、多平台支持、增强的可观测性</h2>
+<p>Koog 支持在各种平台和环境中开发和部署智能体应用程序：</p>
+<ul>
+<li><strong>Spring Boot、Spring AI 和 Ktor 集成</strong>。Koog 与广泛使用的企业环境集成。</li>
+<li>对于 Spring Boot，Koog 提供开箱即用的 bean 和自动配置的 LLM 客户端，让你轻松开始构建 AI 驱动的工作流。</li>
+<li>如果你已经在使用 Spring AI 来实现 LLM 和 RAG 能力，Koog 可以作为编排和智能体框架叠加在其之上。这使你能够利用 Spring AI 的广泛集成，同时受益于 Koog 先进、可靠且高性价比的 AI 工作流。</li>
+<li>如果你有 Ktor 服务器，可以将 Koog 作为插件安装，使用配置文件配置提供方，并直接从任意路由调用智能体，而无需手动连接 LLM 客户端。</li>
+<li><strong>多平台支持</strong>。你可以将智能体应用程序部署到 JVM、JS、WasmJS、Android 和 iOS 目标平台。</li>
+<li><strong>广泛的 AI 集成</strong>。Koog 与主流 LLM 提供方集成，包括 OpenAI、Anthropic、Google、DeepSeek、Mistral、Alibaba，以及像 Bedrock 这样的企业级 AI 云。它还支持 Ollama 等本地模型。有关可用提供方的完整列表，请参阅 <a href="018-llm-providers.html">LLM 提供方</a>。</li>
+<li><strong>OpenTelemetry 支持</strong>。Koog 开箱即用地与流行的可观测性提供方集成，如 <a href="https://wandb.ai/site/weave/">W&amp;B Weave</a>、<a href="https://langfuse.com/">Langfuse</a> 和 <a href="https://www.datadoghq.com/">DataDog</a>，用于监控和调试 AI 应用程序。借助原生 OpenTelemetry 支持，你可以使用系统中已在使用的相同工具来追踪、记录和度量你的智能体。要了解更多信息，请参阅 <a href="https://docs.koog.ai/opentelemetry-support/">OpenTelemetry</a>。</li>
+</ul>
+<h2 id="ml">与 ML 工程师和产品团队协作</h2>
+<p>Koog 的一个独特优势是它与 JetBrains ML 工程师和产品团队直接协作。
+这确保使用 Koog 构建的功能不仅仅是理论上的，而是基于真实产品需求进行测试和改进的。
+这意味着 Koog 融合了：</p>
+<ul>
+<li><strong>精细调优的提示词和策略</strong>，针对真实世界性能进行了优化。</li>
+<li><strong>经过验证的工程方法</strong>，通过产品开发发现并验证，例如其独特的历史压缩策略。你可以在<a href="https://blog.jetbrains.com/ai/2025/07/when-tool-calling-becomes-an-addiction-debugging-llm-patterns-in-koog/">这篇详细文章</a>中了解更多。</li>
+<li><strong>持续改进</strong>，帮助 Koog 保持高效并适应不断变化的需求。</li>
+</ul>
+<h2 id="_3">对开发者社区的承诺</h2>
+<p>Koog 团队坚定致力于构建强大的开发者社区。
+通过积极收集和采纳反馈，Koog 不断演进，以有效满足开发者的需求。
+我们正在积极扩展对多样化 AI 架构、全面基准测试、详细用例指南和教育资源的支持，以赋能开发者。</p>
+<h2 id="_4">从哪里开始</h2>
+<ul>
+<li>在<a href="../">概述</a>中探索 Koog 的能力。</li>
+<li>通过我们的<a href="025-quickstart.html">快速开始</a>指南构建你的第一个 Koog 智能体。</li>
+<li>在 Koog <a href="https://github.com/JetBrains/koog/blob/main/CHANGELOG.md">发行说明</a>中查看最新更新。</li>
+<li>从<a href="011-examples.html">示例</a>中学习。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/why-koog/">官方原文</a></div></main></div></body></html>

@@ -1,0 +1,200 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用 Koog 构建猜数字 Agent - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/examples/Guesser/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1 active" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/examples/Guesser/">https://docs.koog.ai/examples/Guesser/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#设置">设置</a><a class="l2" href="#工具提出有针对性的问题">工具：提出有针对性的问题</a><a class="l2" href="#tool-registry">Tool Registry</a><a class="l2" href="#agent-配置">Agent 配置</a><a class="l2" href="#运行它">运行它</a><a class="l2" href="#工作原理">工作原理</a><a class="l2" href="#扩展它">扩展它</a><a class="l2" href="#故障排除">故障排除</a></div><article class="content"><h1 id="koog-agent">使用 Koog 构建猜数字 Agent</h1>
+<p><a href="https://github.com/JetBrains/koog/blob/develop/examples/notebooks/Guesser.ipynb">在 GitHub 上打开</a>
+ <a href="https://raw.githubusercontent.com/JetBrains/koog/develop/examples/notebooks/Guesser.ipynb">下载 .ipynb</a></p>
+<p>让我们构建一个小巧但有趣的 agent，用来猜测你心里想的数字。我们将依靠 Koog 的工具调用来提出有针对性的问题，并使用经典的二分搜索策略逐步收敛。最终得到的是一个符合 Kotlin 习惯的 Kotlin Notebook，可以直接放入文档中。</p>
+<p>我们会保持代码最小化、流程透明：几个很小的工具、一个紧凑的提示，以及一个交互式 CLI 循环。</p>
+<h2 id="_1">设置</h2>
+<p>此 notebook 假设：
+- 你正在带有 Koog 的 Kotlin Notebook 中运行。
+- 已设置环境变量 <code>OPENAI_API_KEY</code>。agent 会通过 <code>simpleOpenAIExecutor(System.getenv("OPENAI_API_KEY"))</code> 使用它。</p>
+<p>加载 Koog kernel：</p>
+<pre><code>%useLatestDescriptors
+%use koog
+</code></pre>
+<h2 id="_2">工具：提出有针对性的问题</h2>
+<p>工具是 LLM 可以调用的小型、描述清晰的函数。我们将提供三个工具：
+- <code>lessThan(value)</code>：“你的数字是否小于 value？”
+- <code>greaterThan(value)</code>：“你的数字是否大于 value？”
+- <code>proposeNumber(value)</code>：“你的数字是否等于 value？”（在范围足够小时使用）</p>
+<p>每个工具都返回一个简单的 "YES"/"NO" 字符串。辅助函数 <code>ask</code> 实现了一个最小化的 Y/n 循环并验证输入。通过 <code>@LLMDescription</code> 给出的描述可以帮助模型正确选择工具。</p>
+<pre><code>import ai.koog.agents.core.tools.annotations.Tool
+
+class GuesserTool : ToolSet {
+
+    @Tool
+    @LLMDescription(&quot;Asks the user if his number is STRICTLY less than a given value.&quot;)
+    fun lessThan(
+        @LLMDescription(&quot;A value to compare the guessed number with.&quot;) value: Int
+    ): String = ask(&quot;Is your number less than $value?&quot;, value)
+
+    @Tool
+    @LLMDescription(&quot;Asks the user if his number is STRICTLY greater than a given value.&quot;)
+    fun greaterThan(
+        @LLMDescription(&quot;A value to compare the guessed number with.&quot;) value: Int
+    ): String = ask(&quot;Is your number greater than $value?&quot;, value)
+
+    @Tool
+    @LLMDescription(&quot;Asks the user if his number is EXACTLY equal to the given number. Only use this tool once you've narrowed down your answer.&quot;)
+    fun proposeNumber(
+        @LLMDescription(&quot;A value to compare the guessed number with.&quot;) value: Int
+    ): String = ask(&quot;Is your number equal to $value?&quot;, value)
+
+    fun ask(question: String, value: Int): String {
+        print(&quot;$question [Y/n]: &quot;)
+        val input = readln()
+        println(input)
+
+        return when (input.lowercase()) {
+            &quot;&quot;, &quot;y&quot;, &quot;yes&quot; -&gt; &quot;YES&quot;
+            &quot;n&quot;, &quot;no&quot; -&gt; &quot;NO&quot;
+            else -&gt; {
+                println(&quot;Invalid input! Please, try again.&quot;)
+                ask(question, value)
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="tool-registry">Tool Registry</h2>
+<p>将你的工具暴露给 agent。我们还添加了内置的 <code>SayToUser</code> 工具，以便 agent 可以直接向用户展示消息。</p>
+<pre><code>val toolRegistry = ToolRegistry {
+    tool(SayToUser)
+    tools(GuesserTool())
+}
+</code></pre>
+<h2 id="agent">Agent 配置</h2>
+<p>我们只需要一个简短、以工具为中心的 system prompt。我们会建议采用二分搜索策略，并保持 <code>temperature = 0.0</code>，以获得稳定、确定性的行为。这里我们使用 OpenAI 的推理模型 <code>GPT4oMini</code> 来进行清晰的规划。</p>
+<pre><code>val agent = AIAgent(
+    executor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4oMini,
+    systemPrompt = &quot;&quot;&quot;
+            You are a number guessing agent. Your goal is to guess a number that the user is thinking of.
+
+            Follow these steps:
+            1. Start by asking the user to think of a number between 1 and 100.
+            2. Use the less_than and greater_than tools to narrow down the range.
+                a. If it's neither greater nor smaller, use the propose_number tool.
+            3. Once you're confident about the number, use the propose_number tool to check if your guess is correct.
+            4. If your guess is correct, congratulate the user. If not, continue guessing.
+
+            Be efficient with your guessing strategy. A binary search approach works well.
+        &quot;&quot;&quot;.trimIndent(),
+    temperature = 0.0,
+    toolRegistry = toolRegistry
+)
+</code></pre>
+<h2 id="_3">运行它</h2>
+<ul>
+<li>想一个 1 到 100 之间的数字。</li>
+<li>输入 <code>start</code> 开始。</li>
+<li>用 <code>Y</code>/<code>Enter</code> 表示是，或用 <code>n</code> 表示否，来回答 agent 的问题。agent 应该能在约 7 步内锁定你的数字。</li>
+</ul>
+<pre><code>import kotlinx.coroutines.runBlocking
+
+println(&quot;Number Guessing Game started!&quot;)
+println(&quot;Think of a number between 1 and 100, and I'll try to guess it.&quot;)
+println(&quot;Type 'start' to begin the game.&quot;)
+
+val initialMessage = readln()
+runBlocking {
+    agent.run(initialMessage)
+}
+</code></pre>
+<h2 id="_4">工作原理</h2>
+<ul>
+<li>agent 读取 system prompt 并规划二分搜索。</li>
+<li>在每次迭代中，它会调用你的一个工具：<code>lessThan</code>、<code>greaterThan</code>，或在确定时调用 <code>proposeNumber</code>。</li>
+<li>辅助函数 <code>ask</code> 收集你的 Y/n 输入，并向模型返回干净的 "YES"/"NO" 信号。</li>
+<li>当它得到确认后，会通过 <code>SayToUser</code> 祝贺你。</li>
+</ul>
+<h2 id="_5">扩展它</h2>
+<ul>
+<li>通过调整 system prompt 更改范围（例如 1..1000）。</li>
+<li>添加 <code>between(low, high)</code> 工具，以进一步减少调用次数。</li>
+<li>替换模型或 executor（例如使用 Ollama executor 和本地模型），同时保持相同的工具。</li>
+<li>将猜测或结果持久化到存储中，用于分析。</li>
+</ul>
+<h2 id="_6">故障排除</h2>
+<ul>
+<li>缺少 key：确保已在你的环境中设置 <code>OPENAI_API_KEY</code>。</li>
+<li>找不到 kernel：确保 <code>%useLatestDescriptors</code> 和 <code>%use koog</code> 已成功执行。</li>
+<li>未调用工具：确认 <code>ToolRegistry</code> 包含 <code>GuesserTool()</code>，并且 prompt 中的名称与你的工具函数匹配。</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/examples/Guesser/">官方原文</a></div></main></div></body></html>

@@ -1,0 +1,295 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>聊天记忆 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/features/chat-memory/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1" open><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2" open><summary><a class="nav-node active" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/features/chat-memory/">https://docs.koog.ai/features/chat-memory/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#添加依赖">添加依赖</a><a class="l2" href="#启用聊天记忆">启用聊天记忆</a><a class="l2" href="#会话-id">会话 ID</a><a class="l2" href="#历史提供者">历史提供者</a><a class="l2" href="#预处理器">预处理器</a><a class="l3" href="#内置预处理器">内置预处理器</a><a class="l3" href="#预处理器顺序">预处理器顺序</a><a class="l3" href="#自定义预处理器">自定义预处理器</a><a class="l2" href="#聊天记忆与-agent-持久化">聊天记忆与 agent 持久化</a><a class="l2" href="#最佳实践">最佳实践</a><a class="l2" href="#后续步骤">后续步骤</a></div><article class="content"><h1 id="_1">聊天记忆</h1>
+<p><code>ChatMemory</code> 特性使 AI agent 能够存储对话历史，并在多次运行之间检索它。
+安装后，agent 会在每次运行开始时自动加载之前的消息，并在运行完成时
+存储更新后的对话，从而实现自然的多轮聊天。</p>
+<p>主要能力：</p>
+<ul>
+<li>按会话 ID 自动加载和存储对话历史</li>
+<li>通过 <code>ChatHistoryProvider</code> 使用可插拔的存储后端</li>
+<li>内置预处理器，用于限制历史大小和过滤消息</li>
+<li>支持用于任意消息转换的自定义预处理器</li>
+</ul>
+<h2 id="_2">添加依赖</h2>
+<p>聊天记忆是一个可选<a href="062-features.html">特性</a>，Koog 默认不提供。
+要为你的 Koog agent 实现聊天记忆，请添加 <a href="https://mvnrepository.com/artifact/ai.koog/agents-features-memory"><code>ai.koog:agents-features-memory</code></a> 的依赖：</p>
+<p>Gradle (Kotlin)Gradle (Groovy)Maven</p>
+<p>build.gradle.kts</p>
+<pre><code>dependencies {
+    implementation(&quot;ai.koog:agents-features-memory:$koogVersion&quot;)
+}
+</code></pre>
+<p>build.gradle</p>
+<pre><code>dependencies {
+    implementation 'ai.koog:agents-features-memory:$koogVersion'
+}
+</code></pre>
+<p>pom.xml</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;ai.koog&lt;/groupId&gt;
+    &lt;artifactId&gt;agents-features-memory-jvm&lt;/artifactId&gt;
+    &lt;version&gt;$koogVersion&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>Note</p>
+<p><code>ChatMemory</code> 特性从 Koog 版本 <strong>0.7.0</strong> 开始可用。</p>
+<h2 id="_3">启用聊天记忆</h2>
+<p>创建 agent 时使用 <code>install()</code> 方法安装 <code>ChatMemory</code>：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4oMini
+) {
+    install(ChatMemory)
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OpenAIModels.Chat.GPT4oMini)
+    .install(ChatMemory.Feature)
+    .build();
+</code></pre>
+<p>默认情况下，它使用内存中的<a href="#历史提供者">聊天历史提供者</a>，且不使用<a href="#预处理器">预处理器</a>。
+可以配置 <code>ChatMemory</code> 特性以使用自定义聊天历史提供者和预处理器，例如：</p>
+<p>KotlinJava</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = simpleOpenAIExecutor(System.getenv(&quot;OPENAI_API_KEY&quot;)),
+    llmModel = OpenAIModels.Chat.GPT4oMini
+) {
+    install(ChatMemory) {
+        chatHistoryProvider = MyDatabaseChatHistoryProvider()
+        windowSize(20)
+        filterMessages { it is Message.User || it is Message.Assistant }
+    }
+}
+</code></pre>
+<pre><code>AIAgent&lt;String, String&gt; agent = AIAgent.builder()
+    .promptExecutor(executor)
+    .llmModel(OpenAIModels.Chat.GPT4oMini)
+    .install(ChatMemory.Feature, config -&gt; config
+            .chatHistoryProvider(new MyDatabaseChatHistoryProvider())
+            .windowSize(20)
+            .filterMessages(msg -&gt; msg instanceof Message.User || msg instanceof Message.Assistant))
+    .build();
+</code></pre>
+<h2 id="id">会话 ID</h2>
+<p>将会话 ID 作为第二个参数提供给 <code>agent.run()</code>。
+<code>ChatMemory</code> 使用此 ID 存储和加载对话：</p>
+<pre><code>// First run - the agent saves the chat history at the end
+agent.run(&quot;What is the capital of France?&quot;, &quot;session-1&quot;)
+
+// Second run — the agent loads the previous exchange
+agent.run(&quot;And what about Germany?&quot;, &quot;session-1&quot;)
+</code></pre>
+<p>不同的会话 ID 会产生完全隔离的历史。</p>
+<h2 id="_4">历史提供者</h2>
+<p>默认的 <code>InMemoryChatHistoryProvider</code> 是线程安全的，但不是持久化的（重启后历史会丢失）。
+生产环境中，请实现你自己的 <code>ChatHistoryProvider</code>，以持久化存储消息。</p>
+<pre><code>class MyDatabaseChatHistoryProvider(private val db: Database) : ChatHistoryProvider {
+    override suspend fun store(conversationId: String, messages: List&lt;Message&gt;) {
+        db.saveMessages(conversationId, messages)
+    }
+
+    override suspend fun load(conversationId: String): List&lt;Message&gt; {
+        return db.loadMessages(conversationId) ?: emptyList()
+    }
+}
+</code></pre>
+<h2 id="_5">预处理器</h2>
+<p>预处理器会在加载时（agent 看到消息之前）和存储时（保存之前）转换消息列表。
+它们会按你添加到 <code>ChatMemory</code> 特性配置中的顺序依次运行。</p>
+<h3 id="_6">内置预处理器</h3>
+<table>
+<thead>
+<tr>
+<th>配置方法</th>
+<th>预处理器类</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>windowSize(n)</code></td>
+<td><code>WindowSizePreProcessor</code></td>
+<td>只保留最后 <code>n</code> 条消息</td>
+</tr>
+<tr>
+<td><code>filterMessages { ... }</code></td>
+<td><code>FilterMessagesPreProcessor</code></td>
+<td>保留与谓词匹配的消息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_7">预处理器顺序</h3>
+<p>预处理器按顺序运行，每个输出都会成为下一个输入。
+这意味着顺序很重要。</p>
+<pre><code>// Effect: keep last 10 messages, then filter short ones from those 10
+windowSize(10)
+filterMessages { it.content.length &lt;= 100 }
+
+// Effect: filter short messages first, then keep last 10 of the survivors
+filterMessages { it.content.length &lt;= 100 }
+windowSize(10)
+</code></pre>
+<h3 id="_8">自定义预处理器</h3>
+<p>要创建自定义预处理器，请实现 <code>ChatMemoryPreProcessor</code> 接口：</p>
+<pre><code>class RedactEmailsPreProcessor : ChatMemoryPreProcessor {
+    override fun preprocess(messages: List&lt;Message&gt;): List&lt;Message&gt; {
+        return messages.map { message -&gt;
+            // Replace email addresses in message content
+            Message.User(message.content.replace(Regex(&quot;[\\w.]+@[\\w.]+&quot;), &quot;[REDACTED]&quot;))
+        }
+    }
+}
+</code></pre>
+<p>然后将其添加到配置中：</p>
+<pre><code>install(ChatMemory) {
+    addPreProcessor(RedactEmailsPreProcessor())
+    windowSize(50)
+}
+</code></pre>
+<h2 id="agent">聊天记忆与 agent 持久化</h2>
+<p><code>ChatMemory</code> 将每次 <code>agent.run()</code> 调用视为一个原子且自包含的循环。
+agent 在运行前加载聊天历史，并在成功运行后存储它。
+如果 agent 在运行期间崩溃，它不会存储当前聊天消息，
+这意味着聊天历史会保持为运行前的状态。</p>
+<p><a href="064-features__agent-persistence.html">Persistence</a> 会在运行期间将 agent 的内部执行状态
+（图节点、消息历史、输入和输出）捕获为检查点。
+如果 agent 崩溃，它可以从最后一个检查点恢复。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ChatMemory</th>
+<th>Persistence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>保存内容</strong></td>
+<td>对话消息</td>
+<td>执行状态</td>
+</tr>
+<tr>
+<td><strong>保存时机</strong></td>
+<td><code>agent.run()</code> 完成后</td>
+<td>每个图节点后或运行期间手动定义的位置</td>
+</tr>
+<tr>
+<td><strong>崩溃行为</strong></td>
+<td>进行中的运行丢失；先前历史保持完整</td>
+<td>可从最后一个检查点恢复</td>
+</tr>
+<tr>
+<td><strong>典型用途</strong></td>
+<td>多轮聊天连续性</td>
+<td>具有崩溃恢复需求的长时间运行 agent</td>
+</tr>
+</tbody>
+</table>
+<p>如果你的 agent 执行长时间运行任务，而执行中崩溃代价很高，请考虑
+同时安装这两个特性：</p>
+<pre><code>val agent = AIAgent(
+    promptExecutor = executor,
+    llmModel = OpenAIModels.Chat.GPT4oMini,
+    systemPrompt = &quot;You are a helpful assistant.&quot;,
+) {
+    install(ChatMemory) {
+        chatHistoryProvider = MyDatabaseProvider()
+        windowSize(50)
+    }
+    install(Persistence) {
+        storage = MyPersistenceStorageProvider()
+        enableAutomaticPersistence = true
+    }
+}
+</code></pre>
+<h2 id="_9">最佳实践</h2>
+<ul>
+<li><strong>始终设置窗口大小</strong>，以防止对话无限增长。</li>
+<li><strong>谨慎安排预处理器顺序</strong>，因为先过滤再窗口化和先窗口化再过滤会产生不同结果。</li>
+<li><strong>使用有意义的会话 ID</strong> 进行历史隔离：用户 ID、聊天线程 ID 或 UUID 都很合适。</li>
+<li><strong>为生产环境实现持久化提供者</strong>，因为默认的 <code>InMemoryChatHistoryProvider</code> 会在重启时丢失历史。</li>
+</ul>
+<h2 id="_10">后续步骤</h2>
+<ul>
+<li>了解如何<a href="069-features__chat-memory__chat-agent-with-memory.html">构建一个带记忆的简单 CLI 聊天循环</a></li>
+<li>查看<a href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天端点</a>示例</li>
+</ul></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/features/chat-memory/">官方原文</a></div></main></div></body></html>

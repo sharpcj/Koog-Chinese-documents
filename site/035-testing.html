@@ -1,0 +1,648 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>测试 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/testing/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1 active" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/testing/">https://docs.koog.ai/testing/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#概述">概述</a><a class="l3" href="#目的">目的</a><a class="l2" href="#配置与初始化">配置与初始化</a><a class="l3" href="#设置测试依赖项">设置测试依赖项</a><a class="l3" href="#模拟-llm-响应">模拟 LLM 响应</a><a class="l3" href="#模拟工具调用">模拟工具调用</a><a class="l3" href="#启用测试模式">启用测试模式</a><a class="l2" href="#高级测试">高级测试</a><a class="l3" href="#测试图结构">测试图结构</a><a class="l4" href="#基本结构测试">基本结构测试</a><a class="l3" href="#测试节点行为">测试节点行为</a><a class="l4" href="#基本节点测试">基本节点测试</a><a class="l4" href="#测试工具运行节点">测试工具运行节点</a><a class="l4" href="#高级节点测试">高级节点测试</a><a class="l3" href="#测试边连接">测试边连接</a><a class="l4" href="#基本边测试">基本边测试</a><a class="l4" href="#测试条件路由">测试条件路由</a><a class="l4" href="#高级边测试">高级边测试</a><a class="l2" href="#完整测试示例">完整测试示例</a><a class="l2" href="#api-参考">API 参考</a><a class="l2" href="#常见问题与故障排除">常见问题与故障排除</a><a class="l4" href="#如何模拟特定的工具响应">如何模拟特定的工具响应？</a><a class="l4" href="#如何测试复杂的图结构">如何测试复杂的图结构？</a><a class="l4" href="#如何根据输入模拟不同的-llm-响应">如何根据输入模拟不同的 LLM 响应？</a><a class="l3" href="#故障排除">故障排除</a><a class="l4" href="#模拟执行器总是返回默认响应">模拟执行器总是返回默认响应</a><a class="l4" href="#工具调用未被拦截">工具调用未被拦截</a><a class="l4" href="#图断言失败">图断言失败</a></div><article class="content"><h1 id="_1">测试</h1>
+<h2 id="_2">概述</h2>
+<p>测试功能为在 Koog 框架中测试 AI 代理管道、子图和工具交互提供了一个全面的框架。它使开发者能够创建受控的测试环境，包括模拟 LLM（大型语言模型）执行器、工具注册表和代理环境。</p>
+<h3 id="_3">目的</h3>
+<p>此功能的主要目的是通过以下方式促进基于代理的 AI 功能的测试：</p>
+<ul>
+<li>模拟 LLM 对特定提示的响应</li>
+<li>模拟工具调用及其结果</li>
+<li>测试代理管道子图及其结构</li>
+<li>验证数据通过代理节点的正确流动</li>
+<li>为预期行为提供断言</li>
+</ul>
+<h2 id="_4">配置与初始化</h2>
+<h3 id="_5">设置测试依赖项</h3>
+<p>在设置测试环境之前，请确保已添加以下依赖项：</p>
+<pre><code>// build.gradle.kts
+dependencies {
+   testImplementation(&quot;ai.koog:agents-test:LATEST_VERSION&quot;)
+   testImplementation(kotlin(&quot;test&quot;))
+}
+</code></pre>
+<h3 id="llm">模拟 LLM 响应</h3>
+<p>测试的基本形式涉及模拟 LLM 响应以确保确定性行为。你可以使用 <code>MockLLMBuilder</code> 及相关工具来实现。</p>
+<p>KotlinJava</p>
+<pre><code>// Create a mock LLM executor
+val mockLLMApi = getMockExecutor {
+  // Mock a simple text response
+  mockLLMAnswer(&quot;Hello!&quot;) onRequestContains &quot;Hello&quot;
+
+  // Mock a default response
+  mockLLMAnswer(&quot;I don't know how to answer that.&quot;).asDefaultResponse
+}
+</code></pre>
+<pre><code>import ai.koog.agents.core.tools.ToolRegistry;
+import ai.koog.agents.testing.tools.MockExecutor;
+import ai.koog.prompt.executor.model.PromptExecutor;
+
+// Create a tool registry (empty)
+ToolRegistry toolRegistry = ToolRegistry.builder().build();
+
+// Create a mock LLM executor
+PromptExecutor mockLLMApi = MockExecutor.builder()
+    .toolRegistry(toolRegistry)
+    .mockLLMAnswer(&quot;Hello!&quot;).onRequestContains(&quot;Hello&quot;)
+    .mockLLMAnswer(&quot;I don't know how to answer that.&quot;).asDefaultResponse()
+    .build();
+</code></pre>
+<h3 id="_6">模拟工具调用</h3>
+<p>你可以模拟 LLM 根据输入模式调用特定工具：</p>
+<p>KotlinJava</p>
+<pre><code>// Mock a tool call response
+mockLLMToolCall(CreateTool, CreateTool.Args(&quot;solve&quot;)) onRequestEquals &quot;Solve task&quot;
+
+// Mock tool behavior - simplest form without lambda
+mockTool(PositiveToneTool) alwaysReturns &quot;The text has a positive tone.&quot;
+
+// Using lambda when you need to perform extra actions
+mockTool(NegativeToneTool) alwaysTells {
+  // Perform some extra action
+  println(&quot;Negative tone tool called&quot;)
+
+  // Return the result
+  &quot;The text has a negative tone.&quot;
+}
+
+// Mock tool behavior based on specific arguments
+mockTool(AnalyzeTool) returns &quot;Detailed analysis&quot; onArguments AnalyzeTool.Args(&quot;analyze deeply&quot;)
+
+// Mock tool behavior with conditional argument matching
+mockTool(SearchTool) returns &quot;Found results&quot; onArgumentsMatching { args -&gt;
+  args.query.contains(&quot;important&quot;)
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>上述示例演示了从简单到复杂的多种模拟工具的方式：</p>
+<ol>
+<li><code>alwaysReturns</code>：最简单的形式，直接返回一个值，无需 lambda。</li>
+<li><code>alwaysTells</code>：当你需要执行额外操作时使用 lambda。</li>
+<li><code>returns...onArguments</code>：为精确匹配的参数返回特定结果。</li>
+<li><code>returns...onArgumentsMatching</code>：根据自定义参数条件返回结果。</li>
+</ol>
+<h3 id="_7">启用测试模式</h3>
+<p>要在代理上启用测试模式，请在 AIAgent 构造函数块中使用 <code>withTesting()</code> 函数：</p>
+<p>KotlinJava</p>
+<pre><code>// Create the agent with testing enabled
+AIAgent(
+    promptExecutor = mockLLMApi,
+    toolRegistry = toolRegistry,
+    llmModel = llmModel
+) {
+    // Enable testing mode
+    withTesting()
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h2 id="_8">高级测试</h2>
+<h3 id="_9">测试图结构</h3>
+<p>在测试详细的节点行为和边连接之前，验证代理图的整体结构非常重要。这包括检查所有必需的节点是否存在，以及在预期的子图中是否正确连接。</p>
+<p>测试功能提供了一种全面的方式来测试代理的图结构。这种方法对于具有多个子图和互连节点的复杂代理尤其有价值。</p>
+<h4 id="_10">基本结构测试</h4>
+<p>首先验证代理图的基本结构：</p>
+<p>KotlinJava</p>
+<pre><code>AIAgent(
+    // Constructor arguments
+    promptExecutor = mockLLMApi,
+    toolRegistry = toolRegistry,
+    llmModel = llmModel
+) {
+    testGraph&lt;String, String&gt;(&quot;test&quot;) {
+        val firstSubgraph = assertSubgraphByName&lt;String, String&gt;(&quot;first&quot;)
+        val secondSubgraph = assertSubgraphByName&lt;String, String&gt;(&quot;second&quot;)
+
+        // Assert subgraph connections
+        assertEdges {
+            startNode() alwaysGoesTo firstSubgraph
+            firstSubgraph alwaysGoesTo secondSubgraph
+            secondSubgraph alwaysGoesTo finishNode()
+        }
+
+        // Verify the first subgraph
+        verifySubgraph(firstSubgraph) {
+            val start = startNode()
+            val finish = finishNode()
+
+            // Assert nodes by name
+            val askLLM = assertNodeByName&lt;String, Message.Assistant&gt;(&quot;callLLM&quot;)
+            val callTool = assertNodeByName&lt;ToolCalls, ReceivedToolResults&gt;(&quot;executeTool&quot;)
+
+            // Assert node reachability
+            assertReachable(start, askLLM)
+            assertReachable(askLLM, callTool)
+        }
+    }
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h3 id="_11">测试节点行为</h3>
+<p>节点行为测试让你能够验证代理图中的节点对于给定输入是否产生预期输出。这对于确保代理逻辑在不同场景下正确工作至关重要。</p>
+<h4 id="_12">基本节点测试</h4>
+<p>从对单个节点进行简单的输入和输出验证开始：</p>
+<p>KotlinJava</p>
+<pre><code>assertNodes {
+
+    // Test basic text responses
+    askLLM withInput &quot;Hello&quot; outputs assistantMessage(&quot;Hello!&quot;)
+
+    // Test tool call responses
+    askLLM withInput &quot;Solve task&quot; outputs assistantMessage(CreateTool, CreateTool.Args(&quot;solve&quot;))
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>上述示例展示了如何测试以下行为：
+1. 当 LLM 节点接收到 <code>Hello</code> 作为输入时，它响应一条简单的文本消息。
+2. 当它接收到 <code>Solve task</code> 时，它响应一个工具调用。</p>
+<h4 id="_13">测试工具运行节点</h4>
+<p>你还可以测试运行工具的节点：</p>
+<p>KotlinJava</p>
+<pre><code>assertNodes {
+    // Test tool runs with specific arguments
+    callTool withInput ToolCalls(listOf(toolCallMessagePart(
+        SolveTool,
+        SolveTool.Args(&quot;solve&quot;)
+    ))) outputs ReceivedToolResults(listOf(toolResult(SolveTool, SolveTool.Args(&quot;solve&quot;), &quot;solved&quot;)))
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>这验证了当工具执行节点接收到特定的工具调用签名时，它会产生预期的工具结果。</p>
+<h4 id="_14">高级节点测试</h4>
+<p>对于更复杂的场景，你可以测试具有结构化输入和输出的节点：</p>
+<p>KotlinJava</p>
+<pre><code>assertNodes {
+    // Test with different inputs to the same node
+    askLLM withInput &quot;Simple query&quot; outputs assistantMessage(&quot;Simple response&quot;)
+
+    // Test with complex parameters
+    askLLM withInput &quot;Complex query with parameters&quot; outputs assistantMessage(
+        AnalyzeTool,
+        AnalyzeTool.Args(query = &quot;parameters&quot;, depth = 3)
+    )
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>你还可以测试具有详细结果结构的复杂工具调用场景：</p>
+<p>KotlinJava</p>
+<pre><code>assertNodes {
+    // Test a complex tool call with a structured result
+    callTool withInput ToolCalls(listOf(toolCallMessagePart(
+        AnalyzeTool,
+        AnalyzeTool.Args(query = &quot;complex&quot;, depth = 5)
+    ))) outputs ReceivedToolResults(listOf(toolResult(AnalyzeTool, AnalyzeTool.Args(query = &quot;complex&quot;, depth = 5), AnalyzeTool.Result(
+        analysis = &quot;Detailed analysis&quot;,
+        confidence = 0.95,
+        metadata = mapOf(&quot;source&quot; to &quot;database&quot;, &quot;timestamp&quot; to &quot;2023-06-15&quot;)
+    ))))
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>这些高级测试有助于确保你的节点正确处理复杂的数据结构，这对于复杂的代理行为至关重要。</p>
+<h3 id="_15">测试边连接</h3>
+<p>边连接测试允许你验证代理图是否正确地将一个节点的输出路由到适当的下一节点。这确保你的代理根据不同的输出遵循预期的工作流路径。</p>
+<h4 id="_16">基本边测试</h4>
+<p>从简单的边连接测试开始：</p>
+<p>KotlinJava</p>
+<pre><code>assertEdges {
+    // Test text message routing
+    askLLM withOutput assistantMessage(&quot;Hello!&quot;) goesTo giveFeedback
+
+    // Test tool call routing
+    askLLM withOutput assistantMessage(CreateTool, CreateTool.Args(&quot;solve&quot;)) goesTo callTool
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>此示例验证以下行为：
+1. 当 LLM 节点输出一条简单的文本消息时，流程被定向到 <code>giveFeedback</code> 节点。
+2. 当它输出一个工具调用时，流程被定向到 <code>callTool</code> 节点。</p>
+<h4 id="_17">测试条件路由</h4>
+<p>你可以基于输出内容测试更复杂的路由逻辑：</p>
+<p>KotlinJava</p>
+<pre><code>assertEdges {
+    // Different text responses can route to different nodes
+    askLLM withOutput assistantMessage(&quot;Need more information&quot;) goesTo askForInfo
+    askLLM withOutput assistantMessage(&quot;Ready to proceed&quot;) goesTo processRequest
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h4 id="_18">高级边测试</h4>
+<p>对于复杂的代理，你可以基于工具结果中的结构化数据测试条件路由：</p>
+<p>KotlinJava</p>
+<pre><code>assertEdges {
+    // Test routing based on tool result content
+    callTool withOutput ReceivedToolResults(listOf(toolResult(
+        AnalyzeTool,
+        AnalyzeTool.Args(query = &quot;parameters&quot;, depth = 3),
+        AnalyzeTool.Result(analysis = &quot;Needs more processing&quot;, confidence = 0.5)
+    ))) goesTo processResult
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>你还可以基于不同的结果属性测试复杂的决策路径：</p>
+<p>KotlinJava</p>
+<pre><code>assertEdges {
+    // Route to different nodes based on confidence level
+    callTool withOutput ReceivedToolResults(listOf(toolResult(
+        AnalyzeTool,
+        AnalyzeTool.Args(query = &quot;parameters&quot;, depth = 3),
+        AnalyzeTool.Result(analysis = &quot;Complete&quot;, confidence = 0.9)
+    ))) goesTo finish
+
+    callTool withOutput ReceivedToolResults(listOf(toolResult(
+        AnalyzeTool,
+        AnalyzeTool.Args(query = &quot;parameters&quot;, depth = 3),
+        AnalyzeTool.Result(analysis = &quot;Uncertain&quot;, confidence = 0.3)
+    ))) goesTo verifyResult
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>这些高级边测试有助于确保你的代理根据节点输出的内容和结构做出正确的决策，这对于创建智能的、上下文感知的工作流至关重要。</p>
+<h2 id="_19">完整测试示例</h2>
+<p>以下是一个演示完整测试场景的用户故事：</p>
+<p>你正在开发一个语气分析代理，它分析文本的语气并提供反馈。该代理使用工具来检测积极、消极和中性语气。</p>
+<p>以下是如何测试此代理：</p>
+<p>KotlinJava</p>
+<pre><code>@Test
+fun testToneAgent() = runTest {
+    // Create a list to track tool calls
+    var toolCalls = mutableListOf&lt;String&gt;()
+    var result: String? = null
+
+    // Create a tool registry
+    val toolRegistry = ToolRegistry {
+        // A special tool, required with this type of agent
+        tool(SayToUser)
+
+        with(ToneTools) {
+            tools()
+        }
+    }
+
+    // Create an event handler
+    val eventHandler = EventHandler {
+        onToolCallStarting { tool, args -&gt;
+            println(&quot;[DEBUG_LOG] Tool called: tool ${tool.name}, args $args&quot;)
+            toolCalls.add(tool.name)
+        }
+
+        handleError {
+            println(&quot;[DEBUG_LOG] An error occurred: ${it.message}\n${it.stackTraceToString()}&quot;)
+            true
+        }
+
+        handleResult {
+            println(&quot;[DEBUG_LOG] Result: $it&quot;)
+            result = it
+        }
+    }
+
+    val positiveText = &quot;I love this product!&quot;
+    val negativeText = &quot;Awful service, hate the app.&quot;
+    val defaultText = &quot;I don't know how to answer this question.&quot;
+
+    val positiveResponse = &quot;The text has a positive tone.&quot;
+    val negativeResponse = &quot;The text has a negative tone.&quot;
+    val neutralResponse = &quot;The text has a neutral tone.&quot;
+
+    val mockLLMApi = getMockExecutor(toolRegistry, eventHandler) {
+        // Set up LLM responses for different input texts
+        mockLLMToolCall(NeutralToneTool, ToneTool.Args(defaultText)) onRequestEquals defaultText
+        mockLLMToolCall(PositiveToneTool, ToneTool.Args(positiveText)) onRequestEquals positiveText
+        mockLLMToolCall(NegativeToneTool, ToneTool.Args(negativeText)) onRequestEquals negativeText
+
+        // Mock the behavior where the LLM responds with just tool responses when the tools return results
+        mockLLMAnswer(positiveResponse) onRequestContains positiveResponse
+        mockLLMAnswer(negativeResponse) onRequestContains negativeResponse
+        mockLLMAnswer(neutralResponse) onRequestContains neutralResponse
+
+        mockLLMAnswer(defaultText).asDefaultResponse
+
+        // Tool mocks
+        mockTool(PositiveToneTool) alwaysTells {
+            toolCalls += &quot;Positive tone tool called&quot;
+            positiveResponse
+        }
+        mockTool(NegativeToneTool) alwaysTells {
+            toolCalls += &quot;Negative tone tool called&quot;
+            negativeResponse
+        }
+        mockTool(NeutralToneTool) alwaysTells {
+            toolCalls += &quot;Neutral tone tool called&quot;
+            neutralResponse
+        }
+    }
+
+    // Create a strategy
+    val strategy = toneStrategy(&quot;tone_analysis&quot;)
+
+    // Create an agent configuration
+    val agentConfig = AIAgentConfig(
+        prompt = prompt(&quot;test-agent&quot;) {
+            system(
+                &quot;&quot;&quot;
+                You are an question answering agent with access to the tone analysis tools.
+                You need to answer 1 question with the best of your ability.
+                Be as concise as possible in your answers.
+                DO NOT ANSWER ANY QUESTIONS THAT ARE BESIDES PERFORMING TONE ANALYSIS!
+                DO NOT HALLUCINATE!
+            &quot;&quot;&quot;.trimIndent()
+            )
+        },
+        model = mockk&lt;LLModel&gt;(relaxed = true),
+        maxAgentIterations = 10
+    )
+
+    // Create an agent with testing enabled
+    val agent = AIAgent(
+        promptExecutor = mockLLMApi,
+        toolRegistry = toolRegistry,
+        strategy = strategy,
+        eventHandler = eventHandler,
+        agentConfig = agentConfig,
+    ) {
+        withTesting()
+    }
+
+    // Test the positive text
+    agent.run(positiveText)
+    assertEquals(&quot;The text has a positive tone.&quot;, result, &quot;Positive tone result should match&quot;)
+    assertEquals(1, toolCalls.size, &quot;One tool is expected to be called&quot;)
+
+    // Test the negative text
+    agent.run(negativeText)
+    assertEquals(&quot;The text has a negative tone.&quot;, result, &quot;Negative tone result should match&quot;)
+    assertEquals(2, toolCalls.size, &quot;Two tools are expected to be called&quot;)
+
+    //Test the neutral text
+    agent.run(defaultText)
+    assertEquals(&quot;The text has a neutral tone.&quot;, result, &quot;Neutral tone result should match&quot;)
+    assertEquals(3, toolCalls.size, &quot;Three tools are expected to be called&quot;)
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<p>对于具有多个子图的更复杂代理，你还可以测试图结构：</p>
+<p>KotlinJava</p>
+<pre><code>@Test
+fun testMultiSubgraphAgentStructure() = runTest {
+    val strategy = strategy(&quot;test&quot;) {
+        val firstSubgraph by subgraph(
+            &quot;first&quot;,
+            tools = listOf(DummyTool, CreateTool, SolveTool)
+        ) {
+            val callLLM by nodeLLMRequest(allowToolCalls = false)
+            val executeTool by nodeExecuteTools()
+            val sendToolResult by nodeLLMSendToolResults()
+            val giveFeedback by node&lt;String, String&gt; { input -&gt;
+                llm.writeSession {
+                    appendPrompt {
+                        user(&quot;Call tools! Don't chat!&quot;)
+                    }
+                }
+                input
+            }
+
+            edge(nodeStart forwardTo callLLM)
+            edge(callLLM forwardTo executeTool onToolCalls { true })
+            edge(callLLM forwardTo giveFeedback onTextMessage { true })
+            edge(giveFeedback forwardTo giveFeedback transformed { it })
+            edge(executeTool forwardTo nodeFinish transformed { it.toolResults.first().output })
+        }
+
+        val secondSubgraph by subgraph&lt;String, String&gt;(&quot;second&quot;) {
+            edge(nodeStart forwardTo nodeFinish)
+        }
+
+        edge(nodeStart forwardTo firstSubgraph)
+        edge(firstSubgraph forwardTo secondSubgraph)
+        edge(secondSubgraph forwardTo nodeFinish)
+    }
+
+    val toolRegistry = ToolRegistry {
+        tool(DummyTool)
+        tool(CreateTool)
+        tool(SolveTool)
+    }
+
+    val mockLLMApi = getMockExecutor(toolRegistry) {
+        mockLLMAnswer(&quot;Hello!&quot;) onRequestContains &quot;Hello&quot;
+        mockLLMToolCall(CreateTool, CreateTool.Args(&quot;solve&quot;)) onRequestEquals &quot;Solve task&quot;
+    }
+
+    val basePrompt = prompt(&quot;test&quot;) {}
+
+    AIAgent(
+        toolRegistry = toolRegistry,
+        strategy = strategy,
+        eventHandler = EventHandler {},
+        agentConfig = AIAgentConfig(prompt = basePrompt, model = OpenAIModels.Chat.GPT4o, maxAgentIterations = 100),
+        promptExecutor = mockLLMApi,
+    ) {
+        testGraph(&quot;test&quot;) {
+            val firstSubgraph = assertSubgraphByName&lt;String, String&gt;(&quot;first&quot;)
+            val secondSubgraph = assertSubgraphByName&lt;String, String&gt;(&quot;second&quot;)
+
+            assertEdges {
+                startNode() alwaysGoesTo firstSubgraph
+                firstSubgraph alwaysGoesTo secondSubgraph
+                secondSubgraph alwaysGoesTo finishNode()
+            }
+
+            verifySubgraph(firstSubgraph) {
+                val start = startNode()
+                val finish = finishNode()
+
+                val askLLM = assertNodeByName&lt;String, Message.Assistant&gt;(&quot;callLLM&quot;)
+                val callTool = assertNodeByName&lt;ToolCalls, ReceivedToolResults&gt;(&quot;executeTool&quot;)
+                val giveFeedback = assertNodeByName&lt;Any?, Any?&gt;(&quot;giveFeedback&quot;)
+
+                assertReachable(start, askLLM)
+                assertReachable(askLLM, callTool)
+
+                assertNodes {
+                    askLLM withInput &quot;Hello&quot; outputs assistantMessage(&quot;Hello!&quot;)
+                    askLLM withInput &quot;Solve task&quot; outputs assistantMessage(CreateTool, CreateTool.Args(&quot;solve&quot;))
+
+                    callTool withInput ToolCalls(listOf(toolCallMessagePart(
+                        SolveTool,
+                        SolveTool.Args(&quot;solve&quot;)
+                    ))) outputs ReceivedToolResults(listOf(toolResult(SolveTool, SolveTool.Args(&quot;solve&quot;), &quot;solved&quot;)))
+
+                    callTool withInput ToolCalls(listOf(toolCallMessagePart(
+                        CreateTool,
+                        CreateTool.Args(&quot;solve&quot;)
+                    ))) outputs ReceivedToolResults(listOf(toolResult(CreateTool, CreateTool.Args(&quot;solve&quot;), &quot;created&quot;)))
+                }
+
+                assertEdges {
+                    askLLM withOutput assistantMessage(&quot;Hello!&quot;) goesTo giveFeedback
+                    askLLM withOutput assistantMessage(CreateTool, CreateTool.Args(&quot;solve&quot;)) goesTo callTool
+                }
+            }
+        }
+    }
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h2 id="api">API 参考</h2>
+<p>有关测试功能的完整 API 参考，请参阅 <a href="https://api.koog.ai/agents/agents-test/index.html">agents-test</a> 模块的参考文档。</p>
+<h2 id="_20">常见问题与故障排除</h2>
+<h4 id="_21">如何模拟特定的工具响应？</h4>
+<p>使用 <code>MockLLMBuilder</code> 中的 <code>mockTool</code> 方法：</p>
+<p>KotlinJava</p>
+<pre><code>val mockExecutor = getMockExecutor {
+    mockTool(myTool) alwaysReturns myResult
+
+    // Or with conditions
+    mockTool(myTool) returns myResult onArguments myArgs
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h4 id="_22">如何测试复杂的图结构？</h4>
+<p>使用子图断言、<code>verifySubgraph</code> 和节点引用：</p>
+<p>KotlinJava</p>
+<pre><code>testGraph&lt;Unit, String&gt;(&quot;test&quot;) {
+    val mySubgraph = assertSubgraphByName&lt;Unit, String&gt;(&quot;mySubgraph&quot;)
+
+    verifySubgraph(mySubgraph) {
+        // Get references to nodes
+        val nodeA = assertNodeByName&lt;Unit, String&gt;(&quot;nodeA&quot;)
+        val nodeB = assertNodeByName&lt;String, String&gt;(&quot;nodeB&quot;)
+
+        // Assert reachability
+        assertReachable(nodeA, nodeB)
+
+        // Assert edge connections
+        assertEdges {
+            nodeA.withOutput(&quot;result&quot;) goesTo nodeB
+        }
+    }
+}
+</code></pre>
+<pre><code>
+</code></pre>
+<h4 id="llm_1">如何根据输入模拟不同的 LLM 响应？</h4>
+<p>使用模式匹配方法：</p>
+<p>KotlinJava</p>
+<pre><code>getMockExecutor {
+    mockLLMAnswer(&quot;Response A&quot;) onRequestContains &quot;topic A&quot;
+    mockLLMAnswer(&quot;Response B&quot;) onRequestContains &quot;topic B&quot;
+    mockLLMAnswer(&quot;Exact response&quot;) onRequestEquals &quot;exact question&quot;
+    mockLLMAnswer(&quot;Conditional response&quot;) onCondition { it.contains(&quot;keyword&quot;) &amp;&amp; it.length &gt; 10 }
+}
+</code></pre>
+<pre><code>import ai.koog.agents.testing.tools.MockExecutor;
+import ai.koog.prompt.executor.model.PromptExecutor;
+
+PromptExecutor promptExecutor = MockExecutor.builder()
+    .mockLLMAnswer(&quot;Response A&quot;).onRequestContains(&quot;topic A&quot;)
+    .mockLLMAnswer(&quot;Response B&quot;).onRequestContains(&quot;topic B&quot;)
+    .mockLLMAnswer(&quot;Exact response&quot;).onRequestEquals(&quot;exact question&quot;)
+    .mockLLMAnswer(&quot;Conditional response&quot;).onCondition(s -&gt; s.contains(&quot;keyword&quot;) &amp;&amp; s.length() &gt; 10)
+    .build();
+</code></pre>
+<h3 id="_23">故障排除</h3>
+<h4 id="_24">模拟执行器总是返回默认响应</h4>
+<p>检查你的模式匹配是否正确。模式区分大小写，必须与指定的完全匹配。</p>
+<h4 id="_25">工具调用未被拦截</h4>
+<p>确保：</p>
+<ol>
+<li>工具注册表已正确设置。</li>
+<li>工具名称完全匹配。</li>
+<li>工具操作已正确配置。</li>
+</ol>
+<h4 id="_26">图断言失败</h4>
+<ol>
+<li>验证节点名称是否正确。</li>
+<li>检查图结构是否符合你的预期。</li>
+<li>使用 <code>startNode()</code> 和 <code>finishNode()</code> 方法获取正确的入口和出口点。</li>
+</ol></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/testing/">官方原文</a></div></main></div></body></html>

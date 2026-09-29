@@ -1,0 +1,1743 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>模型能力 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/model-capabilities/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1 active" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/model-capabilities/">https://docs.koog.ai/model-capabilities/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#llm-能力">LLM 能力</a><a class="l3" href="#核心能力">核心能力</a><a class="l3" href="#媒体处理能力">媒体处理能力</a><a class="l3" href="#文本处理能力">文本处理能力</a><a class="l3" href="#架构功能">架构功能</a><a class="l2" href="#创建模型llmodel配置">创建模型（LLModel）配置</a><a class="l3" href="#示例">示例</a><a class="l3" href="#llm-功能按型号">LLM 功能（按型号）</a><a class="l4" href="#谷歌模型">谷歌模型</a><a class="l4" href="#openai-模型">OpenAI 模型</a><a class="l4" href="#人类模型">人类模型</a><a class="l4" href="#奥拉玛模型">奥拉玛模型</a><a class="l4" href="#deepseek-模型">DeepSeek 模型</a><a class="l4" href="#openrouter-型号">OpenRouter 型号</a><a class="l4" href="#基岩模型">基岩模型</a></div><article class="content"><h1 id="_1">模型能力</h1>
+<p>Koog 提供了一组抽象和实现，用于使用来自各种语言的大型语言模型（LLMs）
+LLM 以与提供商无关的方式提供。该集合包括以下类：</p>
+<ul>
+<li>
+<p><strong>LLMCapability</strong>：定义LLMs可以支持的各种功能的类层次结构，例如：</p>
+</li>
+<li>
+<p>温度调节以控制响应随机性</p>
+</li>
+<li>外部系统交互工具集成</li>
+<li>用于处理视觉数据的视觉处理</li>
+<li>向量表示的嵌入生成</li>
+<li>完成文本生成任务</li>
+<li>对结构化数据的模式支持（JSON 与 Simple 和 Full 变体）</li>
+<li>探索性反应的推测</li>
+<li><strong>LLModel</strong>：代表特定 LLM 及其提供者、唯一标识符和支持的数据类
+能力。</li>
+</ul>
+<p>这是以统一方式与不同 LLM 提供者交互的基础，允许应用程序工作
+使用各种模型，同时抽象出特定于提供商的详细信息。</p>
+<h2 id="llm">LLM 能力</h2>
+<p>LLM 功能表示大语言模型可以支持的特定特性或功能。在Koog
+框架、功能用于定义特定模型可以做什么以及如何配置它。各项能力
+表示为 <code>LLMCapability</code> 类的子类或数据对象。</p>
+<p>配置 LLM 以在应用程序中使用时，您可以通过将其添加到
+创建<code>LLModel</code>实例时列出<code>capabilities</code>。这使得框架能够与模型正确交互
+并适当地使用其功能。</p>
+<h3 id="_2">核心能力</h3>
+<p>下面的列表包括适用于 Koog 框架中的模型的 LLM 特定核心功能：</p>
+<ul>
+<li><strong>推测</strong> (<code>LLMCapability.Speculation</code>)：让模型生成推测或探索性响应
+不同程度的可能性。对于具有更广泛潜力的创造性或假设场景很有用
+结果
+是所期望的。</li>
+<li><strong>温度</strong> (<code>LLMCapability.Temperature</code>)：允许调整模型的响应随机性或创造力
+水平。较高的温度值会产生更多样化的输出，而较低的温度值会导致更集中和更集中的输出。
+确定性响应。</li>
+<li><strong>工具</strong> (<code>LLMCapability.Tools</code>)：表示支持外部工具使用或集成。这种能力让
+模型运行特定工具或与外部系统交互。</li>
+<li>
+<p><strong>工具选择</strong> (<code>LLMCapability.ToolChoice</code>)：配置工具调用如何与 LLM 配合使用。根据型号，
+它可以配置为：</p>
+</li>
+<li>
+<p>自动选择生成文本或工具调用</p>
+</li>
+<li>仅生成工具调用，从不生成文本</li>
+<li>仅生成文本，从不工具调用</li>
+<li>强制调用定义的工具中的特定工具</li>
+<li><strong>多项选择</strong> (<code>LLMCapability.MultipleChoices</code>)：让模型生成多个独立的回复选择
+到一个提示。</li>
+</ul>
+<h3 id="_3">媒体处理能力</h3>
+<p>以下列表代表了一组用于处理图像或音频等媒体内容的功能：</p>
+<ul>
+<li>
+<p><strong>Vision</strong> (<code>LLMCapability.Vision</code>)：基于视觉的功能类，用于处理、分析和推断见解
+从视觉数据。
+支持以下类型的可视化数据：</p>
+</li>
+<li>
+<p><strong>图像</strong> (<code>LLMCapability.Vision.Image</code>)：处理与图像相关的视觉任务，例如图像分析、识别、
+和解释。</p>
+</li>
+<li><strong>视频</strong> (<code>LLMCapability.Vision.Video</code>)：处理视频数据，包括分析和理解视频
+内容。</li>
+<li><strong>音频</strong> (<code>LLMCapability.Audio</code>)：提供与音频相关的功能，例如转录、音频生成或
+基于音频的交互。</li>
+<li><strong>文档</strong> (<code>LLMCapability.Document</code>)：支持处理和处理基于文档的输入和输出。</li>
+</ul>
+<h3 id="_4">文本处理能力</h3>
+<p>以下功能列表代表文本生成和处理功能：</p>
+<ul>
+<li><strong>嵌入</strong> (<code>LLMCapability.Embed</code>)：让模型从输入文本生成向量嵌入，从而实现相似性
+比较、聚类和其他基于向量的分析。</li>
+<li><strong>完成</strong> (<code>LLMCapability.Completion</code>)：包括根据给定的输入上下文生成文本或内容，
+例如完成句子、生成建议或生成与输入数据一致的内容。</li>
+<li><strong>提示缓存</strong> (<code>LLMCapability.PromptCaching</code>)：支持提示的缓存功能，可能
+改善
+重复或类似查询的性能。</li>
+<li><strong>审核</strong> (<code>LLMCapability.Moderation</code>)：让模型分析文本中的潜在有害内容并
+根据骚扰、仇恨言论、自残、性内容、暴力等不同类别对其进行分类。</li>
+</ul>
+<h3 id="_5">架构功能</h3>
+<p>下面的列表显示了与处理结构化数据相关的功能：</p>
+<ul>
+<li><strong>Schema</strong> (<code>LLMCapability.Schema</code>)：与数据交互和相关的结构化模式功能的类
+使用特定格式进行编码。
+包括对以下格式的支持：</li>
+<li><strong>JSON</strong> (<code>LLMCapability.Schema.JSON</code>)：不同级别的 JSON 模式支持：</li>
+<li><strong>Basic</strong> (<code>LLMCapability.Schema.JSON.Basic</code>)：提供轻量级或基本的 JSON 处理能力。</li>
+<li><strong>Standard</strong> (<code>LLMCapability.Schema.JSON.Standard</code>)：为复杂数据提供全面的 JSON 模式支持
+结构。</li>
+</ul>
+<h2 id="llmodel">创建模型（LLModel）配置</h2>
+<p>要以通用的、与提供商无关的方式定义模型，请创建模型配置作为 <code>LLModel</code> 的实例
+具有以下参数的类：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>数据类型</th>
+<th>必填</th>
+<th>默认</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>provider</code></td>
+<td>LLM 提供者</td>
+<td>是的</td>
+<td></td>
+<td>LLM的提供商，例如Google或OpenAI。这标识了创建或托管模型的公司或组织。</td>
+</tr>
+<tr>
+<td><code>id</code></td>
+<td>字符串</td>
+<td>是的</td>
+<td></td>
+<td>LLM 实例的唯一标识符。这通常代表特定的型号版本或名称。例如，<code>gpt-4-turbo</code>、<code>claude-3-opus</code>、<code>llama-3-2</code>。</td>
+</tr>
+<tr>
+<td><code>capabilities</code></td>
+<td>列表<LLM能力></td>
+<td>是的</td>
+<td></td>
+<td>LLM 支持的功能列表，例如温度调节、工具使用或基于模式的任务。这些功能定义了模型可以做什么以及如何配置模型。</td>
+</tr>
+<tr>
+<td><code>contextLength</code></td>
+<td>长</td>
+<td>是的</td>
+<td></td>
+<td>LLM 的上下文长度。这是LLM可以处理的最大代币数量。</td>
+</tr>
+<tr>
+<td><code>maxOutputTokens</code></td>
+<td>长</td>
+<td>没有</td>
+<td><code>null</code></td>
+<td>提供者可以为 LLM 生成的最大代币数量。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">示例</h3>
+<p>本节提供了创建具有不同能力的<code>LLModel</code>实例的详细示例。</p>
+<p>下面的代码代表了具有核心功能的基本 LLM 配置：</p>
+<p>KotlinJava</p>
+<pre><code>val basicModel = LLModel(
+    provider = LLMProvider.OpenAI,
+    id = &quot;gpt-4-turbo&quot;,
+    capabilities = listOf(
+        LLMCapability.Temperature,
+        LLMCapability.Tools,
+        LLMCapability.Schema.JSON.Standard
+    ),
+    contextLength = 128_000
+)
+</code></pre>
+<pre><code>LLModel basicModel = new LLModel(
+    LLMProvider.OpenAI,
+    &quot;gpt-4-turbo&quot;,
+    List.of(
+        LLMCapability.Temperature.INSTANCE,
+        LLMCapability.Tools.INSTANCE,
+        LLMCapability.Schema.JSON.Standard.INSTANCE
+    ),
+    128_000L
+);
+</code></pre>
+<p>下面的模型配置是具有视觉功能的多模态 LLM：</p>
+<p>KotlinJava</p>
+<pre><code>val visionModel = LLModel(
+    provider = LLMProvider.OpenAI,
+    id = &quot;gpt-4-vision&quot;,
+    capabilities = listOf(
+        LLMCapability.Temperature,
+        LLMCapability.Vision.Image,
+        LLMCapability.MultipleChoices
+    ),
+    contextLength = 1_047_576,
+    maxOutputTokens = 32_768
+)
+</code></pre>
+<pre><code>LLModel visionModel = new LLModel(
+    LLMProvider.OpenAI,
+    &quot;gpt-4-vision&quot;,
+    List.of(
+        LLMCapability.Temperature.INSTANCE,
+        LLMCapability.Vision.Image.INSTANCE,
+        LLMCapability.MultipleChoices.INSTANCE
+    ),
+    1_047_576L,
+    32_768L
+);
+</code></pre>
+<p>具有音频处理能力的LLM：</p>
+<p>KotlinJava</p>
+<pre><code>val audioModel = LLModel(
+    provider = LLMProvider.Anthropic,
+    id = &quot;claude-3-opus&quot;,
+    capabilities = listOf(
+        LLMCapability.Audio,
+        LLMCapability.Temperature,
+        LLMCapability.PromptCaching
+    ),
+    contextLength = 200_000
+)
+</code></pre>
+<pre><code>LLModel audioModel = new LLModel(
+    LLMProvider.Anthropic,
+    &quot;claude-3-opus&quot;,
+    List.of(
+        LLMCapability.Audio.INSTANCE,
+        LLMCapability.Temperature.INSTANCE,
+        LLMCapability.PromptCaching.INSTANCE
+    ),
+    200_000L
+);
+</code></pre>
+<p>除了将模型创建为 <code>LLModel</code> 实例并必须指定所有相关参数之外，Koog 还包括
+预定义模型及其配置以及受支持功能的集合。
+要使用预定义的 Ollama 模型，请按如下方式指定：</p>
+<p>KotlinJava</p>
+<pre><code>val metaModel = OllamaModels.Meta.LLAMA_3_2
+</code></pre>
+<pre><code>LLModel metaModel = OllamaModels.Meta.LLAMA_3_2;
+</code></pre>
+<p>要检查模型是否支持特定功能，请使用 <code>contains</code> 方法来检查是否存在
+<code>capabilities</code> 列表中的功能：</p>
+<p>KotlinJava</p>
+<pre><code>// Check if models support specific capabilities
+val supportsTools = basicModel.supports(LLMCapability.Tools) // true
+val supportsVideo = visionModel.supports(LLMCapability.Vision.Video) // false
+
+// Check for schema capabilities
+val jsonCapability = basicModel.capabilities?.filterIsInstance&lt;LLMCapability.Schema.JSON&gt;()?.firstOrNull()
+val hasFullJsonSupport = jsonCapability is LLMCapability.Schema.JSON.Standard // true
+</code></pre>
+<pre><code>// Check if models support specific capabilities
+boolean supportsTools = basicModel.supports(LLMCapability.Tools.INSTANCE); // true
+boolean supportsVideo = visionModel.supports(LLMCapability.Vision.Video.INSTANCE); // false
+
+// Check for schema capabilities
+LLMCapability jsonCapability = basicModel.getCapabilities().stream()
+    .filter(c -&gt; c instanceof LLMCapability.Schema.JSON)
+    .map(c -&gt; (LLMCapability.Schema.JSON) c)
+    .findFirst()
+    .orElse(null);
+boolean hasFullJsonSupport = jsonCapability instanceof LLMCapability.Schema.JSON.Standard; // true
+</code></pre>
+<h3 id="llm_1">LLM 功能（按型号）</h3>
+<p>此参考显示了不同提供商的每个型号支持哪些 LLM 功能。</p>
+<p>在下表中：</p>
+<ul>
+<li><code>✓</code> 表示该型号支持该能力</li>
+<li><code>-</code> 表示该型号不支持该功能</li>
+<li>对于 JSON Schema、<code>Full</code> 或 <code>Simple</code> 表示模型支持 JSON Schema 功能的哪个变体</li>
+</ul>
+<p>谷歌模型</p>
+<h4 id="_7">谷歌模型</h4>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>多重选择</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>愿景（视频）</th>
+<th>音频</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gemini2_5Pro</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_5Flash</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_5FlashLite</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_0Flash</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_0Flash001</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_0FlashLite</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_0FlashLite001</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>OpenAI 模型</p>
+<h4 id="openai">OpenAI 模型</h4>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>多重选择</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>愿景（视频）</th>
+<th>音频</th>
+<th>猜测</th>
+<th>适度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>推理.O4Mini</td>
+<td>-</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>推理.O3Mini</td>
+<td>-</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>推理.O3</td>
+<td>-</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>推理.O1</td>
+<td>-</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>聊天.GPT4o</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>聊天.GPT4_1</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>聊天.GPT5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>聊天.GPT5Mini</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>聊天.GPT5Nano</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>音频.GptAudio</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>音频.GPT4oMiniAudio</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>音频.GPT4oAudio</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CostOptimized.GPT4_1Nano</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>CostOptimized.GPT4_1Mini</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>成本优化.GPT4oMini</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>适度.Omni</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>人择模型</p>
+<h4 id="_8">人类模型</h4>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>寓言_5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>作品_4_6</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>作品_4_5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>作品_4_1</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>作品_4</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>十四行诗_4_6</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>十四行诗_4_5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>十四行诗_4</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>俳句_4_5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>俳句_3</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>奥拉马型号</p>
+<h4 id="_9">奥拉玛模型</h4>
+<h5 id="_10">元模型</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>工具</th>
+<th>适度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>骆驼_3_2_3B</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>骆驼_3_2</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>骆驼_4</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>骆驼_GUARD_3</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_11">阿里巴巴模型</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QWEN_2_5_05B</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>QWEN_3_06B</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>QWQ</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>QWEN_CODER_2_5_32B</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h5 id="groq">Groq 模型</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>骆驼_3_GROK_工具_使用_8B</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>骆驼_3_GROK_工具_使用_70B</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_12">花岗岩模型</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>工具</th>
+<th>愿景（图像）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>花岗岩_3_2_VISION</td>
+<td>✓</td>
+<td>Simple</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>DeepSeek 模型</p>
+<h4 id="deepseek">DeepSeek 模型</h4>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>猜测</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DeepSeekChat</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>DeepSeekReasoner</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p>开放路由器型号</p>
+<h4 id="openrouter">OpenRouter 型号</h4>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>猜测</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Phi4 推理</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>克劳德3Opus</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德第三十四行诗</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德俳句</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德3_5十四行诗</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德3_7十四行诗</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德十四行诗</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德4_1作品</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GPT4oMini</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GPT5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GPT5迷你</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GPT5纳米</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GPT_OSS_120b</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GPT4</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>GPT4o</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GPT4涡轮</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GPT35涡轮</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>骆驼3</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Llama3 指导</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>米斯特拉尔7B</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>混合8x7B</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>克劳德3Vision十四行诗</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>克劳德3Vision作品</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Claude3Vision俳句</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>DeepSeekV30324</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Gemini2_5FlashLite</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_5Flash</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Gemini2_5Pro</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>基岩模型</p>
+<h4 id="_13">基岩模型</h4>
+<p>Bedrock 模型可通过 AWS Bedrock 访问并使用 InvokeModel 或 Converse API。
+标有 <strong>(C)</strong> 的型号仅适用于 Converse，并且需要 <code>BedrockAPIMethod.Converse</code>。</p>
+<h5 id="_14">人类克劳德（来自基岩）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人类克劳德寓言5</td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德47作品</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德46作品</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德45作品</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德41作品</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类Claude4Opus</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德4_6十四行诗</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德4_5十四行诗</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德十四行诗</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>AnthropicClaude4_5俳句</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>人类克劳德3俳句</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_15">亚马逊新星</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>亚马逊NovaMicro</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>亚马逊NovaLite</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>亚马逊NovaPro</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>亚马逊NovaPremier</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="meta-llama">Meta Llama（来自基岩）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MetaLlama3_3_70B说明</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_2_90B说明</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>MetaLlama3_2_11B指令</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>MetaLlama3_2_3B指令</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_2_1B指令</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_1_405B说明</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_1_70B说明</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_1_8B指令</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_0_70B说明</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MetaLlama3_0_8B指令</td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="moonshot-kimi-converse">Moonshot Kimi（仅限 Converse）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MoonshotKimiK2_5 <strong>(C)</strong></td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+<tr>
+<td>MoonshotKimiK2Thinking <strong>(C)</strong></td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="minimax-converse">MiniMax（仅限 Converse）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MiniMaxM2_5 <strong>(C)</strong></td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="openai-gpt-oss-converse">OpenAI GPT-OSS（仅限 Converse）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAIGptOss120B <strong>(C)</strong></td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>OpenAIGptOss20B <strong>(C)</strong></td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="google-gemma-3-converse">Google Gemma 3（仅限 Converse）</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>温度</th>
+<th>JSON Schema</th>
+<th>完成</th>
+<th>工具</th>
+<th>工具选择</th>
+<th>愿景（图像）</th>
+<th>文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GoogleGemma3_27BIt <strong>(C)</strong></td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GoogleGemma3_12BIt <strong>(C)</strong></td>
+<td>✓</td>
+<td>Full</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>GoogleGemma3_4BIt <strong>(C)</strong></td>
+<td>✓</td>
+<td>-</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="_16">嵌入模型</h5>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>嵌入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CohereEmbedV4</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Cohere嵌入英语V3</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>CohereEmbedMultilingualV3</td>
+<td>CohereEmbedMultilingualV3</td>
+</tr>
+<tr>
+<td>亚马逊TitanEmbedTextV2</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>亚马逊泰坦嵌入文本</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/model-capabilities/">官方原文</a></div></main></div></body></html>

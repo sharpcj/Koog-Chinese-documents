@@ -1,0 +1,556 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>版本控制 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/module-versioning/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1" open><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2 active" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/module-versioning/">https://docs.koog.ai/module-versioning/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#版本组件">版本组件</a><a class="l3" href="#主要-x">主要 (X)</a><a class="l3" href="#次要-y">次要 (Y)</a><a class="l3" href="#错误修复-z">错误修复 (Z)</a><a class="l2" href="#弃用政策">弃用政策</a><a class="l2" href="#稳定版和-beta-模块">稳定版和 Beta 模块</a><a class="l3" href="#伞形模块">伞形模块</a><a class="l3" href="#模块版本">模块版本</a></div><article class="content"><h1 id="_1">版本控制</h1>
+<p>Koog 遵循 <a href="https://semver.org/">语义版本控制</a>，格式为 <code>X.Y.Z</code>(例如 <code>1.3.0</code>)。</p>
+<p>该框架是 API 稳定的：一旦公开的 API 发布，如果没有主要版本更新，它就不会被破坏。</p>
+<h2 id="_2">版本组件</h2>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>名称</th>
+<th>格式</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>X</code></td>
+<td>专业</td>
+<td><code>X.y.z</code></td>
+<td>对现有 APIs 的重大更改</td>
+</tr>
+<tr>
+<td><code>Y</code></td>
+<td>次要</td>
+<td><code>x.Y.z</code></td>
+<td>新的 API 添加和弃用；所有现有的 APIs 继续工作</td>
+</tr>
+<tr>
+<td><code>Z</code></td>
+<td>错误修正</td>
+<td><code>x.y.Z</code></td>
+<td>仅修复错误；没有 API 变化</td>
+</tr>
+</tbody>
+</table>
+<h3 id="x">主要 (<code>X</code>)</h3>
+<ul>
+<li>可能会对现有 APIs 进行重大更改。</li>
+<li>旧的 APIs 可能会被删除。</li>
+<li>将提供迁移指南。</li>
+<li>每年最多发布一次。</li>
+</ul>
+<h3 id="y">次要 (<code>Y</code>)</h3>
+<ul>
+<li>可能会添加新的 APIs。</li>
+<li>可能会弃用现有的 APIs（并提供替代品），但弃用的 APIs 仍然有效。</li>
+<li>没有重大更改 - 针对先前次要版本编译的所有代码都将继续编译和工作。</li>
+<li>每月最多发布一次。</li>
+</ul>
+<h3 id="z">错误修复 (<code>Z</code>)</h3>
+<ul>
+<li>仅包含错误修复。</li>
+<li>没有 API 添加、删除或弃用。</li>
+<li>每周最多发布一次。</li>
+</ul>
+<h2 id="_3">弃用政策</h2>
+<p>在次要版本 (<code>Y</code>) 中弃用的 APIs 至少在下一个主要版本 (<code>X</code>) 之前仍然可用。
+弃用警告将指示推荐的替代品。</p>
+<h2 id="beta">稳定版和 Beta 模块</h2>
+<p>某些模块被认为是实验性的，并以 <code>-beta</code> 版本后缀（例如 <code>1.3.0-beta</code>）而不是标准 <code>X.Y.Z</code> 发布。由于以下几个原因之一，模块可能处于测试版状态：</p>
+<ul>
+<li><strong>外部集成</strong> - 底层 LLM 提供程序 API 或外部框架（例如 Spring AI）本身可能不稳定或容易发生频繁或预期的变化。</li>
+<li><strong>实验功能</strong> - 功能区域仍在探索中，API 形状可能会演变（例如 GOAP 规划策略）。</li>
+<li><strong>实验协议</strong> — 该模块实现了一个本身尚未稳定的协议（例如，A2A、Kotlin MCP）。</li>
+</ul>
+<p>虽然我们已尽一切努力保持 Beta 模块稳定，但在次要版本中可能会发生一些 API 更改。 Beta的变化不会影响任何稳定的模块。</p>
+<p>版本 <code>X.Y.Z</code> 的稳定模块始终与版本 <code>X.Y.Z-beta</code> 的测试版模块兼容（反之亦然）。所有模块均可同步更新。</p>
+<h3 id="_4">伞形模块</h3>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>版本</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>koog-agents</code></td>
+<td><code>1.3.0</code></td>
+<td>所有稳定模块（可传递）——推荐起点</td>
+</tr>
+<tr>
+<td><code>koog-agents-additions</code></td>
+<td><code>1.3.0-beta</code></td>
+<td>大多数测试/实验模块（独立外部集成除外）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">模块版本</h3>
+<p>稳定模块 (<code>1.3.0</code>)Beta 模块 (<code>1.3.0-beta</code>)</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>agents</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-core</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-chat-history-jdbc</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-chat-memory-sql</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-event-handler</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-memory</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-opentelemetry</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-persistence-jdbc</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-snapshot</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-sql</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-tokenizer</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-features-trace</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-mcp-metadata</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-test</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-tools</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>agents-utils</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>embeddings</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>embeddings-base</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>embeddings-llm</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client-core</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client-java</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client-ktor</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client-okhttp</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>http-client-test</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>koog-agents</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-cache</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-cache-files</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-cache-model</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-anthropic-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-bedrock-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-cached</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-clients</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-model</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-ollama-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-openai-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-openai-client-base</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-openrouter-client</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-llm</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-markdown</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-model</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-processor</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-structure</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-tokenizer</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>prompt-xml</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>rag-base</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>serialization</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>serialization-core</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>serialization-jackson</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>serialization-test</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>test-tck</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>test-utils</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+<tr>
+<td><code>utils</code></td>
+<td><code>1.3.0</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>a2a-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-core</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-server</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-test</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-test-server-tck</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-transport-client-jsonrpc-http</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-transport-core-jsonrpc</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>a2a-transport-server-jsonrpc-http</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-ext</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-a2a-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-a2a-core</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-a2a-server</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-acp</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-chat-history-aws</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-longterm-memory</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-features-longterm-memory-aws</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-mcp</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-mcp-server</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>agents-planner</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-agents-additions</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-ktor</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai-common</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai-starter-chat-memory</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai-starter-model-chat</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai-starter-model-embedding</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-ai-starter-vector-store</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>koog-spring-boot-starter</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-cache-redis</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-dashscope-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-deepseek-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-google-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-litert-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-llms-all</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>prompt-executor-mistralai-client</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+<tr>
+<td><code>rag-vector</code></td>
+<td><code>1.3.0-beta</code></td>
+</tr>
+</tbody>
+</table></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/module-versioning/">官方原文</a></div></main></div></body></html>

@@ -1,0 +1,279 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/examples/WebMcpClient/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2"><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1 active" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/examples/WebMcpClient/">https://docs.koog.ai/examples/WebMcpClient/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#前提条件">前提条件</a><a class="l2" href="#1-设置你的-api-credentials">1) 设置你的 API credentials</a><a class="l2" href="#2-启动-bright-data-的-the-web-mcp-server">2) 启动 Bright Data 的 The Web MCP server</a><a class="l2" href="#3-从-koog-连接并创建-agent">3) 从 Koog 连接并创建 agent</a><a class="l2" href="#4-完整代码示例">4) 完整代码示例</a><a class="l2" href="#故障排除">故障排除</a><a class="l2" href="#后续步骤">后续步骤</a><a class="l2" href="#你学到了什么">你学到了什么</a></div><article class="content"><h1 id="bright-data-the-web-mcp-koog">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</h1>
+<p><a href="https://github.com/JetBrains/koog/blob/develop/examples/bright-data-mcp/">在 GitHub 上打开</a>
+ <a href="https://raw.githubusercontent.com/JetBrains/koog/develop/examples/bright-data-mcp/Main.kt">下载 .kt</a></p>
+<p>在本教程中，你将把 Koog agent 连接到 Bright Data 的 Web MCP server，并让它执行网页抓取和数据收集任务。我们将演示如何通过 Model Context Protocol，使用 Bright Data 强大的网页抓取基础设施搜索 Koog.ai 相关信息。</p>
+<p>我们会保持简单且可复现，重点是一个最小但现实的 agent + tools 设置，你可以根据自己的网页抓取需求进行调整。</p>
+<h2 id="_1">前提条件</h2>
+<ul>
+<li>作为环境变量导出的 OpenAI API key：<code>OPENAI_API_KEY</code></li>
+<li>作为环境变量导出的 Bright Data API token：<code>BRIGHT_DATA_API_TOKEN</code></li>
+<li>PATH 中可用的 Node.js 和 npx</li>
+<li>带有 Koog 依赖的 Kotlin 开发环境</li>
+</ul>
+<p><strong>提示</strong>：Bright Data MCP server 提供企业级网页抓取工具访问能力，可处理复杂网站、CAPTCHA 和反机器人措施。</p>
+<h2 id="1-api-credentials">1) 设置你的 API credentials</h2>
+<p>我们从环境变量读取两个 API key，以确保 secret 安全且不会进入代码。</p>
+<pre><code>// Get API keys from environment variables
+val openAIApiKey = System.getenv(&quot;OPENAI_API_KEY&quot;)
+    ?: error(&quot;OPENAI_API_KEY environment variable is not set&quot;)
+val brightDataToken = System.getenv(&quot;BRIGHT_DATA_API_TOKEN&quot;)
+    ?: error(&quot;BRIGHT_DATA_API_TOKEN environment variable is not set&quot;)
+</code></pre>
+<h2 id="2-bright-data-the-web-mcp-server">2) 启动 Bright Data 的 The Web MCP server</h2>
+<p>我们将使用 <code>npx</code> 启动 Bright Data 的 MCP server，并使用你的 API token 对其进行配置。该 server 会通过 Model Context Protocol 暴露网页抓取能力。</p>
+<pre><code>println(&quot;Starting Bright Data MCP server...&quot;)
+
+// Start the Bright Data MCP server as a separate process
+val processBuilder = ProcessBuilder(&quot;npx&quot;, &quot;@brightdata/mcp&quot;)
+
+// Set the API_TOKEN environment variable for the MCP server process
+val environment = processBuilder.environment()
+environment[&quot;API_TOKEN&quot;] = brightDataToken
+
+// Start the process
+val process = processBuilder.start()
+
+// Give the process a moment to start
+Thread.sleep(2000)
+</code></pre>
+<h2 id="3-koog-agent">3) 从 Koog 连接并创建 agent</h2>
+<p>我们使用 OpenAI executor 构建一个 Koog <code>AIAgent</code>，并通过 STDIO transport 将它的 tool registry 连接到 Bright Data MCP server。然后探索可用工具并运行网页抓取任务。</p>
+<pre><code>println(&quot;Creating STDIO transport...&quot;)
+try {
+    // Create the STDIO transport
+    val transport = McpToolRegistryProvider.defaultStdioTransport(process)
+
+    println(&quot;Creating tool registry...&quot;)
+
+    // Create a tool registry with tools from the Bright Data MCP server
+    val toolRegistry = McpToolRegistryProvider.fromTransport(
+        transport = transport,
+        name = &quot;bright-data-client&quot;,
+        version = &quot;1.0.0&quot;
+    )
+
+    // Print available tools (optional - for debugging)
+    println(&quot;Available tools from Bright Data MCP server:&quot;)
+    toolRegistry.tools.forEach { tool -&gt;
+        println(&quot;- ${tool.name}&quot;)
+    }
+
+    // Create the agent with MCP tools
+    val agent = AIAgent(
+        executor = simpleOpenAIExecutor(openAIApiKey),
+        systemPrompt = &quot;You are a helpful assistant with access to web scraping and data collection tools from Bright Data. You can help users gather information from websites, analyze web data, and provide insights.&quot;,
+        llmModel = OpenAIModels.Chat.GPT4o,
+        temperature = 0.7,
+        toolRegistry = toolRegistry,
+        maxIterations = 100
+    )
+
+    val result = agent.run(&quot;Please search for Koog.ai and tell me what is it and who invented it&quot;)
+
+    println(&quot;\nAgent response:&quot;)
+    println(result)
+
+} catch (e: Exception) {
+    println(&quot;Error: ${e.message}&quot;)
+    e.printStackTrace()
+} finally {
+    println(&quot;Shutting down MCP server...&quot;)
+    process.destroyForcibly()
+}
+</code></pre>
+<h2 id="4">4) 完整代码示例</h2>
+<p>下面是完整的可运行示例，演示如何使用 Bright Data 的 The Web MCP 进行网页抓取：</p>
+<pre><code>package koog
+
+import ai.koog.agents.core.agent.AIAgent
+import ai.koog.agents.mcp.McpToolRegistryProvider
+import ai.koog.prompt.executor.clients.openai.OpenAIModels
+import ai.koog.prompt.executor.llms.all.simpleOpenAIExecutor
+import kotlinx.coroutines.runBlocking
+
+/**
+ * The entry point of the program demonstrating AI-driven web scraping and data collection.
+ *
+ * This function initializes a Bright Data MCP server, sets up tool integration,
+ * and defines an AI agent for interacting with web scraping tools. It demonstrates the
+ * following key operations:
+ *
+ * 1. Starts the Bright Data MCP server using a subprocess with proper API token configuration.
+ * 2. Configures a registry of tools from the MCP server via STDIO transport communication.
+ * 3. Creates an AI agent leveraging OpenAI's GPT-4o model with web scraping capabilities.
+ * 4. Runs the agent to perform a specified task (e.g., searching for and analyzing web content
+ *    about Koog.ai).
+ * 5. Cleans up by shutting down the MCP server process after execution.
+ *
+ * This function is intended for tutorial purposes, demonstrating how to integrate
+ * MCP (Model Context Protocol) servers with AI agents for web data collection and analysis.
+ * It requires OPENAI_API_KEY and BRIGHT_DATA_API_TOKEN environment variables to be set.
+ */
+fun main() = runBlocking {
+    // Get API keys from environment variables
+    val openAIApiKey = System.getenv(&quot;OPENAI_API_KEY&quot;)
+        ?: error(&quot;OPENAI_API_KEY environment variable is not set&quot;)
+    val brightDataToken = System.getenv(&quot;BRIGHT_DATA_API_TOKEN&quot;)
+        ?: error(&quot;BRIGHT_DATA_API_TOKEN environment variable is not set&quot;)
+
+    println(&quot;Starting Bright Data MCP server...&quot;)
+
+    // Start the Bright Data MCP server as a separate process
+    val processBuilder = ProcessBuilder(&quot;npx&quot;, &quot;@brightdata/mcp&quot;)
+
+    // Set the API_TOKEN environment variable for the MCP server process
+    val environment = processBuilder.environment()
+    environment[&quot;API_TOKEN&quot;] = brightDataToken
+
+    // Start the process
+    val process = processBuilder.start()
+
+    // Give the process a moment to start
+    Thread.sleep(2000)
+
+    println(&quot;Creating STDIO transport...&quot;)
+
+    try {
+        // Create the STDIO transport
+        val transport = McpToolRegistryProvider.defaultStdioTransport(process)
+
+        println(&quot;Creating tool registry...&quot;)
+
+        // Create a tool registry with tools from the Bright Data MCP server
+        val toolRegistry = McpToolRegistryProvider.fromTransport(
+            transport = transport,
+            name = &quot;bright-data-client&quot;,
+            version = &quot;1.0.0&quot;
+        )
+
+        // Print available tools (optional - for debugging)
+        println(&quot;Available tools from Bright Data MCP server:&quot;)
+        toolRegistry.tools.forEach { tool -&gt;
+            println(&quot;- ${tool.name}&quot;)
+        }
+
+        // Create the agent with MCP tools
+        val agent = AIAgent(
+            executor = simpleOpenAIExecutor(openAIApiKey),
+            systemPrompt = &quot;You are a helpful assistant with access to web scraping and data collection tools from Bright Data. You can help users gather information from websites, analyze web data, and provide insights.&quot;,
+            llmModel = OpenAIModels.Chat.GPT4o,
+            temperature = 0.7,
+            toolRegistry = toolRegistry,
+            maxIterations = 100
+        )
+
+        val result = agent.run(&quot;Please search for Koog.ai and tell me what is it and who invented it&quot;)
+
+        println(&quot;\nAgent response:&quot;)
+        println(result)
+
+    } catch (e: Exception) {
+        println(&quot;Error: ${e.message}&quot;)
+        e.printStackTrace()
+    } finally {
+        println(&quot;Shutting down MCP server...&quot;)
+        process.destroyForcibly()
+    }
+}
+</code></pre>
+<h2 id="_2">故障排除</h2>
+<ul>
+<li><strong>连接问题</strong>：如果 agent 无法连接到 MCP server，请确保 Bright Data MCP package 已通过 <code>npx @brightdata/mcp</code> 正确安装。</li>
+<li><strong>API token 错误</strong>：仔细检查你的 <code>BRIGHT_DATA_API_TOKEN</code> 是否有效，并且具有网页抓取所需的权限。</li>
+<li><strong>OpenAI 认证</strong>：验证你的 <code>OPENAI_API_KEY</code> 环境变量已正确设置，且 API key 有效。</li>
+<li><strong>进程超时</strong>：如果 server 启动时间较长，请增加 <code>Thread.sleep(2000)</code> 时长。</li>
+</ul>
+<h2 id="_3">后续步骤</h2>
+<ul>
+<li><strong>探索不同查询</strong>：尝试抓取不同网站，或搜索各种主题。</li>
+<li><strong>自定义工具集成</strong>：在 Bright Data 的网页抓取能力之外添加你自己的工具。</li>
+<li><strong>高级抓取</strong>：利用 Bright Data 的高级功能，如住宅代理、CAPTCHA 解决和 JavaScript 渲染。</li>
+<li><strong>数据处理</strong>：将抓取到的数据与其他 Koog agents 结合，用于分析和洞察。</li>
+<li><strong>生产部署</strong>：将此模式集成到你的应用中，实现自动化网页数据收集。</li>
+</ul>
+<h2 id="_4">你学到了什么</h2>
+<p>本教程演示了如何：
+- 设置和配置 Bright Data 的 The Web MCP
+- 通过 STDIO transport 将 Koog AI agent 连接到外部 MCP servers
+- 使用自然语言指令执行 AI 驱动的网页抓取任务
+- 正确处理资源清理和错误管理
+- 为生产就绪的网页抓取应用组织代码</p>
+<p>Koog 的 AI agent 能力与 Bright Data 的企业级网页抓取基础设施相结合，为自动化数据收集和分析工作流提供了强大的基础。</p></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/examples/WebMcpClient/">官方原文</a></div></main></div></body></html>

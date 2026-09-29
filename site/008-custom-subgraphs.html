@@ -1,0 +1,603 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>自定义子图 - Koog 中文文档</title><link rel="stylesheet" href="styles.css"></head><body><div class="layout"><aside><div class="brand">Koog 中文文档</div><div class="small">目录层级按 Koog 官方文档组织。</div><div class="page-tools"><a class="button primary" href="index.html">首页</a><a class="button" href="https://docs.koog.ai/custom-subgraphs/">官方原文</a></div><nav class="nav-official"><details class="nav-group level-0" open><summary><span class="nav-node group">文档</span></summary><div class="nav-children"><details class="nav-group level-1"><summary><a class="nav-node" href="001-index.html">概览</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="014-key-features.html">关键特性</a>
+<a class="nav-leaf level-2" href="021-module-versioning.html">版本控制</a>
+<a class="nav-leaf level-2" href="018-llm-providers.html">LLM providers</a>
+<a class="nav-leaf level-2" href="012-glossary.html">术语表</a></div></details>
+<a class="nav-leaf level-1" href="025-quickstart.html">快速开始</a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="041-agents.html">Agents</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="042-agents__basic-agents.html">Basic agents</a>
+<a class="nav-leaf level-2" href="044-agents__graph-based-agents.html">基于图的代理</a>
+<a class="nav-leaf level-2" href="043-agents__functional-agents.html">函数式代理</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="045-agents__planner-agents.html">Planner agents <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-3" href="047-agents__planner-agents__llm-based-planners.html">LLM-based planners <span class="badge">beta</span></a>
+<a class="nav-leaf level-3" href="046-agents__planner-agents__goap-agents.html">GOAP agents <span class="badge">beta</span></a></div></details></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="075-prompts.html">Prompts</a></summary><div class="nav-children"><details class="nav-group level-2"><summary><a class="nav-node" href="081-prompts__prompt-creation.html">Creating prompts</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="083-prompts__prompt-creation__multimodal-content.html">多模态内容</a>
+<a class="nav-leaf level-3" href="082-prompts__prompt-creation__cache-control.html">提示缓存控制</a></div></details>
+<details class="nav-group level-2"><summary><span class="nav-node group">Running prompts</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="078-prompts__llm-clients.html">LLM clients</a>
+<a class="nav-leaf level-3" href="077-prompts__http-clients.html">HTTP clients</a>
+<a class="nav-leaf level-3" href="080-prompts__prompt-executors.html">Prompt executors</a></div></details>
+<a class="nav-leaf level-2" href="076-prompts__handling-failures.html">处理失败</a>
+<a class="nav-leaf level-2" href="079-prompts__llm-response-caching.html">LLM 响应缓存</a></div></details>
+<a class="nav-leaf level-1" href="029-skills.html">Skills 用法</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Strategies</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="022-nodes-and-components.html">预定义节点和组件</a>
+<a class="nav-leaf level-2" href="024-predefined-agent-strategies.html">预定义 agent 策略</a>
+<a class="nav-leaf level-2" href="007-custom-strategy-graphs.html">自定义策略图</a>
+<a class="nav-leaf level-2" href="023-parallel-node-execution.html">并行节点执行</a>
+<a class="nav-leaf level-2" href="009-data-transfer-between-nodes.html">节点之间的数据传递</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="084-tools.html">Tools</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="086-tools__built-in-tools.html">内置工具</a>
+<a class="nav-leaf level-2" href="085-tools__annotation-based-tools.html">基于注解的工具</a>
+<a class="nav-leaf level-2" href="087-tools__class-based-tools.html">基于类的工具</a>
+<a class="nav-leaf level-2" href="088-tools__tool-descriptor-schemer.html">Custom tools schema</a></div></details>
+<details class="nav-group level-1"><summary><a class="nav-node" href="062-features.html">Features</a></summary><div class="nav-children"><a class="nav-leaf level-2" href="063-features__agent-event-handlers.html">事件处理程序</a>
+<a class="nav-leaf level-2" href="067-features__tracing.html">跟踪</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="068-features__chat-memory.html">Chat memory</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="069-features__chat-memory__chat-agent-with-memory.html">构建带记忆的聊天 agent</a>
+<a class="nav-leaf level-3" href="070-features__chat-memory__chat-backend-with-memory.html">带记忆的聊天后端</a></div></details>
+<a class="nav-leaf level-2" href="066-features__long-term-memory.html">长期记忆 <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="064-features__agent-persistence.html">Agent 持久化</a>
+<details class="nav-group level-2"><summary><a class="nav-node" href="071-features__open-telemetry.html">OpenTelemetry</a></summary><div class="nav-children"><a class="nav-leaf level-3" href="072-features__open-telemetry__opentelemetry-datadog-exporter.html">Datadog 导出器</a>
+<a class="nav-leaf level-3" href="073-features__open-telemetry__opentelemetry-langfuse-exporter.html">Langfuse 导出器</a>
+<a class="nav-leaf level-3" href="074-features__open-telemetry__opentelemetry-weave-exporter.html">W&amp;B Weave 导出器</a></div></details>
+<a class="nav-leaf level-2" href="065-features__custom-features.html">自定义特性</a></div></details>
+<a class="nav-leaf level-1" href="013-history-compression.html">History compression</a>
+<a class="nav-leaf level-1" href="020-model-context-protocol.html">模型上下文协议 <span class="badge">beta</span></a>
+<details class="nav-group level-1"><summary><a class="nav-node" href="037-a2a.html">A2A Protocol <span class="badge">beta</span></a></summary><div class="nav-children"><a class="nav-leaf level-2" href="040-a2a__a2a-server.html">A2A server implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="038-a2a__a2a-client.html">A2A client implementation <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="039-a2a__a2a-koog-integration.html">A2A 与 Koog 集成 <span class="badge">beta</span></a></div></details>
+<a class="nav-leaf level-1" href="002-agent-client-protocol.html">Agent Client Protocol <span class="badge">beta</span></a>
+<a class="nav-leaf level-1" href="017-llm-parameters.html">LLM 参数</a>
+<a class="nav-leaf level-1" href="019-model-capabilities.html">模型能力</a>
+<a class="nav-leaf level-1" href="005-content-moderation.html">内容审核</a>
+<details class="nav-group level-1"><summary><span class="nav-node group">Backend framework integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="016-ktor-plugin.html">Ktor <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="031-spring-boot.html">Spring Boot <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="030-spring-ai-integration.html">Spring AI <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1"><summary><span class="nav-node group">Cloud platform integrations</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="004-amazon-bedrock-agentcore.html">Amazon Bedrock AgentCore <span class="badge">beta</span></a></div></details>
+<details class="nav-group level-1" open><summary><span class="nav-node group">Advanced usage</span></summary><div class="nav-children"><a class="nav-leaf level-2" href="003-agent-events.html">Events</a>
+<a class="nav-leaf level-2" href="033-structured-output.html">结构化输出</a>
+<a class="nav-leaf level-2" href="032-streaming-api.html">流式 API</a>
+<a class="nav-leaf level-2" href="006-custom-nodes.html">自定义节点实现</a>
+<a class="nav-leaf level-2" href="028-sessions.html">LLM sessions 和手动历史管理</a>
+<details class="nav-group level-2" open><summary><span class="nav-node group">Subgraphs</span></summary><div class="nav-children"><a class="nav-leaf level-3" href="034-subgraphs-overview.html">Overview</a>
+<a class="nav-leaf level-3 active" href="008-custom-subgraphs.html">自定义子图</a></div></details>
+<a class="nav-leaf level-2" href="010-embeddings.html">Embeddings</a>
+<a class="nav-leaf level-2" href="026-retrieval-augmented-generation.html">RAG <span class="badge">beta</span></a>
+<a class="nav-leaf level-2" href="027-serialization.html">序列化</a></div></details>
+<a class="nav-leaf level-1" href="035-testing.html">测试</a></div></details>
+<a class="nav-leaf level-0" href="036-why-koog.html">为什么选择 Koog</a>
+<details class="nav-group level-0" open><summary><span class="nav-node group">Examples</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="011-examples.html">示例</a>
+<a class="nav-leaf level-1" href="048-examples__Attachments.html">Attachments</a>
+<a class="nav-leaf level-1" href="049-examples__Banking.html">使用 Koog 构建 AI 银行助手</a>
+<a class="nav-leaf level-1" href="050-examples__BedrockAgent.html">使用 AWS Bedrock 和 Koog 框架构建 AI Agent</a>
+<a class="nav-leaf level-1" href="051-examples__Calculator.html">使用 Koog 构建可调用工具的计算器 Agent</a>
+<a class="nav-leaf level-1" href="052-examples__Chess.html">使用Koog框架构建人工智能棋手</a>
+<a class="nav-leaf level-1" href="054-examples__Guesser.html">使用 Koog 构建猜数字 Agent</a>
+<a class="nav-leaf level-1" href="055-examples__Langfuse.html">使用 OpenTelemetry 将 Koog Agent 追踪到 Langfuse</a>
+<a class="nav-leaf level-1" href="053-examples__GoogleMapsMcp.html">MCP - Google Maps</a>
+<a class="nav-leaf level-1" href="057-examples__PlaywrightMcp.html">MCP - Playwright</a>
+<a class="nav-leaf level-1" href="058-examples__UnityMcp.html">MCP - Unity</a>
+<a class="nav-leaf level-1" href="056-examples__OpenTelemetry.html">Koog 中的 OpenTelemetry：追踪你的 AI agent</a>
+<a class="nav-leaf level-1" href="059-examples__VaccumAgent.html">构建一个简单的吸尘器 Agent</a>
+<a class="nav-leaf level-1" href="060-examples__Weave.html">Koog agents 的 Weave tracing</a>
+<a class="nav-leaf level-1" href="061-examples__WebMcpClient.html">使用 Bright Data 的 The Web MCP 和 Koog 进行网页抓取</a></div></details>
+<details class="nav-group level-0" open><summary><span class="nav-node group">其他页面</span></summary><div class="nav-children"><a class="nav-leaf level-1" href="015-koog-slack-channel.html">Koog on Slack</a></div></details>
+<a class="nav-leaf level-0" href="https://api.koog.ai/" target="_blank" rel="noopener">API reference</a></nav></aside><main id="top"><div class="source-note">官方原文：<a href="https://docs.koog.ai/custom-subgraphs/">https://docs.koog.ai/custom-subgraphs/</a></div><div class="toc"><div class="toc-title">本页目录</div><a class="l2" href="#创建和配置子图">创建和配置子图</a><a class="l3" href="#基本子图创建">基本子图创建</a><a class="l3" href="#在子图中配置工具">在子图中配置工具</a><a class="l2" href="#高级子图技术">高级子图技术</a><a class="l3" href="#多部分策略">多部分策略</a><a class="l2" href="#最佳实践">最佳实践</a><a class="l2" href="#故障排除">故障排除</a><a class="l3" href="#工具不可用">工具不可用</a><a class="l3" href="#子图未按定义且预期的顺序运行">子图未按定义且预期的顺序运行</a><a class="l2" href="#示例">示例</a></div><article class="content"><h1 id="_1">自定义子图</h1>
+<h2 id="_2">创建和配置子图</h2>
+<p>以下部分提供了为智能体工作流创建子图时的代码模板和常见模式。</p>
+<h3 id="_3">基本子图创建</h3>
+<p>自定义子图通常使用以下模式创建：</p>
+<ul>
+<li>具有指定工具选择策略的子图：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>strategy&lt;StrategyInput, StrategyOutput&gt;(&quot;strategy-name&quot;) {
+    val subgraphIdentifier by subgraph&lt;Input, Output&gt;(
+        name = &quot;subgraph-name&quot;,
+        toolSelectionStrategy = ToolSelectionStrategy.ALL
+    ) {
+        // Define nodes and edges for this subgraph
+    }
+
+    nodeStart then subgraphIdentifier then nodeFinish
+}
+</code></pre>
+<pre><code>var strategyBuilder = AIAgentGraphStrategy.builder(&quot;strategy-name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+var subgraphIdentifier = AIAgentSubgraph.builder(&quot;subgraph-name&quot;)
+    .withToolSelectionStrategy(ToolSelectionStrategy.ALL.INSTANCE)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+    })
+    .build();
+
+var strategy = strategyBuilder
+    .edge(strategyBuilder.nodeStart, subgraphIdentifier)
+    .edge(subgraphIdentifier, strategyBuilder.nodeFinish)
+    .build();
+</code></pre>
+<ul>
+<li>具有指定工具列表的子图（来自已定义工具注册表的工具子集）：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>strategy&lt;StrategyInput, StrategyOutput&gt;(&quot;strategy-name&quot;) {
+   val subgraphIdentifier by subgraph&lt;Input, Output&gt;(
+       name = &quot;subgraph-name&quot;,
+       tools = listOf(firstTool, secondTool)
+   ) {
+        // Define nodes and edges for this subgraph
+    }
+}
+</code></pre>
+<pre><code>var strategyBuilder = AIAgentGraphStrategy.builder(&quot;strategy-name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+var subgraphIdentifier = AIAgentSubgraph.builder(&quot;subgraph-name&quot;)
+    .limitedTools(List.of(firstTool, secondTool))
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+    })
+    .build();
+
+var strategy = strategyBuilder
+    .edge(strategyBuilder.nodeStart, subgraphIdentifier)
+    .edge(subgraphIdentifier, strategyBuilder.nodeFinish)
+    .build();
+</code></pre>
+<p>有关参数和参数值的更多信息，请参见 <code>subgraph</code> <a href="https://api.koog.ai/agents/agents-core/ai.koog.agents.core.dsl.builder/-a-i-agent-subgraph-builder-base/subgraph.html">API 参考</a>。有关工具的更多信息，请参见 <a href="084-tools.html">工具</a>。</p>
+<p>以下代码示例展示了自定义子图的实际实现：</p>
+<p>KotlinJava</p>
+<pre><code>strategy&lt;String, String&gt;(&quot;my-strategy&quot;) {
+   val mySubgraph by subgraph&lt;String, String&gt;(
+      tools = listOf(firstTool, secondTool)
+   ) {
+        // Define nodes and edges for this subgraph
+        val sendInput by nodeLLMRequest()
+        val executeToolCall by nodeExecuteTools()
+        val sendToolResult by nodeLLMSendToolResults()
+
+        edge(nodeStart forwardTo sendInput)
+        edge(sendInput forwardTo executeToolCall onToolCalls { true })
+        edge(executeToolCall forwardTo sendToolResult)
+        edge(sendToolResult forwardTo nodeFinish onTextMessage { true })
+    }
+}
+</code></pre>
+<pre><code>var strategyBuilder = AIAgentGraphStrategy.builder(&quot;my-strategy&quot;)
+        .withInput(String.class)
+        .withOutput(String.class);
+
+var sendInput = AIAgentNode.llmRequest(null);
+var executeToolCall = AIAgentNode.executeTools(null);
+var sendToolResult = AIAgentNode.llmSendToolResults(null);
+
+var mySubgraph = AIAgentSubgraph.builder()
+    .limitedTools(List.of(firstTool, secondTool))
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Define nodes and edges for this subgraph
+        subgraph
+            .edge(AIAgentEdge.builder()
+                .from(subgraph.nodeStart)
+                .to(sendInput)
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(sendInput)
+                .to(executeToolCall)
+                .onToolCalls()
+                .build()
+            )
+            .edge(executeToolCall, sendToolResult)
+            .edge(AIAgentEdge.builder()
+                .from(sendToolResult)
+                .to(subgraph.nodeFinish)
+                .onTextMessage()
+                .build()
+            )
+            .build();
+
+    })
+    .build();
+
+var strategy = strategyBuilder
+    .edge(strategyBuilder.nodeStart, mySubgraph)
+    .edge(mySubgraph, strategyBuilder.nodeFinish)
+    .build();
+</code></pre>
+<h3 id="_4">在子图中配置工具</h3>
+<p>可以通过多种方式为子图配置工具：</p>
+<ul>
+<li>直接在子图定义中配置：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val mySubgraph by subgraph&lt;String, String&gt;(
+   tools = listOf(AskUser)
+ ) {
+    // Subgraph definition
+ }
+</code></pre>
+<pre><code>var mySubgraph = AIAgentSubgraph.builder()
+    .limitedTools(List.of(AskUser.INSTANCE))
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Subgraph definition
+    })
+    .build();
+</code></pre>
+<ul>
+<li>从工具注册表：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>val mySubgraph by subgraph&lt;String, String&gt;(
+    tools = listOf(toolRegistry.getTool(&quot;AskUser&quot;))
+) {
+    // Subgraph definition
+}
+</code></pre>
+<pre><code>var mySubgraph = AIAgentSubgraph.builder()
+    .limitedTools(List.of(toolRegistry.getTool(&quot;AskUser&quot;)))
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Subgraph definition
+    })
+    .build();
+</code></pre>
+<ul>
+<li>在执行期间动态地：</li>
+</ul>
+<p>KotlinJava</p>
+<pre><code>// Make a set of tools
+this.llm.writeSession {
+    tools = tools.filter { it.name in listOf(&quot;first_tool_name&quot;, &quot;second_tool_name&quot;) }
+}
+</code></pre>
+<pre><code>var node = AIAgentNode.builder(&quot;node_name&quot;)
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((input, ctx) -&gt; {
+        // Make a set of tools
+        ctx.getLlm().writeSession(session -&gt; {
+            session.setTools(session.getTools().stream()
+                .filter(t -&gt; List.of(&quot;first_tool_name&quot;, &quot;second_tool_name&quot;).contains(t.getName()))
+                .collect(Collectors.toList()));
+            return null;
+        });
+        return input;
+    })
+    .build();
+</code></pre>
+<h2 id="_5">高级子图技术</h2>
+<h3 id="_6">多部分策略</h3>
+<p>复杂的工作流可以分解为多个子图，每个子图处理流程的特定部分：</p>
+<p>KotlinJava</p>
+<pre><code>strategy(&quot;complex-workflow&quot;) {
+   val inputProcessing by subgraph&lt;String, A&gt;(
+   ) {
+      // Process the initial input
+   }
+
+   val reasoning by subgraph&lt;A, B&gt;(
+   ) {
+      // Perform reasoning based on the processed input
+   }
+
+   val toolRun by subgraph&lt;B, C&gt;(
+      // Optional subset of tools from the tool registry
+      tools = listOf(firstTool, secondTool)
+   ) {
+      // Run tools based on the reasoning
+   }
+
+   val responseGeneration by subgraph&lt;C, String&gt;(
+   ) {
+      // Generate a response based on the tool results
+   }
+
+   nodeStart then inputProcessing then reasoning then toolRun then responseGeneration then nodeFinish
+
+}
+</code></pre>
+<pre><code>var strategyBuilder = AIAgentGraphStrategy.builder(&quot;complex-workflow&quot;)
+        .withInput(String.class)
+        .withOutput(String.class);
+
+var inputProcessing = AIAgentSubgraph.builder()
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Process the initial input
+    })
+    .build();
+
+var reasoning = AIAgentSubgraph.builder()
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Perform reasoning based on the processed input
+    })
+    .build();
+
+var toolRun = AIAgentSubgraph.builder()
+    // Optional subset of tools from the tool registry
+    .limitedTools(List.of(firstTool, secondTool))
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Run tools based on the reasoning
+    })
+    .build();
+
+var responseGeneration = AIAgentSubgraph.builder()
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        // Generate a response based on the tool results
+    })
+    .build();
+
+var strategy = strategyBuilder
+    .edge(strategyBuilder.nodeStart, inputProcessing)
+    .edge(inputProcessing, reasoning)
+    .edge(reasoning, toolRun)
+    .edge(toolRun, responseGeneration)
+    .edge(responseGeneration, strategyBuilder.nodeFinish)
+    .build();
+</code></pre>
+<h2 id="_7">最佳实践</h2>
+<p>在使用子图时，请遵循以下最佳实践：</p>
+<ol>
+<li><strong>将复杂工作流拆分为子图</strong>：每个子图都应具有清晰、专注的职责。</li>
+<li><strong>只传递必要的上下文</strong>：只传递后续子图正常运行所需的信息。</li>
+<li><strong>记录子图依赖关系</strong>：清楚地记录每个子图期望从前序子图获得什么，以及它向后序子图提供什么。</li>
+<li><strong>单独测试子图</strong>：在将每个子图集成到策略中之前，确保它能在各种输入下正常工作。</li>
+<li><strong>考虑 token 用量</strong>：注意 token 用量，尤其是在子图之间传递大量历史记录时。</li>
+</ol>
+<h2 id="_8">故障排除</h2>
+<h3 id="_9">工具不可用</h3>
+<p>如果子图中工具不可用：</p>
+<ul>
+<li>检查工具是否已正确注册到工具注册表中。</li>
+</ul>
+<h3 id="_10">子图未按定义且预期的顺序运行</h3>
+<p>如果子图未按定义的顺序执行：</p>
+<ul>
+<li>检查策略定义，确保子图按正确顺序列出。</li>
+<li>验证每个子图是否正确将其输出传递给下一个子图。</li>
+<li>确保你的子图与其余子图相连，并且可从起点（和终点）到达。注意条件边，确保它们覆盖所有可能的继续条件，以免在某个子图或节点中被阻塞。</li>
+</ul>
+<h2 id="_11">示例</h2>
+<p>以下示例展示了在真实场景中如何使用子图创建智能体策略。
+该代码示例包含三个已定义的子图：<code>researchSubgraph</code>、<code>planSubgraph</code> 和 <code>executeSubgraph</code>，其中每个子图在助手流程中都有明确且不同的用途。</p>
+<p>KotlinJava</p>
+<pre><code>// Define the agent strategy
+val strategy = strategy&lt;String, String&gt;(&quot;assistant&quot;) {
+
+    // A subgraph that includes a tool call
+    val researchSubgraph by subgraph&lt;String, String&gt;(
+        &quot;research_subgraph&quot;,
+        tools = listOf(WebSearchTool())
+    ) {
+        val nodeCallLLM by nodeLLMRequest(&quot;call_llm&quot;)
+        val nodeExecuteTool by nodeExecuteTools()
+        val nodeSendToolResult by nodeLLMSendToolResults()
+
+        edge(nodeStart forwardTo nodeCallLLM)
+        edge(nodeCallLLM forwardTo nodeExecuteTool onToolCalls { true })
+        edge(nodeExecuteTool forwardTo nodeSendToolResult)
+        edge(nodeSendToolResult forwardTo nodeExecuteTool onToolCalls { true })
+        edge(nodeCallLLM forwardTo nodeFinish onTextMessage { true })
+    }
+
+    val planSubgraph by subgraph(
+        &quot;plan_subgraph&quot;,
+        tools = listOf()
+    ) {
+        val nodeUpdatePrompt by node&lt;String, Unit&gt; { research -&gt;
+            llm.writeSession {
+                rewritePrompt {
+                    prompt(&quot;research_prompt&quot;) {
+                        system(
+                            &quot;You are given a problem and some research on how it can be solved.&quot; +
+                                    &quot;Make step by step a plan on how to solve given task.&quot;
+                        )
+                        user(&quot;Research: $research&quot;)
+                    }
+                }
+            }
+        }
+        val nodeCallLLM by nodeLLMRequest(&quot;call_llm&quot;)
+
+        edge(nodeStart forwardTo nodeUpdatePrompt)
+        edge(nodeUpdatePrompt forwardTo nodeCallLLM transformed { &quot;Task: $agentInput&quot; })
+        edge(nodeCallLLM forwardTo nodeFinish onTextMessage { true })
+    }
+
+    val executeSubgraph by subgraph&lt;String, String&gt;(
+        &quot;execute_subgraph&quot;,
+        tools = listOf(DoAction(), DoAnotherAction()),
+    ) {
+        val nodeUpdatePrompt by node&lt;String, Unit&gt; { plan -&gt;
+            llm.writeSession {
+                rewritePrompt {
+                    prompt(&quot;execute_prompt&quot;) {
+                        system(
+                            &quot;You are given a task and detailed plan how to execute it.&quot; +
+                                    &quot;Perform execution by calling relevant tools.&quot;
+                        )
+                        user(&quot;Execute: $plan&quot;)
+                        user(&quot;Plan: $plan&quot;)
+                    }
+                }
+            }
+        }
+        val nodeCallLLM by nodeLLMRequest(&quot;call_llm&quot;)
+        val nodeExecuteTool by nodeExecuteTools()
+        val nodeSendToolResult by nodeLLMSendToolResults()
+
+        edge(nodeStart forwardTo nodeUpdatePrompt)
+        edge(nodeUpdatePrompt forwardTo nodeCallLLM transformed { &quot;Task: $agentInput&quot; })
+        edge(nodeCallLLM forwardTo nodeExecuteTool onToolCalls { true })
+        edge(nodeExecuteTool forwardTo nodeSendToolResult)
+        edge(nodeSendToolResult forwardTo nodeExecuteTool onToolCalls { true })
+        edge(nodeCallLLM forwardTo nodeFinish onTextMessage { true })
+    }
+
+    nodeStart then researchSubgraph then planSubgraph then executeSubgraph then nodeFinish
+}
+</code></pre>
+<pre><code>// Define the agent strategy
+var strategyBuilder = AIAgentGraphStrategy.builder(&quot;assistant&quot;)
+    .withInput(String.class)
+    .withOutput(String.class);
+
+// A subgraph that includes a tool call
+var nodeCallLLM = AIAgentNode.llmRequest(null);
+var nodeExecuteTool = AIAgentNode.executeTools(null);
+var nodeSendToolResult = AIAgentNode.llmSendToolResults(null);
+
+var researchSubgraph = AIAgentSubgraph.builder(&quot;research_subgraph&quot;)
+    .limitedTools(new WebSearchToolSet())
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        subgraph
+            .edge(AIAgentEdge.builder()
+                .from(subgraph.nodeStart)
+                .to(nodeCallLLM)
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(nodeCallLLM)
+                .to(nodeExecuteTool)
+                .onToolCalls()
+                .build()
+            )
+            .edge(nodeExecuteTool, nodeSendToolResult)
+            .edge(AIAgentEdge.builder()
+                .from(nodeSendToolResult)
+                .to(nodeExecuteTool)
+                .onToolCalls()
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(nodeCallLLM)
+                .to(subgraph.nodeFinish)
+                .onTextMessage()
+                .build()
+            )
+            .build();
+    })
+    .build();
+
+var nodeUpdatePrompt = AIAgentNode.builder()
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((research, ctx) -&gt; {
+        ctx.getLlm().writeSession(session -&gt; {
+            session.setPrompt(Prompt.builder(&quot;research_prompt&quot;)
+                .system(
+                    &quot;You are given a problem and some research on how it can be solved.&quot; +
+                    &quot;Make step by step a plan on how to solve given task.&quot;
+                )
+                .user(&quot;Research: &quot; + research)
+                .build());
+            return null;
+        });
+        return &quot;Task: &quot; + ctx.getAgentInput();
+    })
+    .build();
+var nodeCallLLMPlan = AIAgentNode.llmRequest(null);
+
+var planSubgraph = AIAgentSubgraph.builder(&quot;plan_subgraph&quot;)
+    .limitedTools(Collections.emptyList())
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        subgraph
+            .edge(subgraph.nodeStart, nodeUpdatePrompt)
+            .edge(AIAgentEdge.builder()
+                .from(nodeUpdatePrompt)
+                .to(nodeCallLLMPlan)
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(nodeCallLLMPlan)
+                .to(subgraph.nodeFinish)
+                .onTextMessage()
+                .build()
+            )
+            .build();
+    })
+    .build();
+
+var nodeUpdatePromptExecute = AIAgentNode.builder()
+    .withInput(String.class)
+    .withOutput(String.class)
+    .withAction((plan, ctx) -&gt; {
+        ctx.getLlm().writeSession(session -&gt; {
+            session.setPrompt(Prompt.builder(&quot;execute_prompt&quot;)
+                .system(
+                    &quot;You are given a task and detailed plan how to execute it.&quot; +
+                    &quot;Perform execution by calling relevant tools.&quot;
+                )
+                .user(&quot;Execute: &quot; + plan)
+                .user(&quot;Plan: &quot; + plan)
+                .build());
+            return null;
+        });
+        return &quot;Task: &quot; + ctx.getAgentInput();
+    })
+    .build();
+
+var nodeCallLLMExecute = AIAgentNode.llmRequest(null);
+var nodeExecuteToolExecute = AIAgentNode.executeTools(null);
+var nodeSendToolResultExecute = AIAgentNode.llmSendToolResults(null);
+
+var executeSubgraph = AIAgentSubgraph.builder(&quot;execute_subgraph&quot;)
+    .limitedTools(new ActionToolSet())
+    .withInput(String.class)
+    .withOutput(String.class)
+    .define(subgraph -&gt; {
+        subgraph
+            .edge(subgraph.nodeStart, nodeUpdatePromptExecute)
+            .edge(AIAgentEdge.builder()
+                .from(nodeUpdatePromptExecute)
+                .to(nodeCallLLMExecute)
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(nodeCallLLMExecute)
+                .to(nodeExecuteToolExecute)
+                .onToolCalls()
+                .build()
+            )
+            .edge(nodeExecuteToolExecute, nodeSendToolResultExecute)
+            .edge(AIAgentEdge.builder()
+                .from(nodeSendToolResultExecute)
+                .to(nodeExecuteToolExecute)
+                .onToolCalls()
+                .build()
+            )
+            .edge(AIAgentEdge.builder()
+                .from(nodeCallLLMExecute)
+                .to(subgraph.nodeFinish)
+                .onIsInstance(Message.Assistant.class)
+                .onTextMessage()
+                .build()
+            )
+            .build();
+    })
+    .build();
+
+var strategy = strategyBuilder
+    .edge(strategyBuilder.nodeStart, researchSubgraph)
+    .edge(researchSubgraph, planSubgraph)
+    .edge(planSubgraph, executeSubgraph)
+    .edge(executeSubgraph, strategyBuilder.nodeFinish)
+    .build();
+</code></pre></article><div class="page-tools"><a class="button primary" href="#top">返回顶部</a><a class="button" href="index.html">返回首页</a><a class="button" href="https://docs.koog.ai/custom-subgraphs/">官方原文</a></div></main></div></body></html>
