@@ -1,0 +1,618 @@
+[
+  {
+    "index": 1,
+    "url": "https://docs.koog.ai/",
+    "slug": "index",
+    "title": "Overview",
+    "source_file": "docs-translation/_source_en/001-index.md"
+  },
+  {
+    "index": 2,
+    "url": "https://docs.koog.ai/agent-client-protocol/",
+    "slug": "agent-client-protocol",
+    "title": "Agent Client Protocol",
+    "source_file": "docs-translation/_source_en/002-agent-client-protocol.md"
+  },
+  {
+    "index": 3,
+    "url": "https://docs.koog.ai/agent-events/",
+    "slug": "agent-events",
+    "title": "Agent events",
+    "source_file": "docs-translation/_source_en/003-agent-events.md"
+  },
+  {
+    "index": 4,
+    "url": "https://docs.koog.ai/amazon-bedrock-agentcore/",
+    "slug": "amazon-bedrock-agentcore",
+    "title": "Amazon Bedrock AgentCore",
+    "source_file": "docs-translation/_source_en/004-amazon-bedrock-agentcore.md"
+  },
+  {
+    "index": 5,
+    "url": "https://docs.koog.ai/content-moderation/",
+    "slug": "content-moderation",
+    "title": "Content moderation",
+    "source_file": "docs-translation/_source_en/005-content-moderation.md"
+  },
+  {
+    "index": 6,
+    "url": "https://docs.koog.ai/custom-nodes/",
+    "slug": "custom-nodes",
+    "title": "Custom node implementation",
+    "source_file": "docs-translation/_source_en/006-custom-nodes.md"
+  },
+  {
+    "index": 7,
+    "url": "https://docs.koog.ai/custom-strategy-graphs/",
+    "slug": "custom-strategy-graphs",
+    "title": "Custom strategy graphs",
+    "source_file": "docs-translation/_source_en/007-custom-strategy-graphs.md"
+  },
+  {
+    "index": 8,
+    "url": "https://docs.koog.ai/custom-subgraphs/",
+    "slug": "custom-subgraphs",
+    "title": "Custom subgraphs",
+    "source_file": "docs-translation/_source_en/008-custom-subgraphs.md"
+  },
+  {
+    "index": 9,
+    "url": "https://docs.koog.ai/data-transfer-between-nodes/",
+    "slug": "data-transfer-between-nodes",
+    "title": "Data transfer between nodes",
+    "source_file": "docs-translation/_source_en/009-data-transfer-between-nodes.md"
+  },
+  {
+    "index": 10,
+    "url": "https://docs.koog.ai/embeddings/",
+    "slug": "embeddings",
+    "title": "Embeddings",
+    "source_file": "docs-translation/_source_en/010-embeddings.md"
+  },
+  {
+    "index": 11,
+    "url": "https://docs.koog.ai/examples/",
+    "slug": "examples",
+    "title": "Examples",
+    "source_file": "docs-translation/_source_en/011-examples.md"
+  },
+  {
+    "index": 12,
+    "url": "https://docs.koog.ai/glossary/",
+    "slug": "glossary",
+    "title": "Glossary",
+    "source_file": "docs-translation/_source_en/012-glossary.md"
+  },
+  {
+    "index": 13,
+    "url": "https://docs.koog.ai/history-compression/",
+    "slug": "history-compression",
+    "title": "History compression",
+    "source_file": "docs-translation/_source_en/013-history-compression.md"
+  },
+  {
+    "index": 14,
+    "url": "https://docs.koog.ai/key-features/",
+    "slug": "key-features",
+    "title": "Key features",
+    "source_file": "docs-translation/_source_en/014-key-features.md"
+  },
+  {
+    "index": 15,
+    "url": "https://docs.koog.ai/koog-slack-channel/",
+    "slug": "koog-slack-channel",
+    "title": "Koog on Slack",
+    "source_file": "docs-translation/_source_en/015-koog-slack-channel.md"
+  },
+  {
+    "index": 16,
+    "url": "https://docs.koog.ai/ktor-plugin/",
+    "slug": "ktor-plugin",
+    "title": "Ktor Integration: Koog plugin",
+    "source_file": "docs-translation/_source_en/016-ktor-plugin.md"
+  },
+  {
+    "index": 17,
+    "url": "https://docs.koog.ai/llm-parameters/",
+    "slug": "llm-parameters",
+    "title": "LLM parameters",
+    "source_file": "docs-translation/_source_en/017-llm-parameters.md"
+  },
+  {
+    "index": 18,
+    "url": "https://docs.koog.ai/llm-providers/",
+    "slug": "llm-providers",
+    "title": "LLM providers",
+    "source_file": "docs-translation/_source_en/018-llm-providers.md"
+  },
+  {
+    "index": 19,
+    "url": "https://docs.koog.ai/model-capabilities/",
+    "slug": "model-capabilities",
+    "title": "Model capabilities",
+    "source_file": "docs-translation/_source_en/019-model-capabilities.md"
+  },
+  {
+    "index": 20,
+    "url": "https://docs.koog.ai/model-context-protocol/",
+    "slug": "model-context-protocol",
+    "title": "Model Context Protocol",
+    "source_file": "docs-translation/_source_en/020-model-context-protocol.md"
+  },
+  {
+    "index": 21,
+    "url": "https://docs.koog.ai/module-versioning/",
+    "slug": "module-versioning",
+    "title": "Versioning",
+    "source_file": "docs-translation/_source_en/021-module-versioning.md"
+  },
+  {
+    "index": 22,
+    "url": "https://docs.koog.ai/nodes-and-components/",
+    "slug": "nodes-and-components",
+    "title": "Predefined nodes and components",
+    "source_file": "docs-translation/_source_en/022-nodes-and-components.md"
+  },
+  {
+    "index": 23,
+    "url": "https://docs.koog.ai/parallel-node-execution/",
+    "slug": "parallel-node-execution",
+    "title": "Parallel node execution",
+    "source_file": "docs-translation/_source_en/023-parallel-node-execution.md"
+  },
+  {
+    "index": 24,
+    "url": "https://docs.koog.ai/predefined-agent-strategies/",
+    "slug": "predefined-agent-strategies",
+    "title": "Predefined agent strategies",
+    "source_file": "docs-translation/_source_en/024-predefined-agent-strategies.md"
+  },
+  {
+    "index": 25,
+    "url": "https://docs.koog.ai/quickstart/",
+    "slug": "quickstart",
+    "title": "Quickstart",
+    "source_file": "docs-translation/_source_en/025-quickstart.md"
+  },
+  {
+    "index": 26,
+    "url": "https://docs.koog.ai/retrieval-augmented-generation/",
+    "slug": "retrieval-augmented-generation",
+    "title": "Retrieval-augmented generation ( RAG )",
+    "source_file": "docs-translation/_source_en/026-retrieval-augmented-generation.md"
+  },
+  {
+    "index": 27,
+    "url": "https://docs.koog.ai/serialization/",
+    "slug": "serialization",
+    "title": "Serialization",
+    "source_file": "docs-translation/_source_en/027-serialization.md"
+  },
+  {
+    "index": 28,
+    "url": "https://docs.koog.ai/sessions/",
+    "slug": "sessions",
+    "title": "LLM sessions and manual history management",
+    "source_file": "docs-translation/_source_en/028-sessions.md"
+  },
+  {
+    "index": 29,
+    "url": "https://docs.koog.ai/skills/",
+    "slug": "skills",
+    "title": "Skills usage",
+    "source_file": "docs-translation/_source_en/029-skills.md"
+  },
+  {
+    "index": 30,
+    "url": "https://docs.koog.ai/spring-ai-integration/",
+    "slug": "spring-ai-integration",
+    "title": "Spring AI Integration",
+    "source_file": "docs-translation/_source_en/030-spring-ai-integration.md"
+  },
+  {
+    "index": 31,
+    "url": "https://docs.koog.ai/spring-boot/",
+    "slug": "spring-boot",
+    "title": "Spring Boot Integration",
+    "source_file": "docs-translation/_source_en/031-spring-boot.md"
+  },
+  {
+    "index": 32,
+    "url": "https://docs.koog.ai/streaming-api/",
+    "slug": "streaming-api",
+    "title": "Streaming API",
+    "source_file": "docs-translation/_source_en/032-streaming-api.md"
+  },
+  {
+    "index": 33,
+    "url": "https://docs.koog.ai/structured-output/",
+    "slug": "structured-output",
+    "title": "Structured output",
+    "source_file": "docs-translation/_source_en/033-structured-output.md"
+  },
+  {
+    "index": 34,
+    "url": "https://docs.koog.ai/subgraphs-overview/",
+    "slug": "subgraphs-overview",
+    "title": "Overview",
+    "source_file": "docs-translation/_source_en/034-subgraphs-overview.md"
+  },
+  {
+    "index": 35,
+    "url": "https://docs.koog.ai/testing/",
+    "slug": "testing",
+    "title": "Testing",
+    "source_file": "docs-translation/_source_en/035-testing.md"
+  },
+  {
+    "index": 36,
+    "url": "https://docs.koog.ai/why-koog/",
+    "slug": "why-koog",
+    "title": "Why Koog",
+    "source_file": "docs-translation/_source_en/036-why-koog.md"
+  },
+  {
+    "index": 37,
+    "url": "https://docs.koog.ai/a2a/",
+    "slug": "a2a",
+    "title": "A2A protocol",
+    "source_file": "docs-translation/_source_en/037-a2a.md"
+  },
+  {
+    "index": 38,
+    "url": "https://docs.koog.ai/a2a/a2a-client/",
+    "slug": "a2a__a2a-client",
+    "title": "A2A Client",
+    "source_file": "docs-translation/_source_en/038-a2a__a2a-client.md"
+  },
+  {
+    "index": 39,
+    "url": "https://docs.koog.ai/a2a/a2a-koog-integration/",
+    "slug": "a2a__a2a-koog-integration",
+    "title": "A2A and Koog Integration",
+    "source_file": "docs-translation/_source_en/039-a2a__a2a-koog-integration.md"
+  },
+  {
+    "index": 40,
+    "url": "https://docs.koog.ai/a2a/a2a-server/",
+    "slug": "a2a__a2a-server",
+    "title": "A2A Server",
+    "source_file": "docs-translation/_source_en/040-a2a__a2a-server.md"
+  },
+  {
+    "index": 41,
+    "url": "https://docs.koog.ai/agents/",
+    "slug": "agents",
+    "title": "Agents",
+    "source_file": "docs-translation/_source_en/041-agents.md"
+  },
+  {
+    "index": 42,
+    "url": "https://docs.koog.ai/agents/basic-agents/",
+    "slug": "agents__basic-agents",
+    "title": "Basic agents",
+    "source_file": "docs-translation/_source_en/042-agents__basic-agents.md"
+  },
+  {
+    "index": 43,
+    "url": "https://docs.koog.ai/agents/functional-agents/",
+    "slug": "agents__functional-agents",
+    "title": "Functional agents",
+    "source_file": "docs-translation/_source_en/043-agents__functional-agents.md"
+  },
+  {
+    "index": 44,
+    "url": "https://docs.koog.ai/agents/graph-based-agents/",
+    "slug": "agents__graph-based-agents",
+    "title": "Graph-based agents",
+    "source_file": "docs-translation/_source_en/044-agents__graph-based-agents.md"
+  },
+  {
+    "index": 45,
+    "url": "https://docs.koog.ai/agents/planner-agents/",
+    "slug": "agents__planner-agents",
+    "title": "Planner agents",
+    "source_file": "docs-translation/_source_en/045-agents__planner-agents.md"
+  },
+  {
+    "index": 46,
+    "url": "https://docs.koog.ai/agents/planner-agents/goap-agents/",
+    "slug": "agents__planner-agents__goap-agents",
+    "title": "GOAP agents",
+    "source_file": "docs-translation/_source_en/046-agents__planner-agents__goap-agents.md"
+  },
+  {
+    "index": 47,
+    "url": "https://docs.koog.ai/agents/planner-agents/llm-based-planners/",
+    "slug": "agents__planner-agents__llm-based-planners",
+    "title": "LLM -based planners",
+    "source_file": "docs-translation/_source_en/047-agents__planner-agents__llm-based-planners.md"
+  },
+  {
+    "index": 48,
+    "url": "https://docs.koog.ai/examples/Attachments/",
+    "slug": "examples__Attachments",
+    "title": "Attachments",
+    "source_file": "docs-translation/_source_en/048-examples__Attachments.md"
+  },
+  {
+    "index": 49,
+    "url": "https://docs.koog.ai/examples/Banking/",
+    "slug": "examples__Banking",
+    "title": "Building an AI Banking Assistant with Koog",
+    "source_file": "docs-translation/_source_en/049-examples__Banking.md"
+  },
+  {
+    "index": 50,
+    "url": "https://docs.koog.ai/examples/BedrockAgent/",
+    "slug": "examples__BedrockAgent",
+    "title": "Building AI Agents with AWS Bedrock and Koog Framework",
+    "source_file": "docs-translation/_source_en/050-examples__BedrockAgent.md"
+  },
+  {
+    "index": 51,
+    "url": "https://docs.koog.ai/examples/Calculator/",
+    "slug": "examples__Calculator",
+    "title": "Building a Tool-Calling Calculator Agent with Koog",
+    "source_file": "docs-translation/_source_en/051-examples__Calculator.md"
+  },
+  {
+    "index": 52,
+    "url": "https://docs.koog.ai/examples/Chess/",
+    "slug": "examples__Chess",
+    "title": "Building an AI Chess Player with Koog Framework",
+    "source_file": "docs-translation/_source_en/052-examples__Chess.md"
+  },
+  {
+    "index": 53,
+    "url": "https://docs.koog.ai/examples/GoogleMapsMcp/",
+    "slug": "examples__GoogleMapsMcp",
+    "title": "Google Maps MCP with Koog: From Zero to Elevation in a Kotlin Notebook",
+    "source_file": "docs-translation/_source_en/053-examples__GoogleMapsMcp.md"
+  },
+  {
+    "index": 54,
+    "url": "https://docs.koog.ai/examples/Guesser/",
+    "slug": "examples__Guesser",
+    "title": "Building a Number‑Guessing Agent with Koog",
+    "source_file": "docs-translation/_source_en/054-examples__Guesser.md"
+  },
+  {
+    "index": 55,
+    "url": "https://docs.koog.ai/examples/Langfuse/",
+    "slug": "examples__Langfuse",
+    "title": "Tracing Koog Agents to Langfuse with OpenTelemetry",
+    "source_file": "docs-translation/_source_en/055-examples__Langfuse.md"
+  },
+  {
+    "index": 56,
+    "url": "https://docs.koog.ai/examples/OpenTelemetry/",
+    "slug": "examples__OpenTelemetry",
+    "title": "OpenTelemetry with Koog: Tracing your AI agent",
+    "source_file": "docs-translation/_source_en/056-examples__OpenTelemetry.md"
+  },
+  {
+    "index": 57,
+    "url": "https://docs.koog.ai/examples/PlaywrightMcp/",
+    "slug": "examples__PlaywrightMcp",
+    "title": "Drive the browser with Playwright MCP and Koog",
+    "source_file": "docs-translation/_source_en/057-examples__PlaywrightMcp.md"
+  },
+  {
+    "index": 58,
+    "url": "https://docs.koog.ai/examples/UnityMcp/",
+    "slug": "examples__UnityMcp",
+    "title": "Unity + Koog: Drive your game from a Kotlin Agent",
+    "source_file": "docs-translation/_source_en/058-examples__UnityMcp.md"
+  },
+  {
+    "index": 59,
+    "url": "https://docs.koog.ai/examples/VaccumAgent/",
+    "slug": "examples__VaccumAgent",
+    "title": "Build a Simple Vacuum Cleaner Agent",
+    "source_file": "docs-translation/_source_en/059-examples__VaccumAgent.md"
+  },
+  {
+    "index": 60,
+    "url": "https://docs.koog.ai/examples/Weave/",
+    "slug": "examples__Weave",
+    "title": "Weave tracing for Koog agents",
+    "source_file": "docs-translation/_source_en/060-examples__Weave.md"
+  },
+  {
+    "index": 61,
+    "url": "https://docs.koog.ai/examples/WebMcpClient/",
+    "slug": "examples__WebMcpClient",
+    "title": "Web Scraping with The Web MCP by Bright Data and Koog",
+    "source_file": "docs-translation/_source_en/061-examples__WebMcpClient.md"
+  },
+  {
+    "index": 62,
+    "url": "https://docs.koog.ai/features/",
+    "slug": "features",
+    "title": "Features",
+    "source_file": "docs-translation/_source_en/062-features.md"
+  },
+  {
+    "index": 63,
+    "url": "https://docs.koog.ai/features/agent-event-handlers/",
+    "slug": "features__agent-event-handlers",
+    "title": "Event handlers",
+    "source_file": "docs-translation/_source_en/063-features__agent-event-handlers.md"
+  },
+  {
+    "index": 64,
+    "url": "https://docs.koog.ai/features/agent-persistence/",
+    "slug": "features__agent-persistence",
+    "title": "Agent persistence",
+    "source_file": "docs-translation/_source_en/064-features__agent-persistence.md"
+  },
+  {
+    "index": 65,
+    "url": "https://docs.koog.ai/features/custom-features/",
+    "slug": "features__custom-features",
+    "title": "Custom features",
+    "source_file": "docs-translation/_source_en/065-features__custom-features.md"
+  },
+  {
+    "index": 66,
+    "url": "https://docs.koog.ai/features/long-term-memory/",
+    "slug": "features__long-term-memory",
+    "title": "Long-term memory",
+    "source_file": "docs-translation/_source_en/066-features__long-term-memory.md"
+  },
+  {
+    "index": 67,
+    "url": "https://docs.koog.ai/features/tracing/",
+    "slug": "features__tracing",
+    "title": "Tracing",
+    "source_file": "docs-translation/_source_en/067-features__tracing.md"
+  },
+  {
+    "index": 68,
+    "url": "https://docs.koog.ai/features/chat-memory/",
+    "slug": "features__chat-memory",
+    "title": "Chat memory",
+    "source_file": "docs-translation/_source_en/068-features__chat-memory.md"
+  },
+  {
+    "index": 69,
+    "url": "https://docs.koog.ai/features/chat-memory/chat-agent-with-memory/",
+    "slug": "features__chat-memory__chat-agent-with-memory",
+    "title": "Build a chat agent with memory",
+    "source_file": "docs-translation/_source_en/069-features__chat-memory__chat-agent-with-memory.md"
+  },
+  {
+    "index": 70,
+    "url": "https://docs.koog.ai/features/chat-memory/chat-backend-with-memory/",
+    "slug": "features__chat-memory__chat-backend-with-memory",
+    "title": "Chat backend with memory",
+    "source_file": "docs-translation/_source_en/070-features__chat-memory__chat-backend-with-memory.md"
+  },
+  {
+    "index": 71,
+    "url": "https://docs.koog.ai/features/open-telemetry/",
+    "slug": "features__open-telemetry",
+    "title": "OpenTelemetry support",
+    "source_file": "docs-translation/_source_en/071-features__open-telemetry.md"
+  },
+  {
+    "index": 72,
+    "url": "https://docs.koog.ai/features/open-telemetry/opentelemetry-datadog-exporter/",
+    "slug": "features__open-telemetry__opentelemetry-datadog-exporter",
+    "title": "Datadog exporter",
+    "source_file": "docs-translation/_source_en/072-features__open-telemetry__opentelemetry-datadog-exporter.md"
+  },
+  {
+    "index": 73,
+    "url": "https://docs.koog.ai/features/open-telemetry/opentelemetry-langfuse-exporter/",
+    "slug": "features__open-telemetry__opentelemetry-langfuse-exporter",
+    "title": "Langfuse exporter",
+    "source_file": "docs-translation/_source_en/073-features__open-telemetry__opentelemetry-langfuse-exporter.md"
+  },
+  {
+    "index": 74,
+    "url": "https://docs.koog.ai/features/open-telemetry/opentelemetry-weave-exporter/",
+    "slug": "features__open-telemetry__opentelemetry-weave-exporter",
+    "title": "W&B Weave exporter",
+    "source_file": "docs-translation/_source_en/074-features__open-telemetry__opentelemetry-weave-exporter.md"
+  },
+  {
+    "index": 75,
+    "url": "https://docs.koog.ai/prompts/",
+    "slug": "prompts",
+    "title": "Prompts",
+    "source_file": "docs-translation/_source_en/075-prompts.md"
+  },
+  {
+    "index": 76,
+    "url": "https://docs.koog.ai/prompts/handling-failures/",
+    "slug": "prompts__handling-failures",
+    "title": "Handling failures",
+    "source_file": "docs-translation/_source_en/076-prompts__handling-failures.md"
+  },
+  {
+    "index": 77,
+    "url": "https://docs.koog.ai/prompts/http-clients/",
+    "slug": "prompts__http-clients",
+    "title": "HTTP clients",
+    "source_file": "docs-translation/_source_en/077-prompts__http-clients.md"
+  },
+  {
+    "index": 78,
+    "url": "https://docs.koog.ai/prompts/llm-clients/",
+    "slug": "prompts__llm-clients",
+    "title": "LLM clients",
+    "source_file": "docs-translation/_source_en/078-prompts__llm-clients.md"
+  },
+  {
+    "index": 79,
+    "url": "https://docs.koog.ai/prompts/llm-response-caching/",
+    "slug": "prompts__llm-response-caching",
+    "title": "LLM response caching",
+    "source_file": "docs-translation/_source_en/079-prompts__llm-response-caching.md"
+  },
+  {
+    "index": 80,
+    "url": "https://docs.koog.ai/prompts/prompt-executors/",
+    "slug": "prompts__prompt-executors",
+    "title": "Prompt executors",
+    "source_file": "docs-translation/_source_en/080-prompts__prompt-executors.md"
+  },
+  {
+    "index": 81,
+    "url": "https://docs.koog.ai/prompts/prompt-creation/",
+    "slug": "prompts__prompt-creation",
+    "title": "Creating prompts",
+    "source_file": "docs-translation/_source_en/081-prompts__prompt-creation.md"
+  },
+  {
+    "index": 82,
+    "url": "https://docs.koog.ai/prompts/prompt-creation/cache-control/",
+    "slug": "prompts__prompt-creation__cache-control",
+    "title": "Prompt caching control",
+    "source_file": "docs-translation/_source_en/082-prompts__prompt-creation__cache-control.md"
+  },
+  {
+    "index": 83,
+    "url": "https://docs.koog.ai/prompts/prompt-creation/multimodal-content/",
+    "slug": "prompts__prompt-creation__multimodal-content",
+    "title": "Multimodal content",
+    "source_file": "docs-translation/_source_en/083-prompts__prompt-creation__multimodal-content.md"
+  },
+  {
+    "index": 84,
+    "url": "https://docs.koog.ai/tools/",
+    "slug": "tools",
+    "title": "Overview",
+    "source_file": "docs-translation/_source_en/084-tools.md"
+  },
+  {
+    "index": 85,
+    "url": "https://docs.koog.ai/tools/annotation-based-tools/",
+    "slug": "tools__annotation-based-tools",
+    "title": "Annotation-based tools",
+    "source_file": "docs-translation/_source_en/085-tools__annotation-based-tools.md"
+  },
+  {
+    "index": 86,
+    "url": "https://docs.koog.ai/tools/built-in-tools/",
+    "slug": "tools__built-in-tools",
+    "title": "Built-in tools",
+    "source_file": "docs-translation/_source_en/086-tools__built-in-tools.md"
+  },
+  {
+    "index": 87,
+    "url": "https://docs.koog.ai/tools/class-based-tools/",
+    "slug": "tools__class-based-tools",
+    "title": "Class-based tools",
+    "source_file": "docs-translation/_source_en/087-tools__class-based-tools.md"
+  },
+  {
+    "index": 88,
+    "url": "https://docs.koog.ai/tools/tool-descriptor-schemer/",
+    "slug": "tools__tool-descriptor-schemer",
+    "title": "ToolDescriptorSchemer",
+    "source_file": "docs-translation/_source_en/088-tools__tool-descriptor-schemer.md"
+  }
+]
